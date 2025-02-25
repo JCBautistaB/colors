@@ -116,15 +116,7 @@
             align-items: center;
             padding: 20px;
         }
-        .ad-banner {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .ad-banner img {
-            max-width: 100%;
-            height: auto;
-        }
-        .content {
+               .content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -193,11 +185,37 @@
                 flex-direction: column;
             }
         }
+
+.whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+    }
+
     </style>
     <!-- Enlace a Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+<a href="https://wa.me/522224606907" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
     <header>
         <h1><i class="fa-solid fa-icons"></i> QuetzalArte.com</h1>
     </header>
@@ -217,11 +235,6 @@
 
     </nav>
     <main>
-
-
-        <div class="ad-banner">
-            <img src="https://noticiasconmoctezuma.com/wp-content/uploads/2024/06/728-x-90.gif" alt="Publicidad">
-        </div>
 
 <h2 style="color: red;"><i class="fa-solid fa-droplet"></i> Tintas para sellos</h2>   
 
