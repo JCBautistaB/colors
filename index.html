@@ -1,143 +1,338 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Tintas</title>
+    <title>QuetzalArte.com</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
         }
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
+        header {
+            background-color: #2e7d32; /* Verde oscuro */
+            color: white;
+            padding: 20px 0;
             text-align: center;
+            position: relative; /* Añadido para alinear el buscador */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px; /* Ajuste de padding para un diseño más compacto */
         }
-        .header h1 {
+        header h1 {
             margin: 0;
+            display: flex;
+            align-items: center;
         }
-        .nav {
+        header h1 i {
+            margin-right: 10px;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+        }
+        .social-icons a {
+            color: #2e7d32; /* Verde oscuro */
+            text-decoration: none;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        .social-icons a:hover {
+            color: #388e3c; /* Verde intermedio */
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .search-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .search-form button {
+            padding: 12px;
+            background-color: #4caf50; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-form button:hover {
+            background-color: #388e3c; /* Verde intermedio */
+        }
+        .search-form button i {
+            font-size: 20px; /* Tamaño del icono */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
             display: flex;
             justify-content: center;
-            background-color: #444;
-            padding: 0.5rem;
+            background-color: #388e3c; /* Verde intermedio */
         }
-        .nav a {
-            color: #fff;
-            margin: 0 1rem;
+        nav ul li {
+            margin: 0 15px;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones */
+        }
+        nav ul li a {
+            color: white;
             text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px; /* Espacio alrededor del texto */
+            display: block;
         }
-        .banner {
-            background-image: url('tu-imagen-banner.jpg');
-            background-size: cover;
-            color: #fff;
-            padding: 2rem;
-            text-align: center;
+        nav ul li:hover {
+            background-color: #2e7d32; /* Cambio de color en hover */
         }
-        .banner h2 {
-            margin: 0;
-        }
-        .content {
-            display: flex;
-            justify-content: space-around;
-            margin: 2rem;
-        }
-        .filters, .products {
-            background-color: #fff;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .filters h3, .products h3 {
-            margin-top: 0;
-        }
-        .colors {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .color {
-            width: 30px;
-            height: 30px;
-            margin: 5px;
-            border-radius: 50%;
+        .menu-toggle {
+            display: none;
             cursor: pointer;
         }
-        .color.red { background-color: #D32F2F; }
-        .color.blue { background-color: #1976D2; }
-        .color.green { background-color: #388E3C; }
-        .color.yellow { background-color: #FBC02D; }
-        .product {
+        .menu-toggle span {
+            background: white;
+            display: block;
+            height: 3px;
+            width: 25px;
+            margin: 5px 0;
+        }
+        main {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 1rem;
+            padding: 20px;
         }
-        .product img {
-            width: 100px;
-            height: 100px;
+        .ad-banner {
+            text-align: center;
+            margin-bottom: 20px;
         }
-        .product button {
-            background-color: #1976D2;
-            color: #fff;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
+        .ad-banner img {
+            max-width: 100%;
+            height: auto;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .news, .latest-news, .ads {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombras */
+            margin-bottom: 20px;
+        }
+        .news article, .latest-news article, .ads article {
+            margin-bottom: 20px;
+        }
+        .news article img, .latest-news article img, .ads article img {
+            max-width: 100%;
+            height: auto;
+        }
+        .news article h2, .latest-news article h2, .ads article h2 {
+            margin-top: 10px;
+            color: #ff0000; /* Rojo */
+        }
+        .news article p, .latest-news article p, .ads article p {
+            color: #388e3c; /* Verde intermedio */
+        }
+        footer {
+            background-color: #2e7d32; /* Verde oscuro */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background-color: #388e3c; /* Verde intermedio */
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul.showing {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .column {
+                margin: 10px 0;
+                flex-basis: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+            }
+            header {
+                flex-direction: column;
+            }
         }
     </style>
+    <!-- Enlace a Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Tienda de Tintas</h1>
-    </div>
-    <div class="nav">
-        <a href="#">Inicio</a>
-        <a href="#">Tintas para Sellos</a>
-        <a href="#">Tintas para Serigrafía</a>
-        <a href="#">Proyectos Artísticos</a>
-        <a href="#">Contacto</a>
-    </div>
-    <div class="banner">
-        <h2>Descubre Nuestras Tintas para Tus Proyectos Creativos</h2>
-    </div>
-    <div class="content">
-        <div class="filters">
-            <h3>Filtrar por Color</h3>
-            <div class="colors">
-                <div class="color red" title="Rojo Carmín"></div>
-                <div class="color blue" title="Azul Rey"></div>
-                <div class="color green" title="Verde Esmeralda"></div>
-                <div class="color yellow" title="Amarillo Limón"></div>
-            </div>
-
-            <div class="new">
-        <div class="filters">
-            <h3>Filtrar por Color</h3>
-            <div class="colors">
-                <div class="color red" title="Rojo Carmín"></div>
-                <div class="color blue" title="Azul Rey"></div>
-                <div class="color green" title="Verde Esmeralda"></div>
-                <div class="color yellow" title="Amarillo Limón"></div>
-            </div>
-
-            
+    <header>
+        <h1><i class="fa-solid fa-icons"></i> QuetzalArte.com</h1>
+    </header>
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <div class="products">
-            <h3>Productos Destacados</h3>
-            <div class="product">
-                <img src="tinta-roja.jpg" alt="Tinta Roja">
-                <p>Tinta Roja</p>
-                <button>Comprar Ahora</button>
-            </div>
-            <div class="product">
-                <img src="tinta-azul.jpg" alt="Tinta Azul">
-                <p>Tinta Azul</p>
-                <button>Comprar Ahora</button>
-            </div>
+       <ul id="menu">
+    <li><a href="nota.html"><i class="fa-solid fa-palette"></i>Inicio</a></li>
+    <li><a href="#"><i class="fa-solid fa-droplet"></i>Tintas para Sellos</a></li>
+    <li><a href="#"><i class="fa-solid fa-stamp"></i> Sellos de Goma</a></li>
+    <li><a href="#"><i class="fa-solid fa-box-open"></i> Cajas para Empaque</a></li>
+    <li><a href="#"><i class="fa-solid fa-comment"></i> Contacto</a></li>
+</ul>
+
+    </nav>
+    <main>
+
+
+        <div class="ad-banner">
+            <img src="https://noticiasconmoctezuma.com/wp-content/uploads/2024/06/728-x-90.gif" alt="Publicidad">
         </div>
-    </div>
+
+<h2 style="color: red;"><i class="fas fa-newspaper"></i> Tintas para sellos</h2>   
+
+        <div class="content">
+            <section class="column news">
+                <form action="#" method="get" class="search-form">
+                    <input type="text" name="search" id="search" placeholder="Buscar productos...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <article>
+                    <h3>Título de la Noticia 10</h3>
+
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+                </article>
+                            </section>
+            <section class="column latest-news">
+                                <article>
+                    <img src="https://images.telediario.mx/RS4g19NFNDh0llcgCz7VYW3bug0=/948x533/uploads/media/2023/04/28/moctezuma-ii-emperador-mexica.jpg" alt="imagen">
+                    <h3>Título de la Última Noticia 1</h3>
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+              </section>
+<section class="column ads">
+  
+    <article>
+        <h3>Producto o Servicio 1</h3>
+        <p>Descripción del producto o servicio. <a href="#">Más info</a></p>
+    </article>
+   </section>
+</div>
+
+
+
+
+<h2 style="color: red;"><i class="fas fa-balance-scale"></i> Sellos de Goma</h2>
+
+
+        <div class="content">
+            <section class="column news">
+                <form action="#" method="get" class="search-form">
+                    <input type="text" name="search" id="search" placeholder="Buscar noticias...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <article>
+ <img src="https://images.telediario.mx/RS4g19NFNDh0llcgCz7VYW3bug0=/948x533/uploads/media/2023/04/28/moctezuma-ii-emperador-mexica.jpg" alt="imagen">
+                    <h3>Título de la Noticia 1</h3>
+
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+                </article>
+                            </section>
+            <section class="column latest-news">
+              
+                <article>
+                    <img src="https://images.telediario.mx/RS4g19NFNDh0llcgCz7VYW3bug0=/948x533/uploads/media/2023/04/28/moctezuma-ii-emperador-mexica.jpg" alt="imagen">
+                    <h3>Título de la Última Noticia 1</h3>
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+              </section>
+<section class="column ads">
+    <h3>Publicidad</h3>
+    <article>
+        <h3>Producto o Servicio 1</h3>
+        <p>Descripción del producto o servicio. <a href="#">Más info</a></p>
+    </article>
+   </section>
+</div>
+
+
+
+
+<h2 style="color: red;"><i class="fas fa-futbol"></i> Cajas para Empaque</h2>
+
+        <div class="content">
+            <section class="column news">
+                <form action="#" method="get" class="search-form">
+                    <input type="text" name="search" id="search" placeholder="Buscar noticias...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <article>
+ <img src="https://images.telediario.mx/RS4g19NFNDh0llcgCz7VYW3bug0=/948x533/uploads/media/2023/04/28/moctezuma-ii-emperador-mexica.jpg" alt="imagen">
+                    <h3>Título de la Noticia 1</h3>
+
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+                </article>
+                            </section>
+            <section class="column latest-news">
+               
+                <article>
+                    <img src="https://images.telediario.mx/RS4g19NFNDh0llcgCz7VYW3bug0=/948x533/uploads/media/2023/04/28/moctezuma-ii-emperador-mexica.jpg" alt="imagen">
+                    <h3>Título de la Última Noticia 1</h3>
+                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
+              </section>
+<section class="column ads">
+    
+    <article>
+        <h3>Producto o Servicio 1</h3>
+        <p>Descripción del producto o servicio. <a href="#">Más info</a></p>
+    </article>
+   </section>
+</div>
+
+
+
+
+</main>
+<footer>
+    <p>&copy; 2025 QuetzalArte.com Todos los derechos reservados.</p>
+</footer>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('showing');
+}
+</script>
 </body>
 </html>
