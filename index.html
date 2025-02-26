@@ -207,6 +207,45 @@
     .whatsapp-button:hover {
         transform: scale(1.1);
     }
+	.color-picker-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+            border: 2px solid black;
+        }
+        #selected-color {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .color-display {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
 
     </style>
     <!-- Enlace a Font Awesome para los iconos -->
@@ -244,12 +283,49 @@
                     <input type="text" name="search" id="search" placeholder="Buscar productos...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
-                <article>
-<img src="https://tse1.mm.bing.net/th?id=OIG3.Ua5dxIDNaClejXLsDUg4&pid=ImgGn" alt="imagen">
-                    <h3>Título de la Noticia 10</h3>
+                
+                <h2>Selecciona el color de tinta</h2>
+    <div class="color-picker-container">
+        <div class="color-options">
+            <div class="color-option" style="background: gold;" onclick="selectColor('Oro', 'gold')"></div>
+            <div class="color-option" style="background: silver;" onclick="selectColor('Plata', 'silver')"></div>
+            <div class="color-option" style="background: white; border: 1px solid gray;" onclick="selectColor('Blanco', 'white')"></div>
+            <div class="color-option" style="background: #ff00ff;" onclick="selectColor('Fiusha', '#ff00ff')"></div>
+            <div class="color-option" style="background: black;" onclick="selectColor('Negro', 'black')"></div>
+            <div class="color-option" style="background: #30D5C8;" onclick="selectColor('Turquesa', '#30D5C8')"></div>
+            <div class="color-option" style="background: orange;" onclick="selectColor('Naranja', 'orange')"></div>
+            <div class="color-option" style="background: green;" onclick="selectColor('Verde', 'green')"></div>
+            <div class="color-option" style="background: yellow;" onclick="selectColor('Amarillo', 'yellow')"></div>
+            <div class="color-option" style="background: #8f00ff;" onclick="selectColor('Morado Fosforescente', '#8f00ff')"></div>
+            <div class="color-option" style="background: violet;" onclick="selectColor('Violeta', 'violet')"></div>
+            <div class="color-option" style="background: #4169E1;" onclick="selectColor('Azul Rey', '#4169E1')"></div>
+            <div class="color-option" style="background: #0047AB;" onclick="selectColor('Azul Cobalto', '#0047AB')"></div>
+            <div class="color-option" style="background: #A7C7E7;" onclick="selectColor('Azul Pastel', '#A7C7E7')"></div>
+            <div class="color-option" style="background: #8B4513;" onclick="selectColor('Café Caramelo', '#8B4513')"></div>
+            <div class="color-option" style="background: red;" onclick="selectColor('Rojo', 'red')"></div>
+            <div class="color-option" style="background: #FF00FF;" onclick="selectColor('Magenta', '#FF00FF')"></div>
+            <div class="color-option" style="background: #FF6F61;" onclick="selectColor('Rosa Coral', '#FF6F61')"></div>
+            <div class="color-option" style="background: #FFD1DC;" onclick="selectColor('Rosa Pastel', '#FFD1DC')"></div>
+            <div class="color-option" style="background: #E4007C;" onclick="selectColor('Rosa Mexicano', '#E4007C')"></div>
+            <div class="color-option" style="background: pink;" onclick="selectColor('Rosa', 'pink')"></div>
+            <div class="color-option" style="background: #98FB98;" onclick="selectColor('Verde Menta', '#98FB98')"></div>
+            <div class="color-option" style="background: #E1AD01;" onclick="selectColor('Amarillo Camello', '#E1AD01')"></div>
+        </div>
+        <p id="selected-color">Color seleccionado: <span>Ninguno</span></p>
+        <div class="color-display" id="color-display"></div>
+    </div>
 
-                    <p>Resumen de la noticia. <a href="#">Leer más</a></p>
-                </article>
+    <script>
+        function selectColor(colorName, colorValue) {
+            document.getElementById("selected-color").innerHTML = "Color seleccionado: <span style='color:" + colorValue + ";'>" + colorName + "</span>";
+            document.getElementById("color-display").style.backgroundColor = colorValue;
+        }
+    </script>
+                <article>
+                
+                
+                  <p>Tintas para sellos de goma base agua.</p>
+              </article>
                             </section>
             <section class="column latest-news">
                                 <article>
@@ -259,8 +335,7 @@
               </section>
 <section class="column ads">
   
-    <article>
-<img src="https://tse2.mm.bing.net/th?id=OIG4.F4CEYaqpdzz.MLv88LPr&pid=ImgGn" alt="imagen">
+    <iframe width="100%" height="480px" src="https://www.youtube.com/embed/Y9EUYnltaIE?si=6fbRSkYJgb-1AAbu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <h3>Producto o Servicio 1</h3>
         <p>Descripción del producto o servicio. <a href="#">Más info</a></p>
     </article>
