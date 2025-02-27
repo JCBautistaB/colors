@@ -66,8 +66,8 @@
             },
             callbacks: {
                 onFormMounted: error => {
-                    if (error) return console.error('Form Mounted handling error: ', error);
-                    console.log('Form mounted');
+                    if (error) return console.error('Error al montar el formulario: ', error);
+                    console.log('Formulario montado');
                 },
                 onSubmit: event => {
                     event.preventDefault();
@@ -103,13 +103,14 @@
                         })
                     })
                     .then(response => {
+                        console.log('Respuesta recibida:', response);
                         if (!response.ok) {
                             throw new Error('Error en la respuesta de la API');
                         }
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data);
+                        console.log('Datos recibidos:', data);
                         if (data.status === 'approved') {
                             alert('Pago aprobado');
                         } else {
@@ -122,7 +123,7 @@
                     });
                 },
                 onFetching: (resource) => {
-                    console.log('Fetching resource: ', resource);
+                    console.log('Recuperando recurso: ', resource);
                 },
                 onError: (error) => {
                     console.error('Error: ', error);
