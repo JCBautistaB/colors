@@ -10,25 +10,25 @@
     <h1>Realizar Pago</h1>
     <form id="paymentForm">
         <label for="cardNumber">Número de Tarjeta:</label>
-        <input type="text" id="cardNumber" name="cardNumber" required>
+        <input type="text" id="cardNumber" name="cardNumber" required value="5579 0534 6148 2647">
 
         <label for="cardExpirationMonth">Mes de Expiración:</label>
-        <input type="text" id="cardExpirationMonth" name="cardExpirationMonth" required>
+        <input type="text" id="cardExpirationMonth" name="cardExpirationMonth" required value="11">
 
         <label for="cardExpirationYear">Año de Expiración:</label>
-        <input type="text" id="cardExpirationYear" name="cardExpirationYear" required>
+        <input type="text" id="cardExpirationYear" name="cardExpirationYear" required value="30">
 
         <label for="cardholderName">Nombre del Titular:</label>
-        <input type="text" id="cardholderName" name="cardholderName" required>
+        <input type="text" id="cardholderName" name="cardholderName" required value="jccc123">
 
         <label for="securityCode">Código de Seguridad:</label>
-        <input type="text" id="securityCode" name="securityCode" required>
+        <input type="text" id="securityCode" name="securityCode" required value="123">
 
         <label for="installments">Cuotas:</label>
         <input type="number" id="installments" name="installments" value="1" required>
 
         <label for="transactionAmount">Monto de la Transacción:</label>
-        <input type="number" id="transactionAmount" name="transactionAmount" required>
+        <input type="number" id="transactionAmount" name="transactionAmount" value="300" required>
 
         <input type="hidden" name="payment_method_id" value="visa">
         <input type="hidden" name="description" value="Compra en QuetzalArte">
@@ -83,7 +83,7 @@
                     fetch('https://api.mercadopago.com/v1/payments', {
                         method: 'POST',
                         headers: {
-                            'Authorization': 'APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859',
+                            'Authorization': 'Bearer APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859',
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
