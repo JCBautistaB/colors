@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Pago con Mercado Pago</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body>
     <h1>Realizar Pago</h1>
@@ -37,60 +38,96 @@
     </form>
 
     <script>
-        document.getElementById('paymentForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        const mp = new MercadoPago('TU_PUBLIC_KEY', {
+            locale: 'es-AR'
+        });
 
-            const cardNumber = document.getElementById('cardNumber').value;
-            const cardExpirationMonth = document.getElementById('cardExpirationMonth').value;
-            const cardExpirationYear = document.getElementById('cardExpirationYear').value;
-            const cardholderName = document.getElementById('cardholderName').value;
-            const securityCode = document.getElementById('securityCode').value;
-            const installments = document.getElementById('installments').value;
-            const transactionAmount = document.getElementById('transactionAmount').value;
-            const payment_method_id = document.querySelector('input[name="payment_method_id"]').value;
-            const description = document.querySelector('input[name="description"]').value;
-            const payer_email = document.querySelector('input[name="payer.email"]').value;
-
-            fetch('https://api.mercadopago.com/v1/payments', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859',
-                    'Content-Type': 'application/json'
+        const cardForm = mp.cardForm({
+            amount: document.getElementById('transactionAmount').value,
+            autoMount: true,
+            form: {
+                id: 'paymentForm',
+                cardNumber: {
+                    id: 'cardNumber',
+                    placeholder: 'Número de tarjeta'
                 },
-                body: JSON.stringify({
-                    token: '',  // Asume que tienes el token de la tarjeta
-                    issuer_id: null,
-                    payment_method_id: payment_method_id,
-                    transaction_amount: Number(transactionAmount),
-                    installments: Number(installments),
-                    description: description,
-                    payer: {
-                        email: payer_email,
-                        identification: {
-                            type: 'DNI',
-                            number: '12345678'
+                expirationDate: {
+                    id: 'cardExpirationMonth',
+                    placeholder: 'MM/YYYY'
+                },
+                securityCode: {
+                    id: 'securityCode',
+                    placeholder: 'Código de seguridad'
+                },
+                cardholderName: {
+                    id: 'cardholderName',
+                    placeholder: 'Nombre del titular'
+                }
+            },
+            callbacks: {
+                onFormMounted: error => {
+                    if (error) return console.error('Form Mounted handling error: ', error);
+                    console.log('Form mounted');
+                },
+                onSubmit: event => {
+                    event.preventDefault();
+
+                    const {
+                        paymentMethodId,
+                        issuerId,
+                        cardholderEmail,
+                        amount,
+                        token
+                    } = cardForm.getCardFormData();
+
+                    fetch('https://api.mercadopago.com/v1/payments', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            token,
+                            issuer_id: issuerId,
+                            payment_method_id: paymentMethodId,
+                            transaction_amount: Number(amount),
+                            installments: Number(document.getElementById('installments').value),
+                            description: document.querySelector('input[name="description"]').value,
+                            payer: {
+                                email: cardholderEmail,
+                                identification: {
+                                    type: 'DNI',
+                                    number: '12345678'
+                                }
+                            }
+                        })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error en la respuesta de la API');
                         }
-                    }
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta de la API');
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                        if (data.status === 'approved') {
+                            alert('Pago aprobado');
+                        } else {
+                            alert('Pago rechazado: ' + data.status_detail);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Ocurrió un error al procesar el pago.');
+                    });
+                },
+                onFetching: (resource) => {
+                    console.log('Fetching resource: ', resource);
+                },
+                onError: (error) => {
+                    console.error('Error: ', error);
                 }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                if (data.status === 'approved') {
-                    alert('Pago aprobado');
-                } else {
-                    alert('Pago rechazado: ' + data.status_detail);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Ocurrió un error al procesar el pago.');
-            });
+            }
         });
     </script>
 </body>
