@@ -3,54 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout con Mercado Pago</title>
+    <title>Formulario de Pago con Mercado Pago</title>
+
+    <!-- Cargar el SDK de Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body>
-    <h1>Comprar Producto</h1>
-    <button id="checkout-button">Pagar con Mercado Pago</button>
+    <h1>Formulario de pagos</h1>
+    <p>Compra de Producto X</p>
+    <p>Precio: $100.00</p>
+
+    <!-- Contenedor para el botón de pago -->
+    <div id="button-checkout"></div>
 
     <script>
-        const mp = new MercadoPago("APP_USR-5caafcd5-a407-4cfb-9626-fb7825d863f9", { locale: "es-MX" });
+        // Inicializa el SDK de Mercado Pago con tu Public Key
+        const mp = new MercadoPago('APP_USR-5caafcd5-a407-4cfb-9626-fb7825d863f9', {
+            locale: 'es-MX'
+        });
 
-        document.getElementById("checkout-button").addEventListener("click", async () => {
-            const preference = {
-                items: [
-                    {
-                        title: "Producto de prueba",
-                        unit_price: 100,
-                        quantity: 1
-                    }
-                ],
-                back_urls: {
-                    success: "https://tusitio.com/success",
-                    failure: "https://tusitio.com/failure",
-                    pending: "https://tusitio.com/pending"
+        // Crear la preferencia de pago en el servidor
+        fetch('/crear-preferencia.php', {
+            method: 'POST'
+        })
+        .then(response => response.json())  // Parsear la respuesta a JSON
+        .then(preference => {
+            // Inicializa el botón de pago con la preferencia creada
+            mp.checkout({
+                preference: {
+                    id: preference.id  // ID de la preferencia generada por el backend
                 },
-                auto_return: "approved"
-            };
-
-            try {
-                const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859"
-                    },
-                    body: JSON.stringify(preference)
-                });
-
-                const data = await response.json();
-
-                if (data.id) {
-                    window.location.href = data.init_point;
-                } else {
-                    alert("Error al generar el pago.");
+                render: {
+                    container: '#button-checkout',  // Contenedor donde se renderiza el botón
+                    label: 'Pagar con Mercado Pago'  // Texto que aparece en el botón
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Hubo un problema con el pago.");
-            }
+            });
+        })
+        .catch(error => {
+            console.error('Error al crear la preferencia', error);
         });
     </script>
 </body>
