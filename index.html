@@ -3,44 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Pago con Mercado Pago</title>
-
-    <!-- Cargar el SDK de Mercado Pago -->
+    <title>Integración Checkout API</title>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body>
-    <h1>Formulario de pagos</h1>
-    <p>Compra de Producto X</p>
-    <p>Precio: $100.00</p>
-
-    <!-- Contenedor para el botón de pago -->
-    <div id="button-checkout"></div>
+    <h1>Pago con Mercado Pago</h1>
+    <div id="wallet_container"></div>
 
     <script>
-        // Inicializa el SDK de Mercado Pago con tu Public Key
-        const mp = new MercadoPago('APP_USR-5caafcd5-a407-4cfb-9626-fb7825d863f9', {
-            locale: 'es-MX'
-        });
+        // Inicializar SDK de Mercado Pago
+        const mp = new MercadoPago('APP_USR-5caafcd5-a407-4cfb-9626-fb7825d863f9'); // Reemplaza 'YOUR_PUBLIC_KEY' con tu clave pública
 
-        // Crear la preferencia de pago en el servidor
-        fetch('/crear-preferencia.php', {
-            method: 'POST'
-        })
-        .then(response => response.json())  // Parsear la respuesta a JSON
-        .then(preference => {
-            // Inicializa el botón de pago con la preferencia creada
-            mp.checkout({
-                preference: {
-                    id: preference.id  // ID de la preferencia generada por el backend
-                },
-                render: {
-                    container: '#button-checkout',  // Contenedor donde se renderiza el botón
-                    label: 'Pagar con Mercado Pago'  // Texto que aparece en el botón
+        // Renderizar botón de pago
+        mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: "<PREFERENCE_ID>" // Reemplaza con tu ID de preferencia
+            },
+            customization: {
+                texts: {
+                    valueProp: 'smart_option'
                 }
-            });
-        })
-        .catch(error => {
-            console.error('Error al crear la preferencia', error);
+            }
         });
     </script>
 </body>
