@@ -1,29 +1,18 @@
 <?php
-require 'vendor/autoload.php';  // Si usas Composer
+require __DIR__ . '/vendor/autoload.php'; // Composer autoload
 
-// Configuración de Mercado Pago
-MercadoPago\SDK::setAccessToken('APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859');
+MercadoPago\SDK::setAccessToken('APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859'); // Reemplaza 'YOUR_ACCESS_TOKEN' con tu access token
 
-// Crear preferencia de pago
+// Crear preferencia
 $preference = new MercadoPago\Preference();
 
-// Detalles del producto
 $item = new MercadoPago\Item();
-$item->title = 'Producto X';
+$item->title = 'Producto de prueba';
 $item->quantity = 1;
-$item->unit_price = 100.00;  // Precio del producto
-
-// Agregar el item a la preferencia
+$item->unit_price = 100; // Precio del producto
 $preference->items = array($item);
 
-// Configuración de notificaciones Webhook (opcional)
-$preference->notification_url = 'https://tu-sitio.com/webhook.php';  // URL donde recibirás las notificaciones
-
-// Guardar la preferencia
+// Guardar preferencia y obtener ID
 $preference->save();
-
-// Devolver el ID de la preferencia en formato JSON
-echo json_encode([
-    'id' => $preference->id
-]);
+echo json_encode(['id' => $preference->id]);
 ?>
