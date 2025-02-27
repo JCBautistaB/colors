@@ -1,18 +1,35 @@
 <?php
-require __DIR__ . '/vendor/autoload.php'; // Composer autoload
+// Incluir el SDK de Mercado Pago (asegúrate de tenerlo instalado)
+require 'vendor/autoload.php'; // Si usas Composer, esta línea carga el SDK
 
-MercadoPago\SDK::setAccessToken('APP_USR-6378641395478188-022700-b612599b847d64f48cce348679d2712b-74762859'); // Reemplaza 'YOUR_ACCESS_TOKEN' con tu access token
+// Configura Mercado Pago con tu Access Token
+MercadoPago\SDK::setAccessToken('TU_ACCESS_TOKEN');
 
-// Crear preferencia
+// Crear la preferencia
 $preference = new MercadoPago\Preference();
 
+// Crear un producto
 $item = new MercadoPago\Item();
-$item->title = 'Producto de prueba';
-$item->quantity = 1;
-$item->unit_price = 100; // Precio del producto
+$item->title = 'Producto X';  // Nombre del producto
+$item->quantity = 1;          // Cantidad
+$item->unit_price = 100.00;   // Precio del producto
+
+// Agregar el producto a la preferencia
 $preference->items = array($item);
 
-// Guardar preferencia y obtener ID
+// URL de redirección después de pago (opcional)
+$preference->back_urls = array(
+    "success" => "https://tu-sitio.com/pago-exitoso", // Redirige a una página de éxito
+    "failure" => "https://tu-sitio.com/pago-fallido", // Redirige a una página de fallo
+    "pending" => "https://tu-sitio.com/pago-pendiente" // Redirige a una página si el pago está pendiente
+);
+
+// Configurar la notificación del estado del pago (opcional)
+$preference->notification_url = 'https://tu-sitio.com/webhook.php'; // URL donde recibirás notificaciones de la transacción
+
+// Guardar la preferencia
 $preference->save();
+
+// Devolver el ID de la preferencia como JSON para que el frontend lo use
 echo json_encode(['id' => $preference->id]);
 ?>
