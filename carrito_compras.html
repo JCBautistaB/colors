@@ -6,29 +6,59 @@
     <title>Carrito de Compras</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        .product { margin-bottom: 10px; }
+        .products { display: flex; flex-wrap: wrap; gap: 10px; }
+        .product { margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: calc(33.333% - 20px); box-sizing: border-box; }
+        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 10px; }
+        .product-details { flex-grow: 1; }
         .cart { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .cart-item button { margin-left: 10px; }
-        .cart-icon { font-size: 24px; cursor: pointer; }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 5px; border-radius: 50%; }
         #cartCount { font-weight: bold; color: red; }
         input[type="number"] { width: 50px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
+        .search-bar { margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .product { width: calc(50% - 20px); }
+        }
+
+        @media (max-width: 480px) {
+            .product { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <h2>🏪 Tienda On-Line</h2>
+    <div><h2>🏪 QuetzalArte.com</h2> </div> 
+        <div>
+            <span>👤 Ingresar</span> | 
 
-    <div>
-        <span class="cart-icon" onclick="toggleCart()">🛒</span><span id="cartCount">0</span>
-    </div>
+            <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
+                <span>📱 Ayuda Disponible</span>
+            </a> |
+            
+            <a href="tel:+522224606907" style="text-decoration: none; color: black;">
+                <span>📱 Lamar</span>
+            </a> 
+ | 
+            <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
+                <span>✉️ Email</span> </a>
+                
+                <span>🚩 Puebla, Puebla.🇲🇽 México</span>
+                         
+            </div>
+
+    <span>
+         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cartCount">0</span></span>
+    </span>
 
     <div class="cart">
         <h3>Carrito de Compras</h3>
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
+        <p>Peso total: <span id="totalWeight">0</span> kg</p>
         <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
         <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
         <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
@@ -41,6 +71,7 @@
         <p>Envío grátis 1.5kg. 5 días. Costo de producción: $179 <button onclick="setShipping('free', 179)">Agregar al carrito</button></p>
         <p>Envío express 1.5kg. 3 días. Costo: $199 <button onclick="setShipping('express', 199)">Agregar al carrito</button></p>
         <p>Envío premium 1.5kg. 1 día. Costo: $499 <button onclick="setShipping('premium', 499)">Agregar al carrito</button></p>
+        <p>Envío 15kg. 5 días. Costo: $799 <button onclick="setShipping('15kg', 799)">Agregar al carrito</button></p>
     </div>
 <hr>
     <h2>Forma de Pago</h2>
@@ -103,24 +134,39 @@
 </div></div>
 
     <h2>Productos</h2>
-    <div class="product">
-        <span>Producto A - $120 (Stock: <span id="stockA">10</span>)</span>
-        <input type="number" id="quantityA" value="1" min="1" max="10">
-        <button onclick="addToCart('Producto A', 120, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
     </div>
-    <div class="product">
-        <span>Producto B - $200 (Stock: <span id="stockB">5</span>)</span>
-        <input type="number" id="quantityB" value="1" min="1" max="5">
-        <button onclick="addToCart('Producto B', 200, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
-    </div>
-    <div class="product">
-        <span>Producto C - $80 (Stock: <span id="stockC">8</span>)</span>
-        <input type="number" id="quantityC" value="1" min="1" max="8">
-        <button onclick="addToCart('Producto C', 80, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+    <div class="products" id="productList">
+        <div class="product">
+            <img src="path/to/imageA.jpg" alt="Producto A">
+            <div class="product-details">
+                <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
+                <input type="number" id="quantityA" value="1" min="1" max="10">
+                <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="path/to/imageB.jpg" alt="Producto B">
+            <div class="product-details">
+                <span>Producto B - $200 (Peso: 1kg, Stock: <span id="stockB">5</span>)</span>
+                <input type="number" id="quantityB" value="1" min="1" max="5">
+                <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="path/to/imageC.jpg" alt="Producto C">
+            <div class="product-details">
+                <span>Producto C - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
+                <input type="number" id="quantityC" value="1" min="1" max="8">
+                <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+            </div>
+        </div>
     </div>
 
     <script>
         let total = 0;
+        let totalWeight = 0;
         let cart = [];
         let cartCount = 0;
         let shippingCost = 0;
@@ -139,7 +185,7 @@
         // Stock actualizado según lo que hay en el carrito
         let stock = { ...originalStock };
 
-        function addToCart(name, price, maxStock, quantity) {
+        function addToCart(name, price, weight, maxStock, quantity) {
             quantity = parseInt(quantity);
             if (quantity < 1 || quantity > stock[name]) {
                 alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
@@ -149,9 +195,10 @@
             let item = cart.find(item => item.name === name);
 
             if (!item) {
-                cart.push({ name, price, quantity });
+                cart.push({ name, price, weight, quantity });
                 stock[name] -= quantity;  // Actualizamos el stock disponible
                 total += price * quantity;
+                totalWeight += weight * quantity;
                 cartCount += quantity;
                 // Inicializamos los mensajes de envío y pago
                 shippingType = 'default';
@@ -165,6 +212,7 @@
                     stock[name] -= quantity;  // Actualizamos el stock disponible
                     item.quantity += quantity;
                     total += price * quantity;
+                    totalWeight += weight * quantity;
                     cartCount += quantity;
                     updateCart();
                 } else {
@@ -182,13 +230,14 @@
                 itemDiv.className = "cart-item";
                 itemDiv.innerHTML = `${item.name} - $${item.price} 
                                      <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
-                                     onchange="updateQuantity('${item.name}', this.value, ${item.price})">
+                                     onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
                                      x $${item.price} 
-                                     <button onclick="removeFromCart('${item.name}', ${item.price})">Eliminar</button>`;
+                                     <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})">Eliminar</button>`;
                 cartItems.appendChild(itemDiv);
             });
 
             document.getElementById("total").textContent = total;
+            document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
             document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("cartCount").textContent = cartCount;
 
@@ -222,6 +271,10 @@
                     shippingIcon = "✈️";
                     shippingMessage = "ENVÍO PREMIUM.";
                     break;
+                case '15kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 15kg.";
+                    break;
             }
 
             document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
@@ -230,7 +283,7 @@
             document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentType}`;
         }
 
-        function updateQuantity(name, quantity, price) {
+        function updateQuantity(name, quantity, price, weight) {
             quantity = parseInt(quantity);
             if (quantity < 1 || quantity > originalStock[name]) {
                 alert("Cantidad inválida, elige una cantidad entre 1 y " + originalStock[name]);
@@ -240,19 +293,22 @@
             let item = cart.find(item => item.name === name);
             if (item) {
                 let priceDifference = (quantity - item.quantity) * price;
+                let weightDifference = (quantity - item.quantity) * weight;
                 stock[name] += item.quantity - quantity;  // Actualizamos el stock disponible
                 total += priceDifference;
+                totalWeight += weightDifference;
                 cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
                 item.quantity = quantity;
                 updateCart();
             }
         }
 
-        function removeFromCart(name, price) {
+        function removeFromCart(name, price, weight) {
             let itemIndex = cart.findIndex(item => item.name === name);
             if (itemIndex > -1) {
                 stock[name] += cart[itemIndex].quantity;  // Restauramos el stock al eliminar un producto
                 total -= cart[itemIndex].price * cart[itemIndex].quantity;
+                totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
                 cartCount -= cart[itemIndex].quantity;
                 cart.splice(itemIndex, 1);
             }
@@ -297,6 +353,19 @@
             } else {
                 alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
             }
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const productName = product.querySelector('.product-details span').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
