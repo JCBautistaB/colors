@@ -6,7 +6,10 @@
     <title>Carrito de Compras</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        .product { margin-bottom: 10px; }
+        .products { display: flex; flex-wrap: wrap; gap: 10px; }
+        .product { margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: calc(33.333% - 20px); box-sizing: border-box; }
+        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 10px; }
+        .product-details { flex-grow: 1; }
         .cart { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .cart-item button { margin-left: 10px; }
@@ -15,15 +18,25 @@
         input[type="number"] { width: 50px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
+        .search-bar { margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            .product { width: calc(50% - 20px); }
+        }
+
+        @media (max-width: 480px) {
+            .product { width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <h2>🏪 Tienda   
-        <span style="float: right; font-size: 14px; font-weight: normal;">
-           
+    <div><h2>🏪 QuetzalArte.com</h2> </div> 
+        <div>
+            <span>👤 Ingresar</span> | 
+
             <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
-                <span>📱 WhatsApp</span>
+                <span>📱 Ayuda Disponible</span>
             </a> |
             
             <a href="tel:+522224606907" style="text-decoration: none; color: black;">
@@ -31,14 +44,15 @@
             </a> 
  | 
             <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
-                <span>✉️ Email</span> <br/><span></span> QuetzalArte.com <br/>Puebla, Puebla.🇲🇽 México</span>
-            </a>             
-        </span>
-    </h2>
+                <span>✉️ Email</span> </a>
+                
+                <span>🚩 Puebla, Puebla.🇲🇽 México</span>
+                         
+            </div>
 
-    <div>
-        <span class="cart-icon" onclick="toggleCart()">🛒<span id="cartCount">0</span></span>
-    </div>
+    <span>
+         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cartCount">0</span></span>
+    </span>
 
     <div class="cart">
         <h3>Carrito de Compras</h3>
@@ -57,6 +71,7 @@
         <p>Envío grátis 1.5kg. 5 días. Costo de producción: $179 <button onclick="setShipping('free', 179)">Agregar al carrito</button></p>
         <p>Envío express 1.5kg. 3 días. Costo: $199 <button onclick="setShipping('express', 199)">Agregar al carrito</button></p>
         <p>Envío premium 1.5kg. 1 día. Costo: $499 <button onclick="setShipping('premium', 499)">Agregar al carrito</button></p>
+        <p>Envío 15kg. 5 días. Costo: $799 <button onclick="setShipping('15kg', 799)">Agregar al carrito</button></p>
     </div>
 <hr>
     <h2>Forma de Pago</h2>
@@ -119,20 +134,34 @@
 </div></div>
 
     <h2>Productos</h2>
-    <div class="product">
-        <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
-        <input type="number" id="quantityA" value="1" min="1" max="10">
-        <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
     </div>
-    <div class="product">
-        <span>Producto B - $200 (Peso: 1kg, Stock: <span id="stockB">5</span>)</span>
-        <input type="number" id="quantityB" value="1" min="1" max="5">
-        <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
-    </div>
-    <div class="product">
-        <span>Producto C - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
-        <input type="number" id="quantityC" value="1" min="1" max="8">
-        <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+    <div class="products" id="productList">
+        <div class="product">
+            <img src="path/to/imageA.jpg" alt="Producto A">
+            <div class="product-details">
+                <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
+                <input type="number" id="quantityA" value="1" min="1" max="10">
+                <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="path/to/imageB.jpg" alt="Producto B">
+            <div class="product-details">
+                <span>Producto B - $200 (Peso: 1kg, Stock: <span id="stockB">5</span>)</span>
+                <input type="number" id="quantityB" value="1" min="1" max="5">
+                <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="path/to/imageC.jpg" alt="Producto C">
+            <div class="product-details">
+                <span>Producto C - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
+                <input type="number" id="quantityC" value="1" min="1" max="8">
+                <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -242,6 +271,10 @@
                     shippingIcon = "✈️";
                     shippingMessage = "ENVÍO PREMIUM.";
                     break;
+                case '15kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 15kg.";
+                    break;
             }
 
             document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
@@ -320,6 +353,19 @@
             } else {
                 alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
             }
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const productName = product.querySelector('.product-details span').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
