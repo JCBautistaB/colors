@@ -22,12 +22,13 @@
         .search-bar { margin-bottom: 20px; float: right; }
         .section { margin-bottom: 20px; }
         .section h2 { margin-bottom: 10px; }
-        .section div { display: flex; flex-wrap: wrap; gap: 10px; }
+        .section div { display: none flex-wrap: wrap; gap: 10px; }
         .section div p { flex: 1 1 calc(50% - 20px); margin: 0; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
         .section div p:hover { transform: translateY(-5px); }
         .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px; }
         .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; cursor: pointer; transition: transform 0.2s; }
         .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
+        .bank-transfer-details { display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 
         @media (max-width: 768px) {
             .product { width: calc(50% - 20px); }
@@ -99,6 +100,20 @@
 
     <div class="section">
         <h2>Forma de Pago</h2>
+
+
+        <div id="bankTransferDetails" class="bank-transfer-details">
+            <img src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/images/payments-logos/spei.svg"><br/>
+            <strong>Banco:</strong> STP (Sistema de transferencias y pagos) 
+                <br/> Nombre: JCB 
+                <br/>Clabe: 123
+        </div>
+
+
+        <br/><br/>
+
+
+        
         <div class="payment-options">
             <button onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
             <button onclick="setPayment('Transferencia bancaria - Notificar Compra - comisión 0%', 0, '🏦')">Transferencia bancaria - Notificar Compra - comisión 0%</button>
@@ -111,6 +126,7 @@
             <button onclick="setPayment('Bitso Criptomonedas - Notificar Compra - comisión 0%', 0, '🪙')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button>
             <button onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button>
         </div>
+        
     </div>
 <hr>
     <div>
@@ -290,6 +306,14 @@
 
             // Actualizamos el mensaje de pago
             document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentType}`;
+
+            // Mostrar detalles de transferencia bancaria si se selecciona esa opción
+            const bankTransferDetails = document.getElementById("bankTransferDetails");
+            if (paymentType.includes('Transferencia bancaria')) {
+                bankTransferDetails.style.display = 'block';
+            } else {
+                bankTransferDetails.style.display = 'none';
+            }
         }
 
         function updateQuantity(name, quantity, price, weight) {
