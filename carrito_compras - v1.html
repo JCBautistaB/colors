@@ -5,27 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .products { display: flex; flex-wrap: wrap; gap: 10px; }
-        .product { margin-bottom: 10px; display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; border-radius: 5px; width: calc(33.333% - 20px); box-sizing: border-box; }
-        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 10px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; }
+        .products { display: flex; flex-wrap: wrap; gap: 20px; }
+        .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; }
+        .product:hover { transform: translateY(-5px); }
+        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 10px; }
         .product-details { flex-grow: 1; }
-        .cart { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        .cart { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .cart-item button { margin-left: 10px; }
-        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 5px; border-radius: 50%; }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
         #cartCount { font-weight: bold; color: red; }
-        input[type="number"] { width: 50px; }
+        input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
-        .search-bar { margin-bottom: 20px; }
+        .search-bar { margin-bottom: 20px; float: right; }
+        .section { margin-bottom: 20px; }
+        .section h2 { margin-bottom: 10px; }
+        .section div { display: flex; flex-wrap: wrap; gap: 10px; }
+        .section div p { flex: 1 1 calc(50% - 20px); margin: 0; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+        .section div p:hover { transform: translateY(-5px); }
+        .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px; }
+        .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; cursor: pointer; transition: transform 0.2s; }
+        .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
 
         @media (max-width: 768px) {
             .product { width: calc(50% - 20px); }
+            .search-bar { float: none; margin-bottom: 10px; }
+            .section div p { flex: 1 1 100%; }
+            .shipping-options button, .payment-options button { flex: 1 1 calc(50% - 10px); }
         }
 
         @media (max-width: 480px) {
             .product { width: 100%; }
+            .search-bar { float: none; margin-bottom: 10px; }
+            .section div p { flex: 1 1 100%; }
+            .shipping-options button, .payment-options button { flex: 1 1 100%; }
         }
     </style>
 </head>
@@ -65,42 +80,36 @@
     
         <hr>
 
-    <h2>Envíos</h2>
-    <div>
-        <p>Sin envío (entrega a cordar o archivo digital) <button onclick="setShipping('none', 0)">Seleccionar</button></p>
-        <p>Envío grátis 1.5kg. 5 días. Costo de producción: $179 <button onclick="setShipping('free', 179)">Agregar al carrito</button></p>
-        <p>Envío express 1.5kg. 3 días. Costo: $199 <button onclick="setShipping('express', 199)">Agregar al carrito</button></p>
-        <p>Envío premium 1.5kg. 1 día. Costo: $499 <button onclick="setShipping('premium', 499)">Agregar al carrito</button></p>
-        <p>Envío 15kg. 5 días. Costo: $799 <button onclick="setShipping('15kg', 799)">Agregar al carrito</button></p>
+    <div class="section">
+        <h2>Envío</h2>
+        <div class="shipping-options">
+            <button onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
+            <button onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
+            <button onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
+            <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
+            <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
+            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
+            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
+            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
+            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
+        </div>
     </div>
-<hr>
-    <h2>Forma de Pago</h2>
-    <div>
-        Saldo en cuenta - Pedido Automático - comisión 0%
-        <input type="radio" name="payment" value="saldo en cuenta" onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')"><br/>
-        Transferencia bancaria - Notificar Compra - comisión 0%
-        <input type="radio" name="payment" value="transferencia bancaria" onclick="setPayment('Transferencia bancaria - Notificar Compra - comisión 0%', 0, '🏦')"><br/>
-        Mercado Libre - Notificar Compra - comisión 2.8%
-        <input type="radio" name="payment" value="mercado libre" onclick="setPayment('Mercado Libre - Notificar Compra - comisión 2.8%', 2.8, '🛒')"><br/>
-        PayPal - Notificar Compra - comisión 3.4%
-        <input type="radio" name="payment" value="paypal" onclick="setPayment('PayPal - Notificar Compra - comisión 3.4%', 3.4, '💳')"><br/>
-        Google Pay - Notificar Compra - comisión 3.4%
-        <input type="radio" name="payment" value="google pay" onclick="setPayment('Google Pay - Notificar Compra - comisión 3.4%', 3.4, '📱')"><br/>
-        Apple Pay - Notificar Compra - comisión 3.4%
-        <input type="radio" name="payment" value="apple pay" onclick="setPayment('Apple Pay - Notificar Compra - comisión 3.4%', 3.4, '🍏')"><br/>
-        Stripe - Notificar Compra - comisión 3.4%
-        <input type="radio" name="payment" value="stripe" onclick="setPayment('Stripe comisión - Notificar Compra - 3.4%', 3.4, '💳')"><br/>
-        Amazon Pay - Notificar Compra - comisión 3.4%
-        <input type="radio" name="payment" value="amazon pay" onclick="setPayment('Amazon Pay - Notificar Compra - comisión 3.4%', 3.4, '🛒')"><br/>
-        OXXO,
-        7-Eleven,        
-        Farmacias del Ahorro,        
-        Chedraui,        
-        Walmart,        
-        Soriana,        
-        Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00
-        <input type="radio" name="payment" value="oxo" onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')"><br/>
 
+    <div class="section">
+        <h2>Forma de Pago</h2>
+        <div class="payment-options">
+            <button onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
+            <button onclick="setPayment('Transferencia bancaria - Notificar Compra - comisión 0%', 0, '🏦')">Transferencia bancaria - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Mercado Libre - Notificar Compra - comisión 2.8%', 2.8, '🛒')">Mercado Libre - Notificar Compra - comisión 2.8%</button>
+            <button onclick="setPayment('PayPal - Notificar Compra - comisión 3.4%', 3.4, '💳')">PayPal - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Google Pay - Notificar Compra - comisión 3.4%', 3.4, '📱')">Google Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Apple Pay - Notificar Compra - comisión 3.4%', 3.4, '🍏')">Apple Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Stripe comisión - Notificar Compra - 3.4%', 3.4, '💳')">Stripe - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Amazon Pay - Notificar Compra - comisión 3.4%', 3.4, '🛒')">Amazon Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Bitso Criptomonedas - Notificar Compra - comisión 0%', 0, '🪙')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button>
+        </div>
     </div>
 <hr>
     <div>
@@ -133,10 +142,9 @@
 
 </div></div>
 
-    <h2>Productos</h2>
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
-    </div>
+    <h2>Productos <div class="search-bar">
+        🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
+    </div></h2>
     <div class="products" id="productList">
         <div class="product">
             <img src="path/to/imageA.jpg" alt="Producto A">
