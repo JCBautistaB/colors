@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temporizador</title>
+  <title>Temporizadores</title>
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -12,6 +13,7 @@
       background: linear-gradient(to top, #191b28, #434561);
       color: #fff;
     }
+
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -22,13 +24,53 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
-    #timer {
+
+    #audio {
+      display: none;
+    }
+
+    .dotted-line {
+      width: 100%;
+      height: 1px;
+      border-bottom: 1px dotted #5af78e;
+      margin: 10px 0;
+    }
+
+
+ .timer-container {
+      text-align: center;
+      background-color: #44475a;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+#timer {
+      font-size: 18px;
+
+    }
+
+
+    #timer1,
+    #timer2,
+    .timer-animating {
       font-size: 50px;
       font-weight: bold;
       letter-spacing: 2px;
-      margin: 20px 0;
+      transition: color 0.5s; /* Agregada transición de color */
     }
+
+    #timer1.timer-finished,
+    #timer2.timer-finished {
+      color: red;
+    }
+
+    .timer-paused {
+      color: orange !important;
+    }
+
     .button-container button {
       background: linear-gradient(45deg, green, #00b4db);
       color: #fff;
@@ -41,59 +83,107 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .button-container button.detener {
+      background: linear-gradient(45deg, #00b4db, red);
+    }
+
+    .button-container button.detener:hover {
+      background: linear-gradient(45deg, red, #00b4db);
+      transform: scale(1.05);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
     .button-container button:hover {
       background: linear-gradient(45deg, #00b4db, green);
       transform: scale(1.05);
       box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
     }
+
     .button-container button.pausar {
       background: linear-gradient(45deg, #ffb400, #ff5e00);
     }
+
     .button-container button.pausar:hover {
       background: linear-gradient(45deg, #ff5e00, #ffb400);
     }
-    .button-container button.detener {
-      background: linear-gradient(45deg, #00b4db, red);
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      font-size: 18px;
+      width: 40px; /* Ancho para dos caracteres */
+      text-align: center;
+      background: linear-gradient(to top, #000, #333);
+      color: #fff;
     }
-    .button-container button.detener:hover {
-      background: linear-gradient(45deg, red, #00b4db);
+
+    input:focus {
+      box-shadow: 0 0 10px rgba(90, 247, 142, 0.7);
     }
+
+    /* Agregar animación */
+    @keyframes timer-animation {
+      /* Define tu animación aquí, por ejemplo: */
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Aplicar animación cuando se añade la clase */
+    .timer-animating {
+      animation: timer-animation 2s infinite; /* Ajusta la duración según tus necesidades */
+    }
+	#clock {
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 2px;}
+	  
   </style>
+  
+  
+  
+  
+  
 </head>
 <body>
-  <div class="container">
+
+<div class="timer-container">
     <div id="timer">00:00:00</div>
-    <div class="button-container">
-      <button onclick="startTimer()">Iniciar</button>
-      <button class="pausar" onclick="pauseTimer()">Pausar/Reanudar</button>
-      <button class="detener" onclick="resetTimer()">Reiniciar</button>
-    </div>
   </div>
-  <script>
+
+ <script>
     let seconds = 0;
     let minutes = 0;
     let hours = 0;
     let timerInterval;
-    let isPaused = false;
 
+    // Función para actualizar el temporizador cada segundo
     function startTimer() {
-      if (timerInterval) return;
       timerInterval = setInterval(() => {
-        if (!isPaused) {
-          seconds++;
-          if (seconds === 60) {
-            seconds = 0;
-            minutes++;
-          }
-          if (minutes === 60) {
-            minutes = 0;
-            hours++;
-          }
-          updateTimerDisplay();
+        seconds++;
+        if (seconds === 60) {
+          seconds = 0;
+          minutes++;
         }
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+        }
+        updateTimerDisplay();
       }, 1000);
     }
 
+    // Función para mostrar el tiempo en formato HH:MM:SS
     function updateTimerDisplay() {
       const formattedHours = String(hours).padStart(2, '0');
       const formattedMinutes = String(minutes).padStart(2, '0');
@@ -101,21 +191,409 @@
       document.getElementById('timer').textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     }
 
-    function pauseTimer() {
-      isPaused = !isPaused;
-    }
-
+    // Función para reiniciar el temporizador
     function resetTimer() {
       clearInterval(timerInterval);
-      timerInterval = null;
-      isPaused = false;
       seconds = 0;
       minutes = 0;
       hours = 0;
       updateTimerDisplay();
+      startTimer();
     }
 
-    window.onload = updateTimerDisplay;
+    // Iniciar el temporizador cuando la página se carga
+    window.onload = startTimer;
   </script>
+
+
+
+<div id="clock"></div>
+  <div class="container">
+    
+    <audio id="audio" src="alarm.mp3"></audio>
+
+    <script>
+      let cuentasRegresivas = [];
+
+      function actualizarCuentaRegresiva(index) {
+        const timerElement = document.getElementById(`timer${index}`);
+        const cuentaRegresiva = cuentasRegresivas[index];
+
+        if (cuentaRegresiva.tiempoRestante > 0) {
+          cuentaRegresiva.tiempoRestante--;
+
+          const horas = Math.floor(cuentaRegresiva.tiempoRestante / 3600);
+          const minutos = Math.floor((cuentaRegresiva.tiempoRestante % 3600) / 60);
+          const segundos = cuentaRegresiva.tiempoRestante % 60;
+
+          const tiempoFormateado = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+          timerElement.innerText = tiempoFormateado;
+        } else {
+          detenerCuentaRegresiva(index);
+          timerElement.classList.add('timer-finished');
+          document.getElementById('audio').play();
+        }
+      }
+
+      function iniciarCuentaRegresiva(index) {
+        detenerCuentaRegresiva(index);
+
+        const horas = parseInt(document.getElementById(`hours${index}`).value, 10) || 0;
+        const minutos = parseInt(document.getElementById(`minutes${index}`).value, 10) || 0;
+        const segundos = parseInt(document.getElementById(`seconds${index}`).value, 10) || 0;
+
+        cuentasRegresivas[index] = {
+          tiempoRestante: horas * 3600 + minutos * 60 + segundos,
+          pausado: false
+        };
+
+        const timerElement = document.getElementById(`timer${index}`);
+        timerElement.style.color = '#5af78e';
+        timerElement.classList.remove('timer-finished');
+        timerElement.classList.remove('timer-paused');
+        timerElement.classList.add('timer-animating');
+
+        cuentasRegresivas[index].intervalo = setInterval(() => {
+          actualizarCuentaRegresiva(index);
+        }, 1000);
+      }
+
+      function detenerCuentaRegresiva(index) {
+        if (cuentasRegresivas[index] && cuentasRegresivas[index].intervalo) {
+          clearInterval(cuentasRegresivas[index].intervalo);
+          cuentasRegresivas[index] = null;
+
+          const timerElement = document.getElementById(`timer${index}`);
+          timerElement.style.color = '';
+          timerElement.classList.remove('timer-finished');
+          timerElement.classList.remove('timer-paused');
+          timerElement.classList.remove('timer-animating');
+		  timerElement.style.color = 'red';
+        }
+      }
+
+      function pausarCuentaRegresiva(index) {
+        if (cuentasRegresivas[index]) {
+          const timerElement = document.getElementById(`timer${index}`);
+          const cuentaRegresiva = cuentasRegresivas[index];
+
+          if (cuentaRegresiva.pausado) {
+            // Reanudar
+            cuentaRegresiva.pausado = false;
+            timerElement.classList.remove('timer-paused');
+            cuentaRegresiva.intervalo = setInterval(() => {
+              actualizarCuentaRegresiva(index);
+            }, 1000);
+          } else {
+            // Pausar
+            clearInterval(cuentaRegresiva.intervalo);
+            cuentaRegresiva.pausado = true;
+            timerElement.classList.add('timer-paused');
+          }
+        }
+      }
+
+      function guardarArchivo() {
+        const nuevoContenido = document.getElementById('textoModificado').value;
+
+        fetch('/sistema/estadisticas/temporizador.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'contenido=' + encodeURIComponent(nuevoContenido),
+        })
+          .then(response => response.text())
+          .then(data => {
+            alert(data);
+          })
+          .catch(error => {
+            console.error('Error al guardar el archivo:', error);
+            alert('Error al guardar el archivo');
+          });
+      }
+
+      window.addEventListener('load', () => {
+        const horasGuardadas1 = parseInt(localStorage.getItem('hours1')) || 0;
+        const minutosGuardados1 = parseInt(localStorage.getItem('minutes1')) || 0;
+        const segundosGuardados1 = parseInt(localStorage.getItem('seconds1')) || 0;
+
+        document.getElementById('timer1').innerText = `${horasGuardadas1.toString().padStart(2, '0')}:${minutosGuardados1.toString().padStart(2, '0')}:${segundosGuardados1.toString().padStart(2, '0')}`;
+        document.getElementById('hours1').value = horasGuardadas1;
+        document.getElementById('minutes1').value = minutosGuardados1;
+        document.getElementById('seconds1').value = segundosGuardados1;
+
+        const horasGuardadas2 = parseInt(localStorage.getItem('hours2')) || 0;
+        const minutosGuardados2 = parseInt(localStorage.getItem('minutes2')) || 0;
+        const segundosGuardados2 = parseInt(localStorage.getItem('seconds2')) || 0;
+
+        document.getElementById('timer2').innerText = `${horasGuardadas2.toString().padStart(2, '0')}:${minutosGuardados2.toString().padStart(2, '0')}:${segundosGuardados2.toString().padStart(2, '0')}`;
+        document.getElementById('hours2').value = horasGuardadas2;
+        document.getElementById('minutes2').value = minutosGuardados2;
+        document.getElementById('seconds2').value = segundosGuardados2;
+      });
+
+      window.addEventListener('beforeunload', () => {
+        localStorage.setItem('hours1', document.getElementById('hours1').value);
+        localStorage.setItem('minutes1', document.getElementById('minutes1').value);
+        localStorage.setItem('seconds1', document.getElementById('seconds1').value);
+
+        localStorage.setItem('hours2', document.getElementById('hours2').value);
+        localStorage.setItem('minutes2', document.getElementById('minutes2').value);
+        localStorage.setItem('seconds2', document.getElementById('seconds2').value);
+      });
+
+      let contadorTemporizadores = cuentasRegresivas.length + 2;
+
+      function agregarTemporizador() {
+        contadorTemporizadores++;
+
+        const nuevosInputs = `
+          <div id="timer${contadorTemporizadores}" class="timer-animating">00:00:00</div>
+
+
+
+
+
+          <div>
+            <label for="hours${contadorTemporizadores}">Horas:</label>
+            <input type="number" id="hours${contadorTemporizadores}" min="0" value="00">
+
+            <label for="minutes${contadorTemporizadores}">Minutos:</label>
+            <input type="number" id="minutes${contadorTemporizadores}" min="0" value="00">
+
+            <label for="seconds${contadorTemporizadores}">Segundos:</label>
+            <input type="number" id="seconds${contadorTemporizadores}" min="0" value="00">
+          </div>
+
+          <div class="button-container">
+            <button onclick="iniciarCuentaRegresiva(${contadorTemporizadores})">Iniciar ${contadorTemporizadores}</button>
+            <!--<button class="detener" onclick="detenerCuentaRegresiva(${contadorTemporizadores})">Detener Temporizador ${contadorTemporizadores}</button>-->
+            <button class="pausar" onclick="pausarCuentaRegresiva(${contadorTemporizadores})">Pausar/Reanudar  ${contadorTemporizadores}</button>
+          </div>
+
+          <div class="dotted-line"></div>
+        `;
+
+        document.querySelector('.container').insertAdjacentHTML('beforeend', nuevosInputs);
+      }
+    </script>
+    
+    
+       <script>
+    function updateClock() {
+      const now = new Date();
+
+      // Obtener componentes de tiempo
+      let hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+
+      // Convertir a formato de 12 horas
+      hours = hours % 12;
+      hours = hours ? hours : 12; // Si hours es 0, establecerlo a 12
+
+      // Formato de hora personalizado
+      const timeString = `${formatNumber(hours)}:${formatNumber(minutes)}:${formatNumber(seconds)} ${ampm}`;
+      document.getElementById('clock').innerText = timeString;
+    }
+
+    function formatNumber(number) {
+      // Agregar un cero delante si el número es menor que 10
+      return number < 10 ? `0${number}` : number;
+    }
+
+    // Actualizar el reloj cada segundo
+    setInterval(updateClock, 1000);
+
+    // Llamar a la función una vez para mostrar el tiempo actual
+    updateClock();
+  </script>
+  
+  
+  
+
+    <div id="timer1" class="timer-animating">00:00:00</div>
+
+    <div>
+      <label for="hours1"></label>
+      <input type="number" id="hours1" min="0" value="00">
+
+      <label for="minutes1">|</label>
+      <input type="number" id="minutes1" min="0" value="00">
+
+      <label for="seconds1">|</label>
+      <input type="number" id="seconds1" min="0" value="00">
+    </div>
+
+    <div class="button-container">
+      <button onclick="iniciarCuentaRegresiva(1)">Iniciar Temporizador 1</button>
+      <!--<button class="detener" onclick="detenerCuentaRegresiva(1)">Detener Temporizador 1</button>-->
+      <button class="pausar" onclick="pausarCuentaRegresiva(1)">Pausar/Reanudar 1</button>
+    </div>
+
+       <div class="dotted-line"></div>
+
+    <div id="timer2" class="timer-animating">00:00:00</div>
+
+    <div>
+      <label for="hours2"></label>
+      <input type="number" id="hours2" min="0" value="00">
+
+      <label for="minutes2">|:</label>
+      <input type="number" id="minutes2" min="0" value="00">
+
+      <label for="seconds2">|</label>
+      <input type="number" id="seconds2" min="0" value="00">
+    </div>
+
+    <div class="button-container">
+      <button onclick="iniciarCuentaRegresiva(2)">Iniciar Temporizador 2</button>
+      <!--<button class="detener" onclick="detenerCuentaRegresiva(2)">Detener Temporizador 2</button>-->
+      <button class="pausar" onclick="pausarCuentaRegresiva(2)">Pausar/Reanudar 2</button>
+    </div>
+
+    <div class="dotted-line"></div>
+
+    <textarea cols="100%" rows="15" id="textoModificado">2025 enero
+40x40 negativo gris y p usado
+1:10 detalle toner casa
+1:10 romeros pizza
+muy profundo 1:20 x 40 este estoy usando
+pag ent 1:25
+normal 1:30 x 40
+detalle 1:40 x 40
+
+
+
+2024 enero.
+
+Negativo Negro: 1:10 x 40 detalle | 60x40 normal
+Negativo Detalle 1:20 x 40 mucho detalle 1:30
+Negativo Gris:   1:00 x 40
+Negativo Normal 50x40  40X40 NO
+Bacos pizza 50 x 40 MUY BIEN en tamaño grande negativo lumen y letras medio gruesas 
+40x40 para letras muy gruesas
+
+Polímero Usado
+Negativo Negro:  00:55 x 30
+
+Secado 60 min.</textarea>
+    <button onclick="guardarArchivo()">Guardar Archivo</button>
+
+    <div class="dotted-line"></div>
+
+    <button onclick="agregarTemporizador()">Agregar Temporizador</button>
+  </div>
+  
+<style>
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  font-size: 14px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: gray;
+  display: block;
+  transition: 0.3s;
+  padding: 3px;
+}
+
+.sidenav a:hover {
+  color: white;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 24px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+}
+</style>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <p style="color:red";><strong>Compras</strong></p>
+  <a href="/sistema/registros/proveedores/">Proveedores</a>
+  <a href="/sistema/registros/insumos/">Insumos</a>
+  <p style="color:orange";><strong>Producci&oacute;n</strong></p>
+  <a href="/sistema/registros/materiales/">Materiales</a>
+  <a href="/sistema/pagos/pagos_sucursales/compras_sucursales/cotizador_productos.php">Nuevo Producto</a>
+  <p style="color:green";><strong>Ventas</strong></p>
+  <a href="/sistema/registros/produccion/">Productos en Venta</a>
+  <a href="/sistema/registros/sucursales/">Sucursales</a>
+  <a href="/sistema/registros/produccion/cotizador_ml.php">Calculadora</a>
+  <p style="color:blue";><strong>Reportes</strong></p>
+  <a href="/sistema/estadisticas/ahorro.php">Ahorros</a>
+  <a href="/sistema/estadisticas/gastos.php">Gastos</a>
+  <a href="/sistema/estadisticas/estadistica.php">Estad&iacute;sticas</a>
+  <a href="/sistema/estadisticas/temporizador.php">Temporizador</a>
+  <br/>
+  <a href="/sistema/logout.php" tite="Cerrar Sesi&oacute;n" class="button_end" title="Cerrar Sistema">Cerrar Sistema</a>
+</div>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+
+
+<style>
+.icon-bar {
+  position: fixed;
+   z-index: 1;
+  top: 95%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 3px;
+  transition: all 0.3s ease;
+}
+
+.icon-bar a:hover {
+  background-color: green;
+}
+
+.stickybar{
+  background: #1C4583;
+}
+</style>
+
+<div class="icon-bar">
+  <a href="#" class="stickybar"><span style="font-size:30px;cursor:pointer" onclick="openNav()">
+<img src="/sistema/imagenes/intelligentbusinesssystem.gif"  style="width:49px;" align="top"></span></a></div>
+
+
 </body>
 </html>
+
