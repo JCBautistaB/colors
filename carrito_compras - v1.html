@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+ealizar<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +29,8 @@
         .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; cursor: pointer; transition: transform 0.2s; }
         .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
         .bank-transfer-details { display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .weight-category { margin-top: 10px; font-size: 16px; font-weight: bold; }
+        .weight-btn { display: none; }
 
         @media (max-width: 768px) {
             .product { width: calc(50% - 20px); }
@@ -82,30 +84,70 @@
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
         <p>Peso total: <span id="totalWeight">0</span> kg</p>
-        <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
-        <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
         <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
-    
+        
         <hr>
+<h2>1 Envío</h2>
+<div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
 
-    <div class="section">
-        <h2>Envío</h2>
-        <div class="shipping-options">
-            <button onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
+
+       
+
+        <div id="weightCategory" class="weight-category"></div>
+        <div id="weightbtn" class="weight-btn">
+            <div class="shipping-options">
+                 <button onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
             <button onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
             <button onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
             <button onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
-            <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
-            <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
-            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
-            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
-            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
-            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
+            </div>
         </div>
-    </div>
+
+        <div id="weight3" class="weight-btn">
+            <div class="shipping-options">
+                <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
+            </div>
+        </div>
+
+        <div id="weight6" class="weight-btn">
+            <div class="shipping-options">
+                <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
+</div>
+        </div>
+
+        <div id="weight9" class="weight-btn">
+            <div class="shipping-options">
+            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
+            </div>
+        </div>
+
+        <div id="weight15" class="weight-btn">
+            <div class="shipping-options">
+            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
+            </div>
+        </div>
+
+        <div id="weight30" class="weight-btn">
+            <div class="shipping-options">
+            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
+            </div>
+        </div>
+
+        <div id="weight50" class="weight-btn">
+            <div class="shipping-options">
+            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
+            </div>
+        </div>
+
+        
+        <hr>
+        
 
     <div class="section">
-        <h2>Forma de Pago</h2>
+        <h2>2 Forma de Pago</h2>
+        <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
+
+        <h3>Total a pagar: $<span id="finalTotal2">0</span></h3>
 
 
         <div id="bankTransferDetails" class="bank-transfer-details">
@@ -115,10 +157,7 @@
                 <br/>Clabe: 123
         </div>
 
-
-        <br/><br/>
-
-
+  
         
         <div class="payment-options">
             <button onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
@@ -136,8 +175,10 @@
     </div>
 <hr>
     <div>
-        <h2>Registro de Compra</h2>
-        <p>Para realizar tu compra, por favor completa los siguientes datos:</p>
+        <h2>3 Registro de Compra</h2>
+        <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
+            <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
+        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p>
     <h2>Datos de envío</h2>
     <div>
         <form id="shippingForm">
@@ -165,7 +206,7 @@
         </form>
     </div>
 
-</div></div>
+</div></div></div>
 
 
 
@@ -276,6 +317,7 @@
             document.getElementById("total").textContent = total;
             document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
             document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
+            document.getElementById("finalTotal2").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("cartCount").textContent = cartCount;
 
             // Actualizamos el stock de los productos en la página
@@ -326,6 +368,74 @@
             } else {
                 bankTransferDetails.style.display = 'none';
             }
+
+            // Actualizamos la categoría de peso
+            let weightCategory = "";
+            if (totalWeight <= 1.5) {
+                weightCategory = "Categoría de peso: Ligero 1.5kg.";
+                document.getElementById("weightbtn").style.display = 'block';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'none';
+            } else if (totalWeight <= 3) {
+                weightCategory = "Categoría de peso: Medio 3kg.";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'block';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'none';
+            } else if (totalWeight <= 6) {
+                weightCategory = "Categoría de peso: Pesado 6kg.";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'block';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'none';
+            } else if (totalWeight <= 9) {
+                weightCategory = "Categoría de peso: Pesado 9kg.";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'block';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'none';
+            } else if (totalWeight <= 15) {
+                weightCategory = "Categoría de peso: Pesado 15kg.";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'block';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'none';
+            } else if (totalWeight <= 30) {            
+                weightCategory = "Categoría de peso: Pesado 30kg.";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'block';
+                document.getElementById("weight50").style.display = 'none';
+            } else {
+                weightCategory = "Categoría de peso: Muy pesado";
+                document.getElementById("weightbtn").style.display = 'none';
+                document.getElementById("weight3").style.display = 'none';
+                document.getElementById("weight6").style.display = 'none';
+                document.getElementById("weight9").style.display = 'none';
+                document.getElementById("weight15").style.display = 'none';
+                document.getElementById("weight30").style.display = 'none';
+                document.getElementById("weight50").style.display = 'block';
+            }
+            document.getElementById("weightCategory").textContent = weightCategory;
         }
 
         function updateQuantity(name, quantity, price, weight) {
