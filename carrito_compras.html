@@ -415,7 +415,8 @@
     </script>
 
 <script>
-    function solicitarPedido() {
+   
+   function solicitarPedido() {
         const form = document.getElementById('shippingForm');
         const inputs = form.querySelectorAll('input[required]');
         let valid = true;
@@ -428,6 +429,11 @@
                 input.classList.remove('invalid');
             }
         });
+
+        if (cart.length === 0) {
+            alert('Por favor, agrega productos al carrito antes de solicitar el pedido.');
+            return;
+        }
 
         if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
             let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
