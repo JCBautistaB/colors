@@ -84,13 +84,11 @@
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
         <p>Peso total: <span id="totalWeight">0</span> kg</p>
+        <p>Costo de Envío: $<span id="shippingCost">0</span></p>
         <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
         
         <hr>
 <h2>1 Envío</h2>
-<div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
-
-
        
 
         <div id="weightCategory" class="weight-category"></div>
@@ -323,6 +321,7 @@
 
             document.getElementById("total").textContent = total;
             document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
+            document.getElementById("shippingCost").textContent = shippingCost.toFixed(2);
             document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("finalTotal2").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("cartCount").textContent = cartCount;
@@ -332,59 +331,7 @@
             document.getElementById("stockB").textContent = stock['Producto B'];
             document.getElementById("stockC").textContent = stock['Producto C'];
 
-            // Actualizamos el mensaje de envío
-            let shippingMessage = "";
-            let shippingIcon = "";
-
-            switch (shippingType) {
-                default:
-                    shippingIcon = "🚚";
-                    shippingMessage = "Selecciona el tipo de envío.";
-                    break;
-                case 'none':
-                    shippingIcon = "❤️";
-                    shippingMessage = "SIN ENVÍO";
-                    break;
-                case 'free':
-                    shippingIcon = "📦";
-                    shippingMessage = "ENVÍO GRÁTIS.";
-                    break;
-                case 'express':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO EXPRESS.";
-                    break;
-                case 'premium':
-                    shippingIcon = "✈️";
-                    shippingMessage = "ENVÍO PREMIUM.";
-                    break;
-                case '3kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 3kg.";
-                    break;
-                    case '6kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 6kg.";
-                    break;
-                    case '9kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 9kg.";
-                    break;
-                    case '15kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 15kg.";
-                    break;
-                    case '30kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 130kg.";
-                    break;
-                    case '50kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 50kg.";
-                    break;    
-            }
-
-            document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
-
+           
             // Actualizamos el mensaje de pago
             document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentType}`;
 
@@ -481,6 +428,9 @@
                 totalWeight += weightDifference;
                 cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
                 item.quantity = quantity;
+                // Reiniciar el costo de envío
+                shippingType = 'default';
+                shippingCost = 0;
                 updateCart();
             }
         }
@@ -493,6 +443,9 @@
                 totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
                 cartCount -= cart[itemIndex].quantity;
                 cart.splice(itemIndex, 1);
+                // Reiniciar el costo de envío
+                shippingType = 'default';
+                shippingCost = 0;
             }
             updateCart();
         }
@@ -548,7 +501,7 @@
                 paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
             }
             let orderNumber = Math.floor(100000 + Math.random() * 900000);
-            let message = `Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.<br/>Una vez realizado su pago debe, espere a que lo contactemos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
+            let message = `Su pedido se ha registrado con éxito. Realice su pago con los siguientes datos.<br/>Una vez realizado su pago espere la verificación de la compra nosotrps lo contactamos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
 
 Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\nDatos de recepción de Envío:\n${shippingDetails}\n\n${paymentDetails}`;
             let detallesDiv = document.createElement('div');
