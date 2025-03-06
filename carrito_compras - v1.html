@@ -49,7 +49,7 @@
 </head>
 <body>
 
-    <div><h2>🏪 QuetzalArte.com</h2> </div> 
+    <div><h2>🏪 QuetzalArte.com</h2>  </div> 
         <div>
             <span>👤 Ingresar</span> | 
 
@@ -64,14 +64,14 @@
             <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
                 <span>✉️ Email</span> </a>
                 
-            <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;"
+            <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
                <span>🚩  Puebla.🇲🇽 México</span></a>
                        
             </div>
 
             <div>
 
-                ¡Hola! Te invitamos a comprar, cotizar o realizar un pedido fácilmente a través de nuestra tienda en línea
+                ¡Hola! Te invitamos a comprar, cotizar o realizar un pedido fácilmente a través de nuestra tienda en línea.
                 
             </div>
 
@@ -84,13 +84,11 @@
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
         <p>Peso total: <span id="totalWeight">0</span> kg</p>
+        <p>Costo de Envío: $<span id="shippingCost">0</span></p>
         <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
         
         <hr>
 <h2>1 Envío</h2>
-<div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
-
-
        
 
         <div id="weightCategory" class="weight-category"></div>
@@ -153,8 +151,8 @@
         <div id="bankTransferDetails" class="bank-transfer-details">
             <img src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/images/payments-logos/spei.svg"><br/>
             <strong>Banco:</strong> STP (Sistema de transferencias y pagos) 
-                <br/> Nombre: JCB 
-                <br/>Clabe: 123
+                <br/> Nombre: Juan Carlos Bautista Bautista 
+                <br/>CLABE: 012650028760776683
         </div>
 
   
@@ -218,9 +216,10 @@
 
 
 
-    <h2>Productos <div class="search-bar">
+    <h1>Compra Artes Gráficas, Tintas, Productos de Arte, Decoración, Publicidad</h1>
+    <div class="search-bar">
         🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
-    </div></h2>
+    </div>
     <div class="products" id="productList">
         <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
@@ -322,6 +321,7 @@
 
             document.getElementById("total").textContent = total;
             document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
+            document.getElementById("shippingCost").textContent = shippingCost.toFixed(2);
             document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("finalTotal2").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("cartCount").textContent = cartCount;
@@ -331,59 +331,7 @@
             document.getElementById("stockB").textContent = stock['Producto B'];
             document.getElementById("stockC").textContent = stock['Producto C'];
 
-            // Actualizamos el mensaje de envío
-            let shippingMessage = "";
-            let shippingIcon = "";
-
-            switch (shippingType) {
-                default:
-                    shippingIcon = "🚚";
-                    shippingMessage = "Selecciona el tipo de envío.";
-                    break;
-                case 'none':
-                    shippingIcon = "❤️";
-                    shippingMessage = "SIN ENVÍO";
-                    break;
-                case 'free':
-                    shippingIcon = "📦";
-                    shippingMessage = "ENVÍO GRÁTIS.";
-                    break;
-                case 'express':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO EXPRESS.";
-                    break;
-                case 'premium':
-                    shippingIcon = "✈️";
-                    shippingMessage = "ENVÍO PREMIUM.";
-                    break;
-                case '3kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 3kg.";
-                    break;
-                    case '6kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 6kg.";
-                    break;
-                    case '9kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 9kg.";
-                    break;
-                    case '15kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 15kg.";
-                    break;
-                    case '30kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 130kg.";
-                    break;
-                    case '50kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 50kg.";
-                    break;    
-            }
-
-            document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
-
+           
             // Actualizamos el mensaje de pago
             document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentType}`;
 
@@ -480,6 +428,9 @@
                 totalWeight += weightDifference;
                 cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
                 item.quantity = quantity;
+                // Reiniciar el costo de envío
+                shippingType = 'default';
+                shippingCost = 0;
                 updateCart();
             }
         }
@@ -492,6 +443,9 @@
                 totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
                 cartCount -= cart[itemIndex].quantity;
                 cart.splice(itemIndex, 1);
+                // Reiniciar el costo de envío
+                shippingType = 'default';
+                shippingCost = 0;
             }
             updateCart();
         }
@@ -542,11 +496,21 @@
             let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
             let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}`;
-            let message = `Detalles del Pedido:\n${cartDetails}\n\n${totalDetails}\n\nDatos de Envío:\n${shippingDetails}`;
+            let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
+            if (paymentType.includes('Transferencia bancaria')) {
+                paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
+            }
+            let orderNumber = Math.floor(100000 + Math.random() * 900000);
+            let message = `Su pedido se ha registrado con éxito. Realice su pago con los siguientes datos.<br/>Una vez realizado su pago espere la verificación de la compra nosotrps lo contactamos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
 
+Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\nDatos de recepción de Envío:\n${shippingDetails}\n\n${paymentDetails}`;
             let detallesDiv = document.createElement('div');
-            detallesDiv.innerHTML = `<h2>Detalles de la Compra</h2><pre>${message}</pre><button onclick="window.print()">Imprimir</button><button onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>`;
-            document.getElementById('detallesCompra').appendChild(detallesDiv);
+            detallesDiv.innerHTML = `<h2>Detalles del Pedido</h2><pre>${message}</pre>
+            <button onclick="window.print()">Imprimir</button>
+            <button onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>`;
+            let detallesCompraDiv = document.getElementById('detallesCompra');
+            detallesCompraDiv.innerHTML = ''; // Limpiar el contenido anterior
+            detallesCompraDiv.appendChild(detallesDiv);
         }
 
         function compartirRedes(message) {
