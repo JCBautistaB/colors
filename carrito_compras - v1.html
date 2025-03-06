@@ -11,7 +11,7 @@
         .product:hover { transform: translateY(-5px); }
         .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 10px; }
         .product-details { flex-grow: 1; }
-        .cart { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
+        .cart { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .cart-item button { margin-left: 10px; }
         .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
@@ -498,7 +498,7 @@
 
         function toggleCart() {
             let cartDiv = document.querySelector('.cart');
-            cartDiv.style.display = cartDiv.style.display === 'none' ? 'block' : 'none';
+            cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
         }
 
         function setShipping(type, cost) {
