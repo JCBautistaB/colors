@@ -147,6 +147,11 @@
       font-weight: bold;
       letter-spacing: 2px;}
 	  
+    /* Add styles for the click count display */
+    .click-count {
+      font-size: 16px;
+      margin-top: 10px;
+    }
   </style>
   
   
@@ -213,6 +218,8 @@
 
     <script>
       let cuentasRegresivas = [];
+      let clickCount1 = 0;
+      let clickCount2 = 0;
 
       function actualizarCuentaRegresiva(index) {
         const timerElement = document.getElementById(`timer${index}`);
@@ -239,6 +246,14 @@
       }
 
       function iniciarCuentaRegresiva(index) {
+        if (index === 1) {
+          clickCount1++;
+          document.getElementById('clickCount1').textContent = `${clickCount1}`;
+        } else if (index === 2) {
+          clickCount2++;
+          document.getElementById('clickCount2').textContent = `${clickCount2}`;
+        }
+
         detenerCuentaRegresiva(index);
 
         const horas = parseInt(document.getElementById(`hours${index}`).value, 10) || 0;
@@ -428,6 +443,8 @@
       <button class="pausar" onclick="pausarCuentaRegresiva(1)">Pausar/Reanudar 1</button>
     </div>
 
+    <div class="click-count" id="clickCount1"></div>
+
        <div class="dotted-line"></div>
 
     <div id="timer2" class="timer-animating">00:00:00</div>
@@ -449,34 +466,13 @@
       <button class="pausar" onclick="pausarCuentaRegresiva(2)">Pausar/Reanudar 2</button>
     </div>
 
+    <div class="click-count" id="clickCount2"></div>
+
     <div class="dotted-line"></div>
 
     <textarea cols="40%" rows="15" id="textoModificado">
-        
-        2025 enero
-40x40 negativo gris y p usado
-1:10 detalle toner casa
-1:10 romeros pizza
-muy profundo 1:20 x 40 este estoy usando
-pag ent 1:25
-normal 1:30 x 40
-detalle 1:40 x 40
-
-
-
-2024 enero.
-
-Negativo Negro: 1:10 x 40 detalle | 60x40 normal
-Negativo Detalle 1:20 x 40 mucho detalle 1:30
-Negativo Gris:   1:00 x 40
-Negativo Normal 50x40  40X40 NO
-Bacos pizza 50 x 40 MUY BIEN en tamaño grande negativo lumen y letras medio gruesas 
-40x40 para letras muy gruesas
-
-Polímero Usado
-Negativo Negro:  00:55 x 30
-
-Secado 60 min.</textarea>
+   QuetzalArte.com     
+ </textarea>
     <button onclick="guardarArchivo()">Guardar Archivo</button>
 
     <div class="dotted-line"></div>
