@@ -152,6 +152,12 @@
       font-size: 16px;
       margin-top: 10px;
     }
+
+    /* Add styles for the anotaciones layer */
+    #anotaciones {
+      display: none;
+      margin-top: 20px;
+    }
   </style>
   
   
@@ -387,6 +393,15 @@
 
         document.querySelector('.container').insertAdjacentHTML('beforeend', nuevosInputs);
       }
+
+      function toggleAnotaciones() {
+        const anotaciones = document.getElementById('anotaciones');
+        if (anotaciones.style.display === 'none' || anotaciones.style.display === '') {
+          anotaciones.style.display = 'block';
+        } else {
+          anotaciones.style.display = 'none';
+        }
+      }
     </script>
     
     
@@ -470,16 +485,23 @@
 
     <div class="dotted-line"></div>
 
+    <div class="button-container">
+      <button onclick="toggleAnotaciones()">Anotaciones</button>
+    </div>
+
+<div id="anotaciones">
     <textarea cols="40%" rows="15" id="textoModificado">
    QuetzalArte.com     
  </textarea>
+ <br/>
     <button onclick="guardarArchivo()">Guardar Archivo</button>
 
-    <div class="dotted-line"></div>
+   </div> <div class="dotted-line"></div>
 
     <button onclick="agregarTemporizador()">Agregar Temporizador</button>
   </div>
   
+
 <style>
 .sidenav {
   height: 100%;
