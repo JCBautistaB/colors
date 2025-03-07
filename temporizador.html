@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -296,22 +295,8 @@
 
       function guardarArchivo() {
         const nuevoContenido = document.getElementById('textoModificado').value;
-
-        fetch('/sistema/estadisticas/temporizador.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: 'contenido=' + encodeURIComponent(nuevoContenido),
-        })
-          .then(response => response.text())
-          .then(data => {
-            alert(data);
-          })
-          .catch(error => {
-            console.error('Error al guardar el archivo:', error);
-            alert('Error al guardar el archivo');
-          });
+        localStorage.setItem('temporizadorData', nuevoContenido);
+        alert('Datos guardados localmente');
       }
 
       window.addEventListener('load', () => {
@@ -332,6 +317,12 @@
         document.getElementById('hours2').value = horasGuardadas2;
         document.getElementById('minutes2').value = minutosGuardados2;
         document.getElementById('seconds2').value = segundosGuardados2;
+
+        // Load saved data from local storage
+        const savedData = localStorage.getItem('temporizadorData');
+        if (savedData) {
+          document.getElementById('textoModificado').value = savedData;
+        }
       });
 
       window.addEventListener('beforeunload', () => {
@@ -596,4 +587,3 @@ function closeNav() {
 
 </body>
 </html>
-
