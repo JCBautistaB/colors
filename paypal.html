@@ -1,101 +1,244 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <!-- Cargar el script de Google Pay -->
-    <meta charset="UTF-8">
-    <title>Integración de Google Pay</title>
+6<!DOCTYPE html>
+<!--
+ Copyright 2024 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Pay API for Web</title>
+  </head>
+
+  <body>
+    <div id="gpay-container"></div>
+    <p>Transaction info and errors will be logged to the console.</p>
+    <script type="text/javascript" src="main.js"></script>
     <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
-    <script>
-        let paymentButton;
 
-        // Función que se ejecuta cuando Google Pay se ha cargado
-        function onGooglePayLoaded() {
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-            paymentButton = paymentsClient.createButton({ onClick: onGooglePayButtonClicked });
-            document.getElementById('gpay-button').appendChild(paymentButton);
+    <div class="container" style="display: flex; align-items: center">
+      <p>If running on IDX, Click</p>
+      <img
+        src="https://fonts.gstatic.com/s/i/short-term/release/googlesymbols/open_in_new/default/40px.svg"
+        width="32"
+        alt="open new window icon"
+      />
+      <p>to open this page in a separate window in order for the Google Pay button to work.</p>
+    </div>
+
+
+
+
+<script>
+    /**
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+const GPAY_BUTTON_CONTAINER_ID = 'gpay-container';
+
+const merchantInfo = {
+  merchantId: '5554526856',
+  merchantName: 'QuetzalArte.com',
+};
+
+const baseGooglePayRequest = {
+  apiVersion: 2,
+  apiVersionMinor: 0,
+  allowedPaymentMethods: [
+    {
+      type: 'CARD',
+      parameters: {
+        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+        allowedCardNetworks: ['AMEX', 'DISCOVER', 'INTERAC', 'JCB', 'MASTERCARD', 'VISA'],
+      },
+      tokenizationSpecification: {
+        type: 'PAYMENT_GATEWAY',
+        parameters: {
+          gateway: 'example',
+          gatewayMerchantId: 'exampleGatewayMerchantId',
+        },
+      },
+    },
+  ],
+  merchantInfo,
+};
+
+Object.freeze(baseGooglePayRequest);
+
+let paymentsClient = null;
+
+function getGooglePaymentsClient() {
+  if (paymentsClient === null) {
+    paymentsClient = new google.payments.api.PaymentsClient({
+      environment: 'TEST',
+      merchantInfo,
+      paymentDataCallbacks: {
+        onPaymentAuthorized: onPaymentAuthorized,
+        onPaymentDataChanged: onPaymentDataChanged,
+      },
+    });
+  }
+  return paymentsClient;
+}
+
+const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+
+function renderGooglePayButton() {
+  let button = document.getElementById("gpay-button");
+  if (!button) {
+    button = getGooglePaymentsClient().createButton({
+      onClick: onGooglePaymentButtonClicked,
+      allowedPaymentMethods: baseGooglePayRequest.allowedPaymentMethods,
+    });
+  }
+  document.getElementById(GPAY_BUTTON_CONTAINER_ID).appendChild(button);
+}
+
+function onGooglePayLoaded() {
+  const req = deepCopy(baseGooglePayRequest);
+  getGooglePaymentsClient()
+    .isReadyToPay(req)
+    .then(function (res) {
+      if (res.result) {
+        renderGooglePayButton();
+      } else {
+        console.log('Google Pay is not ready for this user.');
+      }
+    })
+    .catch(console.error);
+}
+
+function onGooglePaymentButtonClicked() {
+  const req = {
+    ...deepCopy(baseGooglePayRequest),
+    transactionInfo: {
+      countryCode: 'US',
+      currencyCode: 'USD',
+      totalPriceStatus: 'FINAL',
+      totalPrice: '1',
+    },
+    callbackIntents: ['PAYMENT_AUTHORIZATION', 'SHIPPING_ADDRESS', 'SHIPPING_OPTION', 'OFFER'],
+    shippingAddressRequired: true,
+    shippingOptionRequired: true,
+    shippingOptionParameters: {
+      defaultSelectedOptionId: 'shipping-001',
+      shippingOptions: [
+        {
+          id: 'shipping-001',
+          label: '$0.00: Free shipping',
+          description: 'Free Shipping delivered in 5 business days.',
+        },
+        {
+          id: 'shipping-002',
+          label: '$1.99: Standard shipping',
+          description: 'Standard shipping delivered in 3 business days.',
+        },
+        {
+          id: 'shipping-003',
+          label: '$1000: Express shipping',
+          description: 'Express shipping delivered in 1 business day.',
+        },
+      ],
+    },
+  };
+
+  let paymentButton = document.querySelector('#gpay-container > button');
+  console.log('onGooglePaymentButtonClicked', req);
+
+  getGooglePaymentsClient()
+    .loadPaymentData(req)
+    .then(function (res) {
+      console.log(res);
+      if (res && res.paymentMethodData && res.paymentMethodData.tokenizationData) {
+        paymentToken = res.paymentMethodData.tokenizationData.token;
+        const dataContainer = document.createElement('div');
+        dataContainer.textContent = JSON.stringify(res, null, 2);
+        document.body.appendChild(dataContainer);
+        if(res.paymentMethodData.tokenizationData){
+          paymentButton.textContent = "Pago exitoso";
+        }else{
+          paymentButton.textContent = "Pago Fallido";
         }
+      } else {
+        console.error('Payment data structure is unexpected:', res);
+      }
+    }).catch(console.error);
+}
 
-        // Función que se ejecuta cuando se hace clic en el botón de Google Pay
-        function onGooglePayButtonClicked() {
-            const paymentDataRequest = {
-                apiVersion: 2,
-                apiVersionMinor: 0,
-                allowedPaymentMethods: [{
-                    type: 'CARD',
-                    parameters: {
-                        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                        allowedCardNetworks: ['MASTERCARD', 'VISA']
-                    },
-                    tokenizationSpecification: {
-                        type: 'PAYMENT_GATEWAY',
-                        parameters: {
-                            gateway: 'example',
-                            gatewayMerchantId: 'BCR2DN4T766M5BY7'
-                        }
-                    }
-                }],
-                merchantInfo: {
-                    merchantId: 'BCR2DN4T766M5BY7',
-                    merchantName: 'Example Merchant'
-                },
-                transactionInfo: {
-                    totalPriceStatus: 'FINAL',
-                    totalPrice: '1.00',
-                    currencyCode: 'MXN',
-                    countryCode: 'MX',
-                    transactionId: '367390'
-                }
-            };
+function onPaymentAuthorized(paymentData) {
+  return new Promise(function (resolve) {
+    console.log('onPaymentAuthorized', paymentData);
+    const paymentAuthorizationResult =
+      Math.random() > 0.3
+        ? { transactionState: 'SUCCESS' }
+        : {
+            transactionState: 'ERROR',
+            error: {
+              intent: 'PAYMENT_AUTHORIZATION',
+              message: 'Insufficient funds',
+              reason: 'PAYMENT_DATA_INVALID',
+            },
+          };
+    resolve(paymentAuthorizationResult);
+  });
+}
 
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-            paymentsClient.loadPaymentData(paymentDataRequest).then(function(paymentData) {
-                // Manejar la respuesta del pago
-                console.log(paymentData);
+function onPaymentDataChanged(intermediatePaymentData) {
+  return new Promise(function (resolve) {
+    let paymentDataRequestUpdate = {};
+    console.log('onPaymentDataChanged', intermediatePaymentData);
+    resolve(paymentDataRequestUpdate);
+  });
+}
 
-                if (paymentData && paymentData.paymentMethodData && paymentData.paymentMethodData.tokenizationData) {
-                    const paymentToken = paymentData.paymentMethodData.tokenizationData.token;
-                    paymentButton.textContent = "Pago exitoso"; // Indicación visual del pago aprobado
+const paymentDataRequest = Object.assign({}, baseGooglePayRequest);
 
-                    // Mostrar un mensaje de éxito
-                    alert('Pago aprobado exitosamente');
-                    // O insertar un mensaje en el DOM
-                    const successMessage = document.createElement('p');
-                    successMessage.textContent = 'Pago aprobado exitosamente. Por favor, sea paciente mientras verificamos su transacción manualmente.';
-                    document.body.appendChild(successMessage);
+paymentDataRequest.allowedPaymentMethods = baseGooglePayRequest.allowedPaymentMethods;
+paymentDataRequest.transactionInfo = {
+  countryCode: 'US',
+  currencyCode: 'USD',
+  totalPriceStatus: 'FINAL',
+  totalPrice: '1',
+};
 
-                    // Datos adicionales
-                    const paymentMethodData = paymentData.paymentMethodData;
-                    const email = paymentData.email;
-                    const shippingAddress = paymentData.shippingAddress;
-                    const billingAddress = paymentData.billingAddress;
+paymentDataRequest.merchantInfo = merchantInfo;
 
-                    // Mostrar los detalles del pago en el DOM
-                    const paymentDetails = document.createElement('div');
-                    paymentDetails.innerHTML = `
-                        <h3>Detalles del Pago</h3>
-                        <p><strong>Método de pago:</strong> ${JSON.stringify(paymentMethodData, null, 2)}</p>
-                        <p><strong>Correo electrónico:</strong> ${email}</p>
-                        <p><strong>Dirección de envío:</strong> ${JSON.stringify(shippingAddress, null, 2)}</p>
-                        <p><strong>Dirección de facturación:</strong> ${JSON.stringify(billingAddress, null, 2)}</p>
-                    `;
-                    document.body.appendChild(paymentDetails);
+paymentDataRequest.callbackIntents = [
+  "SHIPPING_ADDRESS",  
+  "SHIPPING_OPTION", 
+  "PAYMENT_AUTHORIZATION"
+];
 
-                    console.log('Método de pago:', JSON.stringify(paymentMethodData, null, 2));
-                    console.log('Correo electrónico:', email);
-                    console.log('Dirección de envío:', JSON.stringify(shippingAddress, null, 2));
-                    console.log('Dirección de facturación:', JSON.stringify(billingAddress, null, 2));
-                } else {
-                    paymentButton.textContent = "Pago Fallido";
-                }
-            }).catch(function(err) {
-                console.error('Error al procesar el pago', err);
-                paymentButton.textContent = "Pago Fallido";
-            });
-        }
-    </script>
-</head>
-<body>
-    <!-- Contenedor del botón de Google Pay -->
-    <div id="gpay-button"></div>
-</body>
+paymentDataRequest.shippingAddressRequired = true;
+paymentDataRequest.shippingOptionRequired = true;
+paymentDataRequest.shippingAddressParameters = getGoogleShippingAddressParameters();
+
+</script>
+
+
+        </body>
 </html>
