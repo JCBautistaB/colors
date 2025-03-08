@@ -30,13 +30,13 @@
                         type: 'PAYMENT_GATEWAY',
                         parameters: {
                             gateway: 'example',
-                            gatewayMerchantId: '5554526856'
+                            gatewayMerchantId: 'BCR2DN4T766M5BY7'
                         }
                     }
                 }],
                 merchantInfo: {
-                    merchantId: '5554526856',
-                    merchantName: 'QuetzalArte.com'
+                    merchantId: 'BCR2DN4T766M5BY7',
+                    merchantName: 'Example Merchant'
                 },
                 transactionInfo: {
                     totalPriceStatus: 'FINAL',
@@ -47,7 +47,7 @@
                 }
             };
 
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'PRODUCTION' });
+            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
             paymentsClient.loadPaymentData(paymentDataRequest).then(function(paymentData) {
                 // Manejar la respuesta del pago
                 console.log(paymentData);
