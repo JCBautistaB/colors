@@ -10,7 +10,7 @@
 
         // Función que se ejecuta cuando Google Pay se ha cargado
         function onGooglePayLoaded() {
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'PRODUCTION' });
+            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
             paymentButton = paymentsClient.createButton({ onClick: onGooglePayButtonClicked });
             document.getElementById('gpay-button').appendChild(paymentButton);
         }
