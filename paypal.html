@@ -6,11 +6,13 @@
     <title>Integración de Google Pay</title>
     <script async src="https://pay.google.com/gp/p/js/pay.js" onload="onGooglePayLoaded()"></script>
     <script>
+        let paymentButton;
+
         // Función que se ejecuta cuando Google Pay se ha cargado
         function onGooglePayLoaded() {
             const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-            const button = paymentsClient.createButton({ onClick: onGooglePayButtonClicked });
-            document.getElementById('gpay-button').appendChild(button);
+            paymentButton = paymentsClient.createButton({ onClick: onGooglePayButtonClicked });
+            document.getElementById('gpay-button').appendChild(paymentButton);
         }
 
         // Función que se ejecuta cuando se hace clic en el botón de Google Pay
@@ -27,13 +29,13 @@
                     tokenizationSpecification: {
                         type: 'PAYMENT_GATEWAY',
                         parameters: {
-                            gateway: 'real_gateway',
-                            gatewayMerchantId: 'REAL_MERCHANT_ID'
+                            gateway: 'example',
+                            gatewayMerchantId: 'BCR2DN4T766M5BY7'
                         }
                     }
                 }],
                 merchantInfo: {
-                    merchantId: 'BCR2DN4T76COJU2J',
+                    merchantId: 'BCR2DN4T766M5BY7',
                     merchantName: 'Example Merchant'
                 },
                 transactionInfo: {
@@ -48,27 +50,46 @@
             const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
             paymentsClient.loadPaymentData(paymentDataRequest).then(function(paymentData) {
                 // Manejar la respuesta del pago
-                console.log('Pago exitoso', paymentData);
+                console.log(paymentData);
 
-                // Mostrar un mensaje de éxito
-                alert('Pago aprobado exitosamente');
-                // O insertar un mensaje en el DOM
-                const successMessage = document.createElement('p');
-                successMessage.textContent = 'Pago aprobado exitosamente. Por favor, sea paciente mientras verificamos su transacción manualmente.';
-                document.body.appendChild(successMessage);
+                if (paymentData && paymentData.paymentMethodData && paymentData.paymentMethodData.tokenizationData) {
+                    const paymentToken = paymentData.paymentMethodData.tokenizationData.token;
+                    paymentButton.textContent = "Pago exitoso"; // Indicación visual del pago aprobado
 
-                // Datos adicionales
-                const paymentMethodData = paymentData.paymentMethodData;
-                const email = paymentData.email;
-                const shippingAddress = paymentData.shippingAddress;
-                const billingAddress = paymentData.billingAddress;
+                    // Mostrar un mensaje de éxito
+                    alert('Pago aprobado exitosamente');
+                    // O insertar un mensaje en el DOM
+                    const successMessage = document.createElement('p');
+                    successMessage.textContent = 'Pago aprobado exitosamente. Por favor, sea paciente mientras verificamos su transacción manualmente.';
+                    document.body.appendChild(successMessage);
 
-                console.log('Método de pago:', JSON.stringify(paymentMethodData, null, 2));
-                console.log('Correo electrónico:', email);
-                console.log('Dirección de envío:', JSON.stringify(shippingAddress, null, 2));
-                console.log('Dirección de facturación:', JSON.stringify(billingAddress, null, 2));
+                    // Datos adicionales
+                    const paymentMethodData = paymentData.paymentMethodData;
+                    const email = paymentData.email;
+                    const shippingAddress = paymentData.shippingAddress;
+                    const billingAddress = paymentData.billingAddress;
+
+                    // Mostrar los detalles del pago en el DOM
+                    const paymentDetails = document.createElement('div');
+                    paymentDetails.innerHTML = `
+                        <h3>Detalles del Pago</h3>
+                        <p><strong>Método de pago:</strong> ${JSON.stringify(paymentMethodData, null, 2)}</p>
+                        <p><strong>Correo electrónico:</strong> ${email}</p>
+                        <p><strong>Dirección de envío:</strong> ${JSON.stringify(shippingAddress, null, 2)}</p>
+                        <p><strong>Dirección de facturación:</strong> ${JSON.stringify(billingAddress, null, 2)}</p>
+                    `;
+                    document.body.appendChild(paymentDetails);
+
+                    console.log('Método de pago:', JSON.stringify(paymentMethodData, null, 2));
+                    console.log('Correo electrónico:', email);
+                    console.log('Dirección de envío:', JSON.stringify(shippingAddress, null, 2));
+                    console.log('Dirección de facturación:', JSON.stringify(billingAddress, null, 2));
+                } else {
+                    paymentButton.textContent = "Pago Fallido";
+                }
             }).catch(function(err) {
                 console.error('Error al procesar el pago', err);
+                paymentButton.textContent = "Pago Fallido";
             });
         }
     </script>
