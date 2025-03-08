@@ -1,4 +1,4 @@
-6<!DOCTYPE html>
+7<!DOCTYPE html>
 <!--
  Copyright 2024 Google LLC
 
@@ -94,7 +94,7 @@ let paymentsClient = null;
 function getGooglePaymentsClient() {
   if (paymentsClient === null) {
     paymentsClient = new google.payments.api.PaymentsClient({
-      environment: 'TEST',
+      environment: 'PRODUCTION',
       merchantInfo,
       paymentDataCallbacks: {
         onPaymentAuthorized: onPaymentAuthorized,
