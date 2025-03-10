@@ -35,6 +35,7 @@
         .shipping-options .btn-15kg { background-color: #f5c6cb; }
         .shipping-options .btn-30kg { background-color: #bee5eb; }
         .shipping-options .btn-50kg { background-color: #d4edda; }
+        .shipping-options button.selected { border: 2px solid #4CAF50; }
         .payment-options .btn-saldo { background-color: #d4edda; }
         .payment-options .btn-transferencia { background-color: #cce5ff; }
         .payment-options .btn-mercado { background-color: #fff3cd; }
@@ -294,7 +295,7 @@ mostrando google
 </div>
 
 <div id="bitso" class="bank-transfer-details payment-details">
-    mostrando bi
+    <img src="/imagenes/pagos_bitso.png" alt="Pagar con Bitso">
 </div>
 
 <div id="autoservicio" class="bank-transfer-details payment-details">
@@ -672,6 +673,12 @@ mostrando google
                     shippingMessage = 'Selecciona la forma de envío.';
             }
             document.getElementById('envioinfo').textContent = shippingMessage;
+
+            // Resaltar el botón seleccionado
+            document.querySelectorAll('.shipping-options button').forEach(button => {
+                button.classList.remove('selected');
+            });
+            document.querySelector(`.shipping-options button[onclick="setShipping('${type}', ${cost})"]`).classList.add('selected');
         }
 
         function setPayment(type, commission, icon) {
