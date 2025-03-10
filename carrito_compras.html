@@ -22,9 +22,28 @@
         .cart-summary p { font-size: 18px; margin: 5px 0; }
         .cart-summary h3 { font-size: 22px; margin-top: 10px; color: #333; }
         .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px; }
-        .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
-        .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); background-color: #f0f0f0; }
+        .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
+        .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
         .shipping-options button:active, .payment-options button:active { background-color: #ddd; }
+        .shipping-options .btn-none { background-color: #f0f0f0; }
+        .shipping-options .btn-free { background-color: #d4edda; }
+        .shipping-options .btn-express { background-color: #fff3cd; }
+        .shipping-options .btn-premium { background-color: #f8d7da; }
+        .shipping-options .btn-3kg { background-color: #cce5ff; }
+        .shipping-options .btn-6kg { background-color: #e2e3e5; }
+        .shipping-options .btn-9kg { background-color: #d1ecf1; }
+        .shipping-options .btn-15kg { background-color: #f5c6cb; }
+        .shipping-options .btn-30kg { background-color: #bee5eb; }
+        .shipping-options .btn-50kg { background-color: #d4edda; }
+        .payment-options .btn-saldo { background-color: #d4edda; }
+        .payment-options .btn-transferencia { background-color: #cce5ff; }
+        .payment-options .btn-mercado { background-color: #fff3cd; }
+        .payment-options .btn-paypal { background-color: #f8d7da; }
+        .payment-options .btn-google { background-color: #e2e3e5; }
+        .payment-options .btn-stripe { background-color: #d1ecf1; }
+        .payment-options .btn-bitso { background-color: #f5c6cb; }
+        .payment-options .btn-autoservicio { background-color: #bee5eb; }
+        .payment-options button.selected { border: 2px solid #4CAF50; }
         input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
@@ -143,46 +162,45 @@
         <div id="weightCategory" class="weight-category"></div>
         <div id="weightbtn" class="weight-btn">
             <div class="shipping-options">
-                 <button onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
-            <button onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
-            <button onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
-            <button onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
+                 <button class="btn-none" onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
+            <button class="btn-free" onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
+            <button class="btn-express" onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
+            <button class="btn-premium" onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
             </div>
         </div>
 
         <div id="weight3" class="weight-btn">
             <div class="shipping-options">
-                <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
+                <button class="btn-3kg" onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
             </div>
         </div>
 
         <div id="weight6" class="weight-btn">
             <div class="shipping-options">
-                <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
-</div>
+                <button class="btn-6kg" onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</div>
         </div>
 
         <div id="weight9" class="weight-btn">
             <div class="shipping-options">
-            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
+            <button class="btn-9kg" onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
             </div>
         </div>
 
         <div id="weight15" class="weight-btn">
             <div class="shipping-options">
-            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
+            <button class="btn-15kg" onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
             </div>
         </div>
 
         <div id="weight30" class="weight-btn">
             <div class="shipping-options">
-            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
+            <button class="btn-30kg" onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
             </div>
         </div>
 
         <div id="weight50" class="weight-btn">
             <div class="shipping-options">
-            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
+            <button class="btn-50kg" onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
             </div>
         </div>
 
@@ -288,14 +306,14 @@ mostrando google
     </div>
 
     <div class="payment-options">
-        <button onclick="setPayment('Saldo en cuenta - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
-        <button onclick="setPayment('Transferencia bancaria - comisión 0%', 0, '🏦')">Transferencia bancaria - comisión 0%</button>
-        <button onclick="setPayment('Mercado Libre - comisión 2.8%', 2.8, '🛒')">Mercado Libre - comisión 2.8%</button>
-        <button onclick="setPayment('PayPal- comisión 3.4%', 3.4, '💳')">PayPal - comisión 3.4%</button>
-        <button onclick="setPayment('Google Pay - comisión 3.4%', 3.4, '📱')">Google Pay - comisión 3.4%</button>
-        <button onclick="setPayment('Stripe comisión - 3.4%', 3.4, '💳')">Stripe - comisión 3.4%</button>
-        <button onclick="setPayment('Bitso Criptomonedas - comisión 0%', 0, '🪙')">Bitso Criptomonedas - comisión 0%</button>
-        <button onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - La comisión se paga en tienda $10.00 a $15.00</button>
+        <button class="btn-saldo" onclick="setPayment('Saldo en cuenta - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
+        <button class="btn-transferencia" onclick="setPayment('Transferencia bancaria - comisión 0%', 0, '🏦')">Transferencia bancaria - comisión 0%</button>
+        <button class="btn-mercado" onclick="setPayment('Mercado Libre - comisión 2.8%', 2.8, '🛒')">Mercado Libre - comisión 2.8%</button>
+        <button class="btn-paypal" onclick="setPayment('PayPal- comisión 3.4%', 3.4, '💳')">PayPal - comisión 3.4%</button>
+        <button class="btn-google" onclick="setPayment('Google Pay - comisión 3.4%', 3.4, '📱')">Google Pay - comisión 3.4%</button>
+        <button class="btn-stripe" onclick="setPayment('Stripe comisión - 3.4%', 3.4, '💳')">Stripe - comisión 3.4%</button>
+        <button class="btn-bitso" onclick="setPayment('Bitso Criptomonedas - comisión 0%', 0, '🪙')">Bitso Criptomonedas - comisión 0%</button>
+        <button class="btn-autoservicio" onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - La comisión se paga en tienda $10.00 a $15.00</button>
         
     </div><p></p><p></p><p></p><p></p>
 <hr>
@@ -640,16 +658,6 @@ mostrando google
                     shippingMessage = '🚚 Envío express 1.5kg. 3 días. Costo: $199';
                     break;
                 case 'premium':
-                    shippingMessage = '✈️ Envío premium 1.5kg. 1 día. Costo: $499';
-                    break;
-                case '3kg':
-                    shippingMessage = '🚚 Envío 3kg. 5 días. Costo: $599';
-                    break;
-                case '6kg':
-                    shippingMessage = '🚚 Envío 6kg. 5 días. Costo: $699';
-                    break;
-                case '9kg':
-                    shippingMessage = '🚚 Envío 9kg. 5 días. Costo: $799';
                     break;
                 case '15kg':
                     shippingMessage = '🚚 Envío 15kg. 5 días. Costo: $799';
@@ -712,6 +720,12 @@ mostrando google
                 document.getElementById('autoservicio').classList.add('visible');
                 document.getElementById('autoservicio').classList.remove('hidden');
             }
+
+            // Resaltar el botón seleccionado
+            document.querySelectorAll('.payment-options button').forEach(button => {
+                button.classList.remove('selected');
+            });
+            document.querySelector(`.payment-options button[onclick="setPayment('${type}', ${commission}, '${icon}')"]`).classList.add('selected');
         }
 
         function comprar() {
