@@ -7,10 +7,10 @@
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; }
         .products { display: flex; flex-wrap: wrap; gap: 20px; }
-        .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; }
+        .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ align-items: center; }
         .product:hover { transform: translateY(-5px); }
-        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 10px; }
-        .product-details { flex-grow: 1; }
+        .product img { width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 10px; margin-bottom: 10px; /* Add space between image and details */ }
+        .product-details { flex-grow: 1; text-align: center; /* Center-align product details */ }
         .cart { display: none; position: fixed; top: 0; right: -40%; width: 40%; height: 100%; background-color: #fff; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); transition: right 0.3s ease; z-index: 1000; padding: 15px; overflow-y: auto; border-radius: 10px 0 0 10px; }
         .cart.open { right: 0; }
         .cart h3 { font-size: 24px; margin-bottom: 20px; color: #333; }
@@ -887,4 +887,4 @@ function solicitarPedido() {
 
 </body>
 </html>
-a
+b
