@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin-top: 0; }
         .products { display: flex; flex-wrap: wrap; gap: 20px; }
         .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ align-items: center; }
         .product:hover { transform: translateY(-5px); }
@@ -107,46 +107,71 @@
 
         @media (max-width: 480px) {
             .product { 
-                width: 100%; 
-                display: flex; 
-                flex-direction: column; 
-                align-items: center; 
+            width: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
             }
             .product img { 
-                width: 80%; 
-                height: auto; 
-                margin-bottom: 10px; 
+            width: 80%; 
+            height: auto; 
+            margin-bottom: 10px; 
             }
             .product-details {
-                text-align: center; /* Center-align product details */
+            text-align: center; /* Center-align product details */
             }
             .search-bar { 
-                float: none; 
-                margin-bottom: 10px; 
+            float: none; 
+            margin-bottom: 10px; 
             }
             .section div p { 
-                flex: 1 1 100%; 
+            flex: 1 1 100%; 
             }
             .shipping-options button, 
             .payment-options button { 
-                flex: 1 1 100%; 
+            flex: 1 1 100%; 
             }
+        }
+        .buy-button {
+            background-color: transparent; /* Minimalist design */
+            color: blue; /* Blue text */
+            border: 2px solid blue; /* Blue border */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background-color: rgba(0, 0, 255, 0.1); /* Light blue background on hover */
+            transform: scale(1.05);
+        }
+
+        .buy-button:active {
+            border-color: green; /* Green border when pressed */
+            transform: scale(1);
         }
     </style>
 </head>
 <body>
+    <div style="text-align: center; padding:5px; color: green;">Envíos FULL</div>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
+        <h1>QuetzalArte.com</h1>
+        
+    </div>
 
-    <div><h2>🏪 QuetzalArte.com</h2>  </div> 
-        <div>
-            <span>👤 Ingresar</span> | 
-
-            <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
-                <span>📱 Ayuda Disponible</span>
-            </a> |
-            
-            <a href="tel:+522224606907" style="text-decoration: none; color: black;">
-                <span>📱 Lamar</span>
-            </a> 
+    
+    <div>
+        <span>👤 Ingresar</span> | 
+        <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
+            <span>📱 Ayuda Disponible</span>
+        </a> |
+        <a href="tel:+522224606907" style="text-decoration: none; color: black;">
+            <span>📱 Llamar</span>
+        </a>
  | 
             <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
                 <span>✉️ Email</span> </a>
@@ -158,8 +183,10 @@
 
             <div>
 
-                ¡Hola! Te invitamos a comprar, cotizar o realizar un pedido fácilmente a través de nuestra tienda en línea.
-                
+<p>Bienvenid@ a nuestra tienda en línea. Aquí puedes cotizar o realizar tu pedido fácilmente.</p>
+<div class="search-bar">
+                    🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
+                </div>
             </div>
 
     <span>
@@ -276,7 +303,7 @@
 
 
     <div id="saldo"  class="bank-transfer-details payment-details hidden">
-        <button type="button" onclick="comprar()">Comprar </button>
+        <button class="buy-button" type="button" onclick="comprar()">Comprar</button>
         </div>
 
 
@@ -343,21 +370,22 @@ mostrando google
 
 </div></div></div>
 
-
-
-
-
-    <h1>Compra Artes Gráficas, Tintas, Productos de Arte, Decoración, Publicidad</h1>
-    <div class="search-bar">
-        🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
+ <div style="display: flex; align-items: center; gap: 10px;">
+    <h2>Descubre Nuestra Exclusiva Selección de Productos:</h2>
+   
+    <div style="text-align: center;"> 🎨 Artes Gráficas </div>
+    <div style="text-align: center;"> 🍔 Alimentos</div>
+    <div style="text-align: center;"> 🧴 Cosméticos</div>
     </div>
+    
+    
     <div class="products" id="productList">
         <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
             <div class="product-details">
                 <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
                 <input type="number" id="quantityA" value="1" min="1" max="10">
-                <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
             </div>
         </div>
         <div class="product">
@@ -365,18 +393,53 @@ mostrando google
             <div class="product-details">
                 <span>Producto B - $200 (Peso: 1kg, Stock: <span id="stockB">5</span>)</span>
                 <input type="number" id="quantityB" value="1" min="1" max="5">
-                <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
+                <button class="buy-button" onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
             </div>
         </div>
         <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_976599-MLM80365078573_112024-AC.webp" alt="Producto C">
             <div class="product-details">
-                <span>Producto C - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
+                <span>Paquete - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
                 <input type="number" id="quantityC" value="1" min="1" max="8">
-                <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+                <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="product">
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
+            <div class="product-details">
+                <span>Producto D - $150 (Peso: 2kg, Stock: <span id="stockD">7</span>)</span>
+                <input type="number" id="quantityD" value="1" min="1" max="7">
+                <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
             </div>
         </div>
     </div>
+
+    <style>
+        .buy-button {
+            background-color: transparent; /* Minimalist design */
+            color: blue; /* Blue text */
+            border: 2px solid blue; /* Blue border */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background-color: rgba(0, 0, 255, 0.1); /* Light blue background on hover */
+            transform: scale(1.05);
+        }
+
+        .buy-button:active {
+            border-color: green; /* Green border when pressed */
+            transform: scale(1);
+        }
+    </style>
+
+    
+</div>
 
     <script>
         let total = 0;
@@ -393,7 +456,8 @@ mostrando google
         const originalStock = {
             'Producto A': 10,
             'Producto B': 5,
-            'Producto C': 8
+            'Producto C': 8,
+            'Producto D': 7 // Add stock for Producto D
         };
 
         // Stock actualizado según lo que hay en el carrito
@@ -461,6 +525,7 @@ mostrando google
             document.getElementById("stockA").textContent = stock['Producto A'];
             document.getElementById("stockB").textContent = stock['Producto B'];
             document.getElementById("stockC").textContent = stock['Producto C'];
+            document.getElementById("stockD").textContent = stock['Producto D']; // Update stock for Producto D
 
            
             // Actualizamos el mensaje de pago
@@ -887,4 +952,3 @@ function solicitarPedido() {
 
 </body>
 </html>
-e
