@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
+    <meta name="description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte.com Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="keywords" content="tintas para sellos de goma, cojines para sellos, sellos personalizados, arte y decoración, QuetzalArte, envíos gratis">
+    <meta name="author" content="QuetzalArte.com">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta property="og:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <meta property="og:url" content="https://www.quetzalarte.com">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta name="twitter:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
+    <title>QuetzalArte.com Tienda</title>
+    
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin-top: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
         .products { display: flex; flex-wrap: wrap; gap: 20px; }
         .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ align-items: center; }
         .product:hover { transform: translateY(-5px); }
@@ -153,33 +168,82 @@
             border-color: green; /* Green border when pressed */
             transform: scale(1);
         }
+		.responsive-text {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .responsive-text > div {
+    margin: 0 10px;
+  }
+  @media (max-width: 600px) {
+    .responsive-text {
+      flex-direction: column;
+    }
+    .responsive-text > div {
+      margin: 10px 0;
+    }
+	  }
+	   .responsive-text > span, .responsive-text > a {
+    padding-right: 5px;
+  }
+  .whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+    }
     </style>
+     <!-- Enlace a Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div style="text-align: center; padding:5px; color: green;">Envíos FULL</div>
-    <div style="display: flex; align-items: center; gap: 10px;">
+
+
+    <div style="text-align: center; background-color: #CCC; padding:5px; color: green;">Envíos FULL</div>
+    
+    <div style="padding:5px;">
+    <div style="display: flex; align-items: center; gap: 10px; text-align:center">
         <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
         <h1>QuetzalArte.com</h1>
         
     </div>
 
-    
-    <div>
-        <span>👤 Ingresar</span> | 
-        <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
-            <span>📱 Ayuda Disponible</span>
-        </a> |
-        <a href="tel:+522224606907" style="text-decoration: none; color: black;">
-            <span>📱 Llamar</span>
-        </a>
- | 
-            <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
-                <span>✉️ Email</span> </a>
-                
-            <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
-               <span>🚩  Puebla.🇲🇽 México</span></a>
-                       
-            </div>
+ <a href="https://wa.me/522224606907" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+   
+    <div class="responsive-text">
+    <span>👤 Ingresar</span>  
+    <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
+        <span>📱 Ayuda Disponible</span>
+    </a> 
+    <a href="tel:+522224606907" style="text-decoration: none; color: black;">
+        <span>📱 Llamar</span>
+    </a>  
+    <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
+        <span>✉️ Email</span> 
+    </a> 
+    <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
+        <span>🚩 Puebla.🇲🇽 México</span>
+    </a>
+  </div>
 
             <div>
 
@@ -252,9 +316,6 @@
             <button class="btn-50kg" onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
             </div>
         </div>
-
-    </div>
-
         <hr>
         
 
@@ -366,21 +427,36 @@ mostrando google
         
     </div><p></p><p></p><p></p><p></p>
 <hr>
-    <div id="detallesCompra"></div>
+    <div id="detallesCompra"></div></div></div>
 
-</div></div></div>
-
- <div style="display: flex; align-items: center; gap: 10px;">
+ <div>
     <h2>Descubre Nuestra Exclusiva Selección de Productos:</h2>
    
-    <div style="text-align: center;"> 🎨 Artes Gráficas </div>
-    <div style="text-align: center;"> 🍔 Alimentos</div>
-    <div style="text-align: center;"> 🧴 Cosméticos</div>
-    </div>
+    <div class="responsive-text">
+    <div>🎨 Artes Gráficas</div>
+    <div>🍔 Alimentos</div>
+    <div>🧴 Cosméticos</div>
+  </div>
+   
+    
+</div>
     
     
     <div class="products" id="productList">
-        <div class="product">
+    
+    
+    <div class="product">
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
+            <div class="product-details">
+                <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
+                <input type="number" id="quantityA" value="1" min="1" max="10">
+                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+            </div>
+      </div>
+    
+    
+    
+      <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
             <div class="product-details">
                 <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
@@ -404,6 +480,18 @@ mostrando google
                 <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
             </div>
         </div>
+        
+       <div class="product">
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
+            <div class="product-details">
+                <span>Producto D - $150 (Peso: 2kg, Stock: <span id="stockD">7</span>)</span>
+                <input type="number" id="quantityD" value="1" min="1" max="7">
+                <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
+            </div>
+        </div>
+        
+        
+        
         <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
             <div class="product-details">
@@ -412,7 +500,9 @@ mostrando google
                 <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
             </div>
         </div>
-    </div>
+        
+        
+</div>
 
     <style>
         .buy-button {
@@ -948,7 +1038,15 @@ function solicitarPedido() {
     document.querySelector('button[onclick="solicitar()"]').setAttribute('onclick', 'solicitarPedido()');
 </script></script>
 
-
+<footer>
+    <p>&copy; 2025 QuetzalArte.com  Hecho con Amor &#x2764; Todos los derechos reservados.</p>
+</footer>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('showing');
+}
+</script>
 
 </body>
 </html>
