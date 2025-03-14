@@ -148,27 +148,9 @@
             flex: 1 1 100%; 
             }
         }
-        .buy-button {
-            background-color: transparent; /* Minimalist design */
-            color: blue; /* Blue text */
-            border: 2px solid blue; /* Blue border */
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
-            font-size: 16px;
-            font-weight: bold;
-        }
+        
 
-        .buy-button:hover {
-            background-color: rgba(0, 0, 255, 0.1); /* Light blue background on hover */
-            transform: scale(1.05);
-        }
-
-        .buy-button:active {
-            border-color: green; /* Green border when pressed */
-            transform: scale(1);
-        }
+       
 		.responsive-text {
     text-align: center;
     display: flex;
@@ -276,7 +258,7 @@
 
             <div>
 
-<p>Bienvenid@ a nuestra tienda en línea. Aquí puedes comprar o cotizar  tu pedido fácilmente</p>
+<p>Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente</p>
 <div class="search-bar">
                     🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
                 </div>
@@ -477,24 +459,25 @@ mostrando google
     <div class="product">
     <div style="position:relative; text-align: left; width: 100%; color:gray;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto A">
-            <h2>$120</h2>
+            <h2>$152</h2>
             <div class="product-details" >
                 
                 <input type="number" id="quantityA" value="1" min="1" max="10">
-                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Compra Ya!</button>
+                <button class="buy-button" onclick="addToCart('Producto A', 152, 0.178, 10, document.getElementById('quantityA').value)">Compra Ya!</button>
            <span style="color:gray; display:block;">
            <br/>
            Tinta Blanca para sellos de goma color blanco natural 100 ml.</div>
             
       </div>
+      
     <div class="product">
-    <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockB" style="padding-right:5px;">5 </span></div></div>    
+    <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockB" style="padding-right:5px;">100 </span></div></div>    
     <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto B">
-    <h2>$200</h2>
+    <h2>$99</h2>
       <div class="product-details">
                 
-          <input type="number" id="quantityB" value="1" min="1" max="5">
-                <button class="buy-button" onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Compra Ya!</button>
+          <input type="number" id="quantityB" value="1" min="1" max="100">
+                <button class="buy-button" onclick="addToCart('Producto B', 99, 0.043, 100, document.getElementById('quantityB').value)">Compra Ya!</button>
 <span style="color:gray; display:block;">
            <br/>
          Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a></div>
@@ -551,8 +534,9 @@ mostrando google
         }
 
         .buy-button:active {
-            border-color: green; /* Green border when pressed */
+            border-color: orange; /* Green border when pressed */
             transform: scale(1);
+			background-color:reen;
         }
     </style>
 
@@ -573,7 +557,7 @@ mostrando google
         // Stock original
         const originalStock = {
             'Producto A': 10,
-            'Producto B': 5,
+            'Producto B': 100,
             'Producto C': 8,
             'Producto D': 7 // Add stock for Producto D
         };
