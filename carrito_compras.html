@@ -224,6 +224,9 @@
     }
   }
 	
+    .product-details1 {flex-grow: 1; text-align: center; /* Center-align product details */ }
+.product-details1 {            text-align: center; /* Center-align product details */
+}
     </style>
     
 </head>
@@ -273,7 +276,7 @@
 
             <div>
 
-<p>Bienvenid@ a nuestra tienda en línea. Aquí puedes cotizar o realizar tu pedido fácilmente.</p>
+<p>Bienvenid@ a nuestra tienda en línea. Aquí puedes comprar o cotizar  tu pedido fácilmente</p>
 <div class="search-bar">
                     🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
                 </div>
@@ -472,57 +475,67 @@ mostrando google
     
     
     <div class="product">
-    <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
-            <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
+    <div style="position:relative; text-align: left; width: 100%; color:gray;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto A">
             <h2>$120</h2>
             <div class="product-details" >
-                <span>Producto A - $120 (Peso: 300gr.
+                
                 <input type="number" id="quantityA" value="1" min="1" max="10">
-                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
-            </div>
+                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Compra Ya!</button>
+           <span style="color:gray; display:block;">
+           <br/>
+           Tinta Blanca para sellos de goma color blanco natural 100 ml.</div>
             
       </div>
     <div class="product">
-    <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockB" style="padding-right:5px;">5 </span></div>    
-    <img src="https://http2.mlstatic.com/D_Q_NP_2X_640848-MLM79082395958_092024-AC.webp" alt="Producto B">
+    <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockB" style="padding-right:5px;">5 </span></div></div>    
+    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto B">
     <h2>$200</h2>
-        <div class="product-details">
-                <span>Producto B - $200 (Peso: 1kg
+      <div class="product-details">
+                
           <input type="number" id="quantityB" value="1" min="1" max="5">
-                <button class="buy-button" onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
-            </div>
-        </div>
+                <button class="buy-button" onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Compra Ya!</button>
+<span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a></div>
+      </div>
         
         
       <div class="product">
-      <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockC" style="padding-right:5px;">8 </span></div> 
+      <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockC" style="padding-right:5px;">8 </span></div></div> 
       
-      <img src="https://http2.mlstatic.com/D_Q_NP_2X_976599-MLM80365078573_112024-AC.webp" alt="Producto C">
+      <img src="https://http2.mlstatic.com/D_Q_NP_2X_829314-MLM79350037912_092024-AC.webp">
         <h2>$80</h2>  
-          <div class="product-details">
-                <span>Paquete - $80 (Peso: 1.5kg
+        <div class="product-details">
+               
               <input type="number" id="quantityC" value="1" min="1" max="8">
-                <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
-            </div>
+                <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Haz tu Pedido</button>
+          <span style="color:gray; display:block;">
+           <br/>
+          Blanca Blanco <span class="product-details1">Medio Litro</span> Tinta para Sellos de Goma 100% Natural 5OO ml.<br>
+          Tiempo de elaboración 5 días.
         </div>
+      </div>
         
        <div class="product">
-  <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockD" style="padding-right:5px;">7 </span></div>          
-  <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
+  <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockD" style="padding-right:5px;">7 </span></div></div>          
+  <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto D">
   <h2>$150</h2>
             <div class="product-details">
-                <span>Producto D - $150 (Peso: 2kg
+               
               <input type="number" id="quantityD" value="1" min="1" max="7">
-                <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
-            </div>
-        </div>
+                <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Comapra Ya!</button>
+            <span style="color:gray; display:block;">
+           <br/>
+           Blanco Blanca 1 litro Tinta para Sellos de Goma </div>
+      </div>
 </div>
 
     <style>
         .buy-button {
             background-color: transparent; /* Minimalist design */
-            color: blue; /* Blue text */
-            border: 2px solid blue; /* Blue border */
+            color: #0CC; /* Blue text */
+            border: 2px solid #0CC; /* Blue border */
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -532,8 +545,9 @@ mostrando google
         }
 
         .buy-button:hover {
-            background-color: rgba(0, 0, 255, 0.1); /* Light blue background on hover */
+            background-color: #0CC; /* Light blue background on hover */
             transform: scale(1.05);
+			color:white;
         }
 
         .buy-button:active {
@@ -1093,7 +1107,7 @@ Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
     
     
     
-    </p>
+  </p>
   </footer>
 
 
