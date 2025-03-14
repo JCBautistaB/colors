@@ -472,35 +472,47 @@ mostrando google
     
     
     <div class="product">
+    <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
-            <div class="product-details">
-                <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
+            <h2>$120</h2>
+            <div class="product-details" >
+                <span>Producto A - $120 (Peso: 300gr.
                 <input type="number" id="quantityA" value="1" min="1" max="10">
                 <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
             </div>
+            
       </div>
     <div class="product">
-        <img src="https://http2.mlstatic.com/D_Q_NP_2X_640848-MLM79082395958_092024-AC.webp" alt="Producto B">
+    <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockB" style="padding-right:5px;">5 </span></div>    
+    <img src="https://http2.mlstatic.com/D_Q_NP_2X_640848-MLM79082395958_092024-AC.webp" alt="Producto B">
+    <h2>$200</h2>
         <div class="product-details">
-                <span>Producto B - $200 (Peso: 1kg, Stock: <span id="stockB">5</span>)</span>
-                <input type="number" id="quantityB" value="1" min="1" max="5">
+                <span>Producto B - $200 (Peso: 1kg
+          <input type="number" id="quantityB" value="1" min="1" max="5">
                 <button class="buy-button" onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value)">Agregar al carrito</button>
             </div>
         </div>
-        <div class="product">
-            <img src="https://http2.mlstatic.com/D_Q_NP_2X_976599-MLM80365078573_112024-AC.webp" alt="Producto C">
-            <div class="product-details">
-                <span>Paquete - $80 (Peso: 1.5kg, Stock: <span id="stockC">8</span>)</span>
-                <input type="number" id="quantityC" value="1" min="1" max="8">
+        
+        
+      <div class="product">
+      <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockC" style="padding-right:5px;">8 </span></div> 
+      
+      <img src="https://http2.mlstatic.com/D_Q_NP_2X_976599-MLM80365078573_112024-AC.webp" alt="Producto C">
+        <h2>$80</h2>  
+          <div class="product-details">
+                <span>Paquete - $80 (Peso: 1.5kg
+              <input type="number" id="quantityC" value="1" min="1" max="8">
                 <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Agregar al carrito</button>
             </div>
         </div>
         
        <div class="product">
-            <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
+  <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockD" style="padding-right:5px;">7 </span></div>          
+  <img src="https://http2.mlstatic.com/D_Q_NP_2X_123456-MLM80365078573_112024-AC.webp" alt="Producto D">
+  <h2>$150</h2>
             <div class="product-details">
-                <span>Producto D - $150 (Peso: 2kg, Stock: <span id="stockD">7</span>)</span>
-                <input type="number" id="quantityD" value="1" min="1" max="7">
+                <span>Producto D - $150 (Peso: 2kg
+              <input type="number" id="quantityD" value="1" min="1" max="7">
                 <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
             </div>
         </div>
