@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +18,7 @@
     <meta name="twitter:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
     <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
-<title>QuetzalArte.com Tienda</title>
+    <title>QuetzalArte.com Tienda</title>
     
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
@@ -165,9 +166,8 @@
         }
 
         .buy-button:active {
-	border-color: green; /* Green border when pressed */
-	transform: scale(1);
-	color: #0CC;
+            border-color: green; /* Green border when pressed */
+            transform: scale(1);
         }
 		.responsive-text {
     text-align: center;
@@ -189,22 +189,27 @@
 	   .responsive-text > span, .responsive-text > a {
     padding-right: 5px;
   }
-  
   .whatsapp-button {
         position: fixed;
         bottom: 20px;
-        right: 0px;
-        background-color: #73F793;
-        border-radius: 2%;     
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
         display: flex;
-		padding:10px;        
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        text-decoration: none;
     }
 
     .whatsapp-button:hover {
         transform: scale(1.1);
     }
-	
-	
 	.footer-sections {
     text-align: center;
     display: flex;
@@ -226,12 +231,13 @@
   }
 	
     </style>
-    
+     <!-- Enlace a Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
 
-<div style="text-align: center; background-color: #0CC; padding: 5px; color: #FFF;"> Envíos Rápidos | Medios de pago favoritos | Meses sin intereses</div>
+    <div style="text-align: center; background-color: #CCC; padding:5px; color: green;">Envíos FULL</div>
     
     <div style="padding:5px;">
     <div style="display: flex; align-items: center; gap: 10px; text-align:center">
@@ -239,11 +245,15 @@
         <h1>QuetzalArte.com</h1>
         
     </div>
-<div  class="whatsapp-button">
-<div class="responsive-text">
-    <!--<span>👤 Ingresar</span>-->  
+
+ <a href="https://wa.me/522224606907" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+   
+    <div class="responsive-text">
+    <span>👤 Ingresar</span>  
     <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
-        <span><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Escríbenos</span>
+        <span>💬 Escríbenos</span>
     </a> 
     <a href="tel:+522224606907" style="text-decoration: none; color: black;">
         <span>📱 Llamar</span>
@@ -251,18 +261,17 @@
     <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
         <span>✉️ Email</span> 
     </a> 
-    
+    <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
+        <span>🚩 Puebla.🇲🇽 México</span>
+    </a>
   </div>
-</div>
-   
-    
 
             <div>
 
 <p>Bienvenid@ a nuestra tienda en línea. Aquí puedes cotizar o realizar tu pedido fácilmente.</p>
 <div class="search-bar">
                     🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
-              </div>
+                </div>
             </div>
 
     <span>
@@ -308,8 +317,8 @@
         <div id="weight9" class="weight-btn">
             <div class="shipping-options">
             <button class="btn-9kg" onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
-      </div>
-      </div>
+            </div>
+        </div>
 
         <div id="weight15" class="weight-btn">
             <div class="shipping-options">
@@ -377,7 +386,7 @@
 
     <div id="saldo"  class="bank-transfer-details payment-details hidden">
         <button class="buy-button" type="button" onclick="comprar()">Comprar</button>
-      </div>
+        </div>
 
 
         <div id="bankTransferDetails" class="bank-transfer-details payment-details">
@@ -439,16 +448,16 @@ mostrando google
         
     </div><p></p><p></p><p></p><p></p>
 <hr>
-<div id="detallesCompra"></div></div></div>
+    <div id="detallesCompra"></div></div></div>
 
  <div>
-    <h2>¡Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h2>
+    <h2>Descubre Nuestra Exclusiva Selección de Productos:</h2>
    
-   <!-- <div class="responsive-text">
+    <div class="responsive-text">
     <div>🎨 Artes Gráficas</div>
     <div>🍔 Alimentos</div>
     <div>🧴 Cosméticos</div>
-  </div>-->
+  </div>
    
     
 </div>
@@ -458,20 +467,12 @@ mostrando google
     
     
     <div class="product">
-   <div style="position:relative; text-align: left; width: 100%;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
-            <img src="https://http2.mlstatic.com/D_Q_NP_2X_640848-MLM79082395958_092024-AC.webp" alt="Producto A">
-            <h2>$120</h2>
-            
-            <div class="product-details" style="display:flex;">
-                         
- 
-  
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_787338-MLU71273939627_082023-AC.webp" alt="Producto A">
+            <div class="product-details">
+                <span>Producto A - $120 (Peso: 300g, Stock: <span id="stockA">10</span>)</span>
                 <input type="number" id="quantityA" value="1" min="1" max="10">
-               
-                 <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
-           </div>     <br/>Tinta Para Sellos De Goma Colores A Elegir Blanca Rosa 100ml.
-               
-            
+                <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
+            </div>
       </div>
     
     
@@ -483,7 +484,7 @@ mostrando google
                 <input type="number" id="quantityA" value="1" min="1" max="10">
                 <button class="buy-button" onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value)">Agregar al carrito</button>
             </div>
-      </div>
+        </div>
         <div class="product">
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_640848-MLM79082395958_092024-AC.webp" alt="Producto B">
             <div class="product-details">
@@ -508,7 +509,7 @@ mostrando google
                 <input type="number" id="quantityD" value="1" min="1" max="7">
                 <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Agregar al carrito</button>
             </div>
-      </div>
+        </div>
         
         
         
@@ -527,8 +528,8 @@ mostrando google
     <style>
         .buy-button {
             background-color: transparent; /* Minimalist design */
-            color: #0CC; /* Blue text */
-            border: 2px solid #0CC; /* Blue border */
+            color: blue; /* Blue text */
+            border: 2px solid blue; /* Blue border */
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -1059,14 +1060,14 @@ function solicitarPedido() {
 </script></script>
 
 <footer>
-  <div class="footer-sections">
+    <div class="footer-sections">
       <div>
         <h2>Envío a domicilio</h2>
-        <p>Disfruta tus compras. Tus paquetes están seguros y garantizamos la entrega a tu puerta gracias a destacadas paqueterías,  proporcionamos guías de seguimiento para que puedas rastrear tus pedidos en todo momento.</p>
+        <p>Disfruta de envío gratis en compras a partir de $299. Tus paquetes están seguros y garantizamos la entrega a tu puerta.</p>
       </div>
       <div>
         <h2>Medios de pago favoritos</h2>
-        <p>Elige tu medio de pago favorito. Paga con tarjeta, en efectivo, usando Mercado Pago, PayPal, Google Pay, transferencia bancaria, tiendas de autoservicio o criptomonedas. Tu dinero está protegido.</p>
+        <p>Elige tu medio de pago favorito. Paga con tarjeta, en efectivo o usando Mercado Pago. Tu dinero está protegido.</p>
       </div>
       <div>
         <h2>Recibe tus productos</h2>
@@ -1090,19 +1091,17 @@ La información y/o imágenes aquí contenidas pueden no corresponder con total 
 
 El cliente puede enviar guías prepagadas para realizar su envío.
 
-Para obtener más información sobre pedidos especiales contáctanos.
+Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
 
 Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
 
- <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
-        <span>🚩 Puebla.🇲🇽 México</span>
-    </a>   
+    
     
     
     
     
     </p>
-</footer>
+  </footer>
 
 
 <script>
