@@ -20,7 +20,7 @@
     <title>QuetzalArte.com Tienda</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
-        .products { display: flex; flex-wrap: wrap; gap: 20px; }
+        .products { display: flex; flex-wrap: wrap; gap: 20px; padding:5px; }
         .product { margin-bottom: 20px; display: inline;
             position: relative;
             text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
@@ -30,7 +30,7 @@
         .cart { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .cart-item button { margin-left: 10px; }
-        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  z-index: 1000; /* Asegura que esté siempre encima */}
         #cartCount { font-weight: bold; color: red; }
         input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
@@ -173,14 +173,8 @@
 </head>
 <body>
 
+
 <div style="text-align: center; background-color: #0CC; color: #FFF;  padding: 5px;"> Envíos Rápidos | Medios de pago favoritos | Meses sin intereses</div>
-
-
-<div style="display: flex; align-items: center; gap: 10px; text-align:center;"> <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
-  <h1>QuetzalArte.com</h1>
-</div>
-
-
 
 <div  class="whatsapp-button">
 <div class="responsive-text">
@@ -200,7 +194,12 @@
 
 
 
-<div>
+<div style="display: flex; align-items: center; gap: 10px; text-align:center; padding-left:10px;"> <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
+  <h1>QuetzalArte.com</h1>
+</div>
+
+
+<div style="padding:10px;">
   Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
   <div class="search-bar"> 🔎
     <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
@@ -352,7 +351,7 @@
 
 
 
-    <h1>Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
+    <h1 style="padding-left:10px;">Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
    
     
     
