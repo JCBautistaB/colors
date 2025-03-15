@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -19,48 +18,20 @@
     <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
     <title>QuetzalArte.com Tienda</title>
-    
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
         .products { display: flex; flex-wrap: wrap; gap: 20px; }
-        .product { margin-bottom: 20px; display: flex; align-items: center; border: 1px solid #ddd; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ align-items: center; }
+        .product { margin-bottom: 20px; display: inline;
+            position: relative;
+            text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
         .product:hover { transform: translateY(-5px); }
-        .product img { width: 150px; height: 150px; object-fit: cover; margin-right: 15px; border-radius: 10px; margin-bottom: 10px; /* Add space between image and details */ }
-        .product-details { flex-grow: 1; text-align: center; /* Center-align product details */ }
-        .cart { display: none; position: fixed; top: 0; right: -80%; width: 80%; height: 100%; background-color: #fff; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); transition: right 0.3s ease; z-index: 1000; padding: 15px; overflow-y: auto; border-radius: 10px 0 0 10px; }
-        .cart.open { right: 0; }
-        .cart h3 { font-size: 24px; margin-bottom: 20px; color: #333; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #ddd; }
-        .cart-item button { margin-left: 10px; background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; transition: background-color 0.2s; }
-        .cart-item button:hover { background-color: #ff1a1a; }
-        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 10px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 1001; }
-        .cart-summary { margin-top: 20px; padding: 10px; border-top: 1px solid #ddd; }
-        .cart-summary p { font-size: 18px; margin: 5px 0; }
-        .cart-summary h3 { font-size: 22px; margin-top: 10px; color: #333; }
-        .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px; }
-        .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
-        .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
-        .shipping-options button:active, .payment-options button:active { background-color: #ddd; }
-        .shipping-options .btn-none { background-color: #f0f0f0; }
-        .shipping-options .btn-free { background-color: #d4edda; }
-        .shipping-options .btn-express { background-color: #fff3cd; }
-        .shipping-options .btn-premium { background-color: #f8d7da; }
-        .shipping-options .btn-3kg { background-color: #cce5ff; }
-        .shipping-options .btn-6kg { background-color: #e2e3e5; }
-        .shipping-options .btn-9kg { background-color: #d1ecf1; }
-        .shipping-options .btn-15kg { background-color: #f5c6cb; }
-        .shipping-options .btn-30kg { background-color: #bee5eb; }
-        .shipping-options .btn-50kg { background-color: #d4edda; }
-        .shipping-options button.selected { border: 2px solid #4CAF50; }
-        .payment-options .btn-saldo { background-color: #d4edda; }
-        .payment-options .btn-transferencia { background-color: #cce5ff; }
-        .payment-options .btn-mercado { background-color: #fff3cd; }
-        .payment-options .btn-paypal { background-color: #f8d7da; }
-        .payment-options .btn-google { background-color: #e2e3e5; }
-        .payment-options .btn-stripe { background-color: #d1ecf1; }
-        .payment-options .btn-bitso { background-color: #f5c6cb; }
-        .payment-options .btn-autoservicio { background-color: #bee5eb; }
-        .payment-options button.selected { border: 2px solid #4CAF50; }
+        .product img { width: 70%;  margin: 1px; border-radius: 10px; }
+        .product-details { padding-top:5px;}
+        .cart { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .cart-item button { margin-left: 10px; }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        #cartCount { font-weight: bold; color: red; }
         input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
@@ -70,49 +41,12 @@
         .section div { display: none flex-wrap: wrap; gap: 10px; }
         .section div p { flex: 1 1 calc(50% - 20px); margin: 0; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
         .section div p:hover { transform: translateY(-5px); }
+        .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px; }
+        .shipping-options button, .payment-options button { flex: 1 1 calc(33.333% - 10px); padding: 10px; border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; cursor: pointer; transition: transform 0.2s; }
+        .shipping-options button:hover, .payment-options button:hover { transform: translateY(-5px); }
         .bank-transfer-details { display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
         .weight-category { margin-top: 10px; font-size: 16px; font-weight: bold; }
         .weight-btn { display: none; }
-        .hidden {
-            display: none;
-        }
-        .visible {
-            display: block;
-        }
-        .shipping-form {
-            display: grid;
-            gap: 10px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .shipping-form label {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .shipping-form input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .shipping-form input.invalid {
-            border-color: red;
-        }
-        .shipping-form button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .shipping-form button:hover {
-            background-color: #45a049;
-        }
 
         @media (max-width: 768px) {
             .product { width: calc(50% - 20px); }
@@ -122,57 +56,86 @@
         }
 
         @media (max-width: 480px) {
-            .product { 
-            width: 100%; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            }
-            .product img { 
-            width: 80%; 
-            height: auto; 
+            .product { width: 100%; }
+            .search-bar { float: none; margin-bottom: 10px; }
+            .section div p { flex: 1 1 100%; }
+            .shipping-options button, .payment-options button { flex: 1 1 100%; }
+        }
+    .search-bar1 {margin-bottom: 20px; float: right; }
+.search-bar1 {float: none; margin-bottom: 10px; }
+.search-bar1 {            float: none; 
             margin-bottom: 10px; 
+}
+
+ .buy-button {
+            background-color: transparent; /* Minimalist design */
+            color: #0CC; /* Blue text */
+            border: 2px solid #0CC; /* Blue border */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background-color: #0CC; /* Light blue background on hover */
+            transform: scale(1.05);
+			color:white;
+        }
+
+        .buy-button:active {
+            border-color: #0CC; /* Green border when pressed */
+            transform: scale(1);
+			background-color:white;
+			color:#0CC;
+        }
+		.stock{
+			position:absolute;
+            top: 20px;
+            right: 20px;
+            color: gray;
+            font-size: 14px;
+			}
+			
+			 /* Estilos para el botón */
+        .comprar-btn {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comprar-btn:hover {
+            background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+        }
+
+        /* Estilos para el ícono y la animación */
+        .icono-carrito {
+            display: none;
+            font-size: 24px;
+            color: #4CAF50;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
             }
-            .product-details {
-            text-align: center; /* Center-align product details */
-            }
-            .search-bar { 
-            float: none; 
-            margin-bottom: 10px; 
-            }
-            .section div p { 
-            flex: 1 1 100%; 
-            }
-            .shipping-options button, 
-            .payment-options button { 
-            flex: 1 1 100%; 
+            50% {
+                transform: translateY(-10px);
             }
         }
-        
-
-       
-		.responsive-text {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .responsive-text > div {
-    margin: 0 10px;
-  }
-  @media (max-width: 600px) {
-    .responsive-text {
-      flex-direction: column;
-    }
-    .responsive-text > div {
-      margin: 10px 0;
-    }
-	  }
-	   .responsive-text > span, .responsive-text > a {
-    padding-right: 5px;
-  }
-  
-  .whatsapp-button {
+		
+		 .whatsapp-button {
         position: fixed;
         bottom: 20px;
         right: 0px;
@@ -205,24 +168,19 @@
       margin-bottom: 20px;
     }
   }
-	
-    .product-details1 {flex-grow: 1; text-align: center; /* Center-align product details */ }
-.product-details1 {            text-align: center; /* Center-align product details */
-}
+		
     </style>
-    
 </head>
 <body>
 
+<div style="text-align: center; background-color: #0CC; color: #FFF;  padding: 5px;"> Envíos Rápidos | Medios de pago favoritos | Meses sin intereses</div>
 
-<div style="text-align: center; background-color: #0CC; padding: 5px; color: #FFF;"> Envíos Rápidos | Medios de pago favoritos | Meses sin intereses</div>
-    
-    <div style="padding:5px;">
-    <div style="display: flex; align-items: center; gap: 10px; text-align:center">
-        <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
-        <h1>QuetzalArte.com</h1>
-        
-    </div>
+
+<div style="display: flex; align-items: center; gap: 10px; text-align:center;"> <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" alt="QuetzalArte Logo" style="width: 50px; height: auto;">
+  <h1>QuetzalArte.com</h1>
+</div>
+
+
 
 <div  class="whatsapp-button">
 <div class="responsive-text">
@@ -239,311 +197,263 @@
     
   </div>
 </div>
-   
-    <!--<div class="responsive-text">
-    <span>👤 Ingresar</span>  
-    <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
-        <span>💬 Escríbenos</span>
-    </a> 
-    <a href="tel:+522224606907" style="text-decoration: none; color: black;">
-        <span>📱 Llamar</span>
-    </a>  
-    <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
-        <span>✉️ Email</span> 
-    </a> 
-    <a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
-        <span>🚩 Puebla.🇲🇽 México</span>
-    </a>
-  </div>-->
 
-            <div>
 
-<p>Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente</p>
-<div class="search-bar">
-                    🔎 <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
-                </div>
-            </div>
 
-    <span>
-         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cartCount">0</span></span>
-    </span>
+<div>
+  Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
+  <div class="search-bar"> 🔎
+    <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
+  </div>
+</div>
+<span>
+<span class="cart-icon" onclick="toggleCart()"><!-- Ícono de carrito -->
+    <div id="icono-carrito" class="icono-carrito">📦</div>🛒<span id="cartCount">0</span></span>
+</span>
 
     <div class="cart">
         <h3>Carrito de Compras</h3>
         <div id="cartItems"></div>
-        <div class="cart-summary">
-            <p>Total de productos: $<span id="total">0</span></p>
-            <p>Peso total: <span id="totalWeight">0</span> kg</p>
-            <p>Costo de Envío: $<span id="shippingCost">0</span></p>
-            <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
-        </div>
+        <p>Total de productos: $<span id="total">0</span></p>
+        <p>Peso total: <span id="totalWeight">0</span> kg</p>
+        <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
+        
         <hr>
-        PROCESO DE COMPRA 1 2 3
 <h2>1 Envío</h2>
-       <div id="select-envio"></div>
-       <div id="envioinfo" class="envio-info">Agrega productos al carrito y selecciona la forma de envío.</div>
-<div id="envios">
+<div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
+
+
+       
+
         <div id="weightCategory" class="weight-category"></div>
         <div id="weightbtn" class="weight-btn">
             <div class="shipping-options">
-                 <button class="btn-none" onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
-            <button class="btn-free" onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
-            <button class="btn-express" onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
-            <button class="btn-premium" onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
+                 <button onclick="setShipping('none', 0)">Sin envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('free', 179)">Envío grátis 1.5kg. 5 días. Costo de producción: $179</button>
+            <button onclick="setShipping('express', 199)">Envío express 1.5kg. 3 días. Costo: $199</button>
+            <button onclick="setShipping('premium', 499)">Envío premium 1.5kg. 1 día. Costo: $499</button>
             </div>
         </div>
 
         <div id="weight3" class="weight-btn">
             <div class="shipping-options">
-                <button class="btn-3kg" onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
+                <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
             </div>
         </div>
 
         <div id="weight6" class="weight-btn">
             <div class="shipping-options">
-                <button class="btn-6kg" onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</div>
+                <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
+</div>
         </div>
 
         <div id="weight9" class="weight-btn">
             <div class="shipping-options">
-            <button class="btn-9kg" onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
+            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
             </div>
         </div>
 
         <div id="weight15" class="weight-btn">
             <div class="shipping-options">
-            <button class="btn-15kg" onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
+            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
             </div>
         </div>
 
         <div id="weight30" class="weight-btn">
             <div class="shipping-options">
-            <button class="btn-30kg" onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
+            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
             </div>
         </div>
 
         <div id="weight50" class="weight-btn">
             <div class="shipping-options">
-            <button class="btn-50kg" onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
+            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
             </div>
         </div>
+
+        
         <hr>
         
-
-
-
-      <h2>2 Registro de Compra ó Solicitar cotización</h2>
-        <p>¡Gracias por elegir QuetzalArte.com!<br/>
-             Completa los datos para realizar tu compra o solicitar cotización.
-        <h2>Datos de envío</h2>
-        <div class="shipping-form">
-            <form id="shippingForm">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="address">Dirección:</label>
-                <input type="text" id="address" name="address" required>
-                <label for="city">Ciudad:</label>
-                <input type="text" id="city" name="city" required>
-                <label for="state">Estado:</label>
-                <input type="text" id="state" name="state" required>
-                <label for="zip">Código Postal:</label>
-                <input type="text" id="zip" name="zip" required>
-                <label for="country">País:</label>
-                <input type="text" id="country" name="country" required>
-                <label for="phone">Teléfono:</label>
-                <input type="text" id="phone" name="phone" required>
-                <label for="e-mail">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="rfc">RFC:</label>
-                <input type="text" id="rfc" name="rfc">
-               <br/><br/><button type="button" onclick="solicitarPedido()">Solicitar más información de este pedido por WhatsApp</button>
-            </form>
-        </div>
-        <hr>
-        
-
-
 
     <div class="section">
-        <h2>3 Finalizar Compra</h2>
-        Escoge la forma de pago que mas se adecue a tus necesidades.
+        <h2>2 Forma de Pago</h2>
         <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
 
         <h3>Total a pagar: $<span id="finalTotal2">0</span></h3>
 
 
-
-
-    <div id="saldo"  class="bank-transfer-details payment-details hidden">
-        <button class="buy-button" type="button" onclick="comprar()">Comprar</button>
-        </div>
-
-
-        <div id="bankTransferDetails" class="bank-transfer-details payment-details">
+        <div id="bankTransferDetails" class="bank-transfer-details">
             <img src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/images/payments-logos/spei.svg"><br/>
             <strong>Banco:</strong> STP (Sistema de transferencias y pagos) 
                 <br/> Nombre: Juan Carlos Bautista Bautista 
                 <br/>CLABE: 012650028760776683
         </div>
 
-        <div id="paypal" class="bank-transfer-details payment-details">
-            
-            <style>.pp-YGEXR9D7RV5Z8{text-align:center;border:none;border-radius:0.25rem;min-width:11.625rem;padding:0 2rem;height:2.625rem;font-weight:bold;background-color:#FFD140;color:#000000;font-family:"Helvetica Neue",Arial,sans-serif;font-size:1rem;line-height:1.25rem;cursor:pointer;}</style>
-            <form action="https://www.paypal.com/ncp/payment/YGEXR9D7RV5Z8" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
-              <input type="hidden" name="amount" value="3" />
-              <input class="pp-YGEXR9D7RV5Z8" type="submit" value="Comprar ahora" />
-              <img src=https://www.paypalobjects.com/images/Debit_Credit_APM.svg alt="cards" />
-              <section> Con la tecnología de <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
-            </form>
-            
-
+  
+        
+        <div class="payment-options">
+            <button onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
+            <button onclick="setPayment('Transferencia bancaria - Notificar Compra - comisión 0%', 0, '🏦')">Transferencia bancaria - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Mercado Libre - Notificar Compra - comisión 2.8%', 2.8, '🛒')">Mercado Libre - Notificar Compra - comisión 2.8%</button>
+            <button onclick="setPayment('PayPal - Notificar Compra - comisión 3.4%', 3.4, '💳')">PayPal - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Google Pay - Notificar Compra - comisión 3.4%', 3.4, '📱')">Google Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Apple Pay - Notificar Compra - comisión 3.4%', 3.4, '🍏')">Apple Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Stripe comisión - Notificar Compra - 3.4%', 3.4, '💳')">Stripe - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Amazon Pay - Notificar Compra - comisión 3.4%', 3.4, '🛒')">Amazon Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Bitso Criptomonedas - Notificar Compra - comisión 0%', 0, '🪙')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button>
         </div>
-        
-
-<div id="google" class="bank-transfer-details payment-details">
-mostrando google
-</div>
-
-
-<div id="mercado" class="bank-transfer-details payment-details">
-    mostrando  Ingresa al link, elige como pagar, ¡y listo!
-        <a href="https://link.mercadopago.com.mx/quetzalartecom" target="_blank">Pagar con Mercado Pago</a>
-</div>
-
-<div id="stripe" class="bank-transfer-details payment-details">
-    mostrando st
-</div>
-
-<div id="bitso" class="bank-transfer-details payment-details">
-    <img src="/colors/imagenes/pagos_bitso.png" alt="Pagar con Bitso">
-</div>
-
-<div id="autoservicio" class="bank-transfer-details payment-details">
-    mostrando OXXO y otras tiendas de autoservicio
-</div>
-
-        
         
     </div>
-
-    <div class="payment-options">
-        <button class="btn-saldo" onclick="setPayment('Saldo en cuenta - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
-        <button class="btn-transferencia" onclick="setPayment('Transferencia bancaria - comisión 0%', 0, '🏦')">Transferencia bancaria - comisión 0%</button>
-        <button class="btn-mercado" onclick="setPayment('Mercado Libre - comisión 2.8%', 2.8, '🛒')">Mercado Libre - comisión 2.8%</button>
-        <button class="btn-paypal" onclick="setPayment('PayPal- comisión 3.4%', 3.4, '💳')">PayPal - comisión 3.4%</button>
-        <button class="btn-google" onclick="setPayment('Google Pay - comisión 3.4%', 3.4, '📱')">Google Pay - comisión 3.4%</button>
-        <button class="btn-stripe" onclick="setPayment('Stripe comisión - 3.4%', 3.4, '💳')">Stripe - comisión 3.4%</button>
-        <button class="btn-bitso" onclick="setPayment('Bitso Criptomonedas - comisión 0%', 0, '🪙')">Bitso Criptomonedas - comisión 0%</button>
-        <button class="btn-autoservicio" onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - La comisión se paga en tienda $10.00 a $15.00</button>
-        
-    </div><p></p><p></p><p></p><p></p>
 <hr>
-    <div id="detallesCompra"></div></div></div>
-
- <div>
-    <h2>¡Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h2>
-   
-    <!--<div class="responsive-text">
-    <div>🎨 Artes Gráficas</div>
-    <div>🍔 Alimentos</div>
-    <div>🧴 Cosméticos</div>
-  </div>-->
-   
-    
-</div>
-    
-    
-    <div class="products" id="productList">
-    
-    
-    <div class="product">
-    <div style="position:relative; text-align: left; width: 100%; color:gray;">  Stock: <span id="stockA" style="padding-right:5px;">10 </span></span></div>
-            <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto A">
-            <h2>$152</h2>
-            <div class="product-details" >
-                
-                <input type="number" id="quantityA" value="1" min="1" max="10">
-                <button class="buy-button" onclick="addToCart('Producto A', 152, 0.178, 10, document.getElementById('quantityA').value)">Compra Ya!</button>
-           <span style="color:gray; display:block;">
-           <br/>
-           Tinta Blanca para sellos de goma color blanco natural 100 ml.</div>
+    <div>
+        <h2>3 Registro de Compra</h2>
+        <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
+            <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
+        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p>
+    <h2>Datos de envío</h2>
+    <div>
+        <form id="shippingForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address" ><br>
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" name="city" ><br>
+            <label for="state">Estado:</label>
+            <input type="text" id="state" name="state"><br>
+            <label for="zip">Código Postal:</label>
+            <input type="text" id="zip" name="zip" ><br>
+            <label for="country">País:</label>
+            <input type="text" id="country" name="country" ><br>
+            <label for="phone">Teléfono:</label>
+            <input type="text" id="phone" name="phone" ><br>
+            <label for="reference">Referencia:</label>
+            <input type="text" id="reference" name="reference" ><br>
+            <label for="e-mail">E-mail:</label>
+            <input type="text" id="email" name="email" ><br>
+            <label for="rfc">RFC:</label>
+            <input type="text" id="rfc" name="rfc" >
             
-      </div>
-      
-    <div class="product">
-    <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockB" style="padding-right:5px;">100 </span></div></div>    
-    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto B">
-    <h2>$99</h2>
-      <div class="product-details">
-                
-          <input type="number" id="quantityB" value="1" min="1" max="100">
-                <button class="buy-button" onclick="addToCart('Producto B', 99, 0.043, 100, document.getElementById('quantityB').value)">Compra Ya!</button>
-<span style="color:gray; display:block;">
-           <br/>
-         Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a></div>
-      </div>
-        
-        
-      <div class="product">
-      <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockC" style="padding-right:5px;">8 </span></div></div> 
-      
-      <img src="https://http2.mlstatic.com/D_Q_NP_2X_829314-MLM79350037912_092024-AC.webp">
-        <h2>$80</h2>  
-        <div class="product-details">
-               
-              <input type="number" id="quantityC" value="1" min="1" max="8">
-                <button class="buy-button" onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value)">Haz tu Pedido</button>
-          <span style="color:gray; display:block;">
-           <br/>
-          Blanca Blanco <span class="product-details1">Medio Litro</span> Tinta para Sellos de Goma 100% Natural 5OO ml.<br>
-          Tiempo de elaboración 5 días.
+            <br><br/>
+
+
+            <button type="button" onclick="comprar()">Comprar </button>
+            <button type="button" onclick="solicitarPedido()">Solicitar más información de este pedido por WhatsApp</button>
+            
+      </form>
+    </div>
+
+    <div id="detallesCompra"></div>
+
+</div></div></div>
+
+
+
+
+
+    <h1>Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
+   
+    
+    
+<div class="products" id="productList">
+        <div class="product">
+     <div class="stock" > Stock:<span id="stockA">10</span></div>      
+      <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
+      <span style=" font-size:24px; display: block;"><strong>$120</strong></span>
+     <div style="display: inline;">              
+   <input type="number" id="quantityA" value="1" min="1" max="10">
+    <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value); agregarAlCarrito();" class="buy-button">Comprar Ya! </button>
+    </div> 
+            <div class="product-details" >  <span style="display:block;">Producto A -  (Peso: 300g)</span>
+            
+            </div>
         </div>
-      </div>
         
-       <div class="product">
-  <div style="position:relative; text-align: left; width: 100%;">  <div style="position:relative; text-align: left; width: 100%; color:gray;">Stock: <span id="stockD" style="padding-right:5px;">7 </span></div></div>          
-  <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto D">
-  <h2>$150</h2>
+        
+      
+        
+        
+        <div class="product">
+         <div class="stock" > Stock:<span id="stockB">5</span></div> 
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto B">
+             <span style=" font-size:24px; display: block;"><strong>$200</strong></span>
             <div class="product-details">
-               
-              <input type="number" id="quantityD" value="1" min="1" max="7">
-                <button class="buy-button" onclick="addToCart('Producto D', 150, 2, 7, document.getElementById('quantityD').value)">Comapra Ya!</button>
-            <span style="color:gray; display:block;">
-           <br/>
-           Blanco Blanca 1 litro Tinta para Sellos de Goma </div>
-      </div>
+                <input type="number" id="quantityB" value="1" min="1" max="5">
+                <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value); agregarAlCarrito();" class="buy-button">Comprar Ya!</button>
+         </div> 
+            <div class="product-details" >  <span style="display:block;">Producto B-  (Peso: 1KG)</span>
+            
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <div class="product">
+           <div class="stock" > Stock:<span id="stockC">8</span></div> 
+             <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto C">
+           <span style=" font-size:24px; display: block;"><strong>$80</strong></span>
+            <div class="product-details">
+             <input type="number" id="quantityC" value="1" min="1" max="8">
+                <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value); agregarAlCarrito();" class="buy-button">Solicitar Pedido</button>
+           </div> 
+            <div class="product-details" >  <span style="display:block;">Producto BC-  (Peso: 1.5KG)</span>
+            
+            </div>
+        </div>
+        
+        
+        
 </div>
 
-    <style>
-        .buy-button {
-            background-color: transparent; /* Minimalist design */
-            color: #0CC; /* Blue text */
-            border: 2px solid #0CC; /* Blue border */
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
-            font-size: 16px;
-            font-weight: bold;
-        }
+<footer>
+    <div class="footer-sections">
+      <div>
+        <h2>Envío a domicilio</h2>
+        <p>Disfruta de envío gratis en compras a partir de $299. Tus paquetes están seguros y garantizamos la entrega a tu puerta.</p>
+      </div>
+      <div>
+        <h2>Medios de pago favoritos</h2>
+        <p>Elige tu medio de pago favorito. Paga con tarjeta, en efectivo o usando Mercado Pago. Tu dinero está protegido.</p>
+      </div>
+      <div>
+        <h2>Recibe tus productos</h2>
+        <p>Recibe tus productos de 3 a 5 días o selecciona el método de envío que más se adecue a tus necesidades: exprés o premium.</p>
+      </div>
+    </div>
+    <p>&copy; 2025 QuetzalArte.com. Hecho con Amor &#x2764; Todos los derechos reservados.
+    
+    
+    
+    
+    Ofrecemos servicio de facturación con IVA (México).
 
-        .buy-button:hover {
-            background-color: #0CC; /* Light blue background on hover */
-            transform: scale(1.05);
-			color:white;
-        }
+Los precios expresados en este catálogo son por pieza o paquete y están sujetos a cambios sin previo aviso.
 
-        .buy-button:active {
-            border-color: orange; /* Green border when pressed */
-            transform: scale(1);
-			background-color:reen;
-        }
-    </style>
+Envíos foráneos se realizan al día siguiente después del pago, en días hábiles.
+
+
+Envíos a toda la República Mexicana desde $170.00; el costo puede aumentar según el volumen del pedido (envíos económicos, express y premium).
+
+La información y/o imágenes aquí contenidas pueden no corresponder con total precisión.
+
+El cliente puede enviar guías prepagadas para realizar su envío.
+
+Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
+
+Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
 
     
-</div>
+    
+    
+    
+    
+  </p>
+  </footer>
 
-    <script>
+<script>
         let total = 0;
         let totalWeight = 0;
         let cart = [];
@@ -557,9 +467,8 @@ mostrando google
         // Stock original
         const originalStock = {
             'Producto A': 10,
-            'Producto B': 100,
-            'Producto C': 8,
-            'Producto D': 7 // Add stock for Producto D
+            'Producto B': 5,
+            'Producto C': 8
         };
 
         // Stock actualizado según lo que hay en el carrito
@@ -618,7 +527,6 @@ mostrando google
 
             document.getElementById("total").textContent = total;
             document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
-            document.getElementById("shippingCost").textContent = shippingCost.toFixed(2);
             document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("finalTotal2").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
             document.getElementById("cartCount").textContent = cartCount;
@@ -627,9 +535,60 @@ mostrando google
             document.getElementById("stockA").textContent = stock['Producto A'];
             document.getElementById("stockB").textContent = stock['Producto B'];
             document.getElementById("stockC").textContent = stock['Producto C'];
-            document.getElementById("stockD").textContent = stock['Producto D']; // Update stock for Producto D
 
-           
+            // Actualizamos el mensaje de envío
+            let shippingMessage = "";
+            let shippingIcon = "";
+
+            switch (shippingType) {
+                default:
+                    shippingIcon = "🚚";
+                    shippingMessage = "Selecciona el tipo de envío.";
+                    break;
+                case 'none':
+                    shippingIcon = "❤️";
+                    shippingMessage = "SIN ENVÍO";
+                    break;
+                case 'free':
+                    shippingIcon = "📦";
+                    shippingMessage = "ENVÍO GRÁTIS.";
+                    break;
+                case 'express':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO EXPRESS.";
+                    break;
+                case 'premium':
+                    shippingIcon = "✈️";
+                    shippingMessage = "ENVÍO PREMIUM.";
+                    break;
+                case '3kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 3kg.";
+                    break;
+                    case '6kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 6kg.";
+                    break;
+                    case '9kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 9kg.";
+                    break;
+                    case '15kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 15kg.";
+                    break;
+                    case '30kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 130kg.";
+                    break;
+                    case '50kg':
+                    shippingIcon = "🚚";
+                    shippingMessage = "ENVÍO 50kg.";
+                    break;    
+            }
+
+            document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
+
             // Actualizamos el mensaje de pago
             document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentType}`;
 
@@ -640,58 +599,6 @@ mostrando google
             } else {
                 bankTransferDetails.style.display = 'none';
             }
-
-            
-
-            // Mostrar detalles de PayPal si se selecciona esa opción
-            const paypalDetails = document.getElementById("paypal");
-            if (paymentType.includes('PayPal')) {
-                paypalDetails.style.display = 'block';
-            } else {
-                paypalDetails.style.display = 'none';
-            }
-
-            // Mostrar detalles de Google Pay si se selecciona esa opción
-            const googlePayDetails = document.getElementById("google");
-            if (paymentType.includes('Google Pay')) {
-                googlePayDetails.style.display = 'block';
-            } else {
-                googlePayDetails.style.display = 'none';
-            }
-
-            // Mostrar detalles de Mercado Pago si se selecciona esa opción
-            const mercadoPagoDetails = document.getElementById("mercado");
-            if (paymentType.includes('Mercado Libre')) {
-                mercadoPagoDetails.style.display = 'block';
-            } else {
-                mercadoPagoDetails.style.display = 'none';
-            }
-
-            // Mostrar detalles de Stripe si se selecciona esa opción
-            const stripeDetails = document.getElementById("stripe");
-            if (paymentType.includes('Stripe')) {
-                stripeDetails.style.display = 'block';
-            } else {
-                stripeDetails.style.display = 'none';
-            }
-
-            // Mostrar detalles de Bitso si se selecciona esa opción
-            const bitsoDetails = document.getElementById("bitso");
-            if (paymentType.includes('Bitso')) {
-                bitsoDetails.style.display = 'block';
-            } else {
-                bitsoDetails.style.display = 'none';
-            }
-
-            // Mostrar detalles de OXXO si se selecciona esa opción
-            const oxxoDetails = document.getElementById("autoservicio");
-            if (paymentType.includes('Pago en tiendas de autoservicio')) {
-                oxxoDetails.style.display = 'block';
-            } else {
-                oxxoDetails.style.display = 'none';
-            }
-
-            
 
             // Actualizamos la categoría de peso
             let weightCategory = "";
@@ -760,20 +667,6 @@ mostrando google
                 document.getElementById("weight50").style.display = 'block';
             }
             document.getElementById("weightCategory").textContent = weightCategory;
-
-            // Cambiar el mensaje de select-envio según si hay productos en el carrito o no
-            if (cart.length === 0) {
-                document.getElementById('select-envio').textContent = 'Agrega productos al carrito y selecciona la forma de envío.';
-                document.getElementById('envios').style.display = 'none';
-                document.getElementById('envioinfo').style.display = 'none'; // Ocultar envioinfo si el carrito está vacío
-            } else {
-                document.getElementById('select-envio').textContent = '';
-                document.getElementById('envios').style.display = 'block';
-                document.getElementById('envioinfo').style.display = 'block'; // Mostrar envioinfo si hay productos en el carrito
-            }
-
-            // Cambiar el mensaje de envioinfo a "Selecciona la forma de envío"
-            document.getElementById('envioinfo').textContent = 'Selecciona el tipo de envío que más se adecue a tus necesidades.';
         }
 
         function updateQuantity(name, quantity, price, weight) {
@@ -792,9 +685,6 @@ mostrando google
                 totalWeight += weightDifference;
                 cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
                 item.quantity = quantity;
-                // Reiniciar el costo de envío
-                shippingType = 'default';
-                shippingCost = 0;
                 updateCart();
             }
         }
@@ -807,76 +697,19 @@ mostrando google
                 totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
                 cartCount -= cart[itemIndex].quantity;
                 cart.splice(itemIndex, 1);
-                // Reiniciar el costo de envío
-                shippingType = 'default';
-                shippingCost = 0;
             }
             updateCart();
         }
 
         function toggleCart() {
             let cartDiv = document.querySelector('.cart');
-            if (cartDiv.style.display === 'none' || cartDiv.style.display === '') {
-                cartDiv.style.display = 'block';
-                setTimeout(() => {
-                    cartDiv.classList.add('open');
-                }, 10);
-            } else {
-                cartDiv.classList.remove('open');
-                setTimeout(() => {
-                    cartDiv.style.display = 'none';
-                }, 300);
-            }
+            cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
         }
 
         function setShipping(type, cost) {
             shippingType = type;
             shippingCost = cost;
             updateCart();
-
-            // Mostrar el tipo de envío seleccionado en la capa envioinfo
-            let shippingMessage = '';
-            switch (type) {
-                case 'none':
-                    shippingMessage = '❤️ Sin envío (entrega a coordinar o archivo digital)';
-                    break;
-                case 'free':
-                    shippingMessage = '🚚 Envío gratis 1.5kg. 5 días. Costo de producción: $179';
-                    break;
-                case 'express':
-                    shippingMessage = '🚚 Envío express 1.5kg. 3 días. Costo: $199';
-                    break;
-                case 'premium':
-                    shippingMessage = '✈️ Envío premium 1.5kg. 1 día. Costo: $499';
-                    break;
-                case '3kg':
-                    shippingMessage = '🚚 Envío 3kg. 5 días. Costo: $599';
-                    break;
-                case '6kg':
-                    shippingMessage = '🚚 Envío 6kg. 5 días. Costo: $699';
-                    break;
-                case '9kg':
-                    shippingMessage = '🚚 Envío 9kg. 5 días. Costo: $799';
-                    break;
-                case '15kg':
-                    shippingMessage = '🚚 Envío 15kg. 5 días. Costo: $799';
-                    break;
-                case '30kg':
-                    shippingMessage = '🚚 Envío 30kg. 5 días. Costo: $1600';
-                    break;
-                case '50kg':
-                    shippingMessage = '🚚 Envío 50kg. 5 días. Costo: $2500';
-                    break;
-                default:
-                    shippingMessage = 'Selecciona la forma de envío.';
-            }
-            document.getElementById('envioinfo').textContent = shippingMessage;
-
-            // Resaltar el botón seleccionado
-            document.querySelectorAll('.shipping-options button').forEach(button => {
-                button.classList.remove('selected');
-            });
-            document.querySelector(`.shipping-options button[onclick="setShipping('${type}', ${cost})"]`).classList.add('selected');
         }
 
         function setPayment(type, commission, icon) {
@@ -884,53 +717,6 @@ mostrando google
             paymentCommission = commission;
             paymentIcon = icon;
             updateCart();
-
-            // Ocultar todas las capas de pago
-            document.querySelectorAll('.payment-details').forEach(element => {
-                element.classList.add('hidden');
-                element.classList.remove('visible');
-            });
-
-            // Mostrar la capa correspondiente según el tipo de pago seleccionado
-            if (type.includes('Transferencia bancaria')) {
-                document.getElementById('bankTransferDetails').classList.add('visible');
-                document.getElementById('bankTransferDetails').classList.remove('hidden');
-            }         
-            
-            else if (type.includes('Saldo en cuenta')) {
-                document.getElementById('saldo').classList.add('visible');
-                document.getElementById('saldo').classList.remove('hidden');
-            } 
-            else if (type.includes('PayPal')) {
-                document.getElementById('paypal').classList.add('visible');
-                document.getElementById('paypal').classList.remove('hidden');
-            } 
-            else if (type.includes('Google Pay')) {
-                document.getElementById('google').classList.add('visible');
-                document.getElementById('google').classList.remove('hidden');
-            }
-             else if (type.includes('Mercado Libre')) {
-                document.getElementById('mercado').classList.add('visible');
-                document.getElementById('mercado').classList.remove('hidden');
-            } 
-            else if (type.includes('Stripe')) {
-                document.getElementById('stripe').classList.add('visible');
-                document.getElementById('stripe').classList.remove('hidden');
-            } 
-            else if (type.includes('Bitso')) {
-                document.getElementById('bitso').classList.add('visible');
-                document.getElementById('bitso').classList.remove('hidden');
-            } 
-            else if (type.includes('Pago en tiendas de autoservicio')) {
-                document.getElementById('autoservicio').classList.add('visible');
-                document.getElementById('autoservicio').classList.remove('hidden');
-            }
-
-            // Resaltar el botón seleccionado
-            document.querySelectorAll('.payment-options button').forEach(button => {
-                button.classList.remove('selected');
-            });
-            document.querySelector(`.payment-options button[onclick="setPayment('${type}', ${commission}, '${icon}')"]`).classList.add('selected');
         }
 
         function comprar() {
@@ -947,11 +733,6 @@ mostrando google
                 }
             });
 
-            if (cart.length === 0) {
-                alert('Por favor, agrega productos al carrito antes de realizar la compra.');
-                return;
-            }
-
             if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
                 alert('Compra realizada con éxito');
                 // Aquí puedes agregar la lógica para procesar la compra
@@ -967,14 +748,11 @@ mostrando google
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
             let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}`;
             let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
-            
             if (paymentType.includes('Transferencia bancaria')) {
                 paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
             }
-
-
             let orderNumber = Math.floor(100000 + Math.random() * 900000);
-            let message = `Su pedido se ha registrado con éxito. Realice su pago con los siguientes datos.<br/>Una vez realizado su pago espere la verificación de la compra nosotrps lo contactamos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
+            let message = `Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.<br/>Una vez realizado su pago debe, espere a que lo contactemos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
 
 Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\nDatos de recepción de Envío:\n${shippingDetails}\n\n${paymentDetails}`;
             let detallesDiv = document.createElement('div');
@@ -1007,26 +785,26 @@ Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\n
 
 <script>
    
-function solicitarPedido() {
-      const form = document.getElementById('shippingForm');
-      const inputs = form.querySelectorAll('input[required]');
-      let valid = true;
+   function solicitarPedido() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
 
-      inputs.forEach(input => {
+        inputs.forEach(input => {
             if (!input.value) {
-                 input.classList.add('invalid');
-                 valid = false;
+                input.classList.add('invalid');
+                valid = false;
             } else {
-                 input.classList.remove('invalid');
+                input.classList.remove('invalid');
             }
-      });
+        });
 
-      if (cart.length === 0) {
+        if (cart.length === 0) {
             alert('Por favor, agrega productos al carrito antes de solicitar el pedido.');
             return;
-      }
+        }
 
-      if (valid) {
+        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
             let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
             let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}`;
@@ -1035,72 +813,30 @@ function solicitarPedido() {
             let whatsappUrl = `https://wa.me/2224606907?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         } else {
-            alert('Por favor, completa los datos de contacto.');
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
         }
     }
-
-    document.querySelectorAll('#shippingForm input').forEach(input => {
-        input.addEventListener('input', () => {
-            if (input.value) {
-                input.classList.remove('invalid');
-            }
-        });
-    });
 
     document.querySelector('button[onclick="solicitar()"]').setAttribute('onclick', 'solicitarPedido()');
 </script></script>
 
-<footer>
-    <div class="footer-sections">
-      <div>
-        <h2>Envío a domicilio</h2>
-        <p>Disfruta de envío gratis en compras a partir de $299. Tus paquetes están seguros y garantizamos la entrega a tu puerta.</p>
-      </div>
-      <div>
-        <h2>Medios de pago favoritos</h2>
-        <p>Elige tu medio de pago favorito. Paga con tarjeta, en efectivo o usando Mercado Pago. Tu dinero está protegido.</p>
-      </div>
-      <div>
-        <h2>Recibe tus productos</h2>
-        <p>Recibe tus productos de 3 a 5 días o selecciona el método de envío que más se adecue a tus necesidades: exprés o premium.</p>
-      </div>
-    </div>
-    <p>&copy; 2025 QuetzalArte.com. Hecho con Amor &#x2764; Todos los derechos reservados.
-    
-    
-    
-    
-    Ofrecemos servicio de facturación con IVA (México).
+ 
 
-Los precios expresados en este catálogo son por pieza o paquete y están sujetos a cambios sin previo aviso.
+    <script>
+        function agregarAlCarrito() {
+            // Mostrar el ícono del carrito
+            const icono = document.getElementById('icono-carrito');
+            icono.style.display = 'inline-block';
 
-Envíos foráneos se realizan al día siguiente después del pago, en días hábiles.
+            // Ocultar el ícono después de 1 segundo
+            setTimeout(() => {
+                icono.style.display = 'none';
+            }, 1000);
 
-Envíos a toda la República Mexicana desde $170.00; el costo puede aumentar según el volumen del pedido (envíos económicos, express y premium).
-
-La información y/o imágenes aquí contenidas pueden no corresponder con total precisión.
-
-El cliente puede enviar guías prepagadas para realizar su envío.
-
-Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
-
-Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
-
-    
-    
-    
-    
-    
-  </p>
-  </footer>
-
-
-<script>
-function toggleMenu() {
-    var menu = document.getElementById('menu');
-    menu.classList.toggle('showing');
-}
-</script>
+            // Aquí puedes agregar la lógica para agregar el producto al carrito
+            console.log('Producto agregado al carrito');
+        }
+    </script>
 
 </body>
 </html>
