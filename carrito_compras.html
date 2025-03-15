@@ -25,7 +25,7 @@
             position: relative;
             text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
         .product:hover { transform: translateY(-5px); }
-        .product img { width: 70%;  margin: 1px; border-radius: 10px; }
+        .product img { width: 100%;  margin: 1px; border-radius: 10px; }
         .product-details { padding-top:5px;}
         .cart { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
@@ -136,15 +136,14 @@
         }
 		
 		 .whatsapp-button {
-        position: fixed;
-        bottom: 20px;
-        right: 0px;
-        background-color: #73F793;
-        border-radius: 2%;     
-        display: flex;
-		padding:10px;    
-		 z-index: 1000; /* Asegura que siempre esté por encima */
-        
+	position: fixed;
+	bottom: 20px;
+	right: 0px;
+	background-color: #00CCCC;
+	border-radius: 2%;
+	display: flex;
+	padding: 10px;
+	z-index: 1000; /* Asegura que siempre esté por encima */        
     }
 
     .whatsapp-button:hover {
