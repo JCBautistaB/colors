@@ -141,11 +141,8 @@
 	right: 0px;
 	background-color: #0CC;
 	border-radius: 2%;
-
 	padding: 10px;
-	z-index: 1000; /* Asegura que siempre esté por encima */
-	display: inline-block;
-  
+	z-index: 1000; /* Asegura que siempre esté por encima */ 
     }
 
     .whatsapp-button:hover {
@@ -180,8 +177,8 @@
 
 <div style="text-align: center; background-color: #0CC; color: #FFF;  padding: 5px;"> Envíos Rápidos | Medios de pago favoritos | Meses sin intereses</div>
 
-<div  class="whatsapp-button">
-<div class="responsive-text">
+<div  class="whatsapp-button" style="display:inline-block;">
+
     <!--<span>👤 Ingresar</span>-->  
     <a href="https://wa.me/2224606907" style="text-decoration: none; color: black;">
         <span><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"></span>
@@ -194,7 +191,7 @@
     </a> 
     <div class="search-bar"> 🔎
     <input type="text" id="searchInput" placeholder="Buscar productos..." onkeyup="filterProducts()">
-  </div>
+
   </div>
 </div>
 
