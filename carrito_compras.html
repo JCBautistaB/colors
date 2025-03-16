@@ -35,7 +35,7 @@
         input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
-        .search-bar { padding-left:20px; float:right; padding-top:5px; }
+        .search-bar { padding-left:20px; float:right; padding-top:5px; display:inline;}
         .section { margin-bottom: 20px; }
         .section h2 { margin-bottom: 10px; }
         .section div { display: none flex-wrap: wrap; gap: 10px; }
@@ -50,14 +50,14 @@
 
         @media (max-width: 768px) {
             .product { width: calc(50% - 20px); }
-            .search-bar { float: none; margin-bottom: 10px; }
+            .search-bar { float: none; margin-bottom: 10px; display:inline; }
             .section div p { flex: 1 1 100%; }
             .shipping-options button, .payment-options button { flex: 1 1 calc(50% - 10px); }
         }
 
         @media (max-width: 480px) {
             .product { width: 100%; }
-            .search-bar { float: none; margin-bottom: 10px; }
+            .search-bar { float: none; margin-bottom: 10px; display: inline;}
             .section div p { flex: 1 1 100%; }
             .shipping-options button, .payment-options button { flex: 1 1 100%; }
         }
