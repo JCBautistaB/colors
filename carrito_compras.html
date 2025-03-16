@@ -35,7 +35,7 @@
         input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
         .shipping-info, .payment-info { margin-top: 10px; font-size: 16px; }
         .invalid { border: 2px solid red; }
-        .search-bar { padding-left:20px; float:right; padding-top:5px;}
+        .search-bar { padding-left:20px; float:right; padding-top:5px; }
         .section { margin-bottom: 20px; }
         .section h2 { margin-bottom: 10px; }
         .section div { display: none flex-wrap: wrap; gap: 10px; }
@@ -144,11 +144,6 @@
 	padding: 10px;
 	z-index: 1000; /* Asegura que siempre esté por encima */
 	width:100%;
-	
-    }
-
-    .whatsapp-button:hover {
-		z-index: 1500; /* Aumenta la prioridad al pasar el cursor */
     }
 	
 	.footer-sections {
@@ -198,7 +193,7 @@
     
     
     <div class="search-bar">
-   <input type="text" id="searchInput" placeholder=" 🔎 Buscar productos..." onkeyup="filterProducts()">
+   <input type="text" id="searchInput" placeholder=" 🔎 Buscar productos..." onkeyup="filterProducts()" size="10">
 
 
   </div>
