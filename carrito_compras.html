@@ -415,11 +415,11 @@
     <div class="footer-sections">
       <div>
         <h2>Envío a domicilio</h2>
-        <p>Disfruta de envío gratis en compras a partir de $299. Tus paquetes están seguros y garantizamos la entrega a tu puerta.</p>
+        <p>Disfruta de envíos rápidos en todas tus compras. Tus paquetes están seguros y garantizamos la entrega a tu puerta.</p>
       </div>
       <div>
         <h2>Medios de pago favoritos</h2>
-        <p>Elige tu medio de pago favorito. Paga con tarjeta, en efectivo o usando Mercado Pago. Tu dinero está protegido.</p>
+        <p>Elige tu medio de pago favorito. Paga con tu tarjeta favorita paga a meses sin intereses, en efectivo o usando Mercado Pago. Tu dinero está protegido.</p>
       </div>
       <div>
         <h2>Recibe tus productos</h2>
@@ -749,7 +749,7 @@ Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
             const form = document.getElementById('shippingForm');
             let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
-            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}`;
+            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
             let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
             if (paymentType.includes('Transferencia bancaria')) {
                 paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
@@ -810,7 +810,7 @@ Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\n
         if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
             let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
-            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}`;
+            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
             let message = `Detalles del Pedido:\n${cartDetails}\n\n${totalDetails}\n\nDatos de Envío:\n${shippingDetails}`;
 
             let whatsappUrl = `https://wa.me/2224606907?text=${encodeURIComponent(message)}`;
@@ -827,7 +827,7 @@ Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\n
 
     <script>
         function agregarAlCarrito() {
-            // Mostrar el ícono del carrito
+            // Mostrar animacion de el ícono del carrito
             const icono = document.getElementById('icono-carrito');
             icono.style.display = 'inline-block';
 
