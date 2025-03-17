@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -166,7 +167,39 @@
     }
   }
 		
+		/* Estilos para la impresión */
+@media print {
+    /* Oculta todo excepto el layer específico */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Muestra solo el layer que se desea imprimir */
+    #contenido-imprimir, #contenido-imprimir * {
+        visibility: visible;
+    }
+
+    /* Asegura que el layer ocupe toda la página */
+    #contenido-imprimir {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Oculta los botones al imprimir */
+    .no-imprimir {
+        display: none;
+    }
+}
+		
+		
     </style>
+    
+    
 </head>
 <body>
 
@@ -245,6 +278,7 @@
                 <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
             </div>
         </div>
+
 
         <div id="weight6" class="weight-btn">
             <div class="shipping-options">
@@ -745,28 +779,69 @@ Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
             }
         }
 
-        function mostrarDetallesCompra() {
-            const form = document.getElementById('shippingForm');
-            let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
-            let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
-            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
-            let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
-            if (paymentType.includes('Transferencia bancaria')) {
-                paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
-            }
-            let orderNumber = Math.floor(100000 + Math.random() * 900000);
-            let message = `<strong>Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.<br/>Una vez realizado su pago debe, espere a que lo contactemos.<br/>La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.</strong>
+       function mostrarDetallesCompra() {
+    const form = document.getElementById('shippingForm');
 
-Solicitud del Pedido No: ${orderNumber}\n\n${cartDetails}\n\n${totalDetails}\n\nDatos de recepción de Envío:\n${shippingDetails}\n\n${paymentDetails}`;
-            let detallesDiv = document.createElement('div');
-            detallesDiv.innerHTML = `<h2>Detalles del Pedido</h2><pre>${message}</pre>
-            <button onclick="window.print()">Imprimir</button>
-            <button onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>`;
-            let detallesCompraDiv = document.getElementById('detallesCompra');
-            detallesCompraDiv.innerHTML = ''; // Limpiar el contenido anterior
-            detallesCompraDiv.appendChild(detallesDiv);
-        }
+    // Detalles del carrito
+    let cartDetails = cart.map(item => `${item.name} - Cantidad: ${item.quantity}`).join('\n');
 
+    // Detalles del total
+    let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
+
+    // Detalles de envío
+    let shippingDetails = `
+Nombre: ${form.name.value}
+Dirección: ${form.address.value}
+Ciudad: ${form.city.value}
+Estado: ${form.state.value}
+Código Postal: ${form.zip.value}
+País: ${form.country.value}
+Teléfono: ${form.phone.value}
+Referencia: ${form.reference.value}
+E-mail: ${form.email.value}
+RFC: ${form.rfc.value}`;
+
+    // Detalles de pago
+    let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
+    if (paymentType.includes('Transferencia bancaria')) {
+        paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
+    }
+
+    // Número de pedido
+    let orderNumber = Math.floor(100000 + Math.random() * 900000);
+
+    // Mensaje completo
+    let message = `
+<strong>Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.<br/>
+Una vez realizado su pago, espere a que lo contactemos.<br/>
+La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.</strong>
+
+Solicitud del Pedido No: ${orderNumber}
+
+${cartDetails}
+
+${totalDetails}
+
+Datos de recepción de Envío:
+${shippingDetails}
+
+${paymentDetails}`;
+
+    // Crear el div con los detalles
+    let detallesDiv = document.createElement('div');
+    detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
+    detallesDiv.innerHTML = `
+        <h2>Detalles del Pedido</h2>
+        <pre>${message}</pre>
+        <button class="no-imprimir" onclick="window.print()">Imprimir</button>
+        <button class="no-imprimir" onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>
+    `;
+
+    // Limpiar el contenido anterior y agregar el nuevo
+    let detallesCompraDiv = document.getElementById('detallesCompra');
+    detallesCompraDiv.innerHTML = '';
+    detallesCompraDiv.appendChild(detallesDiv);
+}
         function compartirRedes(message) {
             let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
             window.open(url, '_blank');
