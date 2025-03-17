@@ -26,7 +26,7 @@
             position: relative;
             text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
         .product:hover { transform: translateY(-5px); }
-        .product img { width: 100%;  margin: 1px; border-radius: 10px; }
+        .product img { width: 50%;  margin: 1px; border-radius: 10px; }
         .product-details { padding-top:5px;}
         .cart { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
@@ -811,10 +811,15 @@ RFC: ${form.rfc.value}`;
     let orderNumber = Math.floor(100000 + Math.random() * 900000);
 
     // Mensaje completo (formato de nota de remisión)
-    let message = `
-<strong>NOTA DE REMISIÓN</strong>
+    let message = `<hr></hr>
+<strong><h2>NOTA DE REMISIÓN</h2></strong>
 
-Solicitud del Pedido No: ${orderNumber}
+<strong>Instrucciones:</strong>
+<strong>Su pedido se ha registrado con éxito.</strong> 
+Realice su pago a los siguientes datos. - Una vez realizado su pago, espere a que lo contactemos.
+La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
+
+Solicitud del Pedido No: <strong>${orderNumber}</strong>
 
 <strong>Datos de Pago:</strong>
 ${paymentDetails}
@@ -826,13 +831,7 @@ ${cartDetails}
 ${totalDetails}
 
 <strong>Datos de Envío:</strong>
-${shippingDetails}
-
-<strong>Instrucciones:</strong>
-Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.
-Una vez realizado su pago, espere a que lo contactemos.
-La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
-`;
+${shippingDetails}`;
 
     // Crear el div con los detalles
     let detallesDiv = document.createElement('div');
