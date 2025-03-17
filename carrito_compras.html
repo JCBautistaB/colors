@@ -779,7 +779,7 @@ Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
             }
         }
 
-       function mostrarDetallesCompra() {
+function mostrarDetallesCompra() {
     const form = document.getElementById('shippingForm');
 
     // Detalles del carrito
@@ -804,34 +804,40 @@ RFC: ${form.rfc.value}`;
     // Detalles de pago
     let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
     if (paymentType.includes('Transferencia bancaria')) {
-        paymentDetails += `\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
+        paymentDetails += `\nPagar a:\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
     }
 
     // Número de pedido
     let orderNumber = Math.floor(100000 + Math.random() * 900000);
 
-    // Mensaje completo
+    // Mensaje completo (formato de nota de remisión)
     let message = `
-<strong>Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.<br/>
-Una vez realizado su pago, espere a que lo contactemos.<br/>
-La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.</strong>
+<strong>NOTA DE REMISIÓN</strong>
 
 Solicitud del Pedido No: ${orderNumber}
 
+<strong>Datos de Pago:</strong>
+${paymentDetails}
+
+<strong>Detalles del Pedido:</strong>
 ${cartDetails}
 
+<strong>Total:</strong>
 ${totalDetails}
 
-Datos de recepción de Envío:
+<strong>Datos de Envío:</strong>
 ${shippingDetails}
 
-${paymentDetails}`;
+<strong>Instrucciones:</strong>
+Su pedido se ha registrado con éxito. Realice su pago a los siguientes datos.
+Una vez realizado su pago, espere a que lo contactemos.
+La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
+`;
 
     // Crear el div con los detalles
     let detallesDiv = document.createElement('div');
     detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
     detallesDiv.innerHTML = `
-        <h2>Detalles del Pedido</h2>
         <pre>${message}</pre>
         <button class="no-imprimir" onclick="window.print()">Imprimir</button>
         <button class="no-imprimir" onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>
