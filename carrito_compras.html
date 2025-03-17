@@ -332,14 +332,14 @@
         
         <div class="payment-options">
             <button onclick="setPayment('Saldo en cuenta - Pedio automático - comisión 0%', 0, '💰')">Saldo en cuenta - Pedido Automático - comisión 0%</button>
-            <button onclick="setPayment('Transferencia bancaria - Notificar Compra - comisión 0%', 0, '🏦')">Transferencia bancaria - Notificar Compra - comisión 0%</button>
-            <button onclick="setPayment('Mercado Libre - Notificar Compra - comisión 2.8%', 2.8, '🛒')">Mercado Libre - Notificar Compra - comisión 2.8%</button>
-            <button onclick="setPayment('PayPal - Notificar Compra - comisión 3.4%', 3.4, '💳')">PayPal - Notificar Compra - comisión 3.4%</button>
-            <button onclick="setPayment('Google Pay - Notificar Compra - comisión 3.4%', 3.4, '📱')">Google Pay - Notificar Compra - comisión 3.4%</button>
-            <button onclick="setPayment('Apple Pay - Notificar Compra - comisión 3.4%', 3.4, '🍏')">Apple Pay - Notificar Compra - comisión 3.4%</button>
-            <button onclick="setPayment('Stripe comisión - Notificar Compra - 3.4%', 3.4, '💳')">Stripe - Notificar Compra - comisión 3.4%</button>
-            <button onclick="setPayment('Amazon Pay - Notificar Compra - comisión 3.4%', 3.4, '🛒')">Amazon Pay - Notificar Compra - comisión 3.4%</button>
-            <button onclick="setPayment('Bitso Criptomonedas - Notificar Compra - comisión 0%', 0, '🪙')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Transferencia bancaria', 0, '🏦')">Transferencia bancaria - Notificar Compra - comisión 0%</button>
+            <button onclick="setPayment('Mercado Libre', 2.8, '🛒')">Mercado Libre - Notificar Compra - comisión 2.8%</button>
+            <button onclick="setPayment('PayPal', 3.4, '💳')">PayPal - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Google Pay', 3.4, '📱')">Google Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Apple Pay', 3.4, '🍏')">Apple Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Stripe comisión', 3.4, '💳')">Stripe - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Amazon Pay', 3.4, '🛒')">Amazon Pay - Notificar Compra - comisión 3.4%</button>
+            <button onclick="setPayment('Bitso Criptomonedas', 0, '🪙')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button>
             <button onclick="setPayment('Pago en tiendas de autoservicio', 0, '🏪')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button>
         </div>
         
@@ -818,10 +818,16 @@ RFC: ${form.rfc.value}`;
     <!-- Encabezado -->
     <div style="text-align: center; margin-bottom: 20px;">
         <h1 style="font-size: 24px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
-        <p style="font-size: 14px; color: #777; margin: 5px 0;">Fecha: ${new Date().toLocaleDateString()}</p>
-        <p style="font-size: 14px; color: #777; margin: 5px 0;">Número de Pedido: ${orderNumber}</p>
+        <p style=" text-align:right; font-size: 14px; color: #777; margin: 5px 0;">Fecha: ${new Date().toLocaleDateString()}</p>
+        <p style="font-size: 14px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
     </div>
 
+    <!-- Detalles de pago -->
+    <div style="margin-bottom: 20px;">
+        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles de Pago</h2>
+        <pre style="font-size: 14px; color: #555;">${paymentDetails}</pre>
+    </div>
+	
     <!-- Datos del cliente y de la venta -->
     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
         <!-- Datos del cliente -->
@@ -853,12 +859,6 @@ RFC: ${form.rfc.value}`;
         <pre style="font-size: 14px; color: #555;">${cartDetails}</pre>
     </div>
 
-    <!-- Detalles de pago -->
-    <div style="margin-bottom: 20px;">
-        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles de Pago</h2>
-        <pre style="font-size: 14px; color: #555;">${paymentDetails}</pre>
-    </div>
-
     <!-- Total -->
     <div style="text-align: right; margin-bottom: 20px;">
         <p style="font-size: 16px; color: #333; margin: 5px 0;"><strong>Total a pagar:</strong> $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}</p>
@@ -867,11 +867,14 @@ RFC: ${form.rfc.value}`;
     <!-- Firmas -->
     <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #333;">
         <div style="text-align: center; width: 48%;">
-            <p style="margin: 5px 0; font-size: 14px; color: #555;">Firma del Cliente</p>
-            <div style="border-bottom: 1px solid #333; margin: 10px 0;"></div>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;">¡Gracias!</p>
         </div>
         <div style="text-align: center; width: 48%;">
-            <p style="margin: 5px 0; font-size: 14px; color: #555;">Firma del Vendedor</p>
+           
+			QuetzalArte.com<br/>
+			Privada 14 C Sur No. 1305 Interior 2 <br/>
+			Fracc. El Ángel Puebla, Puebla México<br/>
+			RFC: BABJ820827T76
             <div style="border-bottom: 1px solid #333; margin: 10px 0;"></div>
         </div>
     </div>
