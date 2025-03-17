@@ -779,6 +779,8 @@ Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
             }
         }
 
+<!--start nota de venta-->
+
 function mostrarDetallesCompra() {
     const form = document.getElementById('shippingForm');
 
@@ -811,35 +813,79 @@ RFC: ${form.rfc.value}`;
     let orderNumber = Math.floor(100000 + Math.random() * 900000);
 
     // Mensaje completo (formato de nota de remisión)
-    let message = `<hr></hr>
-<strong><h2>NOTA DE REMISIÓN</h2></strong>
+    let message = `
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <!-- Encabezado -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 24px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+        <p style="font-size: 14px; color: #777; margin: 5px 0;">Fecha: ${new Date().toLocaleDateString()}</p>
+        <p style="font-size: 14px; color: #777; margin: 5px 0;">Número de Pedido: ${orderNumber}</p>
+    </div>
 
-<strong>Instrucciones:</strong>
-<strong>Su pedido se ha registrado con éxito.</strong> 
-Realice su pago a los siguientes datos. - Una vez realizado su pago, espere a que lo contactemos.
-La verificación de la compra puede tardar de 15 minutos a 12 horas, dependiendo de su banco emisor o la tienda por la que realizó el pago.
+    <!-- Datos del cliente y de la venta -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <!-- Datos del cliente -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Datos del Cliente</h2>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>RFC:</strong> ${form.rfc.value}</p>
+        </div>
 
-Solicitud del Pedido No: <strong>${orderNumber}</strong>
+        <!-- Datos de la venta -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Datos de la Venta</h2>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Envío:</strong> $${shippingCost}</p>
+        </div>
+    </div>
 
-<strong>Datos de Pago:</strong>
-${paymentDetails}
+    <!-- Detalles del pedido -->
+    <div style="margin-bottom: 20px;">
+        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles del Pedido</h2>
+        <pre style="font-size: 14px; color: #555;">${cartDetails}</pre>
+    </div>
 
-<strong>Detalles del Pedido:</strong>
-${cartDetails}
+    <!-- Detalles de pago -->
+    <div style="margin-bottom: 20px;">
+        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles de Pago</h2>
+        <pre style="font-size: 14px; color: #555;">${paymentDetails}</pre>
+    </div>
 
-<strong>Total:</strong>
-${totalDetails}
+    <!-- Total -->
+    <div style="text-align: right; margin-bottom: 20px;">
+        <p style="font-size: 16px; color: #333; margin: 5px 0;"><strong>Total a pagar:</strong> $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}</p>
+    </div>
 
-<strong>Datos de Envío:</strong>
-${shippingDetails}`;
+    <!-- Firmas -->
+    <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #333;">
+        <div style="text-align: center; width: 48%;">
+            <p style="margin: 5px 0; font-size: 14px; color: #555;">Firma del Cliente</p>
+            <div style="border-bottom: 1px solid #333; margin: 10px 0;"></div>
+        </div>
+        <div style="text-align: center; width: 48%;">
+            <p style="margin: 5px 0; font-size: 14px; color: #555;">Firma del Vendedor</p>
+            <div style="border-bottom: 1px solid #333; margin: 10px 0;"></div>
+        </div>
+    </div>
+</div>`;
 
     // Crear el div con los detalles
     let detallesDiv = document.createElement('div');
     detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
-    detallesDiv.innerHTML = `
-        <pre>${message}</pre>
+    detallesDiv.innerHTML = message;
+
+    // Agregar botones
+    detallesDiv.innerHTML += `
         <button class="no-imprimir" onclick="window.print()">Imprimir</button>
-        <button class="no-imprimir" onclick="compartirRedes('${encodeURIComponent(message)}')">Compartir en Redes Sociales</button>
+        <button class="no-imprimir" onclick="generarPDF()">Guardar como PDF</button>
     `;
 
     // Limpiar el contenido anterior y agregar el nuevo
@@ -847,6 +893,30 @@ ${shippingDetails}`;
     detallesCompraDiv.innerHTML = '';
     detallesCompraDiv.appendChild(detallesDiv);
 }
+
+// Función para generar el PDF
+function generarPDF() {
+    // Seleccionar el contenido a convertir en PDF
+    const element = document.getElementById('contenido-imprimir');
+
+    // Opciones de html2pdf
+    const options = {
+        margin: 10,
+        filename: 'nota_de_remision.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, logging: true, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Generar el PDF
+    html2pdf()
+        .set(options)
+        .from(element)
+        .save()
+        .catch(err => console.error('Error al generar el PDF:', err));
+}
+<!--fin nota de venta-->
+
         function compartirRedes(message) {
             let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
             window.open(url, '_blank');
@@ -865,7 +935,11 @@ ${shippingDetails}`;
             });
         }
     </script>
-
+    
+ <!-- Incluir la librería html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    
 <script>
    
    function solicitarPedido() {
