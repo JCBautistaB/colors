@@ -396,14 +396,16 @@
     
 <div class="products" id="productList">
         <div class="product">
-     <div class="stock" > Stock:<span id="stockA">10</span></div>      
+     <div class="stock" > Stock:<span id="stockA">100</span></div>      
       <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
-      <span style=" font-size:24px; display: block;"><strong>$120</strong></span>
+      <span style=" font-size:24px; display: block;"><strong>$99</strong></span>
      <div style="display: inline;">              
-   <input type="number" id="quantityA" value="1" min="1" max="10">
-    <button onclick="addToCart('Producto A', 120, 0.3, 10, document.getElementById('quantityA').value); agregarAlCarrito();" class="buy-button">Comprar Ya! </button>
+   <input type="number" id="quantityA" value="1" min="1" max="100">
+    <button onclick="addToCart('Producto A', 99, 0.05, 100, document.getElementById('quantityA').value); agregarAlCarrito();" class="buy-button">Comprar Ya! </button>
     </div> 
-            <div class="product-details" >  <span style="display:block;">Producto A -  (Peso: 300g)</span>
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a>
             
             </div>
         </div>
@@ -413,15 +415,16 @@
         
         
         <div class="product">
-         <div class="stock" > Stock:<span id="stockB">5</span></div> 
+         <div class="stock" > Stock:<span id="stockB">50</span></div> 
             <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto B">
-             <span style=" font-size:24px; display: block;"><strong>$200</strong></span>
+             <span style=" font-size:24px; display: block;"><strong>$159</strong></span>
             <div class="product-details">
-                <input type="number" id="quantityB" value="1" min="1" max="5">
-                <button onclick="addToCart('Producto B', 200, 1, 5, document.getElementById('quantityB').value); agregarAlCarrito();" class="buy-button">Comprar Ya!</button>
+                <input type="number" id="quantityB" value="1" min="1" max="50">
+                <button onclick="addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityB').value); agregarAlCarrito();" class="buy-button">Comprar Ya!</button>
          </div> 
-            <div class="product-details" >  <span style="display:block;">Producto B-  (Peso: 1KG)</span>
-            
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 100 ml.            
             </div>
         </div>
         
@@ -430,15 +433,16 @@
         
         
         <div class="product">
-           <div class="stock" > Stock:<span id="stockC">8</span></div> 
+           <div class="stock" > Stock:<span id="stockC">10</span></div> 
              <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto C">
-           <span style=" font-size:24px; display: block;"><strong>$80</strong></span>
+           <span style=" font-size:24px; display: block;"><strong>$1599</strong></span>
             <div class="product-details">
-             <input type="number" id="quantityC" value="1" min="1" max="8">
-                <button onclick="addToCart('Producto C', 80, 1.5, 8, document.getElementById('quantityC').value); agregarAlCarrito();" class="buy-button">Solicitar Pedido</button>
+             <input type="number" id="quantityC" value="1" min="1" max="10">
+                <button onclick="addToCart('Producto C', 1599, 1, 10, document.getElementById('quantityC').value); agregarAlCarrito();" class="buy-button">Solicitar Pedido</button>
            </div> 
-            <div class="product-details" >  <span style="display:block;">Producto BC-  (Peso: 1.5KG)</span>
-            
+           <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 1 Kg.           
             </div>
         </div>
         
@@ -462,9 +466,9 @@
 
         // Stock original
         const originalStock = {
-            'Producto A': 10,
-            'Producto B': 5,
-            'Producto C': 8
+            'Producto A': 100,
+            'Producto B': 50,
+            'Producto C': 10
         };
 
         // Stock actualizado según lo que hay en el carrito
@@ -598,8 +602,8 @@
 
             // Actualizamos la categoría de peso
             let weightCategory = "";
-            if (totalWeight <= 1.5) {
-                weightCategory = "Categoría de peso: Ligero 1.5kg.";
+            if (totalWeight <= 2.99) {
+                weightCategory = "Categoría de peso: Ligero";
                 document.getElementById("weightbtn").style.display = 'block';
                 document.getElementById("weight3").style.display = 'none';
                 document.getElementById("weight6").style.display = 'none';
@@ -607,8 +611,8 @@
                 document.getElementById("weight15").style.display = 'none';
                 document.getElementById("weight30").style.display = 'none';
                 document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 3) {
-                weightCategory = "Categoría de peso: Medio 3kg.";
+            } else if (totalWeight <= 5.99) {
+                weightCategory = "Categoría de peso: Medio";
                 document.getElementById("weightbtn").style.display = 'none';
                 document.getElementById("weight3").style.display = 'block';
                 document.getElementById("weight6").style.display = 'none';
@@ -616,7 +620,7 @@
                 document.getElementById("weight15").style.display = 'none';
                 document.getElementById("weight30").style.display = 'none';
                 document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 6) {
+            } else if (totalWeight <= 8.99) {
                 weightCategory = "Categoría de peso: Pesado 6kg.";
                 document.getElementById("weightbtn").style.display = 'none';
                 document.getElementById("weight3").style.display = 'none';
@@ -625,7 +629,7 @@
                 document.getElementById("weight15").style.display = 'none';
                 document.getElementById("weight30").style.display = 'none';
                 document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 9) {
+            } else if (totalWeight <= 14.99) {
                 weightCategory = "Categoría de peso: Pesado 9kg.";
                 document.getElementById("weightbtn").style.display = 'none';
                 document.getElementById("weight3").style.display = 'none';
@@ -634,7 +638,7 @@
                 document.getElementById("weight15").style.display = 'none';
                 document.getElementById("weight30").style.display = 'none';
                 document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 15) {
+            } else if (totalWeight <= 29.99) {
                 weightCategory = "Categoría de peso: Pesado 15kg.";
                 document.getElementById("weightbtn").style.display = 'none';
                 document.getElementById("weight3").style.display = 'none';
@@ -1045,7 +1049,7 @@ function imprimirNota() {
       <div>
         <h2>🚀 <strong data-start="72" data-end="97">EnvíoRápido y Seguro</strong></h2>
         <p>Disfruta de envíos rápidos y seguros en todas tus compras.<br data-start="158" data-end="161">
-          📦 <strong data-start="164" data-end="202">Recibe tus productos en 3 a 5 días</strong> <br>
+          📦 <strong data-start="164" data-end="202">Recibe tus productos en 3 a 5 días 😊</strong> <br>
 <br>
 o elige el método que mejor se adapte a ti:<br data-start="246" data-end="249">
 <strong data-start="251" data-end="267">✈️ Envío Exprés</strong> para recibirlo cuanto antes.<br data-start="296" data-end="299">
@@ -1054,18 +1058,20 @@ o elige el método que mejor se adapte a ti:<br data-start="246" data-end="249">
       <div>
         <h2>💳 <strong data-start="368" data-end="391">Paga Como Prefieras</strong></h2>
         <p data-start="394" data-end="523">Elige tu método de pago favorito con total confianza.<br data-start="447" data-end="450">
-          ✔️ PayPal<br data-start="459" data-end="462">
-          ✔️ Mercado Pago<br data-start="477" data-end="480">
-          ✔️ Google Pay<br data-start="493" data-end="496">
-          ✔️ Transferencia Bancaria</p>
+          ✔️ PayPal ✔️ Google Pay ✔️ Mercado Pago<br>
+          ✔️ Bitso Criptomonedas ✔️ Tiendas de Autoservicio<br data-start="493" data-end="496">
+          ✔️ Transferencia Bancaria<br>
+        </p>
         <p data-start="525" data-end="565">🔒 <strong data-start="528" data-end="565">Tu dinero está siempre protegido.</strong></p>
         <p>&nbsp;</p>
       </div>
       <div>
         <h2 data-start="572" data-end="604">🛒 <strong data-start="579" data-end="602">Meses Sin Intereses</strong></h2>
         <p data-start="605" data-end="760">Compra ahora y paga cómodamente.<br data-start="637" data-end="640">
-          💳 <strong data-start="643" data-end="704">Utiliza tu tarjeta favorita y paga a meses sin intereses.</strong><br data-start="704" data-end="707">
-          Haz tus compras, disfruta al máximo.</p>
+          💳 <strong data-start="643" data-end="704">Utiliza tu tarjeta favorita y paga a meses sin intereses<br>
+          .</strong><br data-start="704" data-end="707">
+          Haz tus compras, disfruta al máximo.
+           <span>¡Muchas Gracias! </span></p>
         <h2>&nbsp;</h2>
       </div>
     </div>
@@ -1093,7 +1099,7 @@ Para obtener más información sobre pedidos especiales, no dudes en contactarno
         <span>🚩 Puebla.🇲🇽 México</span>
     </a>
     
-    
+ 
     
     
     
