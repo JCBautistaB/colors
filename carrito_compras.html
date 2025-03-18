@@ -191,14 +191,23 @@
     }
 
     /* Oculta los botones al imprimir */
-    .no-imprimir {
+    .no-imprimir-print {
         display: none;
     }
+	
 }
 		
-		
+	 /* Clase para ocultar elementos al generar el PDF */
+        .no-imprimir {
+            display: inline; /* Mostrar en la página */
+        }
+
+        .oculto {
+            display: none; /* Ocultar al generar el PDF */
+        }	
     </style>
-    
+
+
     
 </head>
 <body>
@@ -234,9 +243,6 @@
 
 
 
-
-
-
 <div style="padding:10px; margin-top:90px;">
   Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
 </div>
@@ -259,9 +265,6 @@
         <hr>
 <h2>1 Envío</h2>
 <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
-
-
-       
 
         <div id="weightCategory" class="weight-category"></div>
         <div id="weightbtn" class="weight-btn">
@@ -349,7 +352,8 @@
         <h2>3 Registro de Compra</h2>
         <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
             <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
-        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p>
+        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
+    
     <h2>Datos de envío</h2>
     <div>
         <form id="shippingForm">
@@ -381,6 +385,9 @@
             <button type="button" onclick="solicitarPedido()">Solicitar más información de este pedido por WhatsApp</button>
             
       </form>
+      
+      
+      
     </div>
 
     <div id="detallesCompra"></div>
@@ -900,7 +907,7 @@ RFC: ${form.rfc.value}`;
 
     // Agregar botones
     detallesDiv.innerHTML += `
-        <button class="no-imprimir" onclick="imprimirNota()">Imprimir</button>
+        <button class="no-imprimir-print" onclick="imprimirNota()">Imprimir</button>
         <button class="no-imprimir" onclick="generarPDF()">Guardar como PDF</button>
     `;
 
@@ -1007,6 +1014,64 @@ function imprimirNota() {
             console.log('Producto agregado al carrito');
         }
     </script>
+    
+   <!-- Incluye jsPDF y html2canvas PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+     <script>
+        // Función para generar el PDF
+        function generarPDF() {
+            // Obtén los botones que no deben aparecer en el PDF
+            const botones = document.querySelectorAll('.no-imprimir');
+
+            // Oculta los botones
+            botones.forEach(boton => boton.classList.add('oculto'));
+
+            // Inicializa jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Obtén el contenido del div
+            const contenido = document.getElementById("contenido-imprimir");
+
+            // Usa html2canvas para renderizar el contenido en un canvas
+            html2canvas(contenido).then((canvas) => {
+                // Convierte el canvas a una imagen
+                const imgData = canvas.toDataURL('image/png');
+
+                // Añade la imagen al PDF
+                const imgWidth = 190; // Ancho de la imagen en el PDF
+                const pageHeight = 295; // Altura de la página en mm (A4)
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+
+                let position = 0;
+
+                // Añade la imagen al PDF
+                doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                // Si el contenido es más largo que una página, añade páginas adicionales
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    doc.addPage();
+                    doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                // Guarda el PDF
+                doc.save("documento.pdf");
+
+                // Muestra los botones nuevamente después de generar el PDF
+                botones.forEach(boton => boton.classList.remove('oculto'));
+            });
+        }
+
+        // Función de ejemplo para el botón "Imprimir"
+        function imprimirNota() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
