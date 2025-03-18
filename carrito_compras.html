@@ -481,7 +481,9 @@ El cliente puede enviar guías prepagadas para realizar su envío.
 Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
 
 Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.
-
+<a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
+        <span>🚩 Puebla.🇲🇽 México</span>
+    </a>
     
     
     
@@ -812,70 +814,81 @@ RFC: ${form.rfc.value}`;
     // Número de pedido
     let orderNumber = Math.floor(100000 + Math.random() * 900000);
 
+    // Obtener fecha y hora actual
+    let fechaHora = new Date().toLocaleString('es-MX', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
     // Mensaje completo (formato de nota de remisión)
     let message = `
-<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <!-- Encabezado -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="font-size: 24px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
-        <p style=" text-align:right; font-size: 14px; color: #777; margin: 5px 0;">Fecha: ${new Date().toLocaleDateString()}</p>
-        <p style="font-size: 14px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
+    <div style="text-align: center; margin-bottom: 10px;">
+        <h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+        <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
+        <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
     </div>
 
     <!-- Detalles de pago -->
-    <div style="margin-bottom: 20px;">
-        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles de Pago</h2>
-        <pre style="font-size: 14px; color: #555;">${paymentDetails}</pre>
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Detalles de Pago</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0;">${paymentDetails}</pre>
     </div>
 	
     <!-- Datos del cliente y de la venta -->
-    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
         <!-- Datos del cliente -->
         <div style="width: 48%;">
-            <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Datos del Cliente</h2>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Nombre:</strong> ${form.name.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Dirección:</strong> ${form.address.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Ciudad:</strong> ${form.city.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Estado:</strong> ${form.state.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Código Postal:</strong> ${form.zip.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>País:</strong> ${form.country.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Teléfono:</strong> ${form.phone.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Email:</strong> ${form.email.value}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>RFC:</strong> ${form.rfc.value}</p>
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Datos del Cliente</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>RFC:</strong> ${form.rfc.value}</p>
         </div>
 
         <!-- Datos de la venta -->
         <div style="width: 48%;">
-            <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Datos de la Venta</h2>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Método de Pago:</strong> ${paymentType}</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Comisión:</strong> ${paymentCommission}%</p>
-            <p style="margin: 5px 0; font-size: 14px; color: #555;"><strong>Envío:</strong> $${shippingCost}</p>
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Datos de la Venta</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Envío:</strong> $${shippingCost}</p>
         </div>
     </div>
 
     <!-- Detalles del pedido -->
-    <div style="margin-bottom: 20px;">
-        <h2 style="font-size: 18px; margin-bottom: 10px; color: #333; border-bottom: 2px solid #333; padding-bottom: 5px;">Detalles del Pedido</h2>
-        <pre style="font-size: 14px; color: #555;">${cartDetails}</pre>
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Detalles del Pedido</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0;">${cartDetails}</pre>
     </div>
 
     <!-- Total -->
-    <div style="text-align: right; margin-bottom: 20px;">
-        <p style="font-size: 16px; color: #333; margin: 5px 0;"><strong>Total a pagar:</strong> $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}</p>
+    <div style="text-align: right; margin-bottom: 10px;">
+        <p style="font-size: 14px; color: #333; margin: 3px 0;"><strong>Total a pagar:</strong> $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}</p>
     </div>
 
     <!-- Firmas -->
-    <div style="display: flex; justify-content: space-between; margin-top: 30px; padding-top: 20px; border-top: 2px solid #333;">
+    <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
         <div style="text-align: center; width: 48%;">
-            <p style="margin: 5px 0; font-size: 14px; color: #555;">¡Gracias!</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
         </div>
         <div style="text-align: center; width: 48%;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">
+                QuetzalArte.com<br/>
+                Privada 14 C Sur No. 1305 Interior 2<br/>
+                Fracc. El Ángel Puebla, Puebla México<br/>
+                RFC: BABJ820827T76
+            </p>
            
-			QuetzalArte.com<br/>
-			Privada 14 C Sur No. 1305 Interior 2 <br/>
-			Fracc. El Ángel Puebla, Puebla México<br/>
-			RFC: BABJ820827T76
-            <div style="border-bottom: 1px solid #333; margin: 10px 0;"></div>
         </div>
     </div>
 </div>`;
@@ -887,7 +900,7 @@ RFC: ${form.rfc.value}`;
 
     // Agregar botones
     detallesDiv.innerHTML += `
-        <button class="no-imprimir" onclick="window.print()">Imprimir</button>
+        <button class="no-imprimir" onclick="imprimirNota()">Imprimir</button>
         <button class="no-imprimir" onclick="generarPDF()">Guardar como PDF</button>
     `;
 
@@ -897,27 +910,27 @@ RFC: ${form.rfc.value}`;
     detallesCompraDiv.appendChild(detallesDiv);
 }
 
-// Función para generar el PDF
-function generarPDF() {
-    // Seleccionar el contenido a convertir en PDF
-    const element = document.getElementById('contenido-imprimir');
+// Función para imprimir solo el contenido del div
+function imprimirNota() {
+    const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+    const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
 
-    // Opciones de html2pdf
-    const options = {
-        margin: 10,
-        filename: 'nota_de_remision.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, logging: true, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    // Reemplazar el contenido del body con el contenido a imprimir
+    document.body.innerHTML = contenidoImprimir;
 
-    // Generar el PDF
-    html2pdf()
-        .set(options)
-        .from(element)
-        .save()
-        .catch(err => console.error('Error al generar el PDF:', err));
+    // Esperar un momento para asegurar que el contenido esté renderizado
+    setTimeout(() => {
+        window.print(); // Imprimir
+
+        // Restaurar el contenido original después de imprimir
+        setTimeout(() => {
+            document.body.innerHTML = contenidoOriginal;
+        }, 500); // Esperar 500 ms para restaurar
+    }, 500); // Esperar 500 ms antes de imprimir
 }
+
+
+
 <!--fin nota de venta-->
 
         function compartirRedes(message) {
@@ -938,9 +951,6 @@ function generarPDF() {
             });
         }
     </script>
-    
- <!-- Incluir la librería html2pdf.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     
 <script>
