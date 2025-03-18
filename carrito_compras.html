@@ -191,20 +191,12 @@
     }
 
     /* Oculta los botones al imprimir */
-    .no-imprimir-print {
+    .no-imprimir {
         display: none;
     }
-	
 }
 		
-	 /* Clase para ocultar elementos al generar el PDF */
-        .no-imprimir {
-            display: inline; /* Mostrar en la página */
-        }
-
-        .oculto {
-            display: none; /* Ocultar al generar el PDF */
-        }	
+		
     </style>
 
 
@@ -907,7 +899,7 @@ RFC: ${form.rfc.value}`;
 
     // Agregar botones
     detallesDiv.innerHTML += `
-        <button class="no-imprimir-print" onclick="imprimirNota()">Imprimir</button>
+        <button class="no-imprimir" onclick="imprimirNota()">Imprimir</button>
         <button class="no-imprimir" onclick="generarPDF()">Guardar como PDF</button>
     `;
 
@@ -1015,19 +1007,13 @@ function imprimirNota() {
         }
     </script>
     
-   <!-- Incluye jsPDF y html2canvas PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-     <script>
+ <!-- Incluye jsPDF y html2canvas PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
+    <script>
         // Función para generar el PDF
         function generarPDF() {
-            // Obtén los botones que no deben aparecer en el PDF
-            const botones = document.querySelectorAll('.no-imprimir');
-
-            // Oculta los botones
-            botones.forEach(boton => boton.classList.add('oculto'));
-
             // Inicializa jsPDF
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -1035,42 +1021,19 @@ function imprimirNota() {
             // Obtén el contenido del div
             const contenido = document.getElementById("contenido-imprimir");
 
-            // Usa html2canvas para renderizar el contenido en un canvas
-            html2canvas(contenido).then((canvas) => {
-                // Convierte el canvas a una imagen
-                const imgData = canvas.toDataURL('image/png');
-
-                // Añade la imagen al PDF
-                const imgWidth = 190; // Ancho de la imagen en el PDF
-                const pageHeight = 295; // Altura de la página en mm (A4)
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                let heightLeft = imgHeight;
-
-                let position = 0;
-
-                // Añade la imagen al PDF
-                doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-
-                // Si el contenido es más largo que una página, añade páginas adicionales
-                while (heightLeft >= 0) {
-                    position = heightLeft - imgHeight;
-                    doc.addPage();
-                    doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-                }
-
-                // Guarda el PDF
-                doc.save("documento.pdf");
-
-                // Muestra los botones nuevamente después de generar el PDF
-                botones.forEach(boton => boton.classList.remove('oculto'));
+            // Convierte el contenido a PDF
+            doc.html(contenido, {
+                callback: function (doc) {
+                    // Guarda el PDF
+                    doc.save("documento.pdf");
+                },
+                margin: [10, 10, 10, 10],
+                autoPaging: 'text',
+                x: 0,
+                y: 0,
+                width: 190, // Ancho del contenido en el PDF
+                windowWidth: contenido.offsetWidth // Ancho del contenido en el HTML
             });
-        }
-
-        // Función de ejemplo para el botón "Imprimir"
-        function imprimirNota() {
-            window.print();
         }
     </script>
 </body>
