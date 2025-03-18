@@ -166,37 +166,40 @@
       margin-bottom: 20px;
     }
   }
-		
-		/* Estilos para la impresión */
-@media print {
-    /* Oculta todo excepto el layer específico */
-    body * {
-        visibility: hidden;
-    }
+      </style>
+     <style>
+        /* Estilos para ocultar elementos al generar PDF o imprimir */
+        .no-imprimir {
+            display: inline; /* Mostrar en la página */
+        }
 
-    /* Muestra solo el layer que se desea imprimir */
-    #contenido-imprimir, #contenido-imprimir * {
-        visibility: visible;
-    }
+        .oculto {
+            display: none; /* Ocultar al generar el PDF o imprimir */
+        }
 
-    /* Asegura que el layer ocupe toda la página */
-    #contenido-imprimir {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        border: none;
-        padding: 0;
-        margin: 0;
-    }
+        /* Estilos para la impresión */
+        @media print {
+            body * {
+                visibility: hidden; /* Oculta todo el contenido */
+            }
 
-    /* Oculta los botones al imprimir */
-    .no-imprimir {
-        display: none;
-    }
-}
-		
-		
+            #contenido-imprimir, #contenido-imprimir * {
+                visibility: visible; /* Muestra solo el contenido a imprimir */
+            }
+
+            #contenido-imprimir {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .no-imprimir {
+                display: none; /* Oculta los botones al imprimir */
+            }
+        }
     </style>
 
 
@@ -916,7 +919,7 @@ function imprimirNota() {
 
     // Reemplazar el contenido del body con el contenido a imprimir
     document.body.innerHTML = contenidoImprimir;
-
+		
     // Esperar un momento para asegurar que el contenido esté renderizado
     setTimeout(() => {
         window.print(); // Imprimir
@@ -1012,29 +1015,72 @@ function imprimirNota() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
     <script>
-        // Función para generar el PDF
-        function generarPDF() {
-            // Inicializa jsPDF
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+    // Función para generar el PDF
+    function generarPDF() {
+        // Obtén los botones que no deben aparecer en el PDF
+        const botones = document.querySelectorAll('.no-imprimir');
 
-            // Obtén el contenido del div
-            const contenido = document.getElementById("contenido-imprimir");
+        // Oculta los botones
+        botones.forEach(boton => boton.classList.add('oculto'));
 
-            // Convierte el contenido a PDF
-            doc.html(contenido, {
-                callback: function (doc) {
-                    // Guarda el PDF
-                    doc.save("documento.pdf");
-                },
-                margin: [10, 10, 10, 10],
-                autoPaging: 'text',
-                x: 0,
-                y: 0,
-                width: 190, // Ancho del contenido en el PDF
-                windowWidth: contenido.offsetWidth // Ancho del contenido en el HTML
-            });
-        }
-    </script>
+        // Inicializa jsPDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4'); // A4, orientación vertical
+
+        // Obtén el contenido del div
+        const contenido = document.getElementById("contenido-imprimir");
+
+        // Configura html2canvas para renderizar con mayor escala
+        const opciones = {
+            scale: 2, // Aumenta la escala para mejorar la calidad
+            useCORS: true, // Permite el uso de recursos externos (si los hay)
+            logging: true, // Opcional: para depuración
+        };
+
+        // Usa html2canvas para renderizar el contenido en un canvas
+        html2canvas(contenido, opciones).then((canvas) => {
+            // Convierte el canvas a una imagen
+            const imgData = canvas.toDataURL('image/png');
+
+            // Tamaño de la imagen en el PDF
+            const imgWidth = 190; // Ancho máximo de la imagen en el PDF (mm)
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Altura proporcional
+
+            // Añade la imagen al PDF
+            doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+            // Guarda el PDF
+            doc.save("nota de venta quetzalarte.pdf");
+
+            // Muestra los botones nuevamente después de generar el PDF
+            botones.forEach(boton => boton.classList.remove('oculto'));
+        });
+    }
+
+    // Función para imprimir
+    function imprimirNota() {
+        const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+        const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
+
+        // Ocultar botones antes de imprimir
+        const botones = document.querySelectorAll('.no-imprimir');
+        botones.forEach(boton => boton.classList.add('oculto'));
+
+        // Reemplazar el contenido del body para impresión
+        document.body.innerHTML = contenidoImprimir;
+
+        // Esperar un momento antes de imprimir
+        setTimeout(() => {
+            window.print(); // Imprimir
+
+            // Restaurar el contenido original después de imprimir
+            setTimeout(() => {
+                document.body.innerHTML = contenidoOriginal;
+                botones.forEach(boton => boton.classList.remove('oculto')); // Restaurar botones
+            }, 500); // Restaurar después de 500 ms
+        }, 500); // Esperar 500 ms antes de imprimir
+    }
+</script>
+
 </body>
 </html>
