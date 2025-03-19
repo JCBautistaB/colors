@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -240,81 +238,6 @@
         }
     </style>
 
-<style>
-/* Contenedor del formulario */
-.shipping-form-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    border: 2px solid #0CC;  /* Agrega el borde de 2px de color #0CC */
-}
-
-
-/* Título del formulario */
-.form-title {
-    text-align: center;
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
-	margin:0px;
-	padding:0px;
-}
-
-/* Estilos de las etiquetas */
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Estilos de los campos de entrada */
-.form-input {
-    width: 98%;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: #fff;
-/* Contenedor de botones */
-.button-container {
-    text-align: center;
-}
-
-/* Estilo de los botones */
-.btn {
-    padding: 12px 25px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 10px 5px;
-    transition: background-color 0.3s;
-}
-
-/* Botón principal (Comprar) */
-.primary-btn {
-    background-color: #0CC;
-    color: white;
-}
-
-/* Botón secundario (Solicitar más información) */
-.secondary-btn {
-    background-color: #f1f1f1;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-/* Efecto hover para los botones */
-.btn:hover {
-    background-color: #0a99b7;
-}
-
-</style>
     
 </head>
 <body>
@@ -334,7 +257,7 @@
 
 <a href="https://wa.me/2224606907" style="text-decoration: none; color: black; margin-left:10px;">
         <span><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"></span>
-    </a> 
+  </a> 
     <a href="tel:+522224606907" style="text-decoration: none; color: black;">
         <span>📱</span>
     </a>  
@@ -358,7 +281,7 @@
 
 
 <!-- start carrito -->
-    <div class="cart">
+<div class="cart">
         <h3>Carrito de Compras</h3>
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
@@ -426,7 +349,7 @@
    <hr>     
 
     <div class="section">
-        <h2>3 Forma de Pago</h2>
+        <h2>3 Forma de Pago 💲 💳</h2>
         <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
 
         <h3>Total a pagar: $<span id="finalTotal2">0</span></h3>
@@ -458,51 +381,49 @@
 <hr>
     
 <div>
-        <h2>2 Registro de Compra</h2>
+        <h2>2 Registro de Compra 🪪</h2>
         <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
             <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
         <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
         
-<div class="shipping-form-container">
+<div class="shipping-form-container;">
     <form id="shippingForm">
-       <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" required><br>
+       <label for="name">* Nombre:</label>
+            <input type="text" id="name" name="name" required style="width:100%; padding:5px;"><br>
+            <label for="phone">* Teléfono:</label>
+            <input type="text" id="phone" name="phone" type="number"  required style="width:100%; padding:5px;"><br>
             <label for="address">Dirección:</label>
-            <input type="text" id="address" name="address" ><br>
+            <input type="text" id="address" name="address" style="width:100%; padding:5px;"><br>
             <label for="city">Ciudad:</label>
-            <input type="text" id="city" name="city" ><br>
+            <input type="text" id="city" name="city" style="width:100%; padding:5px;"><br>
             <label for="state">Estado:</label>
-            <input type="text" id="state" name="state"><br>
+            <input type="text" id="state" name="state"style="width:100%; padding:5px;"><br>
             <label for="zip">Código Postal:</label>
-            <input type="text" id="zip" name="zip" ><br>
+            <input type="text" id="zip" name="zip" style="width:100%; padding:5px;"><br>
             <label for="country">País:</label>
-            <input type="text" id="country" name="country" ><br>
-            <label for="phone">Teléfono:</label>
-            <input type="text" id="phone" name="phone" ><br>
-            <label for="reference">Referencia:</label>
-            <input type="text" id="reference" name="reference" ><br>
+            <input type="text" id="country" name="country" style="width:100%; padding:5px;"><br>
             <label for="e-mail">E-mail:</label>
-            <input type="text" id="email" name="email" ><br>
+            <input type="text" id="email" name="email" type="email" style="width:100%; padding:5px;"><br><br>
             <label for="rfc">RFC:</label>
-            <input type="text" id="rfc" name="rfc" >
+            <input type="text" id="rfc" name="rfc" style="width:100%; padding:5px;"><br>
             
             <br><br/>
 
-
-            <button type="button" onclick="comprar()">Comprar </button>
-            <button type="button" onclick="solicitarPedido()">Solicitar más información de este pedido por WhatsApp</button>
+<div class="payment-options">
+<button type="button" onclick="comprar()">🗹 Listos mis datos para Comprar</button>
+<button type="button" onclick="solicitarPedido()" ><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Solicitar información de este pedido</button>
             
       </form>
 </div>
 
+</div>
+
     <div id="detallesCompra"></div>
 
-</div></div></div>
+</div>
+</div>
 
-
-
-
-    <h1 style="padding-left:10px;">Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
+<h1 style="padding-left:10px;">Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
    
     
     
@@ -536,7 +457,7 @@
              <span style=" font-size:24px; display: block;"><strong>$159</strong></span>
             <div class="product-details">
                 <input type="number" id="quantityB" value="1" min="1" max="50">
-                <button onclick="addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 100 ml.'); agregarAlCarrito();" class="buy-button">
+              <button onclick="addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 100 ml.'); agregarAlCarrito();" class="buy-button">
         Comprar Ya!
     </button>
          </div> 
@@ -552,14 +473,14 @@
            <span style=" font-size:24px; display: block;"><strong>$1599</strong></span>
             <div class="product-details">
              <input type="number" id="quantityC" value="1" min="1" max="10">
-                <button onclick="addToCart('Producto C', 1599, 1, 10, document.getElementById('quantityA').value, 'Tinta Blanca 1 L.'); agregarAlCarrito();" class="buy-button">
+              <button onclick="addToCart('Producto C', 1599, 1, 10, document.getElementById('quantityA').value, 'Tinta Blanca 1 L.'); agregarAlCarrito();" class="buy-button">
         Comprar Ya!
     </button>
            </div> 
            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
            <br/>
          Tinta para sellos de goma 1 Kg.           
-            </div>
+          </div>
         </div>
         
         
@@ -852,7 +773,7 @@
             });
 
             if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
-                alert('Compra realizada con éxito');
+                alert('Solicitud de Compra realizada con Éxito');
                 // Aquí puedes agregar la lógica para procesar la compra
                 mostrarDetallesCompra();
             } else {
@@ -903,7 +824,6 @@ Estado: ${form.state.value}
 Código Postal: ${form.zip.value}
 País: ${form.country.value}
 Teléfono: ${form.phone.value}
-Referencia: ${form.reference.value}
 E-mail: ${form.email.value}
 RFC: ${form.rfc.value}`;
 
@@ -928,50 +848,51 @@ RFC: ${form.rfc.value}`;
 
     // Mensaje completo (formato de nota de remisión)
     let message = `
-<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <!-- Encabezado -->
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <!-- Contenido aquí -->
+   <!-- Encabezado -->
     <div style="text-align: center; margin-bottom: 10px;">
-	<h5>"Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad."</h5>
-        <h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+	<h5 style="color: green;">Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad.</h5>
+<h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
         <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
         <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
     </div>
 
     <!-- Detalles de pago -->
     <div style="margin-bottom: 10px;">
-        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Detalles de Pago</h2>
-        <pre style="font-size: 12px; color: #555; margin: 0;">${paymentDetails}</pre>
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles de Pago</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0;  text-align: left;">${paymentDetails}</pre>
     </div>
 	
     <!-- Datos del cliente y de la venta -->
     <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
         <!-- Datos del cliente -->
         <div style="width: 48%;">
-            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Datos del Cliente</h2>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Nombre:</strong> ${form.name.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Dirección:</strong> ${form.address.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Ciudad:</strong> ${form.city.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Estado:</strong> ${form.state.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Código Postal:</strong> ${form.zip.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>País:</strong> ${form.country.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Teléfono:</strong> ${form.phone.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Email:</strong> ${form.email.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>RFC:</strong> ${form.rfc.value}</p>
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos del Cliente</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>RFC:</strong> ${form.rfc.value}</p>
         </div>
 
         <!-- Datos de la venta -->
         <div style="width: 48%;">
-            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Datos de la Venta</h2>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Método de Pago:</strong> ${paymentType}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Comisión:</strong> ${paymentCommission}%</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555;"><strong>Envío:</strong> $${shippingCost}</p>
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos de la Venta</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Envío:</strong> $${shippingCost}</p>
         </div>
     </div>
 
     <!-- Detalles del pedido -->
     <div style="margin-bottom: 10px;">
-        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px;">Detalles del Pedido</h2>
-        <pre style="font-size: 12px; color: #555; margin: 0;">${cartDetails}</pre>
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles del Pedido</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0;  text-align: left;">${cartDetails}</pre>
     </div>
 
   <!-- Total -->
@@ -988,6 +909,9 @@ RFC: ${form.rfc.value}`;
     <!-- Firmas -->
     <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
         <div style="text-align: center; width: 48%;">
+		<img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+         alt="QuetzalArte.com Logo" 
+         style="width: 50px; height: auto;">
             <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
         </div>
         <div style="text-align: center; width: 48%;">
@@ -1009,8 +933,8 @@ RFC: ${form.rfc.value}`;
 
     // Agregar botones
     detallesDiv.innerHTML += `
-        <button class="no-imprimir" onclick="imprimirNota()">Imprimir</button>
-        <button class="no-imprimir" onclick="generarPDF()">Guardar como PDF</button>
+        <div class="payment-options"><button class="no-imprimir" onclick="imprimirNota()">🖶 Imprimir</button>
+        <button class="no-imprimir" onclick="generarPDF()">🗎 Guardar como PDF</button></div>
     `;
 
     // Limpiar el contenido anterior y agregar el nuevo
@@ -1086,7 +1010,7 @@ function imprimirNota() {
         if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
             let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity}`).join('\n');
             let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\nTotal a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
-            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nReferencia: ${form.reference.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
+            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
             let message = `Detalles del Pedido:\n${cartDetails}\n\n${totalDetails}\n\nDatos de Envío:\n${shippingDetails}`;
 
             let whatsappUrl = `https://wa.me/2224606907?text=${encodeURIComponent(message)}`;
@@ -1101,7 +1025,7 @@ function imprimirNota() {
 
  
 
-    <script>
+<script>
         function agregarAlCarrito() {
             // Mostrar animacion de el ícono del carrito
             const icono = document.getElementById('icono-carrito');
@@ -1119,9 +1043,9 @@ function imprimirNota() {
     
 
  <!-- Incluye jsPDF y html2canvas PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
-    <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
+<script>
     // Función para generar el PDF
     function generarPDF() {
         // Obtén los botones que no deben aparecer en el PDF
@@ -1194,7 +1118,7 @@ function imprimirNota() {
     <!-- Ícono de carrito animado -->
     <a href="#miLayer" id="enlace" style="text-decoration:none;"><div id="icono-carrito" class="icono-carrito">📦</div>🛒<span id="cartCount">0</span></a>
 </span>
-    <script>
+<script>
         document.querySelector('#enlace').addEventListener('click', function(e) {
             e.preventDefault();
             const destino = document.querySelector('#miLayer');
@@ -1264,6 +1188,6 @@ Para obtener más información sobre pedidos especiales, no dudes en contactarno
     
     
   </p>
-  </footer>
+</footer>
 </body>
 </html>
