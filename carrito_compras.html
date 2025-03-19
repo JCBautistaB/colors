@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -286,10 +288,11 @@
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
         <p>Peso total: <span id="totalWeight">0</span> kg</p>
-        <h3>Total a pagar: $<span id="finalTotal">0</span></h3>
+         
+        <h3 style="text-align: right; margin-bottom: 10px;">Total a pagar: $<span id="finalTotal">0</span></h3>
         
         <hr>
-<h2>1 Envío</h2>
+<h2>1 Envío 🏠 🌐</h2>
 <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
 
         <div id="weightCategory" class="weight-category"></div>
@@ -555,12 +558,15 @@
             cart.forEach(item => {
                 let itemDiv = document.createElement("div");
                 itemDiv.className = "cart-item";
-				<!-- ${item.name} -->
-                itemDiv.innerHTML = `${item.description} - $${item.price} 
-                                     <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
+				<!-- ${item.name} - $${item.price}-->
+                itemDiv.innerHTML = `${item.description}  
+<div style="text-align: right; display: inline-block;"> 
+ 				<input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
                                      onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
                                      x $${item.price} 
-                                     <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})">Eliminar</button>`;
+<button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">✖️</button>
+</div>`;
+									 
                 cartItems.appendChild(itemDiv);
             });
 
