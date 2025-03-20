@@ -290,9 +290,13 @@
 <div class="cart">
         <h3>Carrito de Compras</h3>
         <div id="cartItems"></div>
-        <p>Total de productos: $<span id="total">0</span></p>
-        <p>Peso total: <span id="totalWeight">0</span> kg</p>
-        <p>Costo de envío: $<span id="shippingInfo2">0</span></p>
+        
+        Total de productos: $<span id="total">0</span><br/>
+        
+        <br/>Peso total: <span id="totalWeight">0</span> kg.
+        <br/>Costo de envío: $<span id="shippingInfo2">0</span><br/>
+        
+        <br/><div id="shippingtype">Costo de comisión: $0</div>       
         
         <h3 style="text-align: right; margin-bottom: 10px;">Total a pagar: $<span id="finalTotal">0</span></h3>
         
@@ -496,281 +500,507 @@
 </div>
 <!-- end carrito -->
 
-
-
 <script>
-        let total = 0;
-        let totalWeight = 0;
-        let cart = [];
-        let cartCount = 0;
-        let shippingCost = 0;
-        let shippingType = 'default';
-        let paymentType = '💰 Selecciona la forma de pago.';
-        let paymentCommission = 0;
-        let paymentIcon = '';
+    let total = 0;
+    let totalWeight = 0;
+    let cart = [];
+    let cartCount = 0;
+    let shippingCost = 0;
+    let shippingType = 'default';
+    let paymentType = '💰 Selecciona la forma de pago.';
+    let paymentCommission = 0;
+    let paymentIcon = '';
 
-        // Stock original
-        const originalStock = {
-            'Producto A': 100,
-            'Producto B': 50,
-            'Producto C': 10
-        };
+    // Stock original
+    const originalStock = {
+        'Producto A': 100,
+        'Producto B': 50,
+        'Producto C': 10
+    };
 
-        // Stock actualizado según lo que hay en el carrito
-        let stock = { ...originalStock };
+    // Stock actualizado según lo que hay en el carrito
+    let stock = { ...originalStock };
 
-        function addToCart(name, price, weight, maxStock, quantity, description) {
-            quantity = parseInt(quantity);
-            if (quantity < 1 || quantity > stock[name]) {
-                alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
-                return;
-            }
+    function addToCart(name, price, weight, maxStock, quantity, description) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > stock[name]) {
+            alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
+            return;
+        }
 
-            let item = cart.find(item => item.name === name);
+        let item = cart.find(item => item.name === name);
 
-            if (!item) {
-                cart.push({ name, price, weight, quantity, description });
-                stock[name] -= quantity;  // Actualizamos el stock disponible
-                total += price * quantity;
-                totalWeight += weight * quantity;
-                cartCount += quantity;
-                // Inicializamos los mensajes de envío y pago
-                shippingType = 'default';
-                shippingCost = 0;
-                paymentType = '💰 Selecciona la forma de pago.';
-                paymentCommission = 0;
-                paymentIcon = '';
-                updateCart();
-            } else {
-                if (item.quantity + quantity <= originalStock[name]) {
+        if (!item) {
+            cart.push({ name, price, weight, quantity, description });
             stock[name] -= quantity;  // Actualizamos el stock disponible
-            item.quantity += quantity;
-            item.description = description;  // Actualizamos la descripción en el carrito
             total += price * quantity;
             totalWeight += weight * quantity;
             cartCount += quantity;
+            // Inicializamos los mensajes de envío y pago
+            shippingType = 'default';
+            shippingCost = 0;
+            paymentType = '💰 Selecciona la forma de pago.';
+            paymentCommission = 0;
+            paymentIcon = '';
             updateCart();
         } else {
-            alert("No puedes agregar más de este producto, ya no hay stock suficiente.");
+            if (item.quantity + quantity <= originalStock[name]) {
+                stock[name] -= quantity;  // Actualizamos el stock disponible
+                item.quantity += quantity;
+                item.description = description;  // Actualizamos la descripción en el carrito
+                total += price * quantity;
+                totalWeight += weight * quantity;
+                cartCount += quantity;
+                updateCart();
+            } else {
+                alert("No puedes agregar más de este producto, ya no hay stock suficiente.");
+            }
         }
     }
-}
 
-        function updateCart() {
-            let cartItems = document.getElementById("cartItems");
-            cartItems.innerHTML = ''; // Limpiar el carrito antes de actualizarlo
+    function updateCart() {
+        let cartItems = document.getElementById("cartItems");
+        cartItems.innerHTML = ''; // Limpiar el carrito antes de actualizarlo
 
-            cart.forEach(item => {
-                let itemDiv = document.createElement("div");
-                itemDiv.className = "cart-item";
-				<!-- ${item.name} - $${item.price}-->
-                itemDiv.innerHTML = `${item.description}  
-<div style="text-align: right; display: inline-block;"> 
- 				<input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
-                                     onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
-                                     x $${item.price} 
-<button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">✖️</button>
-</div>`;
-									 
-                cartItems.appendChild(itemDiv);
-            });
+        cart.forEach(item => {
+            let itemDiv = document.createElement("div");
+            itemDiv.className = "cart-item";
+            itemDiv.innerHTML = `${item.description}  
+            <div style="text-align: right; display: inline-block;"> 
+                <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
+                    onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
+                    x $${item.price} 
+                <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">✖️</button>
+            </div>`;
+            cartItems.appendChild(itemDiv);
+        });
 
-            document.getElementById("total").textContent = total;
-            document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
-            document.getElementById("finalTotal").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
-            document.getElementById("finalTotal2").textContent = (total + shippingCost + (total * paymentCommission / 100)).toFixed(2);  // Aquí sumamos el costo de envío y la comisión de pago
-            document.getElementById("cartCount").textContent = cartCount;
+        // Calcular el costo de la comisión en pesos
+        let commissionInPesos = (total * paymentCommission / 100).toFixed(2);
 
-            // Actualizamos el stock de los productos en la página
-            document.getElementById("stockA").textContent = stock['Producto A'];
-            document.getElementById("stockB").textContent = stock['Producto B'];
-            document.getElementById("stockC").textContent = stock['Producto C'];
+        // Actualizar el total final con el costo de envío y la comisión en pesos
+        let finalTotal = (total + shippingCost + parseFloat(commissionInPesos)).toFixed(2);
 
-            // Actualizamos el mensaje de envío
-            let shippingMessage = "";
-            let shippingIcon = "";
+        document.getElementById("total").textContent = total;
+        document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
+        document.getElementById("finalTotal").textContent = finalTotal;
+        document.getElementById("finalTotal2").textContent = finalTotal;
+        document.getElementById("cartCount").textContent = cartCount;
 
-            switch (shippingType) {
-                default:
-                    shippingIcon = "🚚";
-                    shippingMessage = "Selecciona el tipo de envío.";
-                    break;
-                case 'none':
-                    shippingIcon = "❤️";
-                    shippingMessage = "SIN ENVÍO";
-                    break;
-                case 'free':
-                    shippingIcon = "📦";
-                    shippingMessage = "ENVÍO RÁPIDO - 5 DÍAS - $179.00";
-                    break;
-                case 'express':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO EXPRESS - 3 DÍAS - $199.00";
-                    break;
-                case 'premium':
-                    shippingIcon = "✈️";
-                    shippingMessage = "ENVÍO PREMIUM - 1 DÍA - $499.00";
-                    break;
-                case '3kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 3kg.";
-                    break;
-                    case '6kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 6kg.";
-                    break;
-                    case '9kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 9kg.";
-                    break;
-                    case '15kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 15kg.";
-                    break;
-                    case '30kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 130kg.";
-                    break;
-                    case '50kg':
-                    shippingIcon = "🚚";
-                    shippingMessage = "ENVÍO 50kg.";
-                    break;    
-            }
+        // Actualizar el stock de los productos en la página
+        document.getElementById("stockA").textContent = stock['Producto A'];
+        document.getElementById("stockB").textContent = stock['Producto B'];
+        document.getElementById("stockC").textContent = stock['Producto C'];
 
-            document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
+        // Actualizar el mensaje de envío
+        let shippingMessage = "";
+        let shippingIcon = "";
 
-            // Actualizamos el mensaje de pago
-            document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span>${paymentType}`;
-
-            // Mostrar detalles de transferencia bancaria si se selecciona esa opción
-            const bankTransferDetails = document.getElementById("bankTransferDetails");
-            if (paymentType.includes('Transferencia bancaria')) {
-                bankTransferDetails.style.display = 'block';
-            } else {
-                bankTransferDetails.style.display = 'none';
-            }
-
-            // Actualizamos la categoría de peso
-            let weightCategory = "";
-            if (totalWeight <= 2.99) {
-                weightCategory = "Categoría de peso: Ligero";
-                document.getElementById("weightbtn").style.display = 'block';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 5.99) {
-                weightCategory = "Categoría de peso: Medio";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'block';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 8.99) {
-                weightCategory = "Categoría de peso: Pesado 6kg.";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'block';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 14.99) {
-                weightCategory = "Categoría de peso: Pesado 9kg.";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'block';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 29.99) {
-                weightCategory = "Categoría de peso: Pesado 15kg.";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'block';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'none';
-            } else if (totalWeight <= 30) {            
-                weightCategory = "Categoría de peso: Pesado 30kg.";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'block';
-                document.getElementById("weight50").style.display = 'none';
-            } else {
-                weightCategory = "Categoría de peso: Muy pesado";
-                document.getElementById("weightbtn").style.display = 'none';
-                document.getElementById("weight3").style.display = 'none';
-                document.getElementById("weight6").style.display = 'none';
-                document.getElementById("weight9").style.display = 'none';
-                document.getElementById("weight15").style.display = 'none';
-                document.getElementById("weight30").style.display = 'none';
-                document.getElementById("weight50").style.display = 'block';
-            }
-            document.getElementById("weightCategory").textContent = weightCategory;
+        switch (shippingType) {
+            default:
+                shippingIcon = "🚚";
+                shippingMessage = "Selecciona el tipo de envío.";
+                break;
+            case 'none':
+                shippingIcon = "❤️";
+                shippingMessage = "SIN ENVÍO";
+                break;
+            case 'free':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO RÁPIDO - 5 DÍAS - $179.00";
+                break;
+            case 'express':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO EXPRESS - 3 DÍAS - $199.00";
+                break;
+            case 'premium':
+                shippingIcon = "✈️";
+                shippingMessage = "ENVÍO PREMIUM - 1 DÍA - $499.00";
+                break;
+            case '3kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 3kg.";
+                break;
+            case '6kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 6kg.";
+                break;
+            case '9kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 9kg.";
+                break;
+            case '15kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 15kg.";
+                break;
+            case '30kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 30kg.";
+                break;
+            case '50kg':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO 50kg.";
+                break;
         }
 
-        function updateQuantity(name, quantity, price, weight) {
-            quantity = parseInt(quantity);
-            if (quantity < 1 || quantity > originalStock[name]) {
-                alert("Cantidad inválida, elige una cantidad entre 1 y " + originalStock[name]);
-                return;
-            }
+        document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
 
-            let item = cart.find(item => item.name === name);
-            if (item) {
-                let priceDifference = (quantity - item.quantity) * price;
-                let weightDifference = (quantity - item.quantity) * weight;
-                stock[name] += item.quantity - quantity;  // Actualizamos el stock disponible
-                total += priceDifference;
-                totalWeight += weightDifference;
-                cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
-                item.quantity = quantity;
-                updateCart();
-            }
+        // Actualizar el mensaje de pago
+        document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span>${paymentType}`;
+
+        // Mostrar detalles de transferencia bancaria si se selecciona esa opción
+        const bankTransferDetails = document.getElementById("bankTransferDetails");
+        if (paymentType.includes('Transferencia bancaria')) {
+            bankTransferDetails.style.display = 'block';
+        } else {
+            bankTransferDetails.style.display = 'none';
         }
 
-        function removeFromCart(name, price, weight) {
-            let itemIndex = cart.findIndex(item => item.name === name);
-            if (itemIndex > -1) {
-                stock[name] += cart[itemIndex].quantity;  // Restauramos el stock al eliminar un producto
-                total -= cart[itemIndex].price * cart[itemIndex].quantity;
-                totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
-                cartCount -= cart[itemIndex].quantity;
-                cart.splice(itemIndex, 1);
-            }
+        // Actualizar la categoría de peso
+        let weightCategory = "";
+        if (totalWeight <= 2.99) {
+            weightCategory = "Categoría de peso: Ligero";
+            document.getElementById("weightbtn").style.display = 'block';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'none';
+        } else if (totalWeight <= 5.99) {
+            weightCategory = "Categoría de peso: Medio";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'block';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'none';
+        } else if (totalWeight <= 8.99) {
+            weightCategory = "Categoría de peso: Pesado 6kg.";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'block';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'none';
+        } else if (totalWeight <= 14.99) {
+            weightCategory = "Categoría de peso: Pesado 9kg.";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'block';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'none';
+        } else if (totalWeight <= 29.99) {
+            weightCategory = "Categoría de peso: Pesado 15kg.";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'block';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'none';
+        } else if (totalWeight <= 30) {
+            weightCategory = "Categoría de peso: Pesado 30kg.";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'block';
+            document.getElementById("weight50").style.display = 'none';
+        } else {
+            weightCategory = "Categoría de peso: Muy pesado";
+            document.getElementById("weightbtn").style.display = 'none';
+            document.getElementById("weight3").style.display = 'none';
+            document.getElementById("weight6").style.display = 'none';
+            document.getElementById("weight9").style.display = 'none';
+            document.getElementById("weight15").style.display = 'none';
+            document.getElementById("weight30").style.display = 'none';
+            document.getElementById("weight50").style.display = 'block';
+        }
+        document.getElementById("weightCategory").textContent = weightCategory;
+
+        // Actualizar el costo de la comisión en pesos
+        document.getElementById('shippingtype').textContent = `Costo de comisión: $${commissionInPesos}`;
+    }
+
+    function setPayment(type, commission, icon) {
+        paymentType = type;
+        paymentCommission = commission;
+        paymentIcon = icon;
+
+        // Calcular el costo real de la comisión en pesos
+        let commissionInPesos = (total * commission / 100).toFixed(2);
+
+        // Actualizar el carrito
+        updateCart();
+
+        // Actualizar el div con la comisión en pesos
+        document.getElementById('shippingtype').textContent = `Costo de comisión: $${commissionInPesos}`;
+    }
+
+    function updateQuantity(name, quantity, price, weight) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > originalStock[name]) {
+            alert("Cantidad inválida, elige una cantidad entre 1 y " + originalStock[name]);
+            return;
+        }
+
+        let item = cart.find(item => item.name === name);
+        if (item) {
+            let priceDifference = (quantity - item.quantity) * price;
+            let weightDifference = (quantity - item.quantity) * weight;
+            stock[name] += item.quantity - quantity;  // Actualizamos el stock disponible
+            total += priceDifference;
+            totalWeight += weightDifference;
+            cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
+            item.quantity = quantity;
             updateCart();
         }
+    }
 
-        function toggleCart() {
-            let cartDiv = document.querySelector('.cart');
-            cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+    function removeFromCart(name, price, weight) {
+        let itemIndex = cart.findIndex(item => item.name === name);
+        if (itemIndex > -1) {
+            stock[name] += cart[itemIndex].quantity;  // Restauramos el stock al eliminar un producto
+            total -= cart[itemIndex].price * cart[itemIndex].quantity;
+            totalWeight -= cart[itemIndex].weight * cart[itemIndex].quantity;
+            cartCount -= cart[itemIndex].quantity;
+            cart.splice(itemIndex, 1);
         }
+        updateCart();
+    }
 
-        function setShipping(type, cost) {
-            shippingType = type;
-            shippingCost = cost;
-            updateCart();
-			// Agregar la actualización en los dos divs de costo envío
+    function toggleCart() {
+        let cartDiv = document.querySelector('.cart');
+        cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function setShipping(type, cost) {
+        shippingType = type;
+        shippingCost = cost;
+        updateCart();
+        // Agregar la actualización en los dos divs de costo envío
         document.getElementById('shippingInfo2').textContent = `${cost}`;
-    
+    }
+
+    function comprar() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                input.classList.add('invalid');
+                valid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+            alert('Solicitud de Compra realizada con Éxito');
+            // Aquí puedes agregar la lógica para procesar la compra
+            mostrarDetallesCompra();
+        } else {
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+        }
+    }
+
+    function mostrarDetallesCompra() {
+        const form = document.getElementById('shippingForm');
+
+        // Detalles del carrito
+        let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity} - Precio: $${item.price}`).join('\n');
+
+        // Calcular el totalFinal (precio total con envío y comisión)
+        let totalFinal = total + shippingCost + (total * paymentCommission / 100);
+
+        // Obtener el subtotal (sin IVA)
+        let subtotal = totalFinal / 1.16;
+
+        // Calcular el IVA (16% sobre el subtotal)
+        let iva = totalFinal - subtotal;
+
+        // Calcular el 1% de ISR (sobre el totalFinal)
+        let isr = totalFinal * 0.01;
+
+        // Detalles del total con desglose del IVA incluido y el ISR
+        let totalDetails = `
+Subtotal (sin IVA): $${subtotal.toFixed(2)}
+IVA (16% incluido): $${iva.toFixed(2)}
+Peso Total: ${totalWeight.toFixed(2)} kg
+Envío: $${shippingCost.toFixed(2)}
+Comisión: ${paymentCommission}%
+ISR (1%): $${isr.toFixed(2)}
+💲 Total a pagar: $${totalFinal.toFixed(2)}`;
+
+        // Detalles de envío
+        let shippingDetails = `
+Nombre: ${form.name.value}
+Dirección: ${form.address.value}
+Ciudad: ${form.city.value}
+Estado: ${form.state.value}
+Código Postal: ${form.zip.value}
+País: ${form.country.value}
+Teléfono: ${form.phone.value}
+E-mail: ${form.email.value}
+RFC: ${form.rfc.value}`;
+
+        // Detalles de pago
+        let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
+        if (paymentType.includes('Transferencia bancaria')) {
+            paymentDetails += `\nPagar a:\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
         }
 
-        function setPayment(type, commission, icon) {
-            paymentType = type;
-            paymentCommission = commission;
-            paymentIcon = icon;
-            updateCart();
-        }
+        // Número de pedido
+        let orderNumber = Math.floor(100000 + Math.random() * 900000);
+
+        // Obtener fecha y hora actual
+        let fechaHora = new Date().toLocaleString('es-MX', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        // Mensaje completo (formato de nota de remisión)
+        let message = `
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <!-- Encabezado -->
+    <div style="text-align: center; margin-bottom: 10px;">
+        <h5 style="color: green;">Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad.</h5>
+        <h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+        <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
+        <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
+    </div>
+
+    <!-- Detalles de pago -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles de Pago</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${paymentDetails}</pre>
+    </div>
+
+    <!-- Datos del cliente y de la venta -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <!-- Datos del cliente -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos del Cliente</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>RFC:</strong> ${form.rfc.value}</p>
+        </div>
+
+        <!-- Datos de la venta -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos de la Venta</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Envío:</strong> $${shippingCost}</p>
+        </div>
+    </div>
+
+    <!-- Detalles del pedido -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles del Pedido</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${cartDetails}</pre>
+    </div>
+
+    <!-- Total -->
+    <div style="text-align: right; margin-bottom: 10px;">
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>IVA (16%):</strong> $${iva.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>ISR (1%):</strong> $${isr.toFixed(2)}</p>
+        <p style="font-size: 14px; color: #333; margin: 3px 0;"><strong>Total a pagar:</strong> $${totalFinal.toFixed(2)}</p>
+    </div>
+
+    <!-- Firmas -->
+    <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
+        <div style="text-align: center; width: 48%;">
+            <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+                 alt="QuetzalArte.com Logo" 
+                 style="width: 50px; height: auto;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
+        </div>
+        <div style="text-align: center; width: 48%;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">
+                QuetzalArte.com<br/>
+                Privada 14 C Sur No. 1305 Interior 2<br/>
+                Fracc. El Ángel Puebla, Puebla México<br/>
+                RFC: BABJ820827T76
+            </p>
+        </div>
+    </div>
+</div>`;
+
+        // Crear el div con los detalles
+        let detallesDiv = document.createElement('div');
+        detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
+        detallesDiv.innerHTML = message;
+
+        // Agregar botones
+        detallesDiv.innerHTML += `
+            <div class="payment-options"><button class="no-imprimir" onclick="imprimirNota()">🖶 Imprimir</button>
+            <button class="no-imprimir" onclick="generarPDF()">🗎 Guardar como PDF</button></div>
+        `;
+
+        // Limpiar el contenido anterior y agregar el nuevo
+        let detallesCompraDiv = document.getElementById('detallesCompra');
+        detallesCompraDiv.innerHTML = '';
+        detallesCompraDiv.appendChild(detallesDiv);
+    }
+
+    function imprimirNota() {
+        const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+        const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
+
+        // Reemplazar el contenido del body con el contenido a imprimir
+        document.body.innerHTML = contenidoImprimir;
+
+        // Esperar un momento para asegurar que el contenido esté renderizado
+        setTimeout(() => {
+            window.print(); // Imprimir
+
+            // Restaurar el contenido original después de imprimir
+            setTimeout(() => {
+                document.body.innerHTML = contenidoOriginal;
+            }, 500); // Esperar 500 ms para restaurar
+        }, 500); // Esperar 500 ms antes de imprimir
+    }
+
+    function compartirRedes(message) {
+        let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+        window.open(url, '_blank');
+    }
+
+    function filterProducts() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+        products.forEach(product => {
+            const productName = product.querySelector('.product-details span').textContent.toLowerCase();
+            if (productName.includes(searchInput)) {
+                product.style.display = 'flex';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+<script>
+
 
         function comprar() {
             const form = document.getElementById('shippingForm');
@@ -858,9 +1088,7 @@ RFC: ${form.rfc.value}`;
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
-    });
-
-    // Mensaje completo (formato de nota de remisión)
+    });// Mensaje completo (formato de nota de remisión)
     let message = `
 <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
     <!-- Contenido aquí -->
@@ -997,6 +1225,8 @@ function imprimirNota() {
                 }
             });
         }
+
+    
     </script>
     
     
