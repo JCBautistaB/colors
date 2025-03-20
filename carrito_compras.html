@@ -284,11 +284,12 @@
 <div style="padding:10px; margin-top:90px;">
   Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
 </div>
-
+ <div id="agregaproductos" style="color: #888; text-align: center; display: none;">Por favor, agrega productos al carrito.</div>
 
 <!-- start carrito -->
 <div class="cart">
         <h3>Carrito de Compras</h3>
+
         <div id="cartItems"></div>
         
         Total de productos: $<span id="total">0</span><br/>
@@ -521,59 +522,68 @@
     // Stock actualizado según lo que hay en el carrito
     let stock = { ...originalStock };
 
-    function addToCart(name, price, weight, maxStock, quantity, description) {
-        quantity = parseInt(quantity);
-        if (quantity < 1 || quantity > stock[name]) {
-            alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
-            return;
-        }
+function addToCart(name, price, weight, maxStock, quantity, description) {
+    quantity = parseInt(quantity);
+    if (quantity < 1 || quantity > stock[name]) {
+        alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
+        return;
+    }
 
-        let item = cart.find(item => item.name === name);
+    let item = cart.find(item => item.name === name);
 
-        if (!item) {
-            cart.push({ name, price, weight, quantity, description });
+    if (!item) {
+        cart.push({ name, price, weight, quantity, description });
+        stock[name] -= quantity;  // Actualizamos el stock disponible
+        total += price * quantity;
+        totalWeight += weight * quantity;
+        cartCount += quantity;
+        // Inicializamos los mensajes de envío y pago
+        shippingType = 'default';
+        shippingCost = 0;
+        paymentType = '💰 Selecciona la forma de pago.';
+        paymentCommission = 0;
+        paymentIcon = '';
+    } else {
+        if (item.quantity + quantity <= originalStock[name]) {
             stock[name] -= quantity;  // Actualizamos el stock disponible
+            item.quantity += quantity;
+            item.description = description;  // Actualizamos la descripción en el carrito
             total += price * quantity;
             totalWeight += weight * quantity;
             cartCount += quantity;
-            // Inicializamos los mensajes de envío y pago
-            shippingType = 'default';
-            shippingCost = 0;
-            paymentType = '💰 Selecciona la forma de pago.';
-            paymentCommission = 0;
-            paymentIcon = '';
-            updateCart();
         } else {
-            if (item.quantity + quantity <= originalStock[name]) {
-                stock[name] -= quantity;  // Actualizamos el stock disponible
-                item.quantity += quantity;
-                item.description = description;  // Actualizamos la descripción en el carrito
-                total += price * quantity;
-                totalWeight += weight * quantity;
-                cartCount += quantity;
-                updateCart();
-            } else {
-                alert("No puedes agregar más de este producto, ya no hay stock suficiente.");
-            }
+            alert("No puedes agregar más de este producto, ya no hay stock suficiente.");
+            return; // Salir de la función si no hay stock suficiente
         }
     }
 
-    function updateCart() {
-        let cartItems = document.getElementById("cartItems");
-        cartItems.innerHTML = ''; // Limpiar el carrito antes de actualizarlo
+    // Ocultar el mensaje "Por favor, agrega productos al carrito"
+    document.getElementById('agregaproductos').style.display = 'none';
 
-        cart.forEach(item => {
-            let itemDiv = document.createElement("div");
-            itemDiv.className = "cart-item";
-            itemDiv.innerHTML = `${item.description}  
-            <div style="text-align: right; display: inline-block;"> 
-                <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
-                    onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
-                    x $${item.price} 
-                <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">✖️</button>
-            </div>`;
-            cartItems.appendChild(itemDiv);
-        });
+    // Actualizar el carrito
+    updateCart();
+}
+
+function updateCart() {
+    let cartItems = document.getElementById('cartItems');
+
+    // Si el carrito está vacío, no hacer nada (toggleCart ya maneja este caso)
+    if (cart.length === 0) return;
+
+    cartItems.innerHTML = ''; // Limpiar el carrito antes de actualizarlo
+
+    cart.forEach(item => {
+        let itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `${item.description}  
+        <div style="text-align: right; display: inline-block;"> 
+            <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
+                onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
+                x $${item.price} 
+            <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">✖️</button>
+        </div>`;
+        cartItems.appendChild(itemDiv);
+    });
 
         // Calcular el costo de la comisión en pesos
         let commissionInPesos = (total * paymentCommission / 100).toFixed(2);
@@ -775,10 +785,36 @@
         updateCart();
     }
 
-    function toggleCart() {
-        let cartDiv = document.querySelector('.cart');
+function toggleCart() {
+    let cartDiv = document.querySelector('.cart');
+    let agregarProductosDiv = document.getElementById('agregaproductos'); // Nuevo: Obtener el div del mensaje
+    let cartItems = document.getElementById('cartItems');
+    let totalElements = document.querySelectorAll('.cart p:not(#agregaproductos)');
+    let paymentOptions = document.getElementById('paymentOptions');
+
+    if (cart.length === 0) {
+        // Si el carrito está vacío
+        if (cartDiv.style.display === 'block') {
+            // Si el carrito ya está abierto, ocultarlo
+            cartDiv.style.display = 'none';
+        } else {
+            // Si el carrito está cerrado, mostrar solo el mensaje
+            agregarProductosDiv.style.display = 'block'; // Mostrar el mensaje
+            cartItems.style.display = 'none'; // Ocultar los productos
+            totalElements.forEach(el => el.style.display = 'none'); // Ocultar los totales
+            paymentOptions.style.display = 'none'; // Ocultar las opciones de pago
+            cartDiv.style.display = 'block'; // Mostrar el carrito
+        }
+    } else {
+        // Si el carrito tiene productos, mostrar/ocultar el contenido normal
         cartDiv.style.display = cartDiv.style.display === 'block' ? 'none' : 'block';
+        agregarProductosDiv.style.display = 'none'; // Ocultar el mensaje
+        cartItems.style.display = 'block'; // Mostrar los productos
+        totalElements.forEach(el => el.style.display = 'block'); // Mostrar los totales
+        paymentOptions.style.display = 'block'; // Mostrar las opciones de pago
+        updateCart(); // Actualizar el carrito
     }
+}
 
     function setShipping(type, cost) {
         shippingType = type;
