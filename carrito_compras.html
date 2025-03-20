@@ -268,11 +268,15 @@
     </a> 
     
     
+
+
+    
+    
     <div class="search-bar">
    <input type="text" id="searchInput" placeholder=" 🔎 Buscar productos..." onkeyup="filterProducts()" style="width:130px;">
-
-
   </div>
+  
+  
 </div>
 
 <section id="miLayer"> </section>
@@ -288,7 +292,8 @@
         <div id="cartItems"></div>
         <p>Total de productos: $<span id="total">0</span></p>
         <p>Peso total: <span id="totalWeight">0</span> kg</p>
-         
+        <p>Costo de envío: $<span id="shippingInfo2">0</span></p>
+        
         <h3 style="text-align: right; margin-bottom: 10px;">Total a pagar: $<span id="finalTotal">0</span></h3>
         
         <hr>
@@ -755,6 +760,9 @@
             shippingType = type;
             shippingCost = cost;
             updateCart();
+			// Agregar la actualización en los dos divs de costo envío
+        document.getElementById('shippingInfo2').textContent = `${cost}`;
+    
         }
 
         function setPayment(type, commission, icon) {
