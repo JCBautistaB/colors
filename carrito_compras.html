@@ -302,6 +302,14 @@
 <div style="padding:10px; margin-top:90px;">
   Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
 </div>
+
+<div id="pesoMayorUnKilo" style="color: red; text-align: center; display: none; padding: 10px; border: 2px solid red; border-radius: 10px; background-color: #ffe6e6; font-weight: bold;">
+  ¡El peso total de los productos supera 1 kg!
+</div>
+<div id="agregaproductos" style="color: #888; text-align: center; display: none; padding: 10px; border: 2px solid #0CC; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #0CC; cursor: pointer; transition: transform 0.2s; color: white; font-weight: bold;">
+  Por favor, agrega productos al carrito.
+</div>
+
 <div id="agregaproductos" style="color: #888; text-align: center; display: none;  padding: 10px;
     border: 2px solid #0CC;
     border-radius: 10px;
@@ -718,6 +726,7 @@ function updateCart() {
         document.getElementById("finalTotal").textContent = "0.00";
         document.getElementById("finalTotal2").textContent = "0.00";
         document.getElementById("shippingtype").textContent = "Costo de comisión: $0.00";
+        document.getElementById('pesoMayorUnKilo').style.display = 'none'; // Ocultar el mensaje de peso
         return; // Salir si el carrito está vacío
     }
 
@@ -754,6 +763,13 @@ function updateCart() {
     document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
     document.getElementById("finalTotal").textContent = finalTotal;
     document.getElementById("finalTotal2").textContent = finalTotal;
+
+    // Mostrar u ocultar el mensaje de peso mayor a 1 kg
+    if (totalWeight > 1) {
+        document.getElementById('pesoMayorUnKilo').style.display = 'block';
+    } else {
+        document.getElementById('pesoMayorUnKilo').style.display = 'none';
+    }
 
     // Mostrar u ocultar las opciones de pago
     document.getElementById("payment-options").style.display = (cartCount > 0) ? "block" : "none";
