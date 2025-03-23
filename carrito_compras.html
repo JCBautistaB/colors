@@ -330,57 +330,7 @@
   <!-- El mensaje se actualizará dinámicamente aquí -->
 </div>
 <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
-
-       
-        
-        <div id="weightbtn" class="weight-btn">
-            <div class="shipping-options">
-                
-            <button onclick="setShipping('free', 179)">Envío Rápido - 5 días - Costo: $179</button>
-            <button onclick="setShipping('express', 199)">Envío Express - 3 días - Costo: $199</button>
-            <button onclick="setShipping('premium', 499)">Envío Premium - 1 día - Costo: $499</button>
-            </div>
-        </div>
-
-        <div id="weight3" class="weight-btn">
-            <div class="shipping-options">
-                <button onclick="setShipping('3kg', 599)">Envío 3kg. 5 días. Costo: $599</button>
-            </div>
-        </div>
-
-
-        <div id="weight6" class="weight-btn">
-            <div class="shipping-options">
-                <button onclick="setShipping('6kg', 699)">Envío 6kg. 5 días. Costo: $699</button>
-</div>
-        </div>
-
-        <div id="weight9" class="weight-btn">
-            <div class="shipping-options">
-            <button onclick="setShipping('9kg', 799)">Envío 9kg. 5 días. Costo: $799</button>
-            </div>
-        </div>
-
-        <div id="weight15" class="weight-btn">
-            <div class="shipping-options">
-            <button onclick="setShipping('15kg', 799)">Envío 15kg. 5 días. Costo: $799</button>
-            </div>
-        </div>
-
-        <div id="weight30" class="weight-btn">
-            <div class="shipping-options">
-            <button onclick="setShipping('30kg', 1600)">Envío 30kg. 5 días. Costo: $1600</button>
-            </div>
-        </div>
-
-        <div id="weight50" class="weight-btn">
-            <div class="shipping-options">
-            <button onclick="setShipping('50kg', 2500)">Envío 50kg. 5 días. Costo: $2500</button>
-            </div>
-        </div>
-        
-        <hr>
-        
+     
         
         
 
@@ -757,26 +707,80 @@ function updateCart() {
     
  
         
-        if (totalWeight <= 1) {
-    pesoMensaje.innerHTML = '<button onclick="setShipping(\'none\', 0)">Sin Envío (entrega a acordar o archivo digital)</button> El peso total es menor o igual a 1 kg.';
+        
+	if (totalWeight <= 1) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('free', 179)">Envío Rápido - 5 días - Costo: $179</button>
+            <button onclick="setShipping('express', 199)">Envío Express - 3 días - Costo: $199</button>
+            <button onclick="setShipping('premium', 499)">Envío Premium - 1 día - Costo: $499</button>
+        </div>
+        <p>El peso total es menor o igual a 1 kg.</p>`;
+} 
+else if (totalWeight <= 3) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('3kg', 599)">Envío Rápido - 5 días - Costo: $599</button>
+        </div>
+        <p>El peso total es menor o igual a 3 kg.</p>`;
+} 
+else if (totalWeight <= 6) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('6kg', 699)">Envío Rápido - 5 días - Costo: $699</button>
+        </div>
+        <p>El peso total es menor o igual a 6 kg.</p>`;
 }
- else if (totalWeight <= 3) {
-            pesoMensaje.textContent = 'El peso total supera 1 kg y es menor o igual a 3 kg.';
-        } else if (totalWeight <= 6) {
-            pesoMensaje.textContent = 'El peso total supera 3 kg y es menor o igual a 6 kg.';
-        } else if (totalWeight <= 9) {
-            pesoMensaje.textContent = 'El peso total supera 6 kg y es menor o igual a 9 kg.';
-        } else if (totalWeight <= 15) {
-            pesoMensaje.textContent = 'El peso total supera 9 kg y es menor o igual a 15 kg.';
-        } else if (totalWeight <= 20) {
-            pesoMensaje.textContent = 'El peso total supera 15 kg y es menor o igual a 20 kg.';
-        } else if (totalWeight <= 25) {
-            pesoMensaje.textContent = 'El peso total supera 20 kg y es menor o igual a 25 kg.';
-        } else if (totalWeight <= 30) {
-            pesoMensaje.textContent = 'El peso total supera 25 kg y es menor o igual a 30 kg.';
-        } else {
-            pesoMensaje.textContent = 'El peso total supera 30 kg.';
-        }
+else if (totalWeight <= 9) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('9kg', 799)">Envío Rápido - 5 días - Costo: $799</button>
+        </div>
+        <p>El peso total es menor o igual a 9 kg.</p>`;
+}
+else if (totalWeight <= 15) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('15kg', 799)">Envío Rápido - 5 días - Costo: $799</button>
+        </div>
+        <p>El peso total es menor o igual a 15 kg.</p>`;
+}
+else if (totalWeight <= 20) { // Aquí estaba el error: faltaba cerrar el paréntesis
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('20kg', 899)">Envío Rápido - 5 días - Costo: $899</button>
+        </div>
+        <p>El peso total es menor o igual a 20 kg.</p>`;
+}
+else if (totalWeight <= 25) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('25kg', 999)">Envío Rápido - 5 días - Costo: $999</button>
+        </div>
+        <p>El peso total es menor o igual a 25 kg.</p>`;
+}
+else if (totalWeight <= 30) {
+    pesoMensaje.innerHTML = `
+        <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('30kg', 1600)">Envío Rápido - 5 días - Costo: $1600</button>
+        </div>
+        <p>El peso total es menor o igual a 30 kg.</p>`;
+}
+else {
+    pesoMensaje.textContent = 'El peso total supera 30 kg.';
+}	
+		
+		
+		
+		
     
 
     // Mostrar u ocultar las opciones de pago
@@ -940,13 +944,17 @@ function setPayment(type, commission, icon) {
                 shippingIcon = "📦";
                 shippingMessage = "ENVÍO 15kg - 5 DÍAS - $799.00";
                 break;
+			case '20kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 20kg - 5 DÍAS - $899.00";
+                break;
+			case '25kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 25kg - 5 DÍAS - $999.00";
+                break;
             case '30kg':
                 shippingIcon = "📦";
                 shippingMessage = "ENVÍO 30kg - 5 DÍAS - $1600.00";
-                break;
-            case '50kg':
-                shippingIcon = "📦";
-                shippingMessage = "ENVÍO 50kg - 5 DÍAS - $2500.00";
                 break;
             default:
                 shippingIcon = "🚚";
