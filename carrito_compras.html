@@ -303,22 +303,7 @@
   Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
 </div>
 
-<div id="pesoMensaje" style="color: red; text-align: center; display: none; padding: 10px; border: 2px solid red; border-radius: 10px; background-color: #ffe6e6; font-weight: bold;">
-  <!-- El mensaje se actualizará dinámicamente aquí -->
-</div>
-<div id="agregaproductos" style="color: #888; text-align: center; display: none; padding: 10px; border: 2px solid #0CC; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #0CC; cursor: pointer; transition: transform 0.2s; color: white; font-weight: bold;">
-  Por favor, agrega productos al carrito.
-</div>
 
-<div id="agregaproductos" style="color: #888; text-align: center; display: none;  padding: 10px;
-    border: 2px solid #0CC;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #0CC;
-    cursor: pointer;
-    transition: transform 0.2s;
-    color: white;
-	font-weight: bold;">Por favor, agrega productos al carrito.</div>
 
 <!-- start carrito -->
 <div class="cart" id="carrito">
@@ -341,13 +326,16 @@
         
         <hr>
 <h2>1 Envío 🏠 🌐</h2>
+<div id="pesoMensaje" style="color: red; text-align: center;  padding: 10px; border: 2px solid red; border-radius: 10px; background-color: #ffe6e6; font-weight: bold;">
+  <!-- El mensaje se actualizará dinámicamente aquí -->
+</div>
 <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
 
        
         
         <div id="weightbtn" class="weight-btn">
             <div class="shipping-options">
-                 <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                
             <button onclick="setShipping('free', 179)">Envío Rápido - 5 días - Costo: $179</button>
             <button onclick="setShipping('express', 199)">Envío Express - 3 días - Costo: $199</button>
             <button onclick="setShipping('premium', 499)">Envío Premium - 1 día - Costo: $499</button>
@@ -674,7 +662,7 @@ Para obtener más información sobre pedidos especiales, no dudes en contactarno
         }
 
         updateStockDisplay(name);
-        document.getElementById('agregaproductos').style.display = 'none';
+
         updateCart();
     }
 
@@ -705,6 +693,8 @@ Para obtener más información sobre pedidos especiales, no dudes en contactarno
             document.getElementById("finalTotal").textContent = "0.00";
             document.getElementById("finalTotal2").textContent = "0.00";
             document.getElementById("shippingtype").textContent = "Costo de comisión: $0.00";
+			     // Mostrar el mensaje en el elemento con ID 'pesoMensaje'
+        document.getElementById('pesoMensaje').textContent = 'Agregar más productos';
             return; // Salir si el carrito está vacío
         }
 
@@ -726,7 +716,6 @@ function updateCart() {
         document.getElementById("finalTotal").textContent = "0.00";
         document.getElementById("finalTotal2").textContent = "0.00";
         document.getElementById("shippingtype").textContent = "Costo de comisión: $0.00";
-        document.getElementById('pesoMensaje').style.display = 'none'; // Ocultar el mensaje de peso
         return; // Salir si el carrito está vacío
     }
 
@@ -765,12 +754,13 @@ function updateCart() {
     document.getElementById("finalTotal2").textContent = finalTotal;
 
     // Mostrar u ocultar el mensaje de peso según el rango
-    let pesoMensaje = document.getElementById('pesoMensaje');
-    if (totalWeight > 0) {
-        pesoMensaje.style.display = 'block';
+    
+ 
+        
         if (totalWeight <= 1) {
-            pesoMensaje.textContent = 'El peso total es menor o igual a 1 kg.';
-        } else if (totalWeight <= 3) {
+    pesoMensaje.innerHTML = '<button onclick="setShipping(\'none\', 0)">Sin Envío (entrega a acordar o archivo digital)</button> El peso total es menor o igual a 1 kg.';
+}
+ else if (totalWeight <= 3) {
             pesoMensaje.textContent = 'El peso total supera 1 kg y es menor o igual a 3 kg.';
         } else if (totalWeight <= 6) {
             pesoMensaje.textContent = 'El peso total supera 3 kg y es menor o igual a 6 kg.';
@@ -787,9 +777,7 @@ function updateCart() {
         } else {
             pesoMensaje.textContent = 'El peso total supera 30 kg.';
         }
-    } else {
-        pesoMensaje.style.display = 'none';
-    }
+    
 
     // Mostrar u ocultar las opciones de pago
     document.getElementById("payment-options").style.display = (cartCount > 0) ? "block" : "none";
