@@ -329,7 +329,7 @@
 <h2>1 Envío 🏠 🌐</h2>
 
 <div id="shippingInfo" class="shipping-info">Selecciona el tipo de envío.</div>
- <div id="pesoMensaje" style="text-align: center;  padding: 10px; font-weight: bold;">
+ <div id="pesoMensaje" style="text-align: center;  padding: 10px; color:gray;">
   <!-- El mensaje se actualizará dinámicamente aquí -->
 </div>    
         
@@ -368,39 +368,12 @@
             <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
         <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
         
-        <div id="cartStatusMessage" style="text-align: center; padding: 10px;">
-    <!-- El mensaje cambiará dinámicamente aquí -->
+        <div id="cartStatusMessage" style="text-align: left; padding: 10px;">
+    <!-- El mensaje del formulario cambiará dinámicamente aquí -->
 </div>
         
-<div class="shipping-form-container">
-    <form id="shippingForm">
-       <label for="name">* Nombre:</label>
-            <input type="text" id="name" name="name" required style="width:100%; padding:5px;"><br>
-            <label for="phone">* Teléfono:</label>
-            <input type="text" id="phone" name="phone" type="number"  required style="width:100%; padding:5px;"><br>
-            <label for="address">Dirección:</label>
-            <input type="text" id="address" name="address" style="width:100%; padding:5px;"><br>
-            <label for="city">Ciudad:</label>
-            <input type="text" id="city" name="city" style="width:100%; padding:5px;"><br>
-            <label for="state">Estado:</label>
-            <input type="text" id="state" name="state"style="width:100%; padding:5px;"><br>
-            <label for="zip">Código Postal:</label>
-            <input type="text" id="zip" name="zip" style="width:100%; padding:5px;"><br>
-            <label for="country">País:</label>
-            <input type="text" id="country" name="country" style="width:100%; padding:5px;"><br>
-            <label for="e-mail">E-mail:</label>
-            <input type="text" id="email" name="email" type="email" style="width:100%; padding:5px;"><br><br>
-            <label for="rfc">RFC:</label>
-            <input type="text" id="rfc" name="rfc" style="width:100%; padding:5px;"><br>
-            
-            <br><br/>
 
-<div class="payment-options">
-<button type="button" onclick="comprar()">🗹 Listos mis datos para Comprar</button>
-<button type="button" onclick="solicitarPedido()" ><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Solicitar información de este pedido</button>
-            
-      </form>
-</div>
+    
 
 </div>
 
@@ -459,7 +432,7 @@
            <span style=" font-size:24px; display: block;"><strong>$1599</strong></span>
             <div class="product-details">
              <input type="number" id="quantityC" value="1" min="1" max="10">
-              <button onclick="addToCart('Producto C', 1599, 1, 10, document.getElementById('quantityA').value, 'Tinta Blanca 1 L.'); agregarAlCarrito();" class="buy-button">
+              <button onclick="addToCart('Producto C', 1599, 1.740, 10, document.getElementById('quantityA').value, 'Tinta Blanca 1 L.'); agregarAlCarrito();" class="buy-button">
         Comprar Ya!
     </button>
            </div> 
@@ -685,13 +658,37 @@ function updateCart() {
         cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3';
         cartStatusMessage.style.color = 'gray';
     } else {
-        cartStatusMessage.textContent = '¡Muy bien! Rellena tus datos.';
-        cartStatusMessage.style.color = 'green';
+        // Establece el mensaje
+cartStatusMessage.innerHTML = '<form id="shippingForm"> \
+    <label for="name">* Nombre:</label> \
+    <input type="text" id="name" name="name" required style="width:100%; padding:5px;"><br> \
+    <label for="phone">* Teléfono:</label> \
+    <input type="text" id="phone" name="phone" required style="width:100%; padding:5px;"><br> \
+    <label for="address">Dirección:</label> \
+    <input type="text" id="address" name="address" style="width:100%; padding:5px;"><br> \
+    <label for="city">Ciudad:</label> \
+    <input type="text" id="city" name="city" style="width:100%; padding:5px;"><br> \
+    <label for="state">Estado:</label> \
+    <input type="text" id="state" name="state" style="width:100%; padding:5px;"><br> \
+    <label for="zip">Código Postal:</label> \
+    <input type="text" id="zip" name="zip" style="width:100%; padding:5px;"><br> \
+    <label for="country">País:</label> \
+    <input type="text" id="country" name="country" style="width:100%; padding:5px;"><br> \
+    <label for="e-mail">E-mail:</label> \
+    <input type="email" id="email" name="email" style="width:100%; padding:5px;"><br><br> \
+    <label for="rfc">RFC:</label> \
+    <input type="text" id="rfc" name="rfc" style="width:100%; padding:5px;"><br><br> \
+    <div class="payment-options"> \
+        <button type="button" onclick="comprar()">🗹 Listos mis datos para Comprar</button> \
+        <button type="button" onclick="solicitarPedido()"> \
+            <img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Solicitar información de este pedido</button> \
+    </div> \
+</form>';
     }
 
     // Mostrar mensaje si el carrito está vacío
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos al carrito. 0</p>';
+        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos. 0</p>';
         emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2';
         emptyCartMessage.style.display = 'block'; // Mostrar mensaje
         
@@ -699,7 +696,6 @@ function updateCart() {
         document.getElementById('shippingInfo').style.display = 'none';
         document.getElementById('paymentInfo').style.display = 'none';
         document.getElementById('pesoMensaje').style.display = 'none';
-        document.getElementById('shippingForm').style.display = 'none';
         
         // Restablecer valores
         cartCount = 0;
@@ -716,7 +712,6 @@ function updateCart() {
         document.getElementById('shippingInfo').style.display = 'block';
         document.getElementById('paymentInfo').style.display = 'block';
         document.getElementById('pesoMensaje').style.display = 'block';
-        document.getElementById('shippingForm').style.display = 'block';
 		emptyCartMessage.innerHTML = '<div class="payment-options"><button onclick="setPayment(\'Saldo en cuenta - Pedido automático - comisión 0%\', 0, \'💰\')">Saldo en cuenta - Pedido Automático - comisión 0%</button> \
 <button onclick="setPayment(\'Transferencia bancaria\', 0, \'🏦\')">Transferencia bancaria - Notificar Compra - comisión 0%</button> \
 <button onclick="setPayment(\'Mercado Libre\', 2.8, \'🛒\')">Mercado Libre - Notificar Compra - comisión 2.8%</button> \
