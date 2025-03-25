@@ -343,7 +343,7 @@
         <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
         
         <div id="emptyCartMessage" style="text-align: center; color: gray; padding: 20px; display: none;">
-    🛒 Tu carrito está vacío. Por favor, añade productos para continuar.
+    🛒 Tu carrito está vacío.
 </div>
 
         <h3>Total a pagar: $<span id="finalTotal2">0</span></h3>
@@ -368,7 +368,11 @@
             <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
         <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
         
-<div class="shipping-form-container;">
+        <div id="cartStatusMessage" style="text-align: center; padding: 10px;">
+    <!-- El mensaje cambiará dinámicamente aquí -->
+</div>
+        
+<div class="shipping-form-container">
     <form id="shippingForm">
        <label for="name">* Nombre:</label>
             <input type="text" id="name" name="name" required style="width:100%; padding:5px;"><br>
@@ -612,6 +616,12 @@ Para obtener más información sobre pedidos especiales, no dudes en contactarno
         updateCart();
     }
 
+
+
+
+
+
+
 function removeFromCart(name, price, weight) {
     let itemIndex = cart.findIndex(item => item.name === name);
     if (itemIndex !== -1) {
@@ -632,37 +642,57 @@ function removeFromCart(name, price, weight) {
         cartCount = 0;
         shippingCost = 0;
         document.getElementById('cartCount').textContent = '0';
-        document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Por favor, añade productos al carrito.</p>';
+        document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos para continuar. 0</p>';
         document.getElementById("total").textContent = "0.00";
         document.getElementById("totalWeight").textContent = "0.00";
         document.getElementById("finalTotal").textContent = "0.00";
         document.getElementById("finalTotal2").textContent = "0.00";
         document.getElementById("shippingtype").textContent = "Costo de comisión: $0.00";
         document.getElementById("shippingInfo").textContent = "Selecciona el tipo de envío";
-        document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
-        
-        // Actualizar el mensaje del carrito vacío
-        document.getElementById('emptyCartMessage').textContent = '🛒 Tu carrito está vacío. Por favor, añade productos para continuar.';
+        document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";		
+		
+        //2 Forma
+        // Actualizar el mensaje del carrito vacío INMEDIATAMENTE
+        document.getElementById('emptyCartMessage').textContent = '🛒 Por favor, añade productos para continuar. 2';
         document.getElementById('emptyCartMessage').style.display = 'block';
-        
+        //3 Registro
+        // Actualizar el mensaje de registro de compra INMEDIATAMENTE
+        document.getElementById('cartStatusMessage').textContent = '🛒 Por favor, añade productos para continuar. 3';
+        document.getElementById('cartStatusMessage').style.color = 'gray';		
+		//1 Envío
         let pesoMensaje = document.getElementById('pesoMensaje');
-        pesoMensaje.textContent = 'Agregar más productos';
+        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1';
         return;
+        
     }
-
-    // Actualizar el carrito si aún quedan productos
+    // Si aún hay productos, actualizar el carrito
     updateCart();
 }
+
+
+
+
+
 
 function updateCart() {
     let cartItems = document.getElementById('cartItems');
     let emptyCartMessage = document.getElementById('emptyCartMessage');
     cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+	
+	// Actualizar el mensaje según el estado del carrito
+    const cartStatusMessage = document.getElementById('cartStatusMessage');
+    if (cart.length === 0) {
+        cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3';
+        cartStatusMessage.style.color = 'gray';
+    } else {
+        cartStatusMessage.textContent = '¡Muy bien! Rellena tus datos.';
+        cartStatusMessage.style.color = 'green';
+    }
 
     // Mostrar mensaje si el carrito está vacío
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Por favor, añade productos al carrito.</p>';
-        emptyCartMessage.textContent = '🛒 Tu carrito está vacío. Por favor, añade productos para continuar.';
+        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos al carrito. 0</p>';
+        emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2';
         emptyCartMessage.style.display = 'block'; // Mostrar mensaje
         
         // Ocultar secciones de envío y pago
