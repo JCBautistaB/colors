@@ -615,7 +615,7 @@ function removeFromCart(name, price, weight) {
         cartCount = 0;
         shippingCost = 0;
         document.getElementById('cartCount').textContent = '0';
-        document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos para continuar. 0</p>';
+        document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Últimas unidades disponibles!</p>';
         document.getElementById("total").textContent = "0.00";
         document.getElementById("totalWeight").textContent = "0.00";
         document.getElementById("finalTotal").textContent = "0.00";
@@ -626,15 +626,15 @@ function removeFromCart(name, price, weight) {
 		
         //2 Forma
         // Actualizar el mensaje del carrito vacío INMEDIATAMENTE
-        document.getElementById('emptyCartMessage').textContent = '🛒 Por favor, añade productos para continuar. 2';
+        document.getElementById('emptyCartMessage').textContent = '🛒 Por favor, añade productos para continuar. 2.1';
         document.getElementById('emptyCartMessage').style.display = 'block';
         //3 Registro
         // Actualizar el mensaje de registro de compra INMEDIATAMENTE
-        document.getElementById('cartStatusMessage').textContent = '🛒 Por favor, añade productos para continuar. 3';
+        document.getElementById('cartStatusMessage').textContent = '🛒 Por favor, añade productos para continuar. 3.1';
         document.getElementById('cartStatusMessage').style.color = 'gray';		
 		//1 Envío
         let pesoMensaje = document.getElementById('pesoMensaje');
-        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1';
+        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1.1';
         return;
         
     }
@@ -655,7 +655,7 @@ function updateCart() {
 	// Actualizar el mensaje según el estado del carrito
     const cartStatusMessage = document.getElementById('cartStatusMessage');
     if (cart.length === 0) {
-        cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3';
+        cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3.0';
         cartStatusMessage.style.color = 'gray';
     } else {
         // Establece el mensaje
@@ -688,14 +688,17 @@ cartStatusMessage.innerHTML = '<form id="shippingForm"> \
 
     // Mostrar mensaje si el carrito está vacío
     if (cart.length === 0) {
-        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío. Por favor, añade productos. 0</p>';
-        emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2';
+        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Stock limitado y alta demanda! <br/>Asegura tu producto ahora antes de que se agote.</p>';
+		//2 Forma
+        emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2.0';
         emptyCartMessage.style.display = 'block'; // Mostrar mensaje
+		//1 Envío
+
+        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1.0';
         
         // Ocultar secciones de envío y pago
         document.getElementById('shippingInfo').style.display = 'none';
         document.getElementById('paymentInfo').style.display = 'none';
-        document.getElementById('pesoMensaje').style.display = 'none';
         
         // Restablecer valores
         cartCount = 0;
