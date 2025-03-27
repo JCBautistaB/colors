@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Correo Automático</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        emailjs.init('QuetzalArte'); // Sustituye TU_USER_ID con el ID proporcionado por EmailJS
+
+        // Función para enviar el correo
+        function enviarCorreo() {
+            const parametros = {
+                nombre: "Nombre del remitente",
+                email: "contacto.quetzalarte@gmail.com",
+                mensaje: "Este es un mensaje de prueba enviado desde GitHub utilizando EmailJS."
+            };
+
+            emailjs.send('service_6aq4az5', 'template_s4vn4pr', parametros)
+                .then(function(response) {
+                    console.log('Correo enviado con éxito:', response.status, response.text);
+                }, function(error) {
+                    console.log('Error al enviar el correo:', error);
+                });
+        }
+
+        // Llamar a la función al cargar la página
+        window.onload = enviarCorreo;
+    </script>
+</head>
+<body>
+    <h1>Enviar Correo Automático</h1>
+    <p>Esta página enviará un correo automáticamente al cargarse.</p>
+</body>
+</html>
