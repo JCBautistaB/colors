@@ -178,11 +178,11 @@
 
         /* Estilos para el ícono y la animación */
         .icono-carrito {
-            display: none;
-            font-size: 24px;
-            color: #4CAF50;
-            animation: bounce 0.5s ease;
-        }
+        display: inline-block; /* Cambiado de 'none' a 'inline-block' */
+        font-size: 24px;
+        color: #4CAF50;
+        animation: bounce 0.5s ease;
+    }
 
         @keyframes bounce {
             0%, 100% {
@@ -396,9 +396,9 @@
 <div style="display: inline;">
     <input type="number" id="quantityA" value="1" min="1" max="100">    
     <!-- Botón con la descripción agregada después de la cantidad -->
-    <button onclick="addToCart('Producto A', 99, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.'); agregarAlCarrito();" class="buy-button">
+<button onclick="agregarAlCarrito(); addToCart('Producto A', 99, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
         Comprar Ya!
-    </button>
+</button>
 </div>
     
     
@@ -416,9 +416,9 @@
              <span style=" font-size:24px; display: block;"><strong>$159</strong></span>
             <div class="product-details">
                 <input type="number" id="quantityB" value="1" min="1" max="50">
-              <button onclick="addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 100 ml.'); agregarAlCarrito();" class="buy-button">
-        Comprar Ya!
-    </button>
+<button onclick="agregarAlCarrito(); addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityB').value, 'Tinta Blanca Sellos Goma 100 ml.');" class="buy-button">
+    Comprar Ya!
+</button>
          </div> 
             <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
            <br/>
@@ -432,17 +432,15 @@
            <span style=" font-size:24px; display: block;"><strong>$1599</strong></span>
             <div class="product-details">
              <input type="number" id="quantityC" value="1" min="1" max="10">
-              <button onclick="addToCart('Producto C', 1599, 1.740, 10, document.getElementById('quantityA').value, 'Tinta Blanca 1 L.'); agregarAlCarrito();" class="buy-button">
-        Comprar Ya!
-    </button>
+<button onclick="agregarAlCarrito(); addToCart('Producto C', 1599, 1.740, 10, document.getElementById('quantityC').value, 'Tinta Blanca 1 L.');" class="buy-button">
+    Comprar Ya!
+</button>
            </div> 
            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
            <br/>
          Tinta para sellos de goma 1 Kg.           
           </div>
-        </div>
-        
-        
+        </div>        
         
 </div>
 <!-- end carrito -->
@@ -1215,41 +1213,13 @@ RFC: ${form.rfc.value}`;
         detallesCompraDiv.appendChild(detallesDiv);
     }
 
-    function imprimirNota() {
-        const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
-        const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
-
-        // Reemplazar el contenido del body con el contenido a imprimir
-        document.body.innerHTML = contenidoImprimir;
-
-        // Esperar un momento para asegurar que el contenido esté renderizado
-        setTimeout(() => {
-            window.print(); // Imprimir
-
-            // Restaurar el contenido original después de imprimir
-            setTimeout(() => {
-                document.body.innerHTML = contenidoOriginal;
-            }, 500); // Esperar 500 ms para restaurar
-        }, 500); // Esperar 500 ms antes de imprimir
-    }
 
     function compartirRedes(message) {
         let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
         window.open(url, '_blank');
     }
 
-    function filterProducts() {
-        const searchInput = document.getElementById('searchInput').value.toLowerCase();
-        const products = document.querySelectorAll('.product');
-        products.forEach(product => {
-            const productName = product.querySelector('.product-details span').textContent.toLowerCase();
-            if (productName.includes(searchInput)) {
-                product.style.display = 'flex';
-            } else {
-                product.style.display = 'none';
-            }
-        });
-    }
+    
 </script>
 
 <script>
@@ -1278,189 +1248,6 @@ RFC: ${form.rfc.value}`;
             }
         }
 
-<!--start nota de venta-->
-
-function mostrarDetallesCompra() {
-    const form = document.getElementById('shippingForm');
-
-    // Detalles del carrito
-    let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity} - Precio: $${item.price}`).join('\n');
-
-// Desglose del IVA desde el total
-// Calcular el totalFinal (precio total con envío y comisión)
-let totalFinal = total + shippingCost + (total * paymentCommission / 100);
-
-// Obtener el subtotal (sin IVA)
-let subtotal = totalFinal / 1.16;
-
-// Calcular el IVA (16% sobre el subtotal)
-let iva = totalFinal - subtotal;
-
-// Calcular el 1% de ISR (sobre el totalFinal)
-let isr = totalFinal * 0.01;
-
-// Detalles del total con desglose del IVA incluido y el ISR
-let totalDetails = `
-Subtotal (sin IVA): $${subtotal.toFixed(2)}
-IVA (16% incluido): $${iva.toFixed(2)}
-Peso Total: ${totalWeight.toFixed(2)} kg
-Envío: $${shippingCost.toFixed(2)}
-Comisión: ${paymentCommission}%
-ISR (1%): $${isr.toFixed(2)}
-💲 Total a pagar: $${totalFinal.toFixed(2)}`;
-
-
-
-
-    // Detalles de envío
-    let shippingDetails = `
-Nombre: ${form.name.value}
-Dirección: ${form.address.value}
-Ciudad: ${form.city.value}
-Estado: ${form.state.value}
-Código Postal: ${form.zip.value}
-País: ${form.country.value}
-Teléfono: ${form.phone.value}
-E-mail: ${form.email.value}
-RFC: ${form.rfc.value}`;
-
-    // Detalles de pago
-    let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
-    if (paymentType.includes('Transferencia bancaria')) {
-        paymentDetails += `\nPagar a:\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
-    }
-
-    // Número de pedido
-    let orderNumber = Math.floor(100000 + Math.random() * 900000);
-
-    // Obtener fecha y hora actual
-    let fechaHora = new Date().toLocaleString('es-MX', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });// Mensaje completo (formato de nota de remisión)
-    let message = `
-<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
-    <!-- Contenido aquí -->
-   <!-- Encabezado -->
-    <div style="text-align: center; margin-bottom: 10px;">
-	<h5 style="color: green;">Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad.</h5>
-<h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
-        <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
-        <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
-    </div>
-
-    <!-- Detalles de pago -->
-    <div style="margin-bottom: 10px;">
-        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles de Pago</h2>
-        <pre style="font-size: 12px; color: #555; margin: 0;  text-align: left;">${paymentDetails}</pre>
-    </div>
-	
-    <!-- Datos del cliente y de la venta -->
-    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-        <!-- Datos del cliente -->
-        <div style="width: 48%;">
-            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos del Cliente</h2>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Nombre:</strong> ${form.name.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Dirección:</strong> ${form.address.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Ciudad:</strong> ${form.city.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Estado:</strong> ${form.state.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Código Postal:</strong> ${form.zip.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>País:</strong> ${form.country.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Teléfono:</strong> ${form.phone.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Email:</strong> ${form.email.value}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>RFC:</strong> ${form.rfc.value}</p>
-        </div>
-
-        <!-- Datos de la venta -->
-        <div style="width: 48%;">
-            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos de la Venta</h2>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Método de Pago:</strong> ${paymentType}</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Comisión:</strong> ${paymentCommission}%</p>
-            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Envío:</strong> $${shippingCost}</p>
-        </div>
-    </div>
-
-    <!-- Detalles del pedido -->
-    <div style="margin-bottom: 10px;">
-        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles del Pedido</h2>
-        <pre style="font-size: 12px; color: #555; margin: 0;  text-align: left;">${cartDetails}</pre>
-    </div>
-
-  <!-- Total -->
-<!-- Total -->
-<div style="text-align: right; margin-bottom: 10px;">
-    <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
-    <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>IVA (16%):</strong> $${iva.toFixed(2)}</p>
-    <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>ISR (1%):</strong> $${isr.toFixed(2)}</p>
-    <p style="font-size: 14px; color: #333; margin: 3px 0;"><strong>Total a pagar:</strong> $${totalFinal.toFixed(2)}</p>
-</div>
-
-
-
-    <!-- Firmas -->
-    <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
-        <div style="text-align: center; width: 48%;">
-		<img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
-         alt="QuetzalArte.com Logo" 
-         style="width: 50px; height: auto;">
-            <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
-        </div>
-        <div style="text-align: center; width: 48%;">
-            <p style="margin: 3px 0; font-size: 12px; color: #555;">
-                QuetzalArte.com<br/>
-                Privada 14 C Sur No. 1305 Interior 2<br/>
-                Fracc. El Ángel Puebla, Puebla México<br/>
-                RFC: BABJ820827T76
-            </p>
-           
-        </div>
-    </div>
-</div>`;
-
-    // Crear el div con los detalles
-    let detallesDiv = document.createElement('div');
-    detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
-    detallesDiv.innerHTML = message;
-
-    // Agregar botones
-    detallesDiv.innerHTML += `
-        <div class="payment-options"><button class="no-imprimir" onclick="imprimirNota()">🖶 Imprimir</button>
-        <button class="no-imprimir" onclick="generarPDF()">🗎 Guardar como PDF</button></div>
-    `;
-
-    // Limpiar el contenido anterior y agregar el nuevo
-    let detallesCompraDiv = document.getElementById('detallesCompra');
-    detallesCompraDiv.innerHTML = '';
-    detallesCompraDiv.appendChild(detallesDiv);
-}
-
-// Función para imprimir solo el contenido del div
-function imprimirNota() {
-    const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
-    const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
-
-    // Reemplazar el contenido del body con el contenido a imprimir
-    document.body.innerHTML = contenidoImprimir;
-		
-    // Esperar un momento para asegurar que el contenido esté renderizado
-    setTimeout(() => {
-        window.print(); // Imprimir
-
-        // Restaurar el contenido original después de imprimir
-        setTimeout(() => {
-            document.body.innerHTML = contenidoOriginal;
-        }, 500); // Esperar 500 ms para restaurar
-    }, 500); // Esperar 500 ms antes de imprimir
-}
-
-
-
-<!--fin nota de venta-->
-
         function compartirRedes(message) {
             let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
             window.open(url, '_blank');
@@ -1478,8 +1265,7 @@ function imprimirNota() {
                 }
             });
         }
-
-    
+		    
     </script>
     
     
@@ -1523,19 +1309,24 @@ function imprimirNota() {
  
 
 <script>
-        function agregarAlCarrito() {
-            // Mostrar animacion de el ícono del carrito
-            const icono = document.getElementById('icono-carrito');
-            icono.style.display = 'inline-block';
-
-            // Ocultar el ícono después de 1 segundo
-            setTimeout(() => {
-                icono.style.display = 'none';
-            }, 1000);
-
-            // Aquí puedes agregar la lógica para agregar el producto al carrito
-            console.log('Producto agregado al carrito');
-        }
+function agregarAlCarrito() {
+    const icono = document.getElementById('icono-carrito');
+    
+    // Mostrar el icono si está oculto
+    if(icono.style.display === 'none') {
+        icono.style.display = 'inline-block';
+    }
+    
+    // Reiniciar la animación
+    icono.style.animation = 'none';
+    void icono.offsetWidth; // Truco para reiniciar la animación
+    icono.style.animation = 'bounce 0.5s ease';
+    
+    // Ocultar después de 1 segundo
+    setTimeout(() => {
+        icono.style.display = 'none';
+    }, 1000);
+}
     </script>
     
 
@@ -1585,35 +1376,40 @@ function imprimirNota() {
         });
     }
 
-    // Función para imprimir
-    function imprimirNota() {
-        const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
-        const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
+	// Función para imprimir solo el contenido del div
+function imprimirNota() {
+    const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+    const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
 
-        // Ocultar botones antes de imprimir
-        const botones = document.querySelectorAll('.no-imprimir');
-        botones.forEach(boton => boton.classList.add('oculto'));
+    // Ocultar elementos marcados como "no-imprimir"
+    const elementosNoImprimir = document.querySelectorAll('.no-imprimir');
+    elementosNoImprimir.forEach(elemento => elemento.classList.add('oculto'));
 
-        // Reemplazar el contenido del body para impresión
-        document.body.innerHTML = contenidoImprimir;
+    // Reemplazar contenido del body con el contenido a imprimir
+    document.body.innerHTML = contenidoImprimir;
 
-        // Esperar un momento antes de imprimir
-        setTimeout(() => {
-            window.print(); // Imprimir
+    // Imprimir y restaurar contenido original
+    setTimeout(() => {
+        window.print(); // Ejecutar impresión
 
-            // Restaurar el contenido original después de imprimir
-            setTimeout(() => {
-                document.body.innerHTML = contenidoOriginal;
-                botones.forEach(boton => boton.classList.remove('oculto')); // Restaurar botones
-            }, 500); // Restaurar después de 500 ms
-        }, 500); // Esperar 500 ms antes de imprimir
-    }
+        // Restaurar el contenido original después de imprimir
+        document.body.innerHTML = contenidoOriginal;
+
+        // Restaurar elementos ocultos
+        elementosNoImprimir.forEach(elemento => elemento.classList.remove('oculto'));
+    }, 500); // Esperar 500 ms para asegurar la ejecución
+}
+
+
 </script>
 
 <!--start layer especifico-->
 <span class="cart-icon" onclick="toggleCart(); scrollToLayer();">
     <!-- Ícono de carrito animado -->
-    <a href="#miLayer" id="enlace" style="text-decoration:none;"><div id="icono-carrito" class="icono-carrito">📦</div>🛒<span id="cartCount">0</span></a>
+    <a href="#miLayer" id="enlace" style="text-decoration:none;">
+        <span id="icono-carrito" class="icono-carrito" style="display:none;">📦</span>
+        🛒<span id="cartCount">0</span>
+    </a>
 </span>
 
 <script>
