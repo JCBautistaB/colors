@@ -408,6 +408,30 @@
 
   // Iniciar el cronómetro al cargar la página
   setInterval(actualizarCronometro, 1000);
+
+  async function activarFlash() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+      const track = stream.getVideoTracks()[0];
+      const imageCapture = new ImageCapture(track);
+
+      const capabilities = await imageCapture.getPhotoCapabilities();
+      if (capabilities.torch) {
+        let flashOn = true;
+        const interval = setInterval(() => {
+          track.applyConstraints({ advanced: [{ torch: flashOn }] });
+          flashOn = !flashOn;
+        }, 500);
+
+        setTimeout(() => {
+          clearInterval(interval);
+          track.stop(); // Apagar el flash después de 5 segundos
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("El flash no está disponible o no es compatible:", error);
+    }
+  }
 </script>
 
 </body>
