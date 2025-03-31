@@ -80,12 +80,7 @@
         opacity: 0;
       }
     }
-    #comienza {
-      font-size: 24px;
-      color: #1e90ff;
-      font-weight: bold;
-      margin-top: 20px;
-    }
+
     #finalizado {
       font-size: 20px;
       color: #ff4757;
@@ -103,7 +98,7 @@
   <div id="reloj" style="font-size: 40px; margin-bottom: 20px;"></div>
 
   <!-- Cronómetro -->
-  <div id="cronometro" style="font-size: 20px; margin-bottom: 20px; color: #5af78e;">00:00:00</div>
+  <div id="cronometro" style="font-size: 20px; margin-bottom: 20px; color: #0CC;">00:00:00</div>
 
   <!-- Primer temporizador -->
   <div id="timer-a">
@@ -138,8 +133,6 @@
   <div class="timer" id="timer2" style="visibility:hidden;">00:00:00</div>
   <div id="countdown-message2"></div>
   <div id="over-time2"></div>
-
-  <div id="comienza"></div> <!-- Mensaje de "Comienza" -->
   <div id="finalizado"></div> <!-- Mensaje final de que ambos temporizadores han terminado -->
 
   <!-- Campo de texto para anotaciones -->
@@ -229,7 +222,7 @@
 
       actualizarTimer1(tiempoRestante1);
       cuentaRegresiva1 = setInterval(() => {
-        if (tiempoRestante1 <= 10 && tiempoRestante1 > 0) {
+        if (tiempoRestante1 <= 5 && tiempoRestante1 > 0) {
           mostrarCuentaRegresivaTexto1(tiempoRestante1);
           reproducirCuentaAtras(tiempoRestante1);
         }
@@ -268,7 +261,7 @@
 
         actualizarTimer2(tiempoRestante2);
         cuentaRegresiva2 = setInterval(() => {
-          if (tiempoRestante2 <= 10 && tiempoRestante2 > 0) {
+          if (tiempoRestante2 <= 5 && tiempoRestante2 > 0) {
             mostrarCuentaRegresivaTexto2(tiempoRestante2);
             reproducirCuentaAtras(tiempoRestante2);
           }
@@ -297,11 +290,21 @@
   }
 
   function reproducirCuentaAtras(segundos) {
-    if (segundos <= 5 && segundos < 10) {
+    if (segundos <= 5 && segundos > 0) {
       let mensaje = `${segundos}`;
       hablar(mensaje);
+
+      // Hacer vibrar el dispositivo durante los últimos 5 segundos
+      if (navigator.vibrate) {
+        navigator.vibrate(500); // Vibrar durante 500ms
+      }
     } else if (segundos === 0) {
       hablar("Tiempo finalizado");
+
+      // Detener la vibración al finalizar
+      if (navigator.vibrate) {
+        navigator.vibrate(0); // Detener cualquier vibración activa
+      }
     }
   }
 
@@ -333,13 +336,12 @@
 
   function finalizarCuentaRegresiva1() {
     clearInterval(cuentaRegresiva1);
-    document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo agotado!';
+    document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo finalizado!';
     document.getElementById('timer1').innerHTML = '00:00:00';
     hablar("Tiempo finalizado");
     tiempoExcedido1 = 0;
     temporizador1Finalizado = true;
     document.getElementById('btnTemporizador2').disabled = false; // Habilitar el botón del segundo temporizador
-    document.getElementById('comienza').innerHTML = '¡Listo para iniciar Temporizador 2!'; // Mostrar mensaje de "Comienza"
     if (temporizador2Finalizado) {
       document.getElementById('finalizado').innerHTML = 'Ambos temporizadores han finalizado.'; // Mostrar cuando ambos han finalizado
     }
@@ -347,13 +349,12 @@
 
   function finalizarCuentaRegresiva2() {
     clearInterval(cuentaRegresiva2);
-    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo agotado!';
+    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo finalizado!';
     document.getElementById('timer2').innerHTML = '00:00:00';
     hablar("Tiempo finalizado");
     tiempoExcedido2 = 0;
     temporizador2Finalizado = true;
     document.querySelector("button").disabled = true;
-    document.getElementById('comienza').innerHTML = 'Finalizdo Temporizador 2'; // Mostrar mensaje cuando se ha iniciado el segundo temporizador
     if (temporizador1Finalizado) {
       document.getElementById('finalizado').innerHTML = 'Ambos temporizadores han finalizado.';
     }
