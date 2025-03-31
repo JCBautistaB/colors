@@ -95,7 +95,7 @@
     #finalizado {
       font-size: 20px;
       color: #ffffff;
-      margin-top: 20px;
+      margin-top: 10px;
       font-weight: bold;
       display: none;
       transition: opacity 0.3s ease;
@@ -249,6 +249,9 @@
     document.getElementById('countdown-message1').innerHTML = '';
     document.getElementById('over-time1').innerHTML = '';
 
+    // Ocultar el mensaje de tiempo finalizado del temporizador 2
+    document.getElementById('countdown-message2').innerHTML = '';
+
     const horas = parseInt(document.getElementById('hours1').value) || 0;
     const minutos = parseInt(document.getElementById('minutes1').value) || 0;
     const segundos = parseInt(document.getElementById('seconds1').value) || 0;
@@ -282,6 +285,9 @@
     document.getElementById('countdown-message2').innerHTML = '';
     document.getElementById('over-time2').innerHTML = '';
 
+    // Ocultar el mensaje de tiempo finalizado del temporizador 1
+    document.getElementById('countdown-message1').innerHTML = '';
+
     const horas = parseInt(document.getElementById('hours2').value) || 0;
     const minutos = parseInt(document.getElementById('minutes2').value) || 0;
     const segundos = parseInt(document.getElementById('seconds2').value) || 0;
@@ -312,7 +318,7 @@
   // Función para finalizar el temporizador 1
   function finalizarCuentaRegresiva1() {
   clearInterval(cuentaRegresiva1);
-  document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo finalizado!';
+  document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo finalizado 1!';
   hablar("Tiempo finalizado");
   temporizador1Finalizado = true;
 
@@ -330,7 +336,7 @@
   // Función para finalizar el temporizador 2
   function finalizarCuentaRegresiva2() {
     clearInterval(cuentaRegresiva2);
-    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo finalizado!';
+    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo finalizado 2!';
     hablar("Tiempo finalizado");
     temporizador2Finalizado = true;
 
