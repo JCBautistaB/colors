@@ -27,6 +27,8 @@
     h1 {
       margin-top: 0;
       font-size: 24px;
+      cursor: pointer;
+      color: gray;
     }
     .timer {
       font-size: 48px;
@@ -34,15 +36,23 @@
       margin: 20px 0;
       color: #5af78e;
     }
-    #countdown-message {
-      font-size: 48px;
-      font-weight: bold;
-      color: #ff5e00;
-      margin-top: 10px;
-      text-shadow: 0 0 10px rgba(255, 94, 0, 0.8), 0 0 20px rgba(255, 94, 0, 0.8);
-      animation: blink 1s step-start 0s infinite;
-    }
-    #over-time {
+    .countdown-message {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff5e00;
+  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(255, 94, 0, 0.8), 0 0 20px rgba(255, 94, 0, 0.8);
+  /* Eliminamos la animación */
+  /* animation: blink 1s step-start 0s infinite; */
+}
+
+/* Elimina la animación blink si no se usa en otro lugar */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+    .over-time {
       font-size: 20px;
       color: #ff4757;
       margin-top: 10px;
@@ -66,147 +76,178 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
     }
     button:hover {
       background: linear-gradient(45deg, #00bcd4, #4caf50);
+      transform: scale(1.05);
     }
     button:disabled {
       background: #6c757d;
       cursor: not-allowed;
+      transform: none;
     }
     @keyframes blink {
       50% {
         opacity: 0;
       }
     }
-
     #finalizado {
       font-size: 20px;
-      color: #ff4757;
+      color: #ffffff;
       margin-top: 20px;
       font-weight: bold;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+    .timer-container {
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .timer-header {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #5af78e;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .active-header {
+      font-size: 20px;
+      color: #ff5e00;
+    }
+    .hidden {
+      display: none;
+    }
+    #reloj {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    #cronometro {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #0CC;
+    }
+    textarea {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #44475a;
+      color: #fff;
+      border: none;
+      resize: vertical;
+      min-height: 80px;
+    }
+    .separator {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #5af78e, transparent);
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1 onclick="location.reload()" style="cursor: pointer; color: gray;">Cuenta Regresiva</h1>
+  <h1 onclick="location.reload()">Cuenta Regresiva</h1>
 
   <!-- Reloj en tiempo real -->
-  <div id="reloj" style="font-size: 40px; margin-bottom: 20px;"></div>
+  <div id="reloj">00:00:00</div>
 
   <!-- Cronómetro -->
-  <div id="cronometro" style="font-size: 20px; margin-bottom: 20px; color: #0CC;">00:00:00</div>
+  <div id="cronometro">00:00:00</div>
 
-  <!-- Primer temporizador -->
-  <div id="timer-a">
-    <label for="hours1"></label>
-    <input type="number" id="hours1" min="0" value="0">
-    <label for="minutes1">|</label>
-    <input type="number" id="minutes1" min="0" value="0">
-    <label for="seconds1">|</label>
-    <input type="number" id="seconds1" min="0" value="10">
+  <div class="separator"></div>
+
+  <!-- Contenedor del Temporizador 1 -->
+  <div id="timer1-container" class="timer-container">
+    <div class="timer-header" id="timer1-header">Temporizador 1</div>
+    
+    <!-- Controles del temporizador 1 -->
+    <div id="timer-a">
+      <input type="number" id="hours1" min="0" value="0" placeholder="H">
+      <span>:</span>
+      <input type="number" id="minutes1" min="0" value="0" placeholder="M">
+      <span>:</span>
+      <input type="number" id="seconds1" min="0" value="10" placeholder="S">
+    </div>
+
+    <button onclick="iniciarCuentaRegresiva1()" id="btnTemporizador1">Iniciar Temporizador 1</button>
+
+    <div class="timer" id="timer1-display" style="visibility:hidden;">00:00:00</div>
+    <div class="countdown-message" id="countdown-message1"></div>
+    <div class="over-time" id="over-time1"></div>
   </div>
 
-  <button onclick="iniciarCuentaRegresiva1()" id="btnTemporizador1">Iniciar Temporizador 1</button>
+  <div class="separator"></div>
 
-  <div class="timer" id="timer1" style="visibility:hidden;">00:00:00</div>
-  <div id="countdown-message1"></div>
-  <div id="over-time1"></div>
+  <!-- Contenedor del Temporizador 2 -->
+  <div id="timer2-container" class="timer-container">
+    <div class="timer-header" id="timer2-header">Temporizador 2</div>
+    
+    <!-- Controles del temporizador 2 -->
+    <div id="timer-b">
+      <input type="number" id="hours2" min="0" value="0" placeholder="H">
+      <span>:</span>
+      <input type="number" id="minutes2" min="0" value="0" placeholder="M">
+      <span>:</span>
+      <input type="number" id="seconds2" min="0" value="10" placeholder="S">
+    </div>
 
-  <br><br>
+    <button onclick="iniciarCuentaRegresiva2()" id="btnTemporizador2">Iniciar Temporizador 2</button>
 
-  <!-- Segundo temporizador -->
-  <div id="timer-b">
-    <label for="hours2"></label>
-    <input type="number" id="hours2" min="0" value="0">
-    <label for="minutes2">|</label>
-    <input type="number" id="minutes2" min="0" value="0">
-    <label for="seconds2">|</label>
-    <input type="number" id="seconds2" min="0" value="15">
+    <div class="timer" id="timer2-display" style="visibility:hidden;">00:00:00</div>
+    <div class="countdown-message" id="countdown-message2"></div>
+    <div class="over-time" id="over-time2"></div>
   </div>
 
-  <button onclick="iniciarCuentaRegresiva2()" id="btnTemporizador2" disabled>Iniciar Temporizador 2</button>
-
-  <div class="timer" id="timer2" style="visibility:hidden;">00:00:00</div>
-  <div id="countdown-message2"></div>
-  <div id="over-time2"></div>
-  <div id="finalizado"></div> <!-- Mensaje final de que ambos temporizadores han terminado -->
+  <div id="finalizado"></div>
 
   <!-- Campo de texto para anotaciones -->
-  <textarea id="anotaciones" placeholder="Escribe tus anotaciones aquí..." rows="4" style="width: 100%; margin-top: 10px;"></textarea>
-  <button onclick="guardarAnotaciones()" style="margin-top: 10px;">Guardar Anotaciones</button>
+  <textarea id="anotaciones" placeholder="Escribe tus anotaciones aquí..."></textarea>
+  <button onclick="guardarAnotaciones()">Guardar Anotaciones</button>
 </div>
 
 <script>
+  // Variables globales
   let tiempoRestante1 = 0;
   let cuentaRegresiva1;
+  let temporizador1Finalizado = false;
   let tiempoRestante2 = 0;
   let cuentaRegresiva2;
-  let tiempoExcedido1 = 0;
-  let cuentaExcedida1;
-  let tiempoExcedido2 = 0;
-  let cuentaExcedida2;
-  let temporizador1Finalizado = false;
   let temporizador2Finalizado = false;
+  let segundosCronometro = 0;
 
-  // Guardar valores de los campos del temporizador en localStorage
-  function guardarValoresTemporizador() {
-    const horas1 = document.getElementById('hours1').value;
-    const minutos1 = document.getElementById('minutes1').value;
-    const segundos1 = document.getElementById('seconds1').value;
-
-    const horas2 = document.getElementById('hours2').value;
-    const minutos2 = document.getElementById('minutes2').value;
-    const segundos2 = document.getElementById('seconds2').value;
-
-    localStorage.setItem('temporizador1', JSON.stringify({ horas: horas1, minutos: minutos1, segundos: segundos1 }));
-    localStorage.setItem('temporizador2', JSON.stringify({ horas: horas2, minutos: minutos2, segundos: segundos2 }));
+  // Función para activar visualmente el temporizador 1
+  function activarTemporizador1() {
+    document.getElementById('finalizado').style.display = 'none';
+    document.getElementById('timer1-container').style.display = 'block';
+    document.getElementById('timer2-container').style.display = 'none';
+    document.getElementById('timer1-header').classList.add('active-header');
+    document.getElementById('timer2-header').classList.remove('active-header');
   }
 
-  // Restaurar valores de los campos del temporizador desde localStorage
-  function restaurarValoresTemporizador() {
-    const temporizador1 = JSON.parse(localStorage.getItem('temporizador1'));
-    const temporizador2 = JSON.parse(localStorage.getItem('temporizador2'));
-
-    if (temporizador1) {
-      document.getElementById('hours1').value = temporizador1.horas || 0;
-      document.getElementById('minutes1').value = temporizador1.minutos || 0;
-      document.getElementById('seconds1').value = temporizador1.segundos || 0;
-    }
-
-    if (temporizador2) {
-      document.getElementById('hours2').value = temporizador2.horas || 0;
-      document.getElementById('minutes2').value = temporizador2.minutos || 0;
-      document.getElementById('seconds2').value = temporizador2.segundos || 0;
-    }
+  // Función para activar visualmente el temporizador 2
+  function activarTemporizador2() {
+    document.getElementById('finalizado').style.display = 'none';
+    document.getElementById('timer2-container').style.display = 'block';
+    document.getElementById('timer1-container').style.display = 'none';
+    document.getElementById('timer2-header').classList.add('active-header');
+    document.getElementById('timer1-header').classList.remove('active-header');
   }
 
-  // Llamar a guardarValoresTemporizador cada vez que se cambie un valor en los campos
-  document.addEventListener('DOMContentLoaded', () => {
-    restaurarValoresTemporizador();
+  // Función para resetear la visualización
+  function resetearVisualizacion() {
+    document.getElementById('timer1-container').style.display = 'block';
+    document.getElementById('timer2-container').style.display = 'block';
+    document.getElementById('timer1-header').classList.remove('active-header');
+    document.getElementById('timer2-header').classList.remove('active-header');
+  }
 
-    document.getElementById('hours1').addEventListener('input', guardarValoresTemporizador);
-    document.getElementById('minutes1').addEventListener('input', guardarValoresTemporizador);
-    document.getElementById('seconds1').addEventListener('input', guardarValoresTemporizador);
-
-    document.getElementById('hours2').addEventListener('input', guardarValoresTemporizador);
-    document.getElementById('minutes2').addEventListener('input', guardarValoresTemporizador);
-    document.getElementById('seconds2').addEventListener('input', guardarValoresTemporizador);
-  });
-
+  // Función para iniciar el temporizador 1
   function iniciarCuentaRegresiva1() {
-    if (temporizador1Finalizado) {
-      alert("El temporizador 1 ya ha finalizado.");
-      return;
-    }
-
     clearInterval(cuentaRegresiva1);
-    clearInterval(cuentaExcedida1);
-    document.getElementById('over-time1').innerHTML = '';
     document.getElementById('countdown-message1').innerHTML = '';
+    document.getElementById('over-time1').innerHTML = '';
 
     const horas = parseInt(document.getElementById('hours1').value) || 0;
     const minutos = parseInt(document.getElementById('minutes1').value) || 0;
@@ -215,15 +256,15 @@
     tiempoRestante1 = (horas * 3600) + (minutos * 60) + segundos;
 
     if (tiempoRestante1 > 0) {
-      // Ocultar el contenedor del temporizador-a y el botón, mostrar timer1
+      activarTemporizador1();
       document.getElementById('timer-a').style.display = 'none';
       document.getElementById('btnTemporizador1').style.display = 'none';
-      document.getElementById('timer1').style.visibility = 'visible';
+      document.getElementById('timer1-display').style.visibility = 'visible';
 
       actualizarTimer1(tiempoRestante1);
       cuentaRegresiva1 = setInterval(() => {
         if (tiempoRestante1 <= 5 && tiempoRestante1 > 0) {
-          mostrarCuentaRegresivaTexto1(tiempoRestante1);
+          document.getElementById('countdown-message1').innerHTML = tiempoRestante1;
           reproducirCuentaAtras(tiempoRestante1);
         }
         if (tiempoRestante1 === 0) {
@@ -235,76 +276,102 @@
     }
   }
 
+  // Función para iniciar el temporizador 2
   function iniciarCuentaRegresiva2() {
-    if (temporizador2Finalizado) {
-      alert("El temporizador 2 ya ha finalizado.");
-      return;
+    clearInterval(cuentaRegresiva2);
+    document.getElementById('countdown-message2').innerHTML = '';
+    document.getElementById('over-time2').innerHTML = '';
+
+    const horas = parseInt(document.getElementById('hours2').value) || 0;
+    const minutos = parseInt(document.getElementById('minutes2').value) || 0;
+    const segundos = parseInt(document.getElementById('seconds2').value) || 0;
+
+    tiempoRestante2 = (horas * 3600) + (minutos * 60) + segundos;
+
+    if (tiempoRestante2 > 0) {
+      activarTemporizador2();
+      document.getElementById('timer-b').style.display = 'none';
+      document.getElementById('btnTemporizador2').style.display = 'none';
+      document.getElementById('timer2-display').style.visibility = 'visible';
+
+      actualizarTimer2(tiempoRestante2);
+      cuentaRegresiva2 = setInterval(() => {
+        if (tiempoRestante2 <= 5 && tiempoRestante2 > 0) {
+          document.getElementById('countdown-message2').innerHTML = tiempoRestante2;
+          reproducirCuentaAtras(tiempoRestante2);
+        }
+        if (tiempoRestante2 === 0) {
+          finalizarCuentaRegresiva2();
+        }
+        actualizarTimer2(tiempoRestante2);
+        tiempoRestante2--;
+      }, 1000);
     }
+  }
+
+  // Función para finalizar el temporizador 1
+  function finalizarCuentaRegresiva1() {
+  clearInterval(cuentaRegresiva1);
+  document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo finalizado!';
+  hablar("Tiempo finalizado");
+  temporizador1Finalizado = true;
+
+  document.getElementById('timer-a').style.display = 'block';
+  document.getElementById('btnTemporizador1').style.display = 'inline-block';
+  document.getElementById('timer1-display').style.visibility = 'hidden';
+  
+  resetearVisualizacion();
+
+  // Cambiar el mensaje para que diga "Temporizador 1" en lugar de "Ambos temporizadores han finalizado"
+  document.getElementById('finalizado').style.display = 'block';
+  document.getElementById('finalizado').innerHTML = 'Temporizador 1 ha finalizado.';
+}
+
+  // Función para finalizar el temporizador 2
+  function finalizarCuentaRegresiva2() {
+    clearInterval(cuentaRegresiva2);
+    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo finalizado!';
+    hablar("Tiempo finalizado");
+    temporizador2Finalizado = true;
+
+    document.getElementById('timer-b').style.display = 'block';
+    document.getElementById('btnTemporizador2').style.display = 'inline-block';
+    document.getElementById('timer2-display').style.visibility = 'hidden';
+    
+    resetearVisualizacion();
 
     if (temporizador1Finalizado) {
-      clearInterval(cuentaRegresiva2);
-      clearInterval(cuentaExcedida2);
-      document.getElementById('over-time2').innerHTML = '';
-      document.getElementById('countdown-message2').innerHTML = '';
-
-      const horas = parseInt(document.getElementById('hours2').value) || 0;
-      const minutos = parseInt(document.getElementById('minutes2').value) || 0;
-      const segundos = parseInt(document.getElementById('seconds2').value) || 0;
-
-      tiempoRestante2 = (horas * 3600) + (minutos * 60) + segundos;
-
-      if (tiempoRestante2 > 0) {
-        // Ocultar el contenedor del temporizador-b y el botón, mostrar timer2
-        document.getElementById('timer-b').style.display = 'none';
-        document.getElementById('btnTemporizador2').style.display = 'none';
-        document.getElementById('timer2').style.visibility = 'visible';
-
-        actualizarTimer2(tiempoRestante2);
-        cuentaRegresiva2 = setInterval(() => {
-          if (tiempoRestante2 <= 5 && tiempoRestante2 > 0) {
-            mostrarCuentaRegresivaTexto2(tiempoRestante2);
-            reproducirCuentaAtras(tiempoRestante2);
-          }
-          if (tiempoRestante2 === 0) {
-            finalizarCuentaRegresiva2();
-          }
-          actualizarTimer2(tiempoRestante2);
-          tiempoRestante2--;
-        }, 1000);
-      }
-    } else {
-      alert("Primero termina el Temporizador 1.");
+      document.getElementById('finalizado').style.display = 'block';
+      document.getElementById('finalizado').innerHTML = 'Temporizador 2 ha finalizado.';
     }
   }
 
-  function mostrarCuentaRegresivaTexto1(segundos) {
-    if (segundos <= 10 && segundos > 0) {
-      document.getElementById('countdown-message1').innerHTML = segundos;
-    }
+  // Funciones auxiliares
+  function actualizarTimer1(segundos) {
+    const horas = Math.floor(segundos / 3600);
+    const minutos = Math.floor((segundos % 3600) / 60);
+    const segundosRestantes = segundos % 60;
+    document.getElementById('timer1-display').innerHTML = `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundosRestantes)}`;
   }
 
-  function mostrarCuentaRegresivaTexto2(segundos) {
-    if (segundos <= 10 && segundos > 0) {
-      document.getElementById('countdown-message2').innerHTML = segundos;
-    }
+  function actualizarTimer2(segundos) {
+    const horas = Math.floor(segundos / 3600);
+    const minutos = Math.floor((segundos % 3600) / 60);
+    const segundosRestantes = segundos % 60;
+    document.getElementById('timer2-display').innerHTML = `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundosRestantes)}`;
+  }
+
+  function formatoTiempo(numero) {
+    return numero < 10 ? `0${numero}` : numero;
   }
 
   function reproducirCuentaAtras(segundos) {
     if (segundos <= 5 && segundos > 0) {
-      let mensaje = `${segundos}`;
-      hablar(mensaje);
-
-      // Hacer vibrar el dispositivo durante los últimos 5 segundos
-      if (navigator.vibrate) {
-        navigator.vibrate(500); // Vibrar durante 500ms
-      }
+      hablar(segundos.toString());
+      if (navigator.vibrate) navigator.vibrate(500);
     } else if (segundos === 0) {
       hablar("Tiempo finalizado");
-
-      // Detener la vibración al finalizar
-      if (navigator.vibrate) {
-        navigator.vibrate(0); // Detener cualquier vibración activa
-      }
+      if (navigator.vibrate) navigator.vibrate(0);
     }
   }
 
@@ -314,125 +381,79 @@
     speechSynthesis.speak(mensaje);
   }
 
-  function actualizarTimer1(segundos) {
-    const horas = Math.floor(segundos / 3600);
-    const minutos = Math.floor((segundos % 3600) / 60);
-    const segundosRestantes = segundos % 60;
-    document.getElementById('timer1').innerHTML =
-      `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundosRestantes)}`;
-  }
-
-  function actualizarTimer2(segundos) {
-    const horas = Math.floor(segundos / 3600);
-    const minutos = Math.floor((segundos % 3600) / 60);
-    const segundosRestantes = segundos % 60;
-    document.getElementById('timer2').innerHTML =
-      `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundosRestantes)}`;
-  }
-
-  function formatoTiempo(numero) {
-    return numero < 10 ? `0${numero}` : numero;
-  }
-
-  function finalizarCuentaRegresiva1() {
-    clearInterval(cuentaRegresiva1);
-    document.getElementById('countdown-message1').innerHTML = '⏰ ¡Tiempo finalizado!';
-    document.getElementById('timer1').innerHTML = '00:00:00';
-    hablar("Tiempo finalizado");
-    tiempoExcedido1 = 0;
-    temporizador1Finalizado = true;
-    document.getElementById('btnTemporizador2').disabled = false; // Habilitar el botón del segundo temporizador
-    if (temporizador2Finalizado) {
-      document.getElementById('finalizado').innerHTML = 'Tiempos Finalizados'; // Mostrar cuando ambos han finalizado
-    }
-  }
-
-  function finalizarCuentaRegresiva2() {
-    clearInterval(cuentaRegresiva2);
-    document.getElementById('countdown-message2').innerHTML = '⏰ ¡Tiempo finalizado!';
-    document.getElementById('timer2').innerHTML = '00:00:00';
-    hablar("Tiempo finalizado");
-    tiempoExcedido2 = 0;
-    temporizador2Finalizado = true;
-    document.querySelector("button").disabled = true;
-    if (temporizador1Finalizado) {
-      document.getElementById('finalizado').innerHTML = 'Tiempos Finalizados';
-    }
-  }
-
-  // Función para guardar las anotaciones en localStorage
-  function guardarAnotaciones() {
-    const anotaciones = document.getElementById('anotaciones').value;
-    localStorage.setItem('anotaciones', anotaciones);
-    alert('Anotaciones guardadas correctamente.');
-  }
-
-  // Cargar las anotaciones guardadas al cargar la página
-  window.onload = function() {
-    const anotacionesGuardadas = localStorage.getItem('anotaciones');
-    if (anotacionesGuardadas) {
-      document.getElementById('anotaciones').value = anotacionesGuardadas;
-    }
-  };
-
-  // Función para actualizar el reloj en tiempo real en formato 12 horas con AM/PM
+  // Funciones para el reloj y cronómetro
   function actualizarReloj() {
     const ahora = new Date();
     let horas = ahora.getHours();
     const minutos = formatoTiempo(ahora.getMinutes());
     const segundos = formatoTiempo(ahora.getSeconds());
     const ampm = horas >= 12 ? 'PM' : 'AM';
-
-    // Convertir a formato de 12 horas
-    horas = horas % 12;
-    horas = horas ? horas : 12; // La hora 0 se convierte en 12
-
+    horas = horas % 12 || 12;
     document.getElementById('reloj').innerHTML = `${horas}:${minutos}:${segundos} ${ampm}`;
   }
-
-  // Llamar a actualizarReloj cada segundo
-  setInterval(actualizarReloj, 1000);
-
-  // Cronómetro
-  let segundosCronometro = 0;
 
   function actualizarCronometro() {
     segundosCronometro++;
     const horas = Math.floor(segundosCronometro / 3600);
     const minutos = Math.floor((segundosCronometro % 3600) / 60);
     const segundos = segundosCronometro % 60;
-
-    document.getElementById('cronometro').innerHTML =
-      `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundos)}`;
+    document.getElementById('cronometro').innerHTML = `${formatoTiempo(horas)}:${formatoTiempo(minutos)}:${formatoTiempo(segundos)}`;
   }
 
-  // Iniciar el cronómetro al cargar la página
-  setInterval(actualizarCronometro, 1000);
+  // Funciones para guardar y cargar datos
+  function guardarValoresTemporizador() {
+    const temporizador1 = {
+      horas: document.getElementById('hours1').value,
+      minutos: document.getElementById('minutes1').value,
+      segundos: document.getElementById('seconds1').value
+    };
+    const temporizador2 = {
+      horas: document.getElementById('hours2').value,
+      minutos: document.getElementById('minutes2').value,
+      segundos: document.getElementById('seconds2').value
+    };
+    localStorage.setItem('temporizador1', JSON.stringify(temporizador1));
+    localStorage.setItem('temporizador2', JSON.stringify(temporizador2));
+  }
 
-  async function activarFlash() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-      const track = stream.getVideoTracks()[0];
-      const imageCapture = new ImageCapture(track);
+  function guardarAnotaciones() {
+    localStorage.setItem('anotaciones', document.getElementById('anotaciones').value);
+    alert('Anotaciones guardadas correctamente.');
+  }
 
-      const capabilities = await imageCapture.getPhotoCapabilities();
-      if (capabilities.torch) {
-        let flashOn = true;
-        const interval = setInterval(() => {
-          track.applyConstraints({ advanced: [{ torch: flashOn }] });
-          flashOn = !flashOn;
-        }, 500);
-
-        setTimeout(() => {
-          clearInterval(interval);
-          track.stop(); // Apagar el flash después de 5 segundos
-        }, 5000);
-      }
-    } catch (error) {
-      console.error("El flash no está disponible o no es compatible:", error);
+  function cargarDatos() {
+    const temp1 = JSON.parse(localStorage.getItem('temporizador1'));
+    const temp2 = JSON.parse(localStorage.getItem('temporizador2'));
+    
+    if (temp1) {
+      document.getElementById('hours1').value = temp1.horas || 0;
+      document.getElementById('minutes1').value = temp1.minutos || 0;
+      document.getElementById('seconds1').value = temp1.segundos || 0;
+    }
+    
+    if (temp2) {
+      document.getElementById('hours2').value = temp2.horas || 0;
+      document.getElementById('minutes2').value = temp2.minutos || 0;
+      document.getElementById('seconds2').value = temp2.segundos || 0;
+    }
+    
+    const anotaciones = localStorage.getItem('anotaciones');
+    if (anotaciones) {
+      document.getElementById('anotaciones').value = anotaciones;
     }
   }
-</script>
 
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    cargarDatos();
+    setInterval(actualizarReloj, 1000);
+    setInterval(actualizarCronometro, 1000);
+    
+    // Guardar automáticamente cuando cambian los valores
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('input', guardarValoresTemporizador);
+    });
+  });
+</script>
 </body>
 </html>
