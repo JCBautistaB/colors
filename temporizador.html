@@ -33,14 +33,12 @@
     .timer {
       font-size: 48px;
       font-weight: bold;
-      margin: 20px 0;
       color: #5af78e;
     }
     .countdown-message {
   font-size: 48px;
   font-weight: bold;
   color: #ff5e00;
-  margin-top: 10px;
   text-shadow: 0 0 10px rgba(255, 94, 0, 0.8), 0 0 20px rgba(255, 94, 0, 0.8);
   /* Eliminamos la animación */
   /* animation: blink 1s step-start 0s infinite; */
@@ -102,11 +100,11 @@
     }
     .timer-container {
       transition: all 0.3s ease;
-      margin-bottom: 20px;
+     
     }
     .timer-header {
       font-size: 18px;
-      margin-bottom: 10px;
+     
       color: #5af78e;
       font-weight: bold;
       transition: all 0.3s ease;
@@ -160,7 +158,7 @@
 
   <!-- Contenedor del Temporizador 1 -->
   <div id="timer1-container" class="timer-container">
-    <div class="timer-header" id="timer1-header">Temporizador 1</div>
+    
     
     <!-- Controles del temporizador 1 -->
     <div id="timer-a">
@@ -171,9 +169,11 @@
       <input type="number" id="seconds1" min="0" value="10" placeholder="S">
     </div>
 
-    <button onclick="iniciarCuentaRegresiva1()" id="btnTemporizador1">Iniciar Temporizador 1</button>
+   <div class="timer-header" id="timer1-header" style="display:inline;">⏰ 1 </div>  <button onclick="iniciarCuentaRegresiva1()" id="btnTemporizador1">Iniciar</button>
 
-    <div class="timer" id="timer1-display" style="visibility:hidden;">00:00:00</div>
+    <div class="timer" id="timer1-display" style="visibility:hidden;">00
+      <input type="number" id="hours2" min="0" value="0" placeholder="H">
+    :00:00</div>
     <div class="countdown-message" id="countdown-message1"></div>
     <div class="over-time" id="over-time1"></div>
   </div>
@@ -182,7 +182,7 @@
 
   <!-- Contenedor del Temporizador 2 -->
   <div id="timer2-container" class="timer-container">
-    <div class="timer-header" id="timer2-header">Temporizador 2</div>
+    
     
     <!-- Controles del temporizador 2 -->
     <div id="timer-b">
@@ -193,7 +193,7 @@
       <input type="number" id="seconds2" min="0" value="10" placeholder="S">
     </div>
 
-    <button onclick="iniciarCuentaRegresiva2()" id="btnTemporizador2">Iniciar Temporizador 2</button>
+    <div class="timer-header" id="timer2-header" style="display:inline;">⏰ 2 </div> <button onclick="iniciarCuentaRegresiva2()" id="btnTemporizador2">Iniciar</button>
 
     <div class="timer" id="timer2-display" style="visibility:hidden;">00:00:00</div>
     <div class="countdown-message" id="countdown-message2"></div>
