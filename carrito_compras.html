@@ -7,7 +7,1567 @@
     <meta name="keywords" content="tintas para sellos de goma, cojines para sellos, sellos personalizados, arte y decoración, QuetzalArte, envíos gratis">
     <meta name="author" content="QuetzalArte.com">
     <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="QuetzalArte.com - Tienda de Tintas y Sello<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte.com Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="keywords" content="tintas para sellos de goma, cojines para sellos, sellos personalizados, arte y decoración, QuetzalArte, envíos gratis">
+    <meta name="author" content="QuetzalArte.com">
+    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta property="og:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <meta property="og:url" content="https://www.quetzalarte.com">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta name="twitter:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
+    <title>QuetzalArte.com Tienda</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
+        .products { display: flex; flex-wrap: wrap; gap: 20px; padding:5px; }
+        .product { margin-bottom: 20px; display: inline;
+            position: relative;
+            text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(33.333% - 20px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
+        .product:hover { transform: translateY(-5px); }
+        .product img { width: 50%;  margin: 1px; border-radius: 10px; }
+        .product-details { padding-top:5px;}
+        /* Estilo base del carrito */
+.cart {
+    position: fixed;
+    top: 0;
+    right: -90%; /* Inicialmente oculto a la derecha */
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out; /* Animación suave */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
+    display: none; /* Ocultar inicialmente */
+	padding:5px;
+}
+
+/* Clase para mostrar el carrito */
+.cart.open {
+    right: 0; /* Muestra el carrito deslizándolo hacia la izquierda */
+    display: block; /* Mostrar el carrito */
+}
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .cart-item button { margin-left: 10px; }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  z-index: 1000; /* Asegura que esté siempre encima */}
+        #cartCount { font-weight: bold; color: red; }
+        input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
+		
+        .shipping-info, .payment-info {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black; /* Color de texto resaltado (tomate rojo) */
+    background-color: white; /* Fondo amarillo */
+    padding: 5px; /* Espaciado alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 2px solid #0CC; /* Borde con color de texto */
+	text-align:center;
+}
+
+        .invalid { border: 2px solid red; }
+        .search-bar { padding-left:20px; float:right; padding-top:5px; display:inline;}
+        .section { margin-bottom: 20px; }
+        .section h2 { margin-bottom: 10px; }
+        .section div { display: none flex-wrap: wrap; gap: 10px; }
+        .section div p { flex: 1 1 calc(50% - 20px); margin: 0; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+        .section div p:hover { transform: translateY(-5px); }
+        .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px;  }
+		
+       .shipping-options button, .payment-options button {
+    flex: 1 1 calc(33.333% - 10px);
+    padding: 10px;
+    border: 2px solid #0CC; /* Especifica el tipo de borde */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #0CC;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: white;
+	font-weight: bold; /* Aplica negrita al texto */
+}
+
+.shipping-options button:hover, .payment-options button:hover {
+    transform: translateY(-5px);
+    background-color: white;
+    color: #0CC;
+}
+
+/* Al hacer clic, el botón crece */
+.shipping-options button:active, .payment-options button:active {
+    transform: scale(1.1); /* Hace que el botón crezca un 10% */
+}
+
+		
+        .bank-transfer-details { display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .weight-category { margin-top: 10px; font-size: 16px; color:gray; }
+        .weight-btn { visibility:visible;}
+
+        @media (max-width: 768px) {
+            .product { width: calc(50% - 20px); }
+            .search-bar { float: none; margin-bottom: 10px; display:inline; }
+            .section div p { flex: 1 1 100%; }
+
+            .shipping-options button, .payment-options button { flex: 1 1 calc(50% - 10px); }
+        }
+
+        @media (max-width: 480px) {
+            .product { width: 100%; }
+            .search-bar { float: none; margin-bottom: 10px; display: inline;}
+            .section div p { flex: 1 1 100%; }
+            .shipping-options button, .payment-options button { flex: 1 1 100%; }
+        }
+    .search-bar1 {margin-bottom: 20px; float: right; }
+.search-bar1 {float: none; margin-bottom: 10px; }
+.search-bar1 {            float: none; 
+            margin-bottom: 10px; 
+}
+
+ .buy-button {
+            background-color: transparent; /* Minimalist design */
+            color: #0CC; /* Blue text */
+            border: 2px solid #0CC; /* Blue border */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background-color: #0CC; /* Light blue background on hover */
+            transform: scale(1.05);
+			color:white;
+        }
+
+        .buy-button:active {
+            border-color: #0CC; /* Green border when pressed */
+            transform: scale(1);
+			background-color:white;
+			color:#0CC;
+			transform: scale(2);
+        }
+		.stock{
+			position:absolute;
+            top: 20px;
+            right: 20px;
+            color: gray;
+            font-size: 14px;
+			}
+			
+			 /* Estilos para el botón */
+        .comprar-btn {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comprar-btn:hover {
+            background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+        }
+
+        /* Estilos para el ícono y la animación */
+        .icono-carrito {
+        display: inline-block; /* Cambiado de 'none' a 'inline-block' */
+        font-size: 24px;
+        color: #4CAF50;
+        animation: bounce 0.5s ease;
+    }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+		
+		 .whatsapp-button {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	background-color: #0CC;
+	border-radius: 0%;
+	padding: 10px;
+	z-index: 1000; /* Asegura que siempre esté por encima */
+	width:100%;
+    }
+	
+	.footer-sections {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .footer-sections > div {
+    padding-right: 5px;
+    flex: 1;
+    min-width: 300px;
+  }
+  @media (max-width: 600px) {
+    .footer-sections {
+      flex-direction: column;
+    }
+    .footer-sections > div {
+      margin-bottom: 20px;
+    }
+  }
+      </style>
+     <style>
+        /* Estilos para ocultar elementos al generar PDF o imprimir */
+        .no-imprimir {
+            display: inline; /* Mostrar en la página */
+        }
+
+        .oculto {
+            display: none; /* Ocultar al generar el PDF o imprimir */
+        }
+
+        /* Estilos para la impresión */
+        @media print {
+            body * {
+                visibility: hidden; /* Oculta todo el contenido */
+            }
+
+            #contenido-imprimir, #contenido-imprimir * {
+                visibility: visible; /* Muestra solo el contenido a imprimir */
+            }
+
+            #contenido-imprimir {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .no-imprimir {
+                display: none; /* Oculta los botones al imprimir */
+            }
+        }
+    </style>
+
+    
+</head>
+<body>
+
+
+
+<div  class="whatsapp-button">
+
+    <!--<span>👤 Ingresar</span>-->  
+<div style="display: inline; align-items: center; gap: 10px; text-align:center; padding-left:10px;  margin-left:10px; margin-bottom:0px;">
+<img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+         alt="QuetzalArte Logo" 
+         style="width: 25px; height: auto; filter: brightness(0) invert(1);"> 
+</div>
+
+<span style="color:white;"> QuetzalArte.com
+
+<a href="https://wa.me/2224606907" style="text-decoration: none; color: black; margin-left:10px;">
+        <span><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"></span>
+  </a> 
+    <a href="tel:+522224606907" style="text-decoration: none; color: black;">
+        <span>📱</span>
+    </a>  
+    <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
+        <span>✉️ </span> 
+    </a> 
+    
+    
+
+
+    
+    
+    <div class="search-bar">
+   <input type="text" id="searchInput" placeholder=" 🔎 Buscar productos..." onkeyup="filterProducts()" style="width:130px;">
+  </div>
+  
+  
+</div>
+
+<section id="miLayer"> </section>
+
+<div style="padding:10px; margin-top:90px;">
+  Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
+</div>
+
+
+
+<!-- start carrito -->
+ 
+<div class="cart" id="carrito">
+
+
+    <h3 style="color: #0CC; font-size: 24px; text-align: center; font-weight: bold;">🛒 Carrito de Compras</h3>
+
+    <div id="cartItems" style="font-weight: bold; font-size: 18px; color: #000000; margin-bottom: 20px;"></div>
+
+    <br/>Peso total: <span id="totalWeight" style="font-weight: bold; font-size: 18px; ";>0</span> kg.
+    
+    <h3 style="text-align: right; margin-bottom: 10px; padding-right: 70px; color: #0CC;"> subtotal: <span id="total">0</span></h3>
+    
+    <div id="shippingInfo2" style="display: none;">
+      </div>  
+    <div style=" text-align: right; font-size: 16px; color: blue; padding-right: 70px; font-weight: bold;">envío: $<span id="shippingCostValue2">0</span></div>
+    
+    <!-- Aquí agregamos la categoría de peso -->    
+    <div style="text-align: right; font-size: 16px; color: orangered; padding-right: 70px; font-weight: bold;">1 comisión: $<div id="shippingtype" style="display:inline;">0</div></div>
+     
+    <h2 style="text-align: right; margin-bottom: 10px; padding-right: 70px;">1 Total a pagar: <span style="color: #4CAF50; font-size: 50px; " >$<span id="finalTotal" style="color: #4CAF50;">0</span></span></h2>
+        
+    <hr>
+
+
+
+
+    
+
+
+<h2>1 Envío 🏠 🌐</h2>
+
+<div id="shippingInfo" style="display: none;" class="shipping-info">Selecciona Tipo de Envío</div>
+  <!-- indica categoría de peso-->
+ <div id="pesoMensaje" style="text-align: center;  padding: 10px; color:gray;">
+  <!-- El mensaje se actualizará dinámicamente aquí -->
+</div>  
+
+  
+<!-- Agregar el costo de envío seleccionado aquí -->
+<div id="selectedShippingCost">hi</div>  
+
+<div style="font-size: 16px; color: blue; font-weight: bold;">
+  Envío seleccionado: $</div> 
+  
+  <span id="selectedShippingCostValue">0</span>
+
+
+   <hr>     
+
+    <div class="section">
+        <h2>2 Forma de Pago 💲 💳</h2>
+        <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
+        
+        <div id="emptyCartMessage" style="text-align: center; color: gray; padding: 20px; display: none;">
+    🛒 Tu carrito está vacío.
+</div>
+
+        
+
+<div id="shippingCostDisplay" style="font-size: 16px; color: orangered; font-weight: bold;">
+    Comisión seleccionada: $<span id="shippingCostValue">0</span>
+</div>
+<h3>2 Total a pagar: $<span id="finalTotal2">0</span></h3>
+
+
+
+
+
+        <div id="bankTransferDetails" class="bank-transfer-details">
+            <img src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/images/payments-logos/spei.svg"><br/>
+            <strong>Banco:</strong> STP (Sistema de transferencias y pagos) 
+                <br/> Nombre: Juan Carlos Bautista Bautista 
+                <br/>CLABE: 012650028760776683
+        </div>
+
+  
+
+        
+    </div>
+<hr>
+    
+<div>
+        <h2>3 Registro de Compra 🪪</h2>
+        <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
+            <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
+        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
+        
+        <div id="cartStatusMessage" style="text-align: left; padding: 10px;">
+    <!-- El mensaje del formulario cambiará dinámicamente aquí -->
+</div>
+        
+
+    
+
+</div>
+
+    <div id="detallesCompra"></div>
+
+</div>
+</div>
+
+<h1 style="padding-left:10px;">Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
+   
+    
+    
+<div class="products" id="productList">
+        <div class="product">
+     <div class="stock" > Stock:<span id="stockA">100</span></div>      
+      <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
+      <span style=" font-size:24px; display: block;"><strong>$99</strong></span>
+      
+      
+<div style="display: inline;">
+    <input type="number" id="quantityA" value="1" min="1" max="100">    
+    <!-- Botón con la descripción agregada después de la cantidad -->
+<button onclick="agregarAlCarrito(); addToCart('Producto A', 99, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
+        Comprar Ya!
+</button>
+</div>
+    
+    
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a>
+            
+            </div>
+        </div>     
+        
+        
+        <div class="product">
+         <div class="stock" > Stock:<span id="stockB">50</span></div> 
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto B">
+             <span style=" font-size:24px; display: block;"><strong>$159</strong></span>
+            <div class="product-details">
+                <input type="number" id="quantityB" value="1" min="1" max="50">
+<button onclick="agregarAlCarrito(); addToCart('Producto B', 159, 0.180, 50, document.getElementById('quantityB').value, 'Tinta Blanca Sellos Goma 100 ml.');" class="buy-button">
+    Comprar Ya!
+</button>
+         </div> 
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 100 ml.            
+            </div>
+        </div>
+          
+        <div class="product">
+           <div class="stock" > Stock:<span id="stockC">10</span></div> 
+             <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto C">
+           <span style=" font-size:24px; display: block;"><strong>$1399</strong></span>
+            <div class="product-details">
+             <input type="number" id="quantityC" value="1" min="1" max="10">
+<button onclick="agregarAlCarrito(); addToCart('Producto C', 1399, 1.900, 10, document.getElementById('quantityC').value, 'Tinta Blanca 1 L.');" class="buy-button">
+    Comprar Ya!
+</button>
+           </div> 
+           <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta Blanca o Blanco Mate para Sellos de Goma 1 Litro
+        <br/> 
+        Tintas amigables con el medio ambiente, elaboradas con elementos naturales.           
+          </div>
+        </div>        
+        
+</div>
+<!-- end carrito -->
+
+
+<footer>
+    <div class="footer-sections">
+      <div>
+        <h2>🚀 <strong data-start="72" data-end="97">Envío Rápido y Seguro</strong></h2>
+        <p>Disfruta de envíos rápidos y seguros en todas tus compras.<br data-start="158" data-end="161">
+          📦 <strong data-start="164" data-end="202">Recibe tus productos en 3 a 5 días 😊</strong> <br>
+<br>
+o elige el método que mejor se adapte a ti:<br data-start="246" data-end="249">
+<strong data-start="251" data-end="267">✈️ Envío Exprés</strong> para recibirlo cuanto antes.<br data-start="296" data-end="299">
+🚀 <strong data-start="302" data-end="319">Envío Premium</strong> para máxima prioridad y seguridad.</p>
+      </div>
+      <div>
+        <h2>💳 <strong data-start="368" data-end="391">Paga Como Prefieras</strong></h2>
+        <p data-start="394" data-end="523">Elige tu método de pago favorito con total confianza.<br data-start="447" data-end="450">
+          ✔️ PayPal ✔️ Google Pay ✔️ Mercado Pago<br>
+          ✔️ Bitso Criptomonedas ✔️ Tiendas de Autoservicio<br data-start="493" data-end="496">
+          ✔️ Transferencia Bancaria<br>
+        </p>
+        <p data-start="525" data-end="565">🔒 <strong data-start="528" data-end="565">Tu dinero está siempre protegido.</strong></p>
+        <p>&nbsp;</p>
+      </div>
+      <div>
+        <h2 data-start="572" data-end="604">🛒 <strong data-start="579" data-end="602">Meses Sin Intereses</strong></h2>
+        <p data-start="605" data-end="760">Compra ahora y paga cómodamente.<br data-start="637" data-end="640">
+          💳 <strong data-start="643" data-end="704">Utiliza tu tarjeta favorita y paga a meses sin intereses<br>
+          .</strong><br data-start="704" data-end="707">
+          Haz tus compras, disfruta al máximo.
+           <span>¡Muchas Gracias! </span></p>
+        <h2>&nbsp;</h2>
+      </div>
+    </div>
+    <p>&copy; 2025 QuetzalArte.com. Hecho con Amor &#x2764; Todos los derechos reservados.
+    
+    Ofrecemos servicio de facturación con IVA (México).
+
+Los precios expresados en este catálogo son por pieza o paquete y están sujetos a cambios sin previo aviso.
+
+ <span>Envíos foráneos se realizan al día siguiente después del pago, en días hábiles.
+Envíos a toda la República Mexicana desde $170.00; el costo puede aumentar según el volumen del pedido (envíos económicos, express y premium).
+</span>
+
+La información y/o imágenes aquí contenidas pueden no corresponder con total precisión.
+
+ <span>El cliente puede enviar guías prepagadas para realizar su envío.</span>
+
+Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
+
+<span>Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.</span>
+<a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
+        <span>🚩 Puebla.🇲🇽 México</span>
+    </a>
+    
+  </p>
+</footer>
+</body>
+</html>
+
+
+
+<script>
+    let total = 0;
+    let totalWeight = 0;
+    let cart = [];
+    let cartCount = 0;
+    let shippingCost = 0;
+    let shippingType = 'default';
+    let paymentType = '💰 Selecciona la forma de pago.';
+    let paymentCommission = 0;
+    let paymentIcon = '';
+
+    // Stock original
+    const originalStock = {
+        'Producto A': 100,
+        'Producto B': 50,
+        'Producto C': 10
+    };
+
+    // Stock actualizado según lo que hay en el carrito
+    let stock = { ...originalStock };
+	
+	
+	function toggleWeightButtons(activeButtonId) {
+        // Obtener todos los contenedores de botones de peso
+        const weightButtons = [
+            'weightbtn', 'weight3', 'weight6', 'weight9', 'weight15', 'weight30', 'weight50'
+        ];
+
+        // Ocultar todos los contenedores de botones de peso
+        weightButtons.forEach(buttonId => {
+            const buttonContainer = document.getElementById(buttonId);
+            if (buttonContainer) {
+                buttonContainer.style.display = 'none';
+            }
+        });
+
+        // Mostrar solo el contenedor de botones activo
+        const activeButtonContainer = document.getElementById(activeButtonId);
+        if (activeButtonContainer) {
+            activeButtonContainer.style.display = 'block';
+        }
+    }
+	
+	
+	
+	
+	
+
+    function addToCart(name, price, weight, maxStock, quantity, description) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > stock[name]) {
+            alert("Cantidad inválida, elige una cantidad entre 1 y " + stock[name]);
+            return;
+        }
+
+        let item = cart.find(item => item.name === name);
+
+        if (!item) {
+            cart.push({ name, price, weight, quantity, description });
+            stock[name] -= quantity;
+            total += price * quantity;
+            totalWeight += weight * quantity;
+            cartCount += quantity;
+        } else {
+            if (item.quantity + quantity <= originalStock[name]) {
+                stock[name] -= quantity;
+                item.quantity += quantity;
+                item.description = description;
+                total += price * quantity;
+                totalWeight += weight * quantity;
+                cartCount += quantity;
+            } else {
+                alert("No puedes agregar más de este producto, ya no hay stock suficiente.");
+                return;
+            }
+        }
+
+        // Restablecer el tipo de envío y los valores de costo de envío
+        resetShipping();
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+        updateStockDisplay(name);
+        updateCart();
+    }
+
+    function removeFromCart(name, price, weight) {
+        let itemIndex = cart.findIndex(item => item.name === name);
+        if (itemIndex !== -1) {
+            let item = cart[itemIndex];
+            total -= item.quantity * price;
+            totalWeight -= item.quantity * weight;
+            cartCount -= item.quantity;
+            stock[name] += item.quantity;
+            cart.splice(itemIndex, 1);
+
+            updateStockDisplay(name);
+        }
+
+        // Restablecer el tipo de envío y los valores de costo de envío
+        resetShipping();
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+        // Verificar si el carrito está vacío después de eliminar
+        if (cart.length === 0) {
+            total = 0;
+            totalWeight = 0;
+            cartCount = 0;
+            shippingCost = 0;
+
+            // Actualizar el contenido del carrito vacío
+            document.getElementById('cartCount').textContent = '0';
+            document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Últimas unidades disponibles!</p>';
+            document.getElementById("total").textContent = "0.00";
+            document.getElementById("totalWeight").textContent = "0.00";
+            document.getElementById("finalTotal").textContent = "0.00";
+            document.getElementById("finalTotal2").textContent = "0.00";
+            document.getElementById("shippingtype").textContent = "0.00";
+            document.getElementById("shippingInfo").textContent = "Selecciona el tipo de envío";
+            document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
+            document.getElementById('paymentInfo').style.display = 'none';
+
+            // Actualizar el costo de envío y comisión a $0
+            document.getElementById('shippingCostValue2').textContent = "0";
+            document.getElementById('shippingCostValue').textContent = "0";
+            document.getElementById('selectedShippingCostValue').textContent = "0"; // Actualizar el costo de envío seleccionado
+
+            // Actualizar mensajes del carrito vacío
+            document.getElementById('emptyCartMessage').textContent = '🛒 Por favor, añade productos para continuar.';
+            document.getElementById('emptyCartMessage').style.display = 'block';
+            document.getElementById('cartStatusMessage').textContent = '🛒 Por favor, añade productos para continuar.';
+            document.getElementById('cartStatusMessage').style.color = 'gray';
+            let pesoMensaje = document.getElementById('pesoMensaje');
+            pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar.';
+            return;
+        }
+
+        // Si aún hay productos, actualizar el carrito
+        updateCart();
+    }
+
+    function resetShipping() {
+        shippingType = 'default';
+        shippingCost = 0;
+
+        // Restablecer los elementos relacionados con el envío
+        document.getElementById("shippingInfo").innerHTML = "Selecciona el tipo de envío";
+        document.getElementById("shippingInfo2").textContent = "0";
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+        document.getElementById("shippingCostValue2").textContent = "0";
+    }
+
+
+
+
+
+// updatecart
+
+
+function updateCart() {
+    let cartItems = document.getElementById('cartItems');
+    let emptyCartMessage = document.getElementById('emptyCartMessage');
+    cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    // Actualizar el costo de la comisión en el nuevo div
+    document.getElementById('shippingCostValue').textContent = (total * paymentCommission / 100).toFixed(2);
+
+	// Actualizar el mensaje según el estado del carrito
+    const cartStatusMessage = document.getElementById('cartStatusMessage');
+    if (cart.length === 0) {
+        cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3.0';
+        cartStatusMessage.style.color = 'gray';
+    } 
+    
+    else {
+        // Establece el mensaje
+cartStatusMessage.innerHTML = '<form id="shippingForm"> \
+    <label for="name">* Nombre:</label> \
+    <input type="text" id="name" name="name" required style="width:100%; padding:5px;"><br> \
+    <label for="phone">* Teléfono:</label> \
+    <input type="text" id="phone" name="phone" required style="width:100%; padding:5px;"><br> \
+    <label for="address">Dirección:</label> \
+    <input type="text" id="address" name="address" style="width:100%; padding:5px;"><br> \
+    <label for="city">Ciudad:</label> \
+    <input type="text" id="city" name="city" style="width:100%; padding:5px;"><br> \
+    <label for="state">Estado:</label> \
+    <input type="text" id="state" name="state" style="width:100%; padding:5px;"><br> \
+    <label for="zip">Código Postal:</label> \
+    <input type="text" id="zip" name="zip" style="width:100%; padding:5px;"><br> \
+    <label for="country">País:</label> \
+    <input type="text" id="country" name="country" style="width:100%; padding:5px;"><br> \
+    <label for="e-mail">E-mail:</label> \
+    <input type="email" id="email" name="email" style="width:100%; padding:5px;"><br><br> \
+    <label for="rfc">RFC:</label> \
+    <input type="text" id="rfc" name="rfc" style="width:100%; padding:5px;"><br><br> \
+    <div class="payment-options"> \
+        <button type="button" onclick="comprar()">🗹 Listos mis datos para Comprar</button> \
+        <button type="button" onclick="solicitarPedido()"> \
+            <img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Solicitar información de este pedido</button> \
+    </div> \
+</form>';
+    }
+
+    // Mostrar mensaje si el carrito está vacío
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Stock limitado y alta demanda! <br/>Asegura tu producto ahora antes de que se agote.</p>';
+		//2 Forma
+        emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2.0';
+        emptyCartMessage.style.display = 'block'; // Mostrar mensaje
+		//1 Envío
+
+        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1.0';
+        
+        // Ocultar secciones de envío y pago al iniciar la pagina
+        document.getElementById('shippingInfo').style.display = 'none';
+        document.getElementById('paymentInfo').style.display = 'none';
+        
+        // Restablecer valores
+        cartCount = 0;
+        document.getElementById('cartCount').textContent = '0';
+        document.getElementById("total").textContent = "0.00";
+        document.getElementById("totalWeight").textContent = "0.00";
+        document.getElementById("finalTotal").textContent = "0.00";
+        document.getElementById("finalTotal2").textContent = "0.00";
+        document.getElementById("shippingtype").textContent = "0.00";
+        document.getElementById("shippingInfo2").textContent = "0"; // Aquí se actualiza el valor de envío a 0
+        document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
+        document.getElementById('paymentInfo').style.display = 'none';
+        
+
+        return;
+    } else {
+        emptyCartMessage.style.display = 'none'; // Ocultar mensaje si hay productos
+        // Mostrar secciones de envío y pago
+        document.getElementById('shippingInfo').style.display = 'block';
+        document.getElementById('paymentInfo').style.display = 'block';
+        document.getElementById('pesoMensaje').style.display = 'block';
+		emptyCartMessage.innerHTML = '<div class="payment-options"><button onclick="setPayment(\'Saldo en cuenta - Pedido automático - comisión 0%\', 0, \'💰\')">Saldo en cuenta - Pedido Automático - comisión 0%</button> \
+<button onclick="setPayment(\'Transferencia bancaria\', 0, \'🏦\')">Transferencia bancaria - Notificar Compra - comisión 0%</button> \
+<button onclick="setPayment(\'Mercado Libre\', 2.8, \'🛒\')">Mercado Libre - Notificar Compra - comisión 2.8%</button> \
+<button onclick="setPayment(\'PayPal\', 3.4, \'💳\')">PayPal - Notificar Compra - comisión 3.4%</button> \
+<button onclick="setPayment(\'Google Pay\', 3.4, \'📱\')">Google Pay - Notificar Compra - comisión 3.4%</button> \
+<button onclick="setPayment(\'Bitso Criptomonedas\', 0, \'🪙\')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button> \
+<button onclick="setPayment(\'Pago en tiendas de autoservicio\', 0, \'🏪\')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button> </div>';
+
+        emptyCartMessage.style.display = 'block'; // Mostrar mensaje
+    }
+
+    // Si hay productos en el carrito
+    cartItems.innerHTML = ''; // Limpiar el contenido anterior
+    cart.forEach(item => {
+        let itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            ${item.description}  
+           <div style="text-align: right; display: inline-block; padding-right: 50px;">
+                <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
+                    onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
+                x $${item.price} 
+                <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" 
+                    style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">
+                    ✖️
+                </button>
+            </div>`;
+        cartItems.appendChild(itemDiv);
+    });
+
+    // Actualizar el contador de productos en el ícono del carrito
+    document.getElementById('cartCount').textContent = cartCount;
+
+    // Calcular la comisión en pesos
+    let commissionInPesos = (total * paymentCommission / 100).toFixed(2);
+
+    // Calcular el total final (productos + envío + comisión)
+    let finalTotal = (total + parseFloat(shippingCost) + parseFloat(commissionInPesos)).toFixed(2);
+
+    // Actualizar los totales en la interfaz
+    document.getElementById("total").textContent = total.toFixed(2);
+    document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
+    document.getElementById("finalTotal").textContent = finalTotal; // 1 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal; // 2 Total a pagar
+
+    // Actualizar el costo de la comisión
+    document.getElementById('shippingtype').textContent = `${commissionInPesos}`;
+    document.getElementById('shippingCostValue').textContent = `${commissionInPesos}`;
+
+
+    // Mostrar u ocultar el mensaje de peso según el rango
+        
+if (totalWeight <= 5.99) {
+
+    pesoMensaje.innerHTML = `
+    Categoría de peso: 1 a 5 kg.
+    <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+        <br/><br/>    <div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('free', 149)">Envío Rápido - 7 días - Costo: $149</button>
+                <button onclick="setShipping('express', 159)">Envío Express - 6 días - Costo: $159</button>
+                <button onclick="setShipping('premium', 549)">Envío Premium - 1 día - Costo: $549</button>
+            </div>
+            `;
+document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+document.getElementById('shippingInfo').style.display ='none';
+}
+
+
+else if (totalWeight <= 6) {
+
+    pesoMensaje.innerHTML = `
+            Categoría de peso: 6 kg.
+            <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('6kg', 149)">Envío Rápido - 6 días - Costo: $149</button>
+            </div>
+            `;
+document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+document.getElementById('shippingInfo').style.display = 'none';  
+}     
+    
+
+else if (totalWeight <= 10) {
+    pesoMensaje.innerHTML = `
+   Categoría de peso: 6 a 10 kg.
+            <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('10kg', 199)">Envío Rápido - 6 días - Costo: $199</button>
+            </div>
+            `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 11) {
+    pesoMensaje.innerHTML = `
+     Categoría de peso: 11 a 15 kg.
+     <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('11kg', 249)">Envío Rápido - 7 días - Costo: $249</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 15) {
+    pesoMensaje.innerHTML = `
+        Categoría de peso: 15 kg.
+        <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('15kg', 799)">Envío Rápido - 5 días - Costo: $799</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }   
+
+
+else if (totalWeight <= 20) { // Aquí estaba el error: faltaba cerrar el paréntesis
+    pesoMensaje.innerHTML = `
+        Categoría de peso: 20 kg.
+        <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/>
+    <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('20kg', 899)">Envío Rápido - 5 días - Costo: $899</button>
+        </div>`;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 25) {
+    pesoMensaje.innerHTML = `
+       Categoría de peso: 25 kg.
+       <div id="p" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/> <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('25kg', 999)">Envío Rápido - 5 días - Costo: $999</button>
+        </div>`;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+else if (totalWeight <= 30) {
+    pesoMensaje.innerHTML = `
+       Categoría de peso: 30 kg
+       <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/> <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('30kg', 1600)">Envío Rápido - 5 días - Costo: $1600</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+else {
+    pesoMensaje.textContent = 'El peso total supera 30 kg.';
+}	
+		
+		
+
+    // Mostrar u ocultar las opciones de pago
+    document.getElementById("payment-options").style.display = (cartCount > 0) ? "block" : "none";
+
+    // Actualizar el mensaje de envío
+    updateShippingMessage();
+
+    // Actualizar la información de pago
+    document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span>${paymentType}`;
+
+    // Mostrar u ocultar los detalles de transferencia bancaria
+    const bankTransferDetails = document.getElementById("bankTransferDetails");
+    if (paymentType.includes('Transferencia bancaria')) {
+        bankTransferDetails.style.display = 'block';
+    } else {
+        bankTransferDetails.style.display = 'none';
+    }
+
+    // Actualizar el costo de la comisión
+    document.getElementById('shippingtype').textContent = `${commissionInPesos}`;
+}
+
+
+
+
+
+// fin Updatecart
+
+
+
+
+
+
+function setPayment(type, commission) {
+    paymentType = type;
+    paymentCommission = commission;
+    
+
+    // Calcular el costo real de la comisión en pesos
+    let commissionInPesos = (total * commission / 100).toFixed(2);
+
+    // Actualizar el contenido del div paymentInfo
+    let paymentDetails = "";
+
+    switch (type) {
+        case 'Saldo en cuenta - Pedido automático - comisión 0%':
+            paymentDetails = `💰 Saldo en cuenta - Pedido Automático - comisión 0%`;
+            break;
+        case 'Transferencia bancaria':
+            paymentDetails = `🏦 Transferencia bancaria - Notificar Compra - comisión 0%`;
+            break;
+        case 'Mercado Libre':
+            paymentDetails = `🛒 Mercado Libre - Notificar Compra - comisión 2.8%`;
+            break;
+        case 'PayPal':
+            paymentDetails = `💳 PayPal - Notificar Compra - comisión 3.4%`;
+            break;
+        case 'Google Pay':
+            paymentDetails = `📱 Google Pay - Notificar Compra - comisión 3.4%`;
+            break;
+        case 'Bitso Criptomonedas':
+            paymentDetails = `🪙 Bitso Criptomonedas - Notificar Compra - comisión 0%`;
+            break;
+        case 'Pago en tiendas de autoservicio':
+            paymentDetails = `🏪 OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00`;
+            break;
+        default:
+            paymentDetails = "💰 Saldo en cuenta - Pedido Automático - comisión 0%";
+            break;
+    }
+
+    // Sobrescribir completamente el contenido del div paymentInfo
+    document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentDetails}`;
+
+    // Actualizar el contenido del span con ID shippingtype
+    document.getElementById('shippingtype').textContent = commissionInPesos;
+
+    // Actualizar el contenido del span con ID shippingCostValue
+    document.getElementById('shippingCostValue').textContent = commissionInPesos;
+
+    // Calcular el total final (productos + envío + comisión)
+    let finalTotal = (total + shippingCost + parseFloat(commissionInPesos)).toFixed(2);
+
+    // Actualizar 1 Total a pagar
+    document.getElementById("finalTotal").textContent = finalTotal;
+
+    // Actualizar 2 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal;
+}
+
+
+
+
+
+
+
+
+    function updateQuantity(name, quantity, price, weight) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > originalStock[name]) {
+            alert("Cantidad inválida, elige una cantidad entre 1 y " + originalStock[name]);
+            return;
+        }
+
+        let item = cart.find(item => item.name === name);
+        if (item) {
+            let priceDifference = (quantity - item.quantity) * price;
+            let weightDifference = (quantity - item.quantity) * weight;
+            stock[name] += item.quantity - quantity; // Actualizamos el stock disponible
+            total += priceDifference;
+            totalWeight += weightDifference;
+            cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
+            item.quantity = quantity;
+
+            // Restablecer el tipo de envío y los valores de costo de envío
+            resetShipping();
+            paymentCommission = 0; // Restablecer la comisión a 0
+            document.getElementById("shippingtype").textContent = "0.00";
+            document.getElementById("shippingCostValue").textContent = "0.00";
+            document.getElementById("selectedShippingCostValue").textContent = "0.00";
+            document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+            updateCart();
+        }
+    }
+
+    function updateStockDisplay(productName) {
+        // Actualizar el stock en la interfaz
+        if (productName === 'Producto A') {
+            document.getElementById('stockA').textContent = stock[productName];
+        } else if (productName === 'Producto B') {
+            document.getElementById('stockB').textContent = stock[productName];
+        } else if (productName === 'Producto C') {
+            document.getElementById('stockC').textContent = stock[productName];
+        }
+    }
+
+    function toggleCart() {
+        let cartDiv = document.querySelector('.cart'); // Obtener el carrito
+
+        // Alternar la clase 'open' para mostrar/ocultar el carrito
+        if (cartDiv.classList.contains('open')) {
+            cartDiv.classList.remove('open'); // Ocultar el carrito
+            setTimeout(() => {
+                cartDiv.style.display = 'none'; // Ocultar después de la animación
+            }, 300); // Tiempo igual a la duración de la animación (0.3s)
+        } else {
+            cartDiv.style.display = 'block'; // Mostrar el carrito antes de la animación
+            setTimeout(() => {
+                cartDiv.classList.add('open'); // Iniciar la animación
+            }, 10); // Pequeño retraso para asegurar que el elemento esté visible
+        }
+
+        // Actualizar el contenido del carrito
+        updateCart();
+    }
+
+    function setShipping(type, cost) {
+        shippingType = type;
+        shippingCost = cost;
+
+        // Actualizar el contenido del div shippingInfo
+        let shippingMessage = "";
+        let shippingIcon = "";
+
+        switch (type) {
+            case 'none':
+                shippingIcon = "❤️";
+                shippingMessage = "SIN ENVÍO";
+                break;
+            case 'free':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO RÁPIDO - 7 DÍAS - $149.00";
+                break;
+            case 'express':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO EXPRESS - 6 DÍAS - $159.00";
+                break;
+            case 'premium':
+                shippingIcon = "✈️";
+                shippingMessage = "ENVÍO PREMIUM - 1 DÍA - $549.00";
+                break;
+            case '3kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 3kg - 6 DÍAS - $199.00";
+                break;
+            case '6kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 6kg - 6 DÍAS - $199.00";
+                break;
+            case '10kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 10kg - 6 DÍAS - $199.00";
+                break;
+            case '11kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 11kg - 7 DÍAS - $299.00";
+                break;
+			case '20kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 20kg - 7 DÍAS - $299.00";
+                break;
+			case '25kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 25kg - 7 DÍAS - $299.00";
+                break;
+            case '30kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 30kg - 7 DÍAS - $299.00";
+                break;
+            default:
+                shippingIcon = "🚚";
+                shippingMessage = "Selecciona el tipo de envío";
+                break;
+        }
+
+    // Actualizar el contenido del div shippingInfo
+ document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
+    // Actualizar el costo de envío en el div shippingInfo2
+document.getElementById('shippingInfo2').textContent = cost;
+
+
+    // Actualizar el costo de envío en el div selectedShippingCostValue
+  document.getElementById('selectedShippingCostValue').textContent = cost.toFixed(2);
+    // Actualizar el costo de envío en el div selectedShippingCost
+  document.getElementById('selectedShippingCost').textContent = `$${cost.toFixed(2)}`;
+    // **Actualizar el costo de envío en el div shippingCostValue2**
+  document.getElementById('shippingCostValue2').textContent = cost;
+
+
+
+
+// Actualizar el carrito
+updateCart();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+    function mostrarDetallesCompra() {
+        const form = document.getElementById('shippingForm');
+
+        // Detalles del carrito
+        let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity} - Precio: $${item.price}`).join('\n');
+
+        // Calcular el totalFinal (precio total con envío y comisión)
+        let totalFinal = total + shippingCost + (total * paymentCommission / 100);
+
+        // Obtener el subtotal (sin IVA)
+        let subtotal = totalFinal / 1.16;
+
+        // Calcular el IVA (16% sobre el subtotal)
+        let iva = totalFinal - subtotal;
+
+        // Calcular el 1% de ISR (sobre el totalFinal)
+        let isr = totalFinal * 0.01;
+
+        // Detalles del total con desglose del IVA incluido y el ISR
+        let totalDetails = `
+Subtotal (sin IVA): $${subtotal.toFixed(2)}
+IVA (16% incluido): $${iva.toFixed(2)}
+Peso Total: ${totalWeight.toFixed(2)} kg
+Envío: $${shippingCost.toFixed(2)}
+Comisión: ${paymentCommission}%
+ISR (1%): $${isr.toFixed(2)}
+💲 Total a pagar: $${totalFinal.toFixed(2)}`;
+
+        // Detalles de envío
+        let shippingDetails = `
+Nombre: ${form.name.value}
+Dirección: ${form.address.value}
+Ciudad: ${form.city.value}
+Estado: ${form.state.value}
+Código Postal: ${form.zip.value}
+País: ${form.country.value}
+Teléfono: ${form.phone.value}
+E-mail: ${form.email.value}
+RFC: ${form.rfc.value}`;
+
+        // Detalles de pago
+        let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
+        if (paymentType.includes('Transferencia bancaria')) {
+            paymentDetails += `\nPagar a:\nBanco: STP (Sistema de transferencias y pagos)\nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
+        }
+
+        // Número de pedido
+        let orderNumber = Math.floor(100000 + Math.random() * 900000);
+
+        // Obtener fecha y hora actual
+        let fechaHora = new Date().toLocaleString('es-MX', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        // Mensaje completo (formato de nota de remisión)
+        let message = `
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <!-- Encabezado -->
+    <div style="text-align: center; margin-bottom: 10px;">
+        <h5 style="color: green;">Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad.</h5>
+        <h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+        <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
+        <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
+    </div>
+
+    <!-- Detalles de pago -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles de Pago</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${paymentDetails}</pre>
+    </div>
+
+    <!-- Datos del cliente y de la venta -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <!-- Datos del cliente -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos del Cliente</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>RFC:</strong> ${form.rfc.value}</p>
+        </div>
+
+        <!-- Datos de la venta -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos de la Venta</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Envío:</strong> $${shippingCost}</p>
+        </div>
+    </div>
+
+    <!-- Detalles del pedido -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles del Pedido</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${cartDetails}</pre>
+    </div>
+
+    <!-- Total -->
+    <div style="text-align: right; margin-bottom: 10px;">
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>IVA (16%):</strong> $${iva.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>ISR (1%):</strong> $${isr.toFixed(2)}</p>
+        <p style="font-size: 14px; color: #333; margin: 3px 0;"><strong>4 Total a pagar:</strong> $${totalFinal.toFixed(2)}</p>
+    </div>
+
+    <!-- Firmas -->
+    <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
+        <div style="text-align: center; width: 48%;">
+            <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+                 alt="QuetzalArte.com Logo" 
+                 style="width: 50px; height: auto;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
+        </div>
+        <div style="text-align: center; width: 48%;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">
+                QuetzalArte.com<br/>
+                Privada 14 C Sur No. 1305 Interior 2<br/>
+                Fracc. El Ángel Puebla, Puebla México<br/>
+                RFC: BABJ820827T76
+            </p>
+        </div>
+    </div>
+</div>`;
+
+        // Crear el div con los detalles
+        let detallesDiv = document.createElement('div');
+        detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
+        detallesDiv.innerHTML = message;
+
+        // Agregar botones
+        detallesDiv.innerHTML += `
+            <div class="payment-options"><button class="no-imprimir" onclick="imprimirNota()">🖶 Imprimir</button>
+            <button class="no-imprimir" onclick="generarPDF()">🗎 Guardar como PDF</button></div>
+        `;
+
+        // Limpiar el contenido anterior y agregar el nuevo
+        let detallesCompraDiv = document.getElementById('detallesCompra');
+        detallesCompraDiv.innerHTML = '';
+        detallesCompraDiv.appendChild(detallesDiv);
+    }
+
+
+    function compartirRedes(message) {
+        let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+        window.open(url, '_blank');
+    }
+
+    
+</script>
+
+<script>
+    function comprar() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                input.classList.add('invalid');
+                valid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+            alert('Solicitud de Compra realizada con Éxito');
+            // Aquí puedes agregar la lógica para procesar la compra
+            mostrarDetallesCompra();
+        } else {
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+        }
+    }
+
+
+            if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+                alert('Solicitud de Compra realizada con Éxito');
+                // Aquí puedes agregar la lógica para procesar la compra
+                mostrarDetallesCompra();
+            } else {
+                alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+            }
+        }
+
+        function compartirRedes(message) {
+            let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+            window.open(url, '_blank');
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                const productName = product.querySelector('.product-details span').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+		    
+    </script>
+    
+    
+<script>
+   
+   function solicitarPedido() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                input.classList.add('invalid');
+                valid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        if (cart.length === 0) {
+            alert('Por favor, agrega productos al carrito antes de solicitar el pedido.');
+            return;
+        }
+
+        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+            let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity}`).join('\n');
+            let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\n 5 Total a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
+            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
+            let message = `Detalles del Pedido:\n${cartDetails}\n\n${totalDetails}\n\nDatos de Envío:\n${shippingDetails}`;
+
+            let whatsappUrl = `https://wa.me/2224606907?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        } else {
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+        }
+    }
+
+    document.querySelector('button[onclick="solicitar()"]').setAttribute('onclick', 'solicitarPedido()');
+</script></script>
+
+ 
+
+<script>
+function agregarAlCarrito() {
+    const icono = document.getElementById('icono-carrito');
+    
+    // Mostrar el icono si está oculto
+    if(icono.style.display === 'none') {
+        icono.style.display = 'inline-block';
+    }
+    
+    // Reiniciar la animación
+    icono.style.animation = 'none';
+    void icono.offsetWidth; // Truco para reiniciar la animación
+    icono.style.animation = 'bounce 0.5s ease';
+    
+    // Ocultar después de 1 segundo
+    setTimeout(() => {
+        icono.style.display = 'none';
+    }, 1000);
+}
+    </script>
+    
+
+ <!-- Incluye jsPDF y html2canvas PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
+<script>
+    // Función para generar el PDF
+    function generarPDF() {
+        // Obtén los botones que no deben aparecer en el PDF
+        const botones = document.querySelectorAll('.no-imprimir');
+
+        // Oculta los botones
+        botones.forEach(boton => boton.classList.add('oculto'));
+
+        // Inicializa jsPDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4'); // A4, orientación vertical
+
+        // Obtén el contenido del div
+        const contenido = document.getElementById("contenido-imprimir");
+
+        // Configura html2canvas para renderizar con mayor escala
+        const opciones = {
+            scale: 2, // Aumenta la escala para mejorar la calidad
+            useCORS: true, // Permite el uso de recursos externos (si los hay)
+            logging: true, // Opcional: para depuración
+        };
+
+        // Usa html2canvas para renderizar el contenido en un canvas
+        html2canvas(contenido, opciones).then((canvas) => {
+            // Convierte el canvas a una imagen
+            const imgData = canvas.toDataURL('image/png');
+
+            // Tamaño de la imagen en el PDF
+            const imgWidth = 190; // Ancho máximo de la imagen en el PDF (mm)
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Altura proporcional
+
+            // Añade la imagen al PDF
+            doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+            // Guarda el PDF
+            doc.save("nota de venta quetzalarte.pdf");
+
+            // Muestra los botones nuevamente después de generar el PDF
+            botones.forEach(boton => boton.classList.remove('oculto'));
+        });
+    }
+
+	// Función para imprimir solo el contenido del div
+function imprimirNota() {
+    const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+    const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
+
+    // Ocultar elementos marcados como "no-imprimir"
+    const elementosNoImprimir = document.querySelectorAll('.no-imprimir');
+    elementosNoImprimir.forEach(elemento => elemento.classList.add('oculto'));
+
+    // Reemplazar contenido del body con el contenido a imprimir
+    document.body.innerHTML = contenidoImprimir;
+
+    // Imprimir y restaurar contenido original
+    setTimeout(() => {
+        window.print(); // Ejecutar impresión
+
+        // Restaurar el contenido original después de imprimir
+        document.body.innerHTML = contenidoOriginal;
+
+        // Restaurar elementos ocultos
+        elementosNoImprimir.forEach(elemento => elemento.classList.remove('oculto'));
+    }, 500); // Esperar 500 ms para asegurar la ejecución
+}
+
+
+</script>
+
+<!--start layer especifico-->
+<span class="cart-icon" onclick="toggleCart(); scrollToLayer();">
+    <!-- Ícono de carrito animado -->
+    <a href="#miLayer" id="enlace" style="text-decoration:none;">
+        <span id="icono-carrito" class="icono-carrito" style="display:none;">📦</span>
+        🛒<span id="cartCount">0</span>
+    </a>
+</span>
+
+<script>
+        document.querySelector('#enlace').addEventListener('click', function(e) {
+            e.preventDefault();
+            const destino = document.querySelector('#miLayer');
+            destino.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+<!--end layer especifico-->s Personalizados">
     <meta property="og:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
     <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
     <meta property="og:url" content="https://www.quetzalarte.com">
