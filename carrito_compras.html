@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -326,6 +327,11 @@
     <!-- Aquí agregamos la categoría de peso -->    
     <div style="text-align: right; font-size: 16px; color: orangered; padding-right: 70px; font-weight: bold;">1 comisión: $<div id="shippingtype" style="display:inline;">0</div></div>
      
+    <h3 style="text-align: right; margin-bottom: 10px; padding-right: 70px; color: orangered;">
+      
+        <span id="commissionCalculation" style="display: none;"></span>
+    </h3>
+    
     <h2 style="text-align: right; margin-bottom: 10px; padding-right: 70px;">1 Total a pagar: <span style="color: #4CAF50; font-size: 50px; " >$<span id="finalTotal" style="color: #4CAF50;">0</span></span></h2>
         
     <hr>
@@ -346,12 +352,12 @@
 
   
 <!-- Agregar el costo de envío seleccionado aquí -->
-<div id="selectedShippingCost">hi</div>  
+<div id="selectedShippingCost" style="display: none;">0</div>  
 
 <div style="font-size: 16px; color: blue; font-weight: bold;">
-  Envío seleccionado: $</div> 
+  Envío seleccionado: $
   
-  <span id="selectedShippingCostValue">0</span>
+  <span id="selectedShippingCostValue">0</span></div> 
 
 
    <hr>     
@@ -369,7 +375,7 @@
 <div id="shippingCostDisplay" style="font-size: 16px; color: orangered; font-weight: bold;">
     Comisión seleccionada: $<span id="shippingCostValue">0</span>
 </div>
-<h3>2 Total a pagar: $<span id="finalTotal2">0</span></h3>
+<h3>2 Total a pagar: $<span id="finalTotal2" style="color: #45a049; font-size: 50px;">0</span></h3>
 
 
 
@@ -416,13 +422,13 @@
         <div class="product">
      <div class="stock" > Stock:<span id="stockA">100</span></div>      
       <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
-      <span style=" font-size:24px; display: block;"><strong>$99</strong></span>
+      <span style=" font-size:24px; display: block;"><strong>$100</strong></span>
       
       
 <div style="display: inline;">
     <input type="number" id="quantityA" value="1" min="1" max="100">    
     <!-- Botón con la descripción agregada después de la cantidad -->
-<button onclick="agregarAlCarrito(); addToCart('Producto A', 99, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
+<button onclick="agregarAlCarrito(); addToCart('Producto A', 100, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
         Comprar Ya!
 </button>
 </div>
@@ -763,6 +769,8 @@ cartStatusMessage.innerHTML = '<form id="shippingForm"> \
         document.getElementById("shippingInfo2").textContent = "0"; // Aquí se actualiza el valor de envío a 0
         document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
         document.getElementById('paymentInfo').style.display = 'none';
+        document.getElementById("shippingCostValue").textContent = "0.00";
+        document.getElementById("shippingCostValue2").textContent = "0.00";
         
 
         return;
@@ -805,11 +813,29 @@ cartStatusMessage.innerHTML = '<form id="shippingForm"> \
     // Actualizar el contador de productos en el ícono del carrito
     document.getElementById('cartCount').textContent = cartCount;
 
-    // Calcular la comisión en pesos
-    let commissionInPesos = (total * paymentCommission / 100).toFixed(2);
+    
 
-    // Calcular el total final (productos + envío + comisión)
-    let finalTotal = (total + parseFloat(shippingCost) + parseFloat(commissionInPesos)).toFixed(2);
+// Recalcular la comisión en función del subtotal y el costo de envío
+let subtotal = parseFloat(total) || 0;
+let envio = parseFloat(shippingCost) || 0;
+let baseCalculo = subtotal + envio;
+let porcentajeComision = paymentCommission / 100;
+let commissionInPesos = (baseCalculo * porcentajeComision).toFixed(2);
+
+// Mostrar el desglose de la comisión
+document.getElementById('commissionCalculation').innerHTML = `
+    ${baseCalculo.toFixed(2)}<br>
+    × ${porcentajeComision.toFixed(3)}<br>
+    = ${commissionInPesos}
+`;
+
+// Actualizar el costo total de la comisión
+document.getElementById('shippingtype').textContent = commissionInPesos;
+document.getElementById('shippingCostValue').textContent = commissionInPesos;
+
+// Calcular el total final (subtotal + envío + comisión)
+let finalTotal = (baseCalculo + parseFloat(commissionInPesos)).toFixed(2);
+
 
     // Actualizar los totales en la interfaz
     document.getElementById("total").textContent = total.toFixed(2);
@@ -978,11 +1004,15 @@ else {
 function setPayment(type, commission) {
     paymentType = type;
     paymentCommission = commission;
+
+
+     // Calcular el costo real de la comisión en pesos
+     let subtotal = parseFloat(total) || 0;
+    let envio = parseFloat(shippingCost) || 0;
+    let baseCalculo = subtotal + envio;
+    let commissionInPesos = (baseCalculo * (paymentCommission / 100)).toFixed(2);
+
     
-
-    // Calcular el costo real de la comisión en pesos
-    let commissionInPesos = (total * commission / 100).toFixed(2);
-
     // Actualizar el contenido del div paymentInfo
     let paymentDetails = "";
 
@@ -1018,16 +1048,20 @@ function setPayment(type, commission) {
 
     // Actualizar el contenido del span con ID shippingtype
     document.getElementById('shippingtype').textContent = commissionInPesos;
-
     // Actualizar el contenido del span con ID shippingCostValue
     document.getElementById('shippingCostValue').textContent = commissionInPesos;
 
-    // Calcular el total final (productos + envío + comisión)
-    let finalTotal = (total + shippingCost + parseFloat(commissionInPesos)).toFixed(2);
+    // Calcular el total final (productos + envío + comisión) 1 Total a pagar
+let shippingCostValue2 = parseFloat(document.getElementById('shippingCostValue2').textContent) || 0;
+
+
+ // Calcular el total final (productos + envío + comisión)
+ let finalTotal = (baseCalculo + parseFloat(commissionInPesos)).toFixed(2);
+
+
 
     // Actualizar 1 Total a pagar
     document.getElementById("finalTotal").textContent = finalTotal;
-
     // Actualizar 2 Total a pagar
     document.getElementById("finalTotal2").textContent = finalTotal;
 }
@@ -1095,9 +1129,21 @@ function setPayment(type, commission) {
             }, 10); // Pequeño retraso para asegurar que el elemento esté visible
         }
 
-        // Actualizar el contenido del carrito
-        updateCart();
-    }
+
+    // Restablecer la comisión y los valores relacionados
+    paymentCommission = 0; // Reiniciar la comisión a 0
+    document.getElementById("shippingtype").textContent = "0.00";
+    document.getElementById("shippingCostValue").textContent = "0.00";
+    document.getElementById("selectedShippingCostValue").textContent = "0.00";
+    document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+    // Restablecer el mensaje de forma de pago
+    paymentType = '💰 Selecciona la forma de pago.';
+    document.getElementById("paymentInfo").innerHTML = `<span>💰</span> Selecciona la forma de pago`;
+
+    // Actualizar el contenido del carrito
+    updateCart();
+}
 
     function setShipping(type, cost) {
         shippingType = type;
@@ -1158,24 +1204,35 @@ function setPayment(type, commission) {
                 break;
         }
 
-    // Actualizar el contenido del div shippingInfo
- document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
-    // Actualizar el costo de envío en el div shippingInfo2
-document.getElementById('shippingInfo2').textContent = cost;
+     // Actualizar el contenido del div shippingInfo
+     document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
+    document.getElementById('shippingInfo2').textContent = cost;
 
+    // Actualizar el costo de envío en los elementos correspondientes
+    document.getElementById('selectedShippingCostValue').textContent = cost.toFixed(2);
+    document.getElementById('selectedShippingCost').textContent = `$${cost.toFixed(2)}`;
+    document.getElementById('shippingCostValue2').textContent = cost;
 
-    // Actualizar el costo de envío en el div selectedShippingCostValue
-  document.getElementById('selectedShippingCostValue').textContent = cost.toFixed(2);
-    // Actualizar el costo de envío en el div selectedShippingCost
-  document.getElementById('selectedShippingCost').textContent = `$${cost.toFixed(2)}`;
-    // **Actualizar el costo de envío en el div shippingCostValue2**
-  document.getElementById('shippingCostValue2').textContent = cost;
+    // Recalcular la comisión en función del nuevo costo de envío
+    let commissionInPesos = ((total + shippingCost) * (paymentCommission / 100)).toFixed(2);
+    document.getElementById('shippingtype').textContent = commissionInPesos;
+    document.getElementById('shippingCostValue').textContent = commissionInPesos;
 
+    // Calcular el total final (productos + envío + comisión)
+    let finalTotal = (total + shippingCost + parseFloat(commissionInPesos)).toFixed(2);
 
+    // Actualizar los totales en la interfaz
+    document.getElementById("finalTotal").textContent = finalTotal; // 1 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal; // 2 Total a pagar
 
+    // Restablecer el tipo de pago al texto predeterminado
+    paymentType = '💰 Selecciona la forma de pago.';
+    paymentCommission = 0; // Restablecer la comisión a 0
+    document.getElementById("paymentInfo").innerHTML = `<span>💰</span> Selecciona la forma de pago`;
 
-// Actualizar el carrito
-updateCart();
+    
+    // Actualizar el carrito
+    updateCart();
     }
 </script>
 
@@ -1357,8 +1414,9 @@ RFC: ${form.rfc.value}`;
         const inputs = form.querySelectorAll('input[required]');
         let valid = true;
 
+        // Validar campos requeridos
         inputs.forEach(input => {
-            if (!input.value) {
+            if (!input.value.trim()) {
                 input.classList.add('invalid');
                 valid = false;
             } else {
@@ -1366,44 +1424,26 @@ RFC: ${form.rfc.value}`;
             }
         });
 
-        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+        // Validar tipo de envío y pago
+        if (shippingType === 'default') {
+            alert('Por favor, selecciona un tipo de envío.');
+            valid = false;
+        }
+
+        if (paymentType === '💰 Selecciona la forma de pago.') {
+            alert('Por favor, selecciona un tipo de pago.');
+            valid = false;
+        }
+
+        // Si todo es válido, mostrar detalles de compra
+        if (valid) {
             alert('Solicitud de Compra realizada con Éxito');
-            // Aquí puedes agregar la lógica para procesar la compra
             mostrarDetallesCompra();
         } else {
             alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
         }
     }
-
-
-            if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
-                alert('Solicitud de Compra realizada con Éxito');
-                // Aquí puedes agregar la lógica para procesar la compra
-                mostrarDetallesCompra();
-            } else {
-                alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
-            }
-        }
-
-        function compartirRedes(message) {
-            let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
-            window.open(url, '_blank');
-        }
-
-        function filterProducts() {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const products = document.querySelectorAll('.product');
-            products.forEach(product => {
-                const productName = product.querySelector('.product-details span').textContent.toLowerCase();
-                if (productName.includes(searchInput)) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        }
-		    
-    </script>
+</script>
     
     
 <script>
