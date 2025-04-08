@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -354,10 +353,7 @@
 <!-- Agregar el costo de envío seleccionado aquí -->
 <div id="selectedShippingCost" style="display: none;">0</div>  
 
-<div style="font-size: 16px; color: blue; font-weight: bold;">
-  Envío seleccionado: $
-  
-  <span id="selectedShippingCostValue">0</span></div> 
+ 
 
 
    <hr>     
@@ -370,14 +366,17 @@
     🛒 Tu carrito está vacío.
 </div>
 
-        
 
+<div style="font-size: 16px; color: #0CC; font-weight: bold;">
+    Costo Total de Productos: $<span id="productTotalValue">0</span>
+</div>
+<div style="font-size: 16px; color: blue; font-weight: bold;">
+    Costo del Envío seleccionado: $<span id="selectedShippingCostValue">0</span>
+</div>
 <div id="shippingCostDisplay" style="font-size: 16px; color: orangered; font-weight: bold;">
-    Comisión seleccionada: $<span id="shippingCostValue">0</span>
+    Comisión del Pago Seleccionado: $<span id="shippingCostValue">0</span>
 </div>
 <h3>2 Total a pagar: $<span id="finalTotal2" style="color: #45a049; font-size: 50px;">0</span></h3>
-
-
 
 
 
@@ -422,13 +421,13 @@
         <div class="product">
      <div class="stock" > Stock:<span id="stockA">100</span></div>      
       <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
-      <span style=" font-size:24px; display: block;"><strong>$100</strong></span>
+      <span style=" font-size:24px; display: block;"><strong>$80</strong></span>
       
       
 <div style="display: inline;">
     <input type="number" id="quantityA" value="1" min="1" max="100">    
     <!-- Botón con la descripción agregada después de la cantidad -->
-<button onclick="agregarAlCarrito(); addToCart('Producto A', 100, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
+<button onclick="agregarAlCarrito(); addToCart('Producto A', 80, 0.05, 100, document.getElementById('quantityA').value, 'Tinta Blanca Sellos Goma 25 ml.');" class="buy-button">
         Comprar Ya!
 </button>
 </div>
@@ -461,10 +460,10 @@
         <div class="product">
            <div class="stock" > Stock:<span id="stockC">10</span></div> 
              <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto C">
-           <span style=" font-size:24px; display: block;"><strong>$1399</strong></span>
+           <span style=" font-size:24px; display: block;"><strong>$1499</strong></span>
             <div class="product-details">
              <input type="number" id="quantityC" value="1" min="1" max="10">
-<button onclick="agregarAlCarrito(); addToCart('Producto C', 1399, 1.900, 10, document.getElementById('quantityC').value, 'Tinta Blanca 1 L.');" class="buy-button">
+<button onclick="agregarAlCarrito(); addToCart('Producto C', 1499, 1.900, 10, document.getElementById('quantityC').value, 'Tinta Blanca 1 L.');" class="buy-button">
     Comprar Ya!
 </button>
            </div> 
@@ -708,11 +707,17 @@ function updateCart() {
     // Actualizar el costo de la comisión en el nuevo div
     document.getElementById('shippingCostValue').textContent = (total * paymentCommission / 100).toFixed(2);
 
+     // Actualizar el costo total de productos
+     document.getElementById("productTotalValue").textContent = total.toFixed(2);
+
 	// Actualizar el mensaje según el estado del carrito
     const cartStatusMessage = document.getElementById('cartStatusMessage');
     if (cart.length === 0) {
         cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3.0';
         cartStatusMessage.style.color = 'gray';
+          // Actualizar el costo total de productos a 0
+          document.getElementById("productTotalValue").textContent = "0.00";
+
     } 
     
     else {
