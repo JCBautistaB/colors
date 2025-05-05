@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte.com Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="keywords" content="tintas para sellos de goma, cojines para sellos, sellos personalizados, arte y decoración, QuetzalArte, envíos gratis">
+    <meta name="author" content="QuetzalArte.com">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta property="og:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta property="og:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <meta property="og:url" content="https://www.quetzalarte.com">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="QuetzalArte.com - Tienda de Tintas y Sellos Personalizados">
+    <meta name="twitter:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
+    <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
+    <title>QuetzalArte.com</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #2e7d32; /* Verde oscuro */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative; /* Añadido para alinear el buscador */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px; /* Ajuste de padding para un diseño más compacto */
+        }
+        header h1 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        header h1 i {
+            margin-right: 10px;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+        }
+        .social-icons a {
+            color: #2e7d32; /* Verde oscuro */
+            text-decoration: none;
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        .social-icons a:hover {
+            color: #388e3c; /* Verde intermedio */
+        }
+        .search-form {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .search-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .search-form button {
+            padding: 12px;
+            background-color: #4caf50; /* Verde */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-form button:hover {
+            background-color: #388e3c; /* Verde intermedio */
+        }
+        .search-form button i {
+            font-size: 20px; /* Tamaño del icono */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #388e3c; /* Verde intermedio */
+        }
+        nav ul li {
+            margin: 0 15px;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones */
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px; /* Espacio alrededor del texto */
+            display: block;
+        }
+        nav ul li:hover {
+            background-color: #2e7d32; /* Cambio de color en hover */
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            background: white;
+            display: block;
+            height: 3px;
+            width: 25px;
+            margin: 5px 0;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+               .content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .news, .latest-news, .ads {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombras */
+            margin-bottom: 20px;
+        }
+        .news article, .latest-news article, .ads article {
+            margin-bottom: 20px;
+        }
+        .news article img, .latest-news article img, .ads article img {
+            max-width: 100%;
+            height: auto;
+        }
+        .news article h2, .latest-news article h2, .ads article h2 {
+            margin-top: 10px;
+            color: #ff0000; /* Rojo */
+        }
+        .news article p, .latest-news article p, .ads article p {
+            color: black; /* negro */
+        }
+        footer {
+            background-color: #2e7d32; /* Verde oscuro */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background-color: #388e3c; /* Verde intermedio */
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            nav ul.showing {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .column {
+                margin: 10px 0;
+                flex-basis: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+            }
+            header {
+                flex-direction: column;
+            }
+        }
+
+.whatsapp-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        text-decoration: none;
+    }
+
+    .whatsapp-button:hover {
+        transform: scale(1.1);
+    }
+	.color-picker-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+            border: 2px solid black;
+        }
+        #selected-color {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .color-display {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            border-radius: 10px;
+            border: 2px solid #333;
+        }
+
+    </style>
+    <!-- Enlace a Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<a href="https://wa.me/522224606907" class="whatsapp-button" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<div style="text-align: center; padding:5px;">Envío gratis en compras apartir de $299.00</div>
+    <header>
+        <h1><i class="fa-solid fa-icons"></i> QuetzalArte.com</h1>
+    </header>
+    
+    <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+       <ul id="menu">
+    
+    <li><a href="#tintas"><i class="fa-solid fa-droplet"></i>Tintas para Sellos</a></li>
+    <li><a href="#sellos"><i class="fa-solid fa-stamp"></i> Sellos de Goma</a></li>
+    <li><a href="#arte"><i class="fa-solid fa-box-open"></i> Arte y Decoración</a></li>
+    <li><a href="https://wa.me/522224606907" target="_blank"><i class="fa-solid fa-comment"></i> Contacto</a></li>
+</ul>
+
+    </nav>
+    <main>
+
+<h2 id="tinta" style="color: red;"><i class="fa-solid fa-droplet"></i> Tintas para Sellos de Goma</h2>   
+
+        <div class="content">
+            <section class="column news">
+                <!--<form action="#" method="get" class="search-form">
+                    <input type="text" name="search" id="search" placeholder="Buscar productos...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>-->
+                
+                <article>
+                <h3>Tintas EcoArt: Artísticas, Ecológicas y No Tóxicas</h3>
+
+Presentamos Tintas ECOART, nuestra innovadora línea de tintas a base de agua, diseñadas con ingredientes no tóxicos y respetuosos con el medio ambiente.
+              </article>
+                
+                <h2>SELECCIONA TU COLOR &#x2764; <i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-stamp"></i></h2>
+    <div class="color-picker-container">
+    <p id="selected-color">Tintas ECOART <BR/> Color seleccionado: <span>Ninguno</span></p>
+        <div class="color-display" id="color-display"></div>
+        <div class="color-options">
+            <div class="color-option" style="background: gold;" onclick="selectColor('Oro', 'gold')"></div>
+            <div class="color-option" style="background: silver;" onclick="selectColor('Plata', 'silver')"></div>
+            <div class="color-option" style="background: white; border: 1px solid gray;" onclick="selectColor('Blanco', 'white')"></div>
+            <div class="color-option" style="background: #ff00ff;" onclick="selectColor('Fiusha', '#ff00ff')"></div>
+            <div class="color-option" style="background: black;" onclick="selectColor('Negro', 'black')"></div>
+            <div class="color-option" style="background: #30D5C8;" onclick="selectColor('Turquesa', '#30D5C8')"></div>
+            <div class="color-option" style="background: orange;" onclick="selectColor('Naranja', 'orange')"></div>
+            <div class="color-option" style="background: green;" onclick="selectColor('Verde', 'green')"></div>
+            <div class="color-option" style="background: yellow;" onclick="selectColor('Amarillo', 'yellow')"></div>
+            <div class="color-option" style="background: #8f00ff;" onclick="selectColor('Morado Fosforescente', '#8f00ff')"></div>
+            <div class="color-option" style="background: violet;" onclick="selectColor('Violeta', 'violet')"></div>
+            <div class="color-option" style="background: #4169E1;" onclick="selectColor('Azul Rey', '#4169E1')"></div>
+            <div class="color-option" style="background: #0047AB;" onclick="selectColor('Azul Cobalto', '#0047AB')"></div>
+            <div class="color-option" style="background: #A7C7E7;" onclick="selectColor('Azul Pastel', '#A7C7E7')"></div>
+            <div class="color-option" style="background: #8B4513;" onclick="selectColor('Café Caramelo', '#8B4513')"></div>
+            <div class="color-option" style="background: red;" onclick="selectColor('Rojo', 'red')"></div>
+            <div class="color-option" style="background: #FF00FF;" onclick="selectColor('Magenta', '#FF00FF')"></div>
+            <div class="color-option" style="background: #FF6F61;" onclick="selectColor('Rosa Coral', '#FF6F61')"></div>
+            <div class="color-option" style="background: #FFD1DC;" onclick="selectColor('Rosa Pastel', '#FFD1DC')"></div>
+            <div class="color-option" style="background: #E4007C;" onclick="selectColor('Rosa Mexicano', '#E4007C')"></div>
+            <div class="color-option" style="background: pink;" onclick="selectColor('Rosa', 'pink')"></div>
+            <div class="color-option" style="background: #98FB98;" onclick="selectColor('Verde Menta', '#98FB98')"></div>
+            <div class="color-option" style="background: #E1AD01;" onclick="selectColor('Amarillo Camello', '#E1AD01')"></div>
+        </div>
+        
+    </div>
+
+    <script>
+        function selectColor(colorName, colorValue) {
+            document.getElementById("selected-color").innerHTML = "Color seleccionado: <span style='color:" + colorValue + ";'>" + colorName + "</span>";
+            document.getElementById("color-display").style.backgroundColor = colorValue;
+        }
+    </script>
+ 
+                            </section>
+                            
+                            
+                            
+                            
+            <section class="column latest-news">  
+              <article>
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_687706-MLM73720895756_012024-F.webp" alt="imagen">
+                    <h3>Tinta Blanca color Blanco Mate para Sellos de Goma Sella Papel Cartulina Cartón Kraft
+</h3>
+                    
+                    
+La tinta permanece siempre fresca en el cojín y seca al sellar en 123¡
+<br/>
+-Ideal para Sellar y Decorar papeles, cartulinas, sobres, tarjetas, etiquetas, invitaciones y todas tus ideas creativas.
+<br/>
+- Estampa  empaques en el sector publicitario, cajas de cartón, papeles, bolsas de Kraft, papel reciclado.
+<br/>
+-Para todo tipo de sellos de goma, automáticos y manuales. 
+<br/>
+-Para todo tipo de almohadillas y cojines de caucho, tela, látex, fieltro, scrapbook.
+
+<br/>
+<strong>¡Envío Gratis!</strong><br/>
+<a href="https://wa.me/522224606907">Más información</a></p>
+          </section>
+<section class="column ads">
+  
+    <iframe width="100%" height="480px" src="https://www.youtube.com/embed/Y9EUYnltaIE?si=6fbRSkYJgb-1AAbu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h3>Cómo Usar las Tintas para Sellos de Goma: Guía Paso a Paso</h3>
+        <p>Aprende a usar las tintas para sellos de goma de Quetzal Arte con nuestros video tutoriales. Descubre técnicas y consejos para obtener los mejores resultados en tus proyectos creativos. <br/>¡Haz clic para ver el video!</p>
+    
+   </section>
+</div>
+
+
+
+
+<h2 id="sellos" style="color: red;"><i class="fa-solid fa-stamp"></i> Sellos de Goma Personalizados</h2>
+
+
+        <div class="content">
+            
+            
+            
+            <section class="column news">
+               
+                <article>
+ <img src="https://http2.mlstatic.com/D_NQ_NP_2X_865663-MLM80108392496_112024-F.webp"> <img src="https://http2.mlstatic.com/D_NQ_NP_2X_944098-MLM80822792715_112024-F.webp">
+                    <h3>Sellos Artísticos y Decorativos</h3>
+
+                    <p>Con diseños divertidos o elegantes son ideales para scrapbooking, tarjetas, decoración de regalos y cualquier otra actividad artesanal que requiera una impresión artística única y detallada.<br/><br/> Con estos sellos, puedes transformar fácilmente tus proyectos en verdaderas obras de arte. <br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
+                </article>
+          </section>
+            
+            
+            
+            
+          <section class="column latest-news">
+              
+                <article>
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_653442-MLM80216384390_112024-F.webp">
+                    <h3>&quot;Sellos Personalizados Tradicionales&quot;</h3>
+                    <p>Consisten en base de madera y un mango requieren una almohadilla de tinta separada. <br/><br/>Ofrecen una experiencia más artesanal y son perfectos para proyectos creativos, manualidades y decoración. <br/><br/>(El tamaño de la madera y goma se ajusta proporcionalmente a su diseño.)<br/>
+¡Si no cuenta con un diseño con gusto le ayudo a realizar su idea!
+"Si requiere de un diseño más elaborado se cobra por separado."
+<br/>
+El Tiempo de Elaboración una vez aprobado su diseño es de 2 días más 1 a 2 días de envío.
+<br/><br/>
+CÓMO FUNCIONA ??? ???
+Es tan fácil como 1-2-3
+<br/>
+(1) Realizar la compra.
+<br/>
+(2) Automáticamente se crea una conversación privada donde puede adjuntar su diseño ya listo en formatos: vectores .pdf o imagen .jpg en buena calidad.
+<br/>
+(3) Se envía vista previa hasta llegar a su aprobación.
+
+<br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
+              </section>
+<section class="column ads">
+    <h3></h3>
+    <article>
+<img src="https://http2.mlstatic.com/D_NQ_NP_2X_943597-MLM71968273564_092023-F.webp">
+        <h3>¡Sellos Gigantes Personalizados!</h3>
+        <p>Están diseñados para cubrir áreas más amplias con una sola impresión. <br/><br/>La base de madera es curva cuenta con agarraderas para rotar el sello de extremo a extremo a la hora de imprimir. Son ideales para estampar empaques, cajas de cartón, bolsas de cartulina, papel kraft y otros artículos de gran tamaño o superficies huecas.<br/> <br/>Estos sellos suelen ser personalizados para satisfacer necesidades específicas de branding o diseño. <br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">mas información</a></p>
+    </article>
+   </section>
+</div>
+
+
+
+
+<h2 id="arte" style="color: red;"><i class="fa-solid fa-box-open"></i> Arte y Decoración</h2>
+
+        <div class="content">
+  
+                            <section class="column ads">
+    
+    <article>
+ <img src="https://http2.mlstatic.com/D_NQ_NP_2X_848522-MLM79481125022_102024-F.webp">
+        <h3>Sellos Transparentes</h3>
+        <p>Son ideales para proyectos de manualidades y estampado debido a su visibilidad y precisión. <br/><br/>Estos sellos permiten ver exactamente dónde se está aplicando la tinta, lo que facilita la creación de diseños detallados y bien alineados. Reutilizables, fáciles de limpiar y se adhieren a bloques acrílicos para un uso cómodo y eficiente.<br/><br/> Perfectos para scrapbooking, tarjetas y otras artesanías.<br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
+    </article>
+   </section>
+                            
+                            
+          <section class="column latest-news">
+               
+                <article>
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_976599-MLM80365078573_112024-F.webp">
+                    <h3>Tinta Para Sellos De Goma - Blanca, Negro, Rosa... 100ml.</h3>
+                    <p>¡Tinta Blanca para Sellos 100ml. + cojín 10x17cm!
+
+Tinta para sellos de goma, COLORES NÍTIDOS de Secado Rápido.
+La tinta seca al sellar en 123 ¡
+
+              <br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
+              </section>
+              
+              
+              
+              <section class="column ads">
+    
+    <article>
+ <img src="https://http2.mlstatic.com/D_NQ_NP_2X_660748-MLM81981873247_012025-F.webp">
+        <h3>Tinta Oro Colores Metal Dorado Sellos De Goma Papel Gold Ink</h3>
+        <p>"Tinta COLOR METÁLICO para sellos de goma, ideal en trabajos artísticos, decorativos y publicitarios"
+<br/><br/>
+Tintas de colores metálicos un tributo a la sofisticación y elegancia.
+<br/><br/>
+Entra en un mundo donde cada impresión es una declaración de refinamiento, perfecto para otorgar distinción a tus invitaciones, tarjetas de presentación, proyectos, manualidades y a tus ideas publicitarias..  <br/>
+<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
+    </article>
+   </section>
+   
+   
+
+</div>
+
+
+
+
+</main>
+<footer>
+    <p>&copy; 2025 QuetzalArte.com  Hecho con Amor &#x2764; Todos los derechos reservados.</p>
+</footer>
+<script>
+function toggleMenu() {
+    var menu = document.getElementById('menu');
+    menu.classList.toggle('showing');
+}
+</script>
+</body>
+</html>
