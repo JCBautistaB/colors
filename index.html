@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,491 +17,2120 @@
     <meta name="twitter:description" content="Compra tintas para sellos de goma, cojines y sellos personalizados en QuetzalArte. Calidad y variedad para tus proyectos creativos. ¡Envíos gratis!">
     <meta name="twitter:image" content="https://http2.mlstatic.com/D_NQ_NP_2X_941537-MLM45701924425_042021-F.webp">
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/009/385/621/non_2x/heart-hand-draw-icon-sign-design-free-png.png">
-    <title>QuetzalArte.com</title>
+    <title>QuetzalArte.com Tienda</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #2e7d32; /* Verde oscuro */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: relative; /* Añadido para alinear el buscador */
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px; /* Ajuste de padding para un diseño más compacto */
-        }
-        header h1 {
-            margin: 0;
-            display: flex;
-            align-items: center;
-        }
-        header h1 i {
-            margin-right: 10px;
-        }
-        .social-icons {
-            display: flex;
-            align-items: center;
-        }
-        .social-icons a {
-            color: #2e7d32; /* Verde oscuro */
-            text-decoration: none;
-            font-size: 20px;
-            margin-left: 10px;
-        }
-        .social-icons a:hover {
-            color: #388e3c; /* Verde intermedio */
-        }
-        .search-form {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-        .search-form input[type="text"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            margin-right: 10px;
-            font-size: 16px;
-        }
-        .search-form button {
-            padding: 12px;
-            background-color: #4caf50; /* Verde */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .search-form button:hover {
-            background-color: #388e3c; /* Verde intermedio */
-        }
-        .search-form button i {
-            font-size: 20px; /* Tamaño del icono */
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            background-color: #388e3c; /* Verde intermedio */
-        }
-        nav ul li {
-            margin: 0 15px;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones */
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px; /* Espacio alrededor del texto */
-            display: block;
-        }
-        nav ul li:hover {
-            background-color: #2e7d32; /* Cambio de color en hover */
-        }
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-        }
-        .menu-toggle span {
-            background: white;
-            display: block;
-            height: 3px;
-            width: 25px;
-            margin: 5px 0;
-        }
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-               .content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-        .column {
-            flex: 1;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .news, .latest-news, .ads {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombras */
-            margin-bottom: 20px;
-        }
-        .news article, .latest-news article, .ads article {
-            margin-bottom: 20px;
-        }
-        .news article img, .latest-news article img, .ads article img {
-            max-width: 100%;
-            height: auto;
-        }
-        .news article h2, .latest-news article h2, .ads article h2 {
-            margin-top: 10px;
-            color: #ff0000; /* Rojo */
-        }
-        .news article p, .latest-news article p, .ads article p {
-            color: black; /* negro */
-        }
-        footer {
-            background-color: #2e7d32; /* Verde oscuro */
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
-        }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; }
+        .products { display: flex; flex-wrap: wrap; gap: 20px; padding:5px; }
+        .product { margin-bottom: 20px; display: inline;
+            position: relative;
+            text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff; width: calc(13% - 0px); box-sizing: border-box; transition: transform 0.2s; flex-direction: column; /* Stack image and details vertically */ text-align:center; }
+        .product:hover { transform: translateY(-5px); }
+        .product img { width: 100%;  margin: 1px; border-radius: 10px; }
+        .product-details { padding-top:5px;}
+        /* Estilo base del carrito */
+.cart {
+    position: fixed;
+    top: 0;
+    right: -90%; /* Inicialmente oculto a la derecha */
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out; /* Animación suave */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
+    display: none; /* Ocultar inicialmente */
+	padding:5px;
+}
+
+/* Clase para mostrar el carrito */
+.cart.open {
+    right: 0; /* Muestra el carrito deslizándolo hacia la izquierda */
+    display: block; /* Mostrar el carrito */
+}
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .cart-item button { margin-left: 10px; }
+        .cart-icon { font-size: 24px; cursor: pointer; position: fixed; top: 40px; right: 10px; background: white; padding: 10px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  z-index: 1000; /* Asegura que esté siempre encima */}
+        #cartCount { font-weight: bold; color: red; }
+        input[type="number"] { width: 50px; border: 1px solid #ddd; border-radius: 5px; padding: 5px; }
+		
+        .shipping-info, .payment-info {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: black; /* Color de texto resaltado (tomate rojo) */
+    background-color: white; /* Fondo amarillo */
+    padding: 5px; /* Espaciado alrededor del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 2px solid #0CC; /* Borde con color de texto */
+	text-align:center;
+}
+
+        .invalid { border: 2px solid red; }
+        .search-bar { padding-left:20px; float:right; padding-top:5px; display:inline;}
+        .section { margin-bottom: 20px; }
+        .section h2 { margin-bottom: 10px; }
+        .section div { display: none flex-wrap: wrap; gap: 10px; }
+        .section div p { flex: 1 1 calc(50% - 20px); margin: 0; background: #fff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+        .section div p:hover { transform: translateY(-5px); }
+        .shipping-options, .payment-options { display: flex; flex-wrap: wrap; gap: 10px;  }
+		
+       .shipping-options button, .payment-options button {
+    flex: 1 1 calc(33.333% - 10px);
+    padding: 10px;
+    border: 2px solid #0CC; /* Especifica el tipo de borde */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #0CC;
+    cursor: pointer;
+    transition: transform 0.2s;
+    color: white;
+	font-weight: bold; /* Aplica negrita al texto */
+}
+
+.shipping-options button:hover, .payment-options button:hover {
+    transform: translateY(-5px);
+    background-color: white;
+    color: #0CC;
+}
+
+/* Al hacer clic, el botón crece */
+.shipping-options button:active, .payment-options button:active {
+    transform: scale(1.1); /* Hace que el botón crezca un 10% */
+}
+
+		
+        .bank-transfer-details { display: none; margin-top: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .weight-category { margin-top: 10px; font-size: 16px; color:gray; }
+        .weight-btn { visibility:visible;}
+
         @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background-color: #388e3c; /* Verde intermedio */
-            }
-            nav ul li {
-                margin: 10px 0;
-            }
-            nav ul.showing {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-            .content {
-                flex-direction: column;
-            }
-            .column {
-                margin: 10px 0;
-                flex-basis: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
-            }
-            header {
-                flex-direction: column;
-            }
+            .product { width: calc(50% - 20px); }
+            .search-bar { float: none; margin-bottom: 10px; display:inline; }
+            .section div p { flex: 1 1 100%; }
+
+            .shipping-options button, .payment-options button { flex: 1 1 calc(50% - 10px); }
         }
 
-.whatsapp-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #25D366;
-        color: white;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 30px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-        text-decoration: none;
-    }
+        @media (max-width: 480px) {
+            .product { width: 100%; }
+            .search-bar { float: none; margin-bottom: 10px; display: inline;}
+            .section div p { flex: 1 1 100%; }
+            .shipping-options button, .payment-options button { flex: 1 1 100%; }
+        }
+    .search-bar1 {margin-bottom: 20px; float: right; }
+.search-bar1 {float: none; margin-bottom: 10px; }
+.search-bar1 {            float: none; 
+            margin-bottom: 10px; 
+}
 
-    .whatsapp-button:hover {
-        transform: scale(1.1);
-    }
-	.color-picker-container {
-            margin: 20px auto;
-            text-align: center;
-        }
-        .color-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            max-width: 600px;
-            margin: auto;
-        }
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+ .buy-button {
+            background-color: transparent; /* Minimalist design */
+            color: #0CC; /* Blue text */
+            border: 2px solid #0CC; /* Blue border */
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            border: 2px solid transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .color-option:hover {
-            transform: scale(1.1);
-            border: 2px solid black;
-        }
-        #selected-color {
-            margin-top: 20px;
-            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s, border-color 0.3s;
+            font-size: 16px;
             font-weight: bold;
         }
-        .color-display {
-            width: 100px;
-            height: 100px;
-            margin: 10px auto;
-            border-radius: 10px;
-            border: 2px solid #333;
+
+        .buy-button:hover {
+            background-color: #0CC; /* Light blue background on hover */
+            transform: scale(1.05);
+			color:white;
         }
 
+        .buy-button:active {
+            border-color: #0CC; /* Green border when pressed */
+            transform: scale(1);
+			background-color:white;
+			color:#0CC;
+			transform: scale(2);
+        }
+		.stock{
+			position:absolute;
+            top: 20px;
+            right: 20px;
+            color: gray;
+            font-size: 14px;
+			}
+			
+			 /* Estilos para el botón */
+        .comprar-btn {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .comprar-btn:hover {
+            background-color: #45a049; /* Verde más oscuro al pasar el mouse */
+        }
+
+        /* Estilos para el ícono y la animación */
+        .icono-carrito {
+        display: inline-block; /* Cambiado de 'none' a 'inline-block' */
+        font-size: 24px;
+        color: #4CAF50;
+        animation: bounce 0.5s ease;
+    }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+		
+		 .whatsapp-button {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	background-color: #0CC;
+	border-radius: 0%;
+	padding: 10px;
+	z-index: 1000; /* Asegura que siempre esté por encima */
+	width:100%;
+    }
+	
+	.footer-sections {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .footer-sections > div {
+    padding-right: 5px;
+    flex: 1;
+    min-width: 300px;
+  }
+  @media (max-width: 600px) {
+    .footer-sections {
+      flex-direction: column;
+    }
+    .footer-sections > div {
+      margin-bottom: 20px;
+    }
+  }
+      </style>
+     <style>
+        /* Estilos para ocultar elementos al generar PDF o imprimir */
+        .no-imprimir {
+            display: inline; /* Mostrar en la página */
+        }
+
+        .oculto {
+            display: none; /* Ocultar al generar el PDF o imprimir */
+        }
+
+        /* Estilos para la impresión */
+        @media print {
+            body * {
+                visibility: hidden; /* Oculta todo el contenido */
+            }
+
+            #contenido-imprimir, #contenido-imprimir * {
+                visibility: visible; /* Muestra solo el contenido a imprimir */
+            }
+
+            #contenido-imprimir {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .no-imprimir {
+                display: none; /* Oculta los botones al imprimir */
+            }
+        }
     </style>
-    <!-- Enlace a Font Awesome para los iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    
 </head>
 <body>
-<a href="https://wa.me/522224606907" class="whatsapp-button" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
 
-<div style="text-align: center; padding:5px;">Envío gratis en compras apartir de $299.00</div>
-    <header>
-        <h1><i class="fa-solid fa-icons"></i> QuetzalArte.com</h1>
-    </header>
+
+
+<div  class="whatsapp-button">
+
+    <!--<span>👤 Ingresar</span>-->  
+<div style="display: inline; align-items: center; gap: 10px; text-align:center; padding-left:10px;  margin-left:10px; margin-bottom:0px;">
+<img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+         alt="QuetzalArte Logo" 
+         style="width: 25px; height: auto; filter: brightness(0) invert(1);"> 
+</div>
+
+<span style="color:white;"> QuetzalArte.com
+
+<a href="https://wa.me/2224606907" style="text-decoration: none; color: black; margin-left:10px;">
+        <span><img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"></span>
+  </a> 
+    <a href="tel:+522224606907" style="text-decoration: none; color: black;">
+        <span>📱</span>
+    </a>  
+    <a href="mailto:contacto.quetzalarte@gmail.com" style="text-decoration: none; color: black;">
+        <span>✉️ </span> 
+    </a> 
     
-    <nav>
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-       <ul id="menu">
     
-    <li><a href="#tintas"><i class="fa-solid fa-droplet"></i>Tintas para Sellos</a></li>
-    <li><a href="#sellos"><i class="fa-solid fa-stamp"></i> Sellos de Goma</a></li>
-    <li><a href="#arte"><i class="fa-solid fa-box-open"></i> Arte y Decoración</a></li>
-    <li><a href="https://wa.me/522224606907" target="_blank"><i class="fa-solid fa-comment"></i> Contacto</a></li>
-</ul>
 
-    </nav>
-    <main>
 
-<h2 id="tinta" style="color: red;"><i class="fa-solid fa-droplet"></i> Tintas para Sellos de Goma</h2>   
+    
+    
+    <div class="search-bar">
+   <input type="text" id="searchInput" placeholder=" 🔎 Buscar productos..." onkeyup="filterProducts()" style="width:130px;">
+  </div>
+  
+  
+</div>
 
-        <div class="content">
-            <section class="column news">
-                <!--<form action="#" method="get" class="search-form">
-                    <input type="text" name="search" id="search" placeholder="Buscar productos...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>-->
-                
-                <article>
-                <h3>Tintas EcoArt: Artísticas, Ecológicas y No Tóxicas</h3>
+<section id="miLayer"> </section>
 
-Presentamos Tintas ECOART, nuestra innovadora línea de tintas a base de agua, diseñadas con ingredientes no tóxicos y respetuosos con el medio ambiente.
-              </article>
-                
-                <h2>SELECCIONA TU COLOR &#x2764; <i class="fa-solid fa-droplet"></i> <i class="fa-solid fa-stamp"></i></h2>
-    <div class="color-picker-container">
-    <p id="selected-color">Tintas ECOART <BR/> Color seleccionado: <span>Ninguno</span></p>
-        <div class="color-display" id="color-display"></div>
-        <div class="color-options">
-            <div class="color-option" style="background: gold;" onclick="selectColor('Oro', 'gold')"></div>
-            <div class="color-option" style="background: silver;" onclick="selectColor('Plata', 'silver')"></div>
-            <div class="color-option" style="background: white; border: 1px solid gray;" onclick="selectColor('Blanco', 'white')"></div>
-            <div class="color-option" style="background: #ff00ff;" onclick="selectColor('Fiusha', '#ff00ff')"></div>
-            <div class="color-option" style="background: black;" onclick="selectColor('Negro', 'black')"></div>
-            <div class="color-option" style="background: #30D5C8;" onclick="selectColor('Turquesa', '#30D5C8')"></div>
-            <div class="color-option" style="background: orange;" onclick="selectColor('Naranja', 'orange')"></div>
-            <div class="color-option" style="background: green;" onclick="selectColor('Verde', 'green')"></div>
-            <div class="color-option" style="background: yellow;" onclick="selectColor('Amarillo', 'yellow')"></div>
-            <div class="color-option" style="background: #8f00ff;" onclick="selectColor('Morado Fosforescente', '#8f00ff')"></div>
-            <div class="color-option" style="background: violet;" onclick="selectColor('Violeta', 'violet')"></div>
-            <div class="color-option" style="background: #4169E1;" onclick="selectColor('Azul Rey', '#4169E1')"></div>
-            <div class="color-option" style="background: #0047AB;" onclick="selectColor('Azul Cobalto', '#0047AB')"></div>
-            <div class="color-option" style="background: #A7C7E7;" onclick="selectColor('Azul Pastel', '#A7C7E7')"></div>
-            <div class="color-option" style="background: #8B4513;" onclick="selectColor('Café Caramelo', '#8B4513')"></div>
-            <div class="color-option" style="background: red;" onclick="selectColor('Rojo', 'red')"></div>
-            <div class="color-option" style="background: #FF00FF;" onclick="selectColor('Magenta', '#FF00FF')"></div>
-            <div class="color-option" style="background: #FF6F61;" onclick="selectColor('Rosa Coral', '#FF6F61')"></div>
-            <div class="color-option" style="background: #FFD1DC;" onclick="selectColor('Rosa Pastel', '#FFD1DC')"></div>
-            <div class="color-option" style="background: #E4007C;" onclick="selectColor('Rosa Mexicano', '#E4007C')"></div>
-            <div class="color-option" style="background: pink;" onclick="selectColor('Rosa', 'pink')"></div>
-            <div class="color-option" style="background: #98FB98;" onclick="selectColor('Verde Menta', '#98FB98')"></div>
-            <div class="color-option" style="background: #E1AD01;" onclick="selectColor('Amarillo Camello', '#E1AD01')"></div>
+<div style="padding:10px; margin-top:90px;">
+  ¡Hola! Bienvenid@ a nuestra tienda en línea. 😊 Aquí puedes comprar o cotizar  tu pedido fácilmente
+</div>
+
+
+
+<!-- start carrito -->
+ 
+<div class="cart" id="carrito">
+
+
+    <h3 style="color: #0CC; font-size: 24px; text-align: center; font-weight: bold;">🛒 Carrito de Compras</h3>
+
+    <div id="cartItems" style="font-weight: bold; font-size: 18px; color: #000000; margin-bottom: 20px;"></div>
+
+    <br/>Peso total: <span id="totalWeight" style="font-weight: bold; font-size: 18px; ";>0</span> kg.
+    
+    <h3 style="text-align: right; margin-bottom: 10px; padding-right: 70px; color: #0CC;"> subtotal: <span id="total">0</span></h3>
+    
+    <div id="shippingInfo2" style="display: none;">
+      </div>  
+    <div style=" text-align: right; font-size: 16px; color: blue; padding-right: 70px; font-weight: bold;">envío: $<span id="shippingCostValue2">0</span></div>
+    
+    <!-- Aquí agregamos la categoría de peso -->    
+    <div style="text-align: right; font-size: 16px; color: orangered; padding-right: 70px; font-weight: bold;">1 comisión: $<div id="shippingtype" style="display:inline;">0</div></div>
+     
+    <h3 style="text-align: right; margin-bottom: 10px; padding-right: 70px; color: orangered;">
+      
+        <span id="commissionCalculation" style="display: none;"></span>
+    </h3>
+    
+    <h2 style="text-align: right; margin-bottom: 10px; padding-right: 70px;">1 Total a pagar: <span style="color: #4CAF50; font-size: 50px; " >$<span id="finalTotal" style="color: #4CAF50;">0</span></span></h2>
+        
+    <hr>
+
+
+
+
+    
+
+
+<h2>1 Envío 🏠 🌐</h2>
+
+<div id="shippingInfo" style="display: none;" class="shipping-info">Selecciona Tipo de Envío</div>
+  <!-- indica categoría de peso-->
+ <div id="pesoMensaje" style="text-align: center;  padding: 10px; color:gray;">
+  <!-- El mensaje se actualizará dinámicamente aquí -->
+</div>  
+
+  
+<!-- Agregar el costo de envío seleccionado aquí -->
+<div id="selectedShippingCost" style="display: none;">0</div>  
+
+ 
+
+
+   <hr>     
+
+    <div class="section">
+        <h2>2 Forma de Pago 💲 💳</h2>
+        <div id="paymentInfo" class="payment-info">Selecciona el tipo de pago.</div>
+        
+        <div id="emptyCartMessage" style="text-align: center; color: gray; padding: 20px; display: none;">
+    🛒 Tu carrito está vacío.
+</div>
+
+
+<div style="font-size: 16px; color: #0CC; font-weight: bold;">
+    Costo Total de Productos: $<span id="productTotalValue">0</span>
+</div>
+<div style="font-size: 16px; color: blue; font-weight: bold;">
+    Costo del Envío seleccionado: $<span id="selectedShippingCostValue">0</span>
+</div>
+<div id="shippingCostDisplay" style="font-size: 16px; color: orangered; font-weight: bold;">
+    Comisión del Pago Seleccionado: $<span id="shippingCostValue">0</span>
+</div>
+<h3>2 Total a pagar: $<span id="finalTotal2" style="color: #45a049; font-size: 50px;">0</span></h3>
+
+
+
+        <div id="bankTransferDetails" class="bank-transfer-details">
+            <img src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/images/payments-logos/spei.svg"><br/>
+            <strong>Banco:</strong> STP (Sistema de transferencias y pagos) 
+                <br/> Nombre: Juan Carlos Bautista Bautista 
+                <br/>CLABE: 012650028760776683
         </div>
+
+  
+
         
     </div>
-
-    <script>
-        function selectColor(colorName, colorValue) {
-            document.getElementById("selected-color").innerHTML = "Color seleccionado: <span style='color:" + colorValue + ";'>" + colorName + "</span>";
-            document.getElementById("color-display").style.backgroundColor = colorValue;
-        }
-    </script>
- 
-                            </section>
-                            
-                            
-                            
-                            
-            <section class="column latest-news">  
-              <article>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_687706-MLM73720895756_012024-F.webp" alt="imagen">
-                    <h3>Tinta Blanca color Blanco Mate para Sellos de Goma Sella Papel Cartulina Cartón Kraft
-</h3>
-                    
-                    
-La tinta permanece siempre fresca en el cojín y seca al sellar en 123¡
-<br/>
--Ideal para Sellar y Decorar papeles, cartulinas, sobres, tarjetas, etiquetas, invitaciones y todas tus ideas creativas.
-<br/>
-- Estampa  empaques en el sector publicitario, cajas de cartón, papeles, bolsas de Kraft, papel reciclado.
-<br/>
--Para todo tipo de sellos de goma, automáticos y manuales. 
-<br/>
--Para todo tipo de almohadillas y cojines de caucho, tela, látex, fieltro, scrapbook.
-
-<br/>
-<strong>¡Envío Gratis!</strong><br/>
-<a href="https://wa.me/522224606907">Más información</a></p>
-          </section>
-<section class="column ads">
-  
-    <iframe width="100%" height="480px" src="https://www.youtube.com/embed/Y9EUYnltaIE?si=6fbRSkYJgb-1AAbu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <h3>Cómo Usar las Tintas para Sellos de Goma: Guía Paso a Paso</h3>
-        <p>Aprende a usar las tintas para sellos de goma de Quetzal Arte con nuestros video tutoriales. Descubre técnicas y consejos para obtener los mejores resultados en tus proyectos creativos. <br/>¡Haz clic para ver el video!</p>
+<hr>
     
-   </section>
+<div>
+        <h2>3 Registro de Compra 🪪</h2>
+        <p>¡Gracias por elegir QuetzalArte.com! por favor llena los siguientes datos. 
+            <br/>Nuestro equipo se pondrá en contacto contigo para asegurar que tu experiencia de compra sea excepcional.</p>
+        <p>De no tener alguna pregunta, presione en comprar y su envío se enviará rápidamente.</p> 
+        
+        <div id="cartStatusMessage" style="text-align: left; padding: 10px;">
+    <!-- El mensaje del formulario cambiará dinámicamente aquí -->
+</div>
+        
+
+    
+
 </div>
 
+    <div id="detallesCompra"></div>
 
-
-
-<h2 id="sellos" style="color: red;"><i class="fa-solid fa-stamp"></i> Sellos de Goma Personalizados</h2>
-
-
-        <div class="content">
-            
-            
-            
-            <section class="column news">
-               
-                <article>
- <img src="https://http2.mlstatic.com/D_NQ_NP_2X_865663-MLM80108392496_112024-F.webp"> <img src="https://http2.mlstatic.com/D_NQ_NP_2X_944098-MLM80822792715_112024-F.webp">
-                    <h3>Sellos Artísticos y Decorativos</h3>
-
-                    <p>Con diseños divertidos o elegantes son ideales para scrapbooking, tarjetas, decoración de regalos y cualquier otra actividad artesanal que requiera una impresión artística única y detallada.<br/><br/> Con estos sellos, puedes transformar fácilmente tus proyectos en verdaderas obras de arte. <br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
-                </article>
-          </section>
-            
-            
-            
-            
-          <section class="column latest-news">
-              
-                <article>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_653442-MLM80216384390_112024-F.webp">
-                    <h3>&quot;Sellos Personalizados Tradicionales&quot;</h3>
-                    <p>Consisten en base de madera y un mango requieren una almohadilla de tinta separada. <br/><br/>Ofrecen una experiencia más artesanal y son perfectos para proyectos creativos, manualidades y decoración. <br/><br/>(El tamaño de la madera y goma se ajusta proporcionalmente a su diseño.)<br/>
-¡Si no cuenta con un diseño con gusto le ayudo a realizar su idea!
-"Si requiere de un diseño más elaborado se cobra por separado."
-<br/>
-El Tiempo de Elaboración una vez aprobado su diseño es de 2 días más 1 a 2 días de envío.
-<br/><br/>
-CÓMO FUNCIONA ??? ???
-Es tan fácil como 1-2-3
-<br/>
-(1) Realizar la compra.
-<br/>
-(2) Automáticamente se crea una conversación privada donde puede adjuntar su diseño ya listo en formatos: vectores .pdf o imagen .jpg en buena calidad.
-<br/>
-(3) Se envía vista previa hasta llegar a su aprobación.
-
-<br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
-              </section>
-<section class="column ads">
-    <h3></h3>
-    <article>
-<img src="https://http2.mlstatic.com/D_NQ_NP_2X_943597-MLM71968273564_092023-F.webp">
-        <h3>¡Sellos Gigantes Personalizados!</h3>
-        <p>Están diseñados para cubrir áreas más amplias con una sola impresión. <br/><br/>La base de madera es curva cuenta con agarraderas para rotar el sello de extremo a extremo a la hora de imprimir. Son ideales para estampar empaques, cajas de cartón, bolsas de cartulina, papel kraft y otros artículos de gran tamaño o superficies huecas.<br/> <br/>Estos sellos suelen ser personalizados para satisfacer necesidades específicas de branding o diseño. <br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">mas información</a></p>
-    </article>
-   </section>
+</div>
 </div>
 
-
-
-
-<h2 id="arte" style="color: red;"><i class="fa-solid fa-box-open"></i> Arte y Decoración</h2>
-
-        <div class="content">
-  
-                            <section class="column ads">
-    
-    <article>
- <img src="https://http2.mlstatic.com/D_NQ_NP_2X_848522-MLM79481125022_102024-F.webp">
-        <h3>Sellos Transparentes</h3>
-        <p>Son ideales para proyectos de manualidades y estampado debido a su visibilidad y precisión. <br/><br/>Estos sellos permiten ver exactamente dónde se está aplicando la tinta, lo que facilita la creación de diseños detallados y bien alineados. Reutilizables, fáciles de limpiar y se adhieren a bloques acrílicos para un uso cómodo y eficiente.<br/><br/> Perfectos para scrapbooking, tarjetas y otras artesanías.<br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
-    </article>
-   </section>
-                            
-                            
-          <section class="column latest-news">
-               
-                <article>
-                    <img src="https://http2.mlstatic.com/D_NQ_NP_2X_976599-MLM80365078573_112024-F.webp">
-                    <h3>Tinta Para Sellos De Goma - Blanca, Negro, Rosa... 100ml.</h3>
-                    <p>¡Tinta Blanca para Sellos 100ml. + cojín 10x17cm!
-
-Tinta para sellos de goma, COLORES NÍTIDOS de Secado Rápido.
-La tinta seca al sellar en 123 ¡
-
-              <br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
-              </section>
-              
-              
-              
-              <section class="column ads">
-    
-    <article>
- <img src="https://http2.mlstatic.com/D_NQ_NP_2X_660748-MLM81981873247_012025-F.webp">
-        <h3>Tinta Oro Colores Metal Dorado Sellos De Goma Papel Gold Ink</h3>
-        <p>"Tinta COLOR METÁLICO para sellos de goma, ideal en trabajos artísticos, decorativos y publicitarios"
-<br/><br/>
-Tintas de colores metálicos un tributo a la sofisticación y elegancia.
-<br/><br/>
-Entra en un mundo donde cada impresión es una declaración de refinamiento, perfecto para otorgar distinción a tus invitaciones, tarjetas de presentación, proyectos, manualidades y a tus ideas publicitarias..  <br/>
-<strong>¡Envío Gratis!</strong><br/><a href="https://wa.me/522224606907">más información</a></p>
-    </article>
-   </section>
+<h1 style="padding-left:10px;">Adquiere tu pedido y disfruta, productos de alta calidad, entrega garantizada!</h1>
    
-   
+    
+    
+<div class="products" id="productList">
+
+
+    
+        <div class="product">
+     <div class="stock" > Stock:<span id="stockA">100</span></div>      
+      <img src="https://http2.mlstatic.com/D_NQ_NP_2X_747216-MLM73090352597_112023-F.webp" alt="Producto A">
+      <span style=" font-size:24px; display: block;"><strong>$80</strong></span>
+      
+      
+<div style="display: inline;">
+    <input type="number" id="quantityA" value="1" min="1" max="100">    
+    <!-- Botón con la descripción agregada después de la cantidad -->
+<button onclick="agregarAlCarrito(); addToCart('Producto A', 80, 0.05, 100, document.getElementById('quantityA').value, 'Blanco Tinta pata Sellos Goma 25 ml.');" class="buy-button">
+        Comprar Ya!
+</button>
+</div>
+    
+    
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 25 ml. Color Blanca Blanco Mate 100% Natural imprime papel, cartón, kraft, base agua... <a href="#" style="color:gray;"><samp>ver más</samp></a>
+            
+            </div>
+        </div>     
+        
+
+
+        
+        <div class="product">
+         <div class="stock" > Stock:<span id="stockB">50</span></div>
+            <img src="https://http2.mlstatic.com/D_Q_NP_2X_938554-MLM79344298172_092024-AC.webp" alt="Producto B">
+             <span style=" font-size:24px; display: block;"><strong>$159</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityB" value="1" min="1" max="50">
+            <select id="colorB" style="margin: 5px;">
+            <option value="Blanco Natural">Blanco Natural</option>
+            <option value="Amarillo">Amarillo</option>
+            <option value="Azul Pastel">Azul Pastel</option>
+            <option value="Azul Rey">Azul Rey</option>
+            <option value="Fiusha">Fiusha</option>
+            <option value="Naranja">Naranja</option>
+            <option value="Negro Azabache">Negro Azabache</option>
+            <option value="Rojo">Rojo</option>
+            <option value="Turquesa">Turquesa</option>
+            <option value="Verde Menta">Verde Menta</option>
+            </select>
+        <button onclick="agregarAlCarrito(); addToCart('Producto B' + document.getElementById('colorB').value, 159, 0.180, 50, document.getElementById('quantityB').value, 'Tinta ' + document.getElementById('colorB').value + ' Sellos Goma 100 ml.');" class="buy-button">
+        Comprar Ya!
+        </button>
+         </div> 
+            <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta para sellos de goma 100 ml.            
+            </div>
+        </div>
+          
+        <div class="product">
+           <div class="stock" > Stock:<span id="stockC">10</span></div> 
+             <img src="https://http2.mlstatic.com/D_Q_NP_2X_687706-MLM73720895756_012024-AC.webp" alt="Producto C">
+           <span style=" font-size:24px; display: block;"><strong>$1499</strong></span>
+            <div class="product-details">
+             <input type="number" id="quantityC" value="1" min="1" max="10">
+<button onclick="agregarAlCarrito(); addToCart('Producto C', 1499, 1.900, 10, document.getElementById('quantityC').value, 'Tinta Blanca 1 L.');" class="buy-button">
+    Comprar Ya!
+</button>
+           </div> 
+           <div class="product-details" >  <span style="display:block;"><span style="color:gray; display:block;">
+           <br/>
+         Tinta Blanca o Blanco Mate para Sellos de Goma 1 Litro
+        <br/> 
+        Tintas amigables con el medio ambiente, elaboradas con elementos naturales.  
+        
+       <br/>   <br/> 
+       Tiempo de elaboración: 5 días.</div>
+        </div>        
+        
+
+
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockD">30</span></div>
+            <img src="https://i.ytimg.com/vi/V1sn4V5MGRk/maxresdefault.jpg" alt="Cojín para sellos de goma tipo scrapbook">
+            <span style="font-size:24px; display: block;"><strong>$60</strong></span>
+            <div class="product-details">
+                <input type="number" id="quantityD" value="1" min="1" max="30">
+                <button onclick="agregarAlCarrito(); addToCart('Producto D', 60, 0.040, 30, document.getElementById('quantityD').value, 'Cojín Tipo Scrapbook');" class="buy-button">
+                    Comprar Ya!
+                </button>
+            </div>
+            <div class="product-details">
+                <span style="display:block; color:gray;">Cojín Sencillo Tipo Scrapbook - Ideal para uso diario. <br/> 
+                Incluye: 2 Cojines de latex tamaño 5cm. Base de madera</span>
+            </div>
+        </div>
+        
+        <div class="product">
+            <div class="stock">Stock: <span id="stockE">20</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_660748-MLM81981873247_012025-F.webp" alt="Producto E">
+            <span style="font-size:24px; display: block;"><strong>$255.67</strong></span>
+            <div class="product-details">
+                <input type="number" id="quantityE" value="1" min="1" max="20">
+                <button onclick="agregarAlCarrito(); addToCart('Producto E', 255.67, 0.060, 20, document.getElementById('quantityE').value, 'Oro Miel Tinta para Sellos 30 gr.');" class="buy-button">
+                    Comprar Ya!
+                </button>
+            </div>
+            <div class="product-details">
+                <span style="display:block; color:gray;">Oro Miel 30 gr. Tinta para Sellos</span>
+            </div>
+        </div>
+        
+        <div class="product">
+            <div class="stock">Stock: <span id="stockF">15</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_2X_820519-MLM84361126465_052025-B.webp" alt="Producto F">
+            <span style="font-size:24px; display: block;"><strong>$145</strong></span>
+            <div class="product-details">
+                <input type="number" id="quantityF" value="1" min="1" max="15">
+                <button onclick="agregarAlCarrito(); addToCart('Producto F', 145, 0.060, 15, document.getElementById('quantityF').value, 'Plata Tinta para Sellos 30 gr. ');" class="buy-button">
+                    Comprar Ya!
+                </button>
+            </div>
+            <div class="product-details">
+                <span style="display:block; color:gray;">Plata 30 gr. Tinta para sellos.</span>
+            </div>
+        </div>
+
+
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockG">25</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_848250-MLM76338094014_052024-F-cojin-para-sellos-grande-almohadilla-recargable-18x10-azor.webp" alt="Producto G">
+            <span style="font-size:24px; display: block;"><strong>$67</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityG" value="1" min="1" max="25"><br/>
+            Marca:<select id="brandG" style="margin: 5px;">
+                <option value="AZOR 10x18cm.">AZOR</option>
+                <option value="BACO 10x18cm.">BACO</option>
+            </select>
+            <button onclick="agregarAlCarrito(); addToCart('Producto G - ' + document.getElementById('brandG').value, 67, 0.110, 25, document.getElementById('quantityG').value, 'Cojín Sello Plástico No. 2 Sin Tinta ' + document.getElementById('brandG').value);" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Cojín para Sellos No. 2 Estuche de Plástico Sin Tinta Tamaño 10 x 18 cm.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockH">40</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_836361-MLM81484878002_012025-F.webp" alt="Producto H">
+            <span style="font-size:24px; display: block;"><strong>$150</strong></span>
+            <div class="product-details">
+                <input type="number" id="quantityH" value="1" min="1" max="40">
+                <button onclick="agregarAlCarrito(); addToCart('Producto H', 150, 0.150, 40, document.getElementById('quantityH').value, 'Sello de Goma Chico Personalizado');" class="buy-button">
+                    Comprar Ya!
+                </button>
+            </div>
+            <div class="product-details">
+                <span style="display:block; color:gray;">Sello de Goma Chico de 1cm. a 6cm. Personalizado.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockI">15</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_829314-MLM79350037912_092024-F.webp" alt="Producto I">
+            <span style="font-size:24px; display: block;"><strong>$769</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityI" value="1" min="1" max="15">
+            <button onclick="agregarAlCarrito(); addToCart('Producto I', 769, 0.500, 15, document.getElementById('quantityI').value, 'Tinta Blanca Sellos Goma 500 ml.');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Blanca Para Sellos De Goma 500ml. Sella Papel Cartón</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockJ">10</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_944098-MLM80822792715_112024-F-sello-nuevo-para-imprimir-cajas-carton-5x5cm-personalizado.webp" alt="Producto J">
+            <span style="font-size:24px; display: block;"><strong>$250</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityJ" value="1" min="1" max="10">
+            <button onclick="agregarAlCarrito(); addToCart('Producto J', 250, 0.15, 10, document.getElementById('quantityJ').value, 'Sello Personalizado Cartón Chico');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Sello Para Imprimir Cajas Cartón Personalizado Chico de 1cm. a 6cm.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockK">20</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807655-MLM80362784537_102024-F-sellos-de-goma-15x45-acuse-entregado-pagado-cancelado-.webp" alt="Producto K">
+            <span style="font-size:24px; display: block;"><strong>$38</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityK" value="1" min="1" max="20">
+            <select id="phraseK" style="margin: 5px;">
+            <option value="PAGADO">PAGADO</option>
+            <option value="ENTREGADO">ENTREGADO</option>
+            <option value="CANCELADO">CANCELADO</option>
+            <option value="ACEPTADO">ACEPTADO</option>
+            <option value="ACUSE">ACUSE</option>
+            <option value="APROBADO">APROBADO</option>
+            <option value="AUTORIZADO">AUTORIZADO</option>
+            <option value="CANCELADO">CANCELADO</option>
+            <option value="CAPTURADO">CAPTURADO</option>
+            <option value="CONFIDENCIAL">CONFIDENCIAL</option>
+            <option value="CONTABILIDAD">CONTABILIDAD</option>
+            <option value="COPIA">COPIA</option>
+            <option value="COPIA FIEL DEL ORIGINAL">COPIA FIEL DEL ...</option>
+            <option value="COTEJADO">COTEJADO</option>
+            <option value="ENTREGADO">ENTREGADO</option>
+            <option value="FACTURADO">FACTURADO</option>
+            <option value="FALSO">FALSO</option>
+            <option value="FRÁGIL">FRÁGIL</option>
+            <option value="GRACIAS">GRACIAS</option>
+            <option value="NO NEGOCIABLE">NO NEGOCIABLE</option>
+            <option value="ORIGINAL">ORIGINAL</option>
+            <option value="PAGADO">PAGADO</option>
+            <option value="PARA BONO EN CUENTA DEL BENEFICIARIO">PARA BONO EN ...</option>
+            <option value="RECHAZADO">RECHAZADO</option>
+            <option value="RECIBIDO">RECIBIDO</option>
+            <option value="REVISADO">REVISADO</option>
+            <option value="SIN TEXTO">SIN TEXTO</option>
+            <option value="TRASLADO">TRASLADO</option>
+            <option value="URGENTE">URGENTE</option>
+            <option value="VENDIDO">VENDIDO</option>
+            </select>
+            <button onclick="agregarAlCarrito(); addToCart('Producto K - ' + document.getElementById('phraseK').value, 38, 0.25, 20, document.getElementById('quantityK').value, 'Sello Negocio ' + document.getElementById('phraseK').value);" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Sellos De Goma 1.5x4.5 Acuse Entregado Pagado Cancelado ...
+            <br/>30 frases disponibles</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockL">30</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_716082-MLM79329164213_092024-F-tintas-para-sellos-colores-rosa-coral-pastel-mexicano-25ml.webp" alt="Producto L">
+            <span style="font-size:24px; display: block;"><strong>$89</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityL" value="1" min="1" max="30">
+            <select id="colorL" style="margin: 5px;">
+                <option value="Rosa Pastel">Rosa Pastel</option>
+                <option value="Rosa">Rosa</option>
+                <option value="Rosa Coral">Rosa Coral</option>
+                <option value="Rosa Coral">Rosa Mexicano</option>
+                <option value="Rosa Neón Tutifruti">Rosa Neón Tutifruti</option>
+            </select>
+            <button onclick="agregarAlCarrito(); addToCart('Producto L - ' + document.getElementById('colorL').value, 89, 0.05, 30, document.getElementById('quantityL').value, 'Tinta ' + document.getElementById('colorL').value + ' 25ml.');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tintas Para Sellos Colores Rosa Coral Pastel Mexicano Neon 25ml.
+            <br/>5 colores dispobibles.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockM">100</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_640848-MLM79082395958_092024-F.webp" alt="Producto M">
+            <span style="font-size:24px; display: block;"><strong>$89</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityM" value="1" min="1" max="100">
+            <select id="colorM" style="margin: 5px;">
+            <option value="Amarillo">Amarillo</option>
+            <option value="Azul lapislázuli">Azul lapislázuli</option>
+            <option value="Azul pastel">Azul pastel</option>
+            <option value="Azul rey">Azul rey</option>
+            <option value="Café caramelo">Café caramelo</option>
+            <option value="Fiusha">Fiusha</option>
+            <option value="Naranja">Naranja</option>
+            <option value="Negro azabache">Negro azabache</option>
+            <option value="Rojo">Rojo</option>
+            <option value="Turquesa">Turquesa</option>
+            <option value="Verde esmeralda">Verde esmeralda</option>
+            <option value="Verde menta">Verde menta</option>
+            <option value="Violeta">Violeta</option>
+            </select>
+            <button onclick="agregarAlCarrito(); addToCart('Producto M - ' + document.getElementById('colorM').value, 89, 0.050, 100, document.getElementById('quantityM').value, 'Tinta ' + document.getElementById('colorM').value + ' Para Sellos De Goma 25ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Para Sellos De Goma Colores A Elegir 25ml.
+            <br/>13 colores disponibles</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockN">60</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_910425-MLM79344103080_092024-F-tinta-blanca-para-sellos-de-goma-250ml-sella-papel-carton.webp" alt="Producto N">
+            <span style="font-size:24px; display: block;"><strong>$399</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityN" value="1" min="1" max="60">
+            <button onclick="agregarAlCarrito(); addToCart('Producto N', 399, 0.450, 60, document.getElementById('quantityN').value, 'Tinta Blanca Para Sellos De Goma 250ml.');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Blanca Para Sellos De Goma 250ml. Sella Papel Cartón</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockO">70</span></div>
+            <img src="https://scontent.fpbc6-1.fna.fbcdn.net/v/t39.30808-6/476158103_1445601423522188_893024428154249514_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeHqZjHwaeV1PipriC8Wb4-ByR6H6_v-XdDJHofr-_5d0Ly2lzmtbj4aRfmdbH06XNkWQPwCPIL-zQMD9kU5IZge&_nc_ohc=zKBPnaAnUEMQ7kNvwEUG23e&_nc_oc=AdlJvWcWfKMqt40GxYMCpiqHwbBau0m7YqxscWDdibBPpdPGln32PAu9fzb2QCbP4ooCmPjWC1gbTUd-LXBl69l9&_nc_zt=23&_nc_ht=scontent.fpbc6-1.fna&_nc_gid=HxjWRLebKoGirhpieEaxnA&oh=00_AfGuV9MwRKwY82dsU4mTjf5TbcbTsbsEbw6tqy7mtqTDLA&oe=6816D78A" alt="Producto O">
+            <span style="font-size:24px; display: block;"><strong>$250</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityO" value="1" min="1" max="70">
+            <button onclick="agregarAlCarrito(); addToCart('Producto O', 250, 0.120, 70, document.getElementById('quantityO').value, 'Tinta Oro y Plata 30 ml.');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tintas Colores Oro Y Plata Para Sellos De Goma Scrapbook 2pz. 30ml.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockP">80</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_904715-MLM69383333994_052023-F.webp" alt="Producto P">
+            <span style="font-size:24px; display: block;"><strong>$99</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityP" value="1" min="1" max="80">
+            <select id="colorP" style="margin: 5px;">
+                <option value="Rosa Neón">Rosa Neón</option>
+                <option value="Azul Neón">Azul Neón</option>
+                <option value="Morado Neón">Morado Neón</option>
+                <option value="Verde Neón">Verde Neón</option>
+                <option value="Amarillo Neón">Amarillo Neón</option>
+            </select>
+            <button onclick="agregarAlCarrito(); addToCart('Producto P - ' + document.getElementById('colorP').value, 99, 0.120, 80, document.getElementById('quantityP').value, 'Tinta ' + document.getElementById('colorP').value + ' 30ml.');" class="buy-button">
+                Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Para Sellos De Goma Color Neón Tinta Color Fluorescente 30ml.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockQ">90</span></div>
+            <img src="https://web.azor.com.mx/wp-content/uploads/2017/11/azor_varios_cojin_sellos_plastico_stp_1-1.jpg" alt="Producto Q">
+            <span style="font-size:24px; display: block;"><strong>$49</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityQ" value="1" min="1" max="90">
+            <button onclick="agregarAlCarrito(); addToCart('Producto Q', 49, 0.040, 90, document.getElementById('quantityQ').value, 'Cojín Sello Plástico No. 1 Sin Tinta AZOR 7x11cm.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Cojín para Sellos No. 1 AZOR Sin Tinta Tamaño 7 x 11 cm.<br/>
+                Con estuche plástico de alta resistencia, almohadilla de hule-espuma que ayuda a distribuir la tinta de manera uniforme dando como resultado 
+                impresiones nítidas y brillantes. Ideal para uso en mostradores y oficinas.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockR">100</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_2X_957133-MLM83028083522_032025-B.webp" alt="Producto R">
+            <span style="font-size:24px; display: block;"><strong>$48</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityR" value="1" min="1" max="100">
+            <button onclick="agregarAlCarrito(); addToCart('Producto R', 48, 0.040, 100, document.getElementById('quantityR').value, 'Cojín para Sellos No. 1 Sin Tinta STAFFORD 7x11 cm.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Cojín para Sellos No. 1 STAFFORD Sin Tinta Tamaño 7 x 11 cm.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockS">110</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_345678-MLM79350037912_092024-F.webp" alt="Producto S">
+            <span style="font-size:24px; display: block;"><strong>$699</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityS" value="1" min="1" max="110">
+            <button onclick="agregarAlCarrito(); addToCart('Producto S', 699, 0.350, 110, document.getElementById('quantityS').value, 'Tinta Azul Sellos Goma 350 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Azul Para Sellos De Goma 350ml. Ideal para proyectos creativos.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockT">120</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_456789-MLM79350037912_092024-F.webp" alt="Producto T">
+            <span style="font-size:24px; display: block;"><strong>$799</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityT" value="1" min="1" max="120">
+            <button onclick="agregarAlCarrito(); addToCart('Producto T', 799, 0.400, 120, document.getElementById('quantityT').value, 'Tinta Verde Sellos Goma 400 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Verde Para Sellos De Goma 400ml. Perfecta para uso artístico.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockU">130</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_567890-MLM79350037912_092024-F.webp" alt="Producto U">
+            <span style="font-size:24px; display: block;"><strong>$899</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityU" value="1" min="1" max="130">
+            <button onclick="agregarAlCarrito(); addToCart('Producto U', 899, 0.450, 130, document.getElementById('quantityU').value, 'Tinta Amarilla Sellos Goma 450 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Amarilla Para Sellos De Goma 450ml. Ideal para proyectos creativos.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockV">140</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_678901-MLM79350037912_092024-F.webp" alt="Producto V">
+            <span style="font-size:24px; display: block;"><strong>$999</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityV" value="1" min="1" max="140">
+            <button onclick="agregarAlCarrito(); addToCart('Producto V', 999, 0.500, 140, document.getElementById('quantityV').value, 'Tinta Naranja Sellos Goma 500 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Naranja Para Sellos De Goma 500ml. Perfecta para uso profesional.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockW">150</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_789012-MLM79350037912_092024-F.webp" alt="Producto W">
+            <span style="font-size:24px; display: block;"><strong>$1099</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityW" value="1" min="1" max="150">
+            <button onclick="agregarAlCarrito(); addToCart('Producto W', 1099, 0.550, 150, document.getElementById('quantityW').value, 'Tinta Roja Sellos Goma 550 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Roja Para Sellos De Goma 550ml. Ideal para uso artístico.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockX">160</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_890123-MLM79350037912_092024-F.webp" alt="Producto X">
+            <span style="font-size:24px; display: block;"><strong>$1199</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityX" value="1" min="1" max="160">
+            <button onclick="agregarAlCarrito(); addToCart('Producto X', 1199, 0.600, 160, document.getElementById('quantityX').value, 'Tinta Blanca Sellos Goma 600 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Blanca Para Sellos De Goma 600ml. Perfecta para uso profesional.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockY">170</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_901234-MLM79350037912_092024-F.webp" alt="Producto Y">
+            <span style="font-size:24px; display: block;"><strong>$1299</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityY" value="1" min="1" max="170">
+            <button onclick="agregarAlCarrito(); addToCart('Producto Y', 1299, 0.650, 170, document.getElementById('quantityY').value, 'Tinta Negra Sellos Goma 650 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Negra Para Sellos De Goma 650ml. Ideal para proyectos creativos.</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="stock">Stock: <span id="stockZ">180</span></div>
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_012345-MLM79350037912_092024-F.webp" alt="Producto Z">
+            <span style="font-size:24px; display: block;"><strong>$1399</strong></span>
+            <div class="product-details">
+            <input type="number" id="quantityZ" value="1" min="1" max="180">
+            <button onclick="agregarAlCarrito(); addToCart('Producto Z', 1399, 0.700, 180, document.getElementById('quantityZ').value, 'Tinta Azul Sellos Goma 700 ml.');" class="buy-button">
+            Comprar Ya!
+            </button>
+            </div>
+            <div class="product-details">
+            <span style="display:block; color:gray;">Tinta Azul Para Sellos De Goma 700ml. Perfecta para uso profesional.</span>
+            </div>
+        </div>
+
 
 </div>
+<!-- end carrito -->
 
 
 
 
-</main>
+
+
 <footer>
-    <p>&copy; 2025 QuetzalArte.com  Hecho con Amor &#x2764; Todos los derechos reservados.</p>
+    <div class="footer-sections">
+      <div>
+        <h2>🚀 <strong data-start="72" data-end="97">Envío Rápido y Seguro</strong></h2>
+        <p>Disfruta de envíos rápidos y seguros en todas tus compras.<br data-start="158" data-end="161">
+          📦 <strong data-start="164" data-end="202">Recibe tus productos en 3 a 5 días 😊</strong> <br>
+<br>
+o elige el método que mejor se adapte a ti:<br data-start="246" data-end="249">
+<strong data-start="251" data-end="267">✈️ Envío Exprés</strong> para recibirlo cuanto antes.<br data-start="296" data-end="299">
+🚀 <strong data-start="302" data-end="319">Envío Premium</strong> para máxima prioridad y seguridad.</p>
+      </div>
+      <div>
+        <h2>💳 <strong data-start="368" data-end="391">Paga Como Prefieras</strong></h2>
+        <p data-start="394" data-end="523">Elige tu método de pago favorito con total confianza.<br data-start="447" data-end="450">
+          ✔️ PayPal ✔️ Google Pay ✔️ Mercado Pago<br>
+          ✔️ Bitso Criptomonedas ✔️ Tiendas de Autoservicio<br data-start="493" data-end="496">
+          ✔️ Transferencia Bancaria<br>
+        </p>
+        <p data-start="525" data-end="565">🔒 <strong data-start="528" data-end="565">Tu dinero está siempre protegido.</strong></p>
+        <p>&nbsp;</p>
+      </div>
+      <div>
+        <h2 data-start="572" data-end="604">🛒 <strong data-start="579" data-end="602">Meses Sin Intereses</strong></h2>
+        <p data-start="605" data-end="760">Compra ahora y paga cómodamente.<br data-start="637" data-end="640">
+          💳 <strong data-start="643" data-end="704">Utiliza tu tarjeta favorita y paga a meses sin intereses<br>
+          .</strong><br data-start="704" data-end="707">
+          Haz tus compras, disfruta al máximo.
+           <span>¡Muchas Gracias! </span></p>
+        <h2>&nbsp;</h2>
+      </div>
+    </div>
+    <p>&copy; 2025 QuetzalArte.com. Hecho con Amor &#x2764; Todos los derechos reservados.
+    
+    Ofrecemos servicio de facturación con IVA (México).
+
+Los precios expresados en este catálogo son por pieza o paquete y están sujetos a cambios sin previo aviso.
+
+ <span>Envíos foráneos se realizan al día siguiente después del pago, en días hábiles.
+Envíos a toda la República Mexicana desde $170.00; el costo puede aumentar según el volumen del pedido (envíos económicos, express y premium).
+</span>
+
+La información y/o imágenes aquí contenidas pueden no corresponder con total precisión.
+
+ <span>El cliente puede enviar guías prepagadas para realizar su envío.</span>
+
+Para obtener más información sobre pedidos especiales, no dudes en contactarnos.
+
+<span>Precios vigentes del 01/Enero/2025 al 12/Diciembre/2025.</span>
+<a href="https://maps.app.goo.gl/BqLK8AduFP2GEkuWA" style="text-decoration: none; color: black;">
+        <span>🚩 Puebla.🇲🇽 México</span>
+    </a>
+    
+  </p>
 </footer>
-<script>
-function toggleMenu() {
-    var menu = document.getElementById('menu');
-    menu.classList.toggle('showing');
-}
-</script>
 </body>
 </html>
+
+
+
+<script>
+    let total = 0;
+    let totalWeight = 0;
+    let cart = [];
+    let cartCount = 0;
+    let shippingCost = 0;
+    let shippingType = 'default';
+    let paymentType = '💰 Selecciona la forma de pago.';
+    let paymentCommission = 0;
+    let paymentIcon = '';
+
+// Agregar los nuevos productos al stock original
+const originalStock = {
+    'Producto A': 100,
+    'Producto B': 50,
+    'Producto C': 10,
+    'Producto D': 30,
+    'Producto E': 20,
+    'Producto F': 15,
+    'Producto G': 25,
+    'Producto H': 40,
+    'Producto I': 15,
+    'Producto J': 10,
+    'Producto K': 20,
+    'Producto L': 30,
+    'Producto M': 100,
+    'Producto N': 60,
+    'Producto O': 70,
+    'Producto P': 80,
+    'Producto Q': 90,
+    'Producto R': 100,
+    'Producto S': 110,
+    'Producto T': 120,
+    'Producto U': 130,
+    'Producto V': 140,
+    'Producto W': 150,
+    'Producto X': 160,
+    'Producto Y': 170,
+    'Producto Z': 180
+};
+
+
+    // Stock actualizado según lo que hay en el carrito
+    let stock = { ...originalStock };
+	
+	
+	function toggleWeightButtons(activeButtonId) {
+        // Obtener todos los contenedores de botones de peso
+        const weightButtons = [
+            'weightbtn', 'weight3', 'weight6', 'weight9', 'weight15', 'weight30', 'weight50'
+        ];
+
+        // Ocultar todos los contenedores de botones de peso
+        weightButtons.forEach(buttonId => {
+            const buttonContainer = document.getElementById(buttonId);
+            if (buttonContainer) {
+                buttonContainer.style.display = 'none';
+            }
+        });
+
+        // Mostrar solo el contenedor de botones activo
+        const activeButtonContainer = document.getElementById(activeButtonId);
+        if (activeButtonContainer) {
+            activeButtonContainer.style.display = 'block';
+        }
+    }
+	
+	
+	
+	
+	
+
+    function addToCart(name, price, weight, maxStock, quantity, description) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > stock[name]) {
+            alert("No puedes agregar más de este producto, o ya no hay stock suficiente " + stock[name]);
+            return;
+        }
+
+        let item = cart.find(item => item.name === name);
+
+        if (!item) {
+            cart.push({ name, price, weight, quantity, description });
+            stock[name] -= quantity;
+            total += price * quantity;
+            totalWeight += weight * quantity;
+            cartCount += quantity;
+        } else {
+            if (item.quantity + quantity <= originalStock[name]) {
+                stock[name] -= quantity;
+                item.quantity += quantity;
+                item.description = description;
+                total += price * quantity;
+                totalWeight += weight * quantity;
+                cartCount += quantity;
+            } else {
+                alert("Si deseas modificar la cantidad, por favor ve al carrito y ajusta el stock desde allí.");
+                return;
+            }
+        }
+
+        // Restablecer el tipo de envío y los valores de costo de envío
+        resetShipping();
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+        updateStockDisplay(name);
+        updateCart();
+    }
+
+    function removeFromCart(name, price, weight) {
+        let itemIndex = cart.findIndex(item => item.name === name);
+        if (itemIndex !== -1) {
+            let item = cart[itemIndex];
+            total -= item.quantity * price;
+            totalWeight -= item.quantity * weight;
+            cartCount -= item.quantity;
+            stock[name] += item.quantity;
+            cart.splice(itemIndex, 1);
+
+            updateStockDisplay(name);
+        }
+
+        // Restablecer el tipo de envío y los valores de costo de envío
+        resetShipping();
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+        // Verificar si el carrito está vacío después de eliminar
+        if (cart.length === 0) {
+            total = 0;
+            totalWeight = 0;
+            cartCount = 0;
+            shippingCost = 0;
+
+            // Actualizar el contenido del carrito vacío
+            document.getElementById('cartCount').textContent = '0';
+            document.getElementById('cartItems').innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Últimas unidades disponibles!</p>';
+            document.getElementById("total").textContent = "0.00";
+            document.getElementById("totalWeight").textContent = "0.00";
+            document.getElementById("finalTotal").textContent = "0.00";
+            document.getElementById("finalTotal2").textContent = "0.00";
+            document.getElementById("shippingtype").textContent = "0.00";
+            document.getElementById("shippingInfo").textContent = "Selecciona el tipo de envío";
+            document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
+            document.getElementById('paymentInfo').style.display = 'none';
+
+            // Actualizar el costo de envío y comisión a $0
+            document.getElementById('shippingCostValue2').textContent = "0";
+            document.getElementById('shippingCostValue').textContent = "0";
+            document.getElementById('selectedShippingCostValue').textContent = "0"; // Actualizar el costo de envío seleccionado
+
+            // Actualizar mensajes del carrito vacío
+            document.getElementById('emptyCartMessage').textContent = '🛒 Por favor, añade productos para continuar.';
+            document.getElementById('emptyCartMessage').style.display = 'block';
+            document.getElementById('cartStatusMessage').textContent = '🛒 Por favor, añade productos para continuar.';
+            document.getElementById('cartStatusMessage').style.color = 'gray';
+            let pesoMensaje = document.getElementById('pesoMensaje');
+            pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar.';
+            return;
+        }
+
+        // Si aún hay productos, actualizar el carrito
+        updateCart();
+    }
+
+    function resetShipping() {
+        shippingType = 'default';
+        shippingCost = 0;
+
+        // Restablecer los elementos relacionados con el envío
+        document.getElementById("shippingInfo").innerHTML = "Selecciona el tipo de envío";
+        document.getElementById("shippingInfo2").textContent = "0";
+        document.getElementById("selectedShippingCostValue").textContent = "0.00";
+        document.getElementById("selectedShippingCost").textContent = "$0.00";
+        document.getElementById("shippingCostValue2").textContent = "0";
+    }
+
+
+
+
+
+// updatecart
+
+
+function updateCart() {
+    let cartItems = document.getElementById('cartItems');
+    let emptyCartMessage = document.getElementById('emptyCartMessage');
+    cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+    // Actualizar el costo de la comisión en el nuevo div
+    document.getElementById('shippingCostValue').textContent = (total * paymentCommission / 100).toFixed(2);
+
+     // Actualizar el costo total de productos
+     document.getElementById("productTotalValue").textContent = total.toFixed(2);
+
+	// Actualizar el mensaje según el estado del carrito
+    const cartStatusMessage = document.getElementById('cartStatusMessage');
+    if (cart.length === 0) {
+        cartStatusMessage.textContent = '🛒 Por favor, añade productos para continuar. 3.0';
+        cartStatusMessage.style.color = 'gray';
+          // Actualizar el costo total de productos a 0
+          document.getElementById("productTotalValue").textContent = "0.00";
+
+    } 
+    
+    else {
+        // Establece el mensaje
+cartStatusMessage.innerHTML = '<form id="shippingForm"> \
+    <label for="name">* Nombre:</label> \
+    <input type="text" id="name" name="name"value="quetzalarte.com" required style="width:100%; padding:5px;"><br> \
+    <label for="phone">* Teléfono:</label> \
+    <input type="text" id="phone" name="phone" value="2224606907" required style="width:100%; padding:5px;"><br> \
+    <label for="address">Dirección:</label> \
+    <input type="text" id="address" name="address" style="width:100%; padding:5px;"><br> \
+    <label for="city">Ciudad:</label> \
+    <input type="text" id="city" name="city" style="width:100%; padding:5px;"><br> \
+    <label for="state">Estado:</label> \
+    <input type="text" id="state" name="state" style="width:100%; padding:5px;"><br> \
+    <label for="zip">Código Postal:</label> \
+    <input type="text" id="zip" name="zip" style="width:100%; padding:5px;"><br> \
+    <label for="country">País:</label> \
+    <input type="text" id="country" name="country" style="width:100%; padding:5px;"><br> \
+    <label for="e-mail">E-mail:</label> \
+    <input type="email" id="email" name="email" style="width:100%; padding:5px;"><br><br> \
+    <label for="rfc">RFC:</label> \
+    <input type="text" id="rfc" name="rfc" style="width:100%; padding:5px;"><br><br> \
+    <div class="payment-options"> \
+        <button type="button" onclick="comprar()">🗹 Listos mis datos para Comprar</button> \
+        <button type="button" onclick="solicitarPedido()"> \
+            <img src="https://static.xx.fbcdn.net/assets/?revision=1431132240730458&name=Illustrations-Get-Started&density=1" width="20px"> Solicitar información de este pedido</button> \
+    </div> \
+</form>';
+    }
+
+    // Mostrar mensaje si el carrito está vacío
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="color: gray; text-align: center;">🛒 Tu carrito está vacío.<br/><br/>¡Stock limitado y alta demanda! <br/>Asegura tu producto ahora antes de que se agote.</p>';
+		//2 Forma
+        emptyCartMessage.textContent = '🛒 Por favor, añade productos para continuar. 2.0';
+        emptyCartMessage.style.display = 'block'; // Mostrar mensaje
+		//1 Envío
+
+        pesoMensaje.textContent = '🛒 Por favor, añade productos para continuar. 1.0';
+        
+        // Ocultar secciones de envío y pago al iniciar la pagina
+        document.getElementById('shippingInfo').style.display = 'none';
+        document.getElementById('paymentInfo').style.display = 'none';
+        
+        // Restablecer valores
+        cartCount = 0;
+        document.getElementById('cartCount').textContent = '0';
+        document.getElementById("total").textContent = "0.00";
+        document.getElementById("totalWeight").textContent = "0.00";
+        document.getElementById("finalTotal").textContent = "0.00";
+        document.getElementById("finalTotal2").textContent = "0.00";
+        document.getElementById("shippingtype").textContent = "0.00";
+        document.getElementById("shippingInfo2").textContent = "0"; // Aquí se actualiza el valor de envío a 0
+        document.getElementById("paymentInfo").textContent = "Selecciona el tipo de pago";
+        document.getElementById('paymentInfo').style.display = 'none';
+        document.getElementById("shippingCostValue").textContent = "0.00";
+        document.getElementById("shippingCostValue2").textContent = "0.00";
+        
+
+        return;
+    } else {
+        emptyCartMessage.style.display = 'none'; // Ocultar mensaje si hay productos
+        // Mostrar secciones de envío y pago
+        document.getElementById('shippingInfo').style.display = 'block';
+        document.getElementById('paymentInfo').style.display = 'block';
+        document.getElementById('pesoMensaje').style.display = 'block';
+		emptyCartMessage.innerHTML = '<div class="payment-options"><button onclick="setPayment(\'Saldo en cuenta - Pedido automático - comisión 0%\', 0, \'💰\')">Saldo en cuenta - Pedido Automático - comisión 0%</button> \
+<button onclick="setPayment(\'Transferencia bancaria\', 0, \'🏦\')">Transferencia bancaria - Notificar Compra - comisión 0%</button> \
+<button onclick="setPayment(\'Mercado Libre\', 2.8, \'🛒\')">Mercado Libre - Notificar Compra - comisión 2.8%</button> \
+<button onclick="setPayment(\'PayPal\', 3.4, \'💳\')">PayPal - Notificar Compra - comisión 3.4%</button> \
+<button onclick="setPayment(\'Google Pay\', 3.4, \'📱\')">Google Pay - Notificar Compra - comisión 3.4%</button> \
+<button onclick="setPayment(\'Bitso Criptomonedas\', 0, \'🪙\')">Bitso Criptomonedas - Notificar Compra - comisión 0%</button> \
+<button onclick="setPayment(\'Pago en tiendas de autoservicio\', 0, \'🏪\')">OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00</button> </div>';
+
+        emptyCartMessage.style.display = 'block'; // Mostrar mensaje
+    }
+
+    // Si hay productos en el carrito
+    cartItems.innerHTML = ''; // Limpiar el contenido anterior
+    cart.forEach(item => {
+        let itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            ${item.description}  
+           <div style="text-align: right; display: inline-block; padding-right: 50px;">
+                <input type="number" value="${item.quantity}" min="1" max="${originalStock[item.name]}" 
+                    onchange="updateQuantity('${item.name}', this.value, ${item.price}, ${item.weight})">
+                x $${item.price} 
+                <button onclick="removeFromCart('${item.name}', ${item.price}, ${item.weight})" 
+                    style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">
+                    ✖️
+                </button>
+            </div>`;
+        cartItems.appendChild(itemDiv);
+    });
+
+    // Actualizar el contador de productos en el ícono del carrito
+    document.getElementById('cartCount').textContent = cartCount;
+
+    
+
+// Recalcular la comisión en función del subtotal y el costo de envío
+let subtotal = parseFloat(total) || 0;
+let envio = parseFloat(shippingCost) || 0;
+let baseCalculo = subtotal + envio;
+let porcentajeComision = paymentCommission / 100;
+let commissionInPesos = (baseCalculo * porcentajeComision).toFixed(2);
+
+// Mostrar el desglose de la comisión
+document.getElementById('commissionCalculation').innerHTML = `
+    ${baseCalculo.toFixed(2)}<br>
+    × ${porcentajeComision.toFixed(3)}<br>
+    = ${commissionInPesos}
+`;
+
+// Actualizar el costo total de la comisión
+document.getElementById('shippingtype').textContent = commissionInPesos;
+document.getElementById('shippingCostValue').textContent = commissionInPesos;
+
+// Calcular el total final (subtotal + envío + comisión)
+let finalTotal = (baseCalculo + parseFloat(commissionInPesos)).toFixed(2);
+
+
+    // Actualizar los totales en la interfaz
+    document.getElementById("total").textContent = total.toFixed(2);
+    document.getElementById("totalWeight").textContent = totalWeight.toFixed(2);
+    document.getElementById("finalTotal").textContent = finalTotal; // 1 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal; // 2 Total a pagar
+
+    // Actualizar el costo de la comisión
+    document.getElementById('shippingtype').textContent = `${commissionInPesos}`;
+    document.getElementById('shippingCostValue').textContent = `${commissionInPesos}`;
+
+
+    // Mostrar u ocultar el mensaje de peso según el rango
+        
+if (totalWeight <= 5.99) {
+
+    pesoMensaje.innerHTML = `
+    Categoría de peso: 1 a 5 kg.
+    <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+        <br/><br/>    <div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('free', 149)">Envío Rápido - 7 días - Costo: $149</button>
+                <button onclick="setShipping('express', 159)">Envío Express - 6 días - Costo: $159</button>
+                <button onclick="setShipping('premium', 549)">Envío Premium - 1 día - Costo: $549</button>
+            </div>
+            `;
+document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+document.getElementById('shippingInfo').style.display ='none';
+}
+
+
+else if (totalWeight <= 6) {
+
+    pesoMensaje.innerHTML = `
+            Categoría de peso: 6 kg.
+            <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('6kg', 149)">Envío Rápido - 6 días - Costo: $149</button>
+            </div>
+            `;
+document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+document.getElementById('shippingInfo').style.display = 'none';  
+}     
+    
+
+else if (totalWeight <= 10) {
+    pesoMensaje.innerHTML = `
+   Categoría de peso: 6 a 10 kg.
+            <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+                <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+                <button onclick="setShipping('10kg', 199)">Envío Rápido - 6 días - Costo: $199</button>
+            </div>
+            `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 11) {
+    pesoMensaje.innerHTML = `
+     Categoría de peso: 11 a 15 kg.
+     <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('11kg', 249)">Envío Rápido - 7 días - Costo: $249</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 15) {
+    pesoMensaje.innerHTML = `
+        Categoría de peso: 15 kg.
+        <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/><div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('15kg', 799)">Envío Rápido - 5 días - Costo: $799</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }   
+
+
+else if (totalWeight <= 20) { // Aquí estaba el error: faltaba cerrar el paréntesis
+    pesoMensaje.innerHTML = `
+        Categoría de peso: 20 kg.
+        <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/>
+    <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('20kg', 899)">Envío Rápido - 5 días - Costo: $899</button>
+        </div>`;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+
+else if (totalWeight <= 25) {
+    pesoMensaje.innerHTML = `
+       Categoría de peso: 25 kg.
+       <div id="p" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/> <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('25kg', 999)">Envío Rápido - 5 días - Costo: $999</button>
+        </div>`;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+else if (totalWeight <= 30) {
+    pesoMensaje.innerHTML = `
+       Categoría de peso: 30 kg
+       <div id="pesoInfo" class="shipping-info">${document.getElementById("shippingInfo").textContent}</div>
+    <br/><br/> <div class='shipping-options'>  
+            <button onclick="setShipping('none', 0)">Sin Envío (entrega a cordar o archivo digital)</button>
+            <button onclick="setShipping('30kg', 1600)">Envío Rápido - 5 días - Costo: $1600</button>
+        </div>
+        `;
+ document.getElementById("shippingInfo").innerHTML = "📦🚚✈️ Selecciona tipo de envío.";
+ document.getElementById('shippingInfo').style.display = 'none';
+    }
+
+else {
+    pesoMensaje.textContent = 'El peso total supera 30 kg.';
+}	
+		
+		
+
+    // Mostrar u ocultar las opciones de pago
+    document.getElementById("payment-options").style.display = (cartCount > 0) ? "block" : "none";
+
+    // Actualizar el mensaje de envío
+    updateShippingMessage();
+
+    // Actualizar la información de pago
+    document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span>${paymentType}`;
+
+    // Mostrar u ocultar los detalles de transferencia bancaria
+    const bankTransferDetails = document.getElementById("bankTransferDetails");
+    if (paymentType.includes('Transferencia bancaria')) {
+        bankTransferDetails.style.display = 'block';
+    } else {
+        bankTransferDetails.style.display = 'none';
+    }
+
+    // Actualizar el costo de la comisión
+    document.getElementById('shippingtype').textContent = `${commissionInPesos}`;
+}
+
+
+
+
+
+// fin Updatecart
+
+
+
+
+
+
+function setPayment(type, commission) {
+    paymentType = type;
+    paymentCommission = commission;
+
+
+     // Calcular el costo real de la comisión en pesos
+     let subtotal = parseFloat(total) || 0;
+    let envio = parseFloat(shippingCost) || 0;
+    let baseCalculo = subtotal + envio;
+    let commissionInPesos = (baseCalculo * (paymentCommission / 100)).toFixed(2);
+
+    
+    // Actualizar el contenido del div paymentInfo
+    let paymentDetails = "";
+
+    switch (type) {
+        case 'Saldo en cuenta - Pedido automático - comisión 0%':
+            paymentDetails = `💰 Saldo en cuenta - Pedido Automático - comisión 0%`;
+            break;
+        case 'Transferencia bancaria':
+            paymentDetails = `🏦 Transferencia bancaria - Notificar Compra - comisión 0%`;
+            break;
+        case 'Mercado Libre':
+            paymentDetails = `🛒 Mercado Libre - Notificar Compra - comisión 2.8%`;
+            break;
+        case 'PayPal':
+            paymentDetails = `💳 PayPal - Notificar Compra - comisión 3.4%`;
+            break;
+        case 'Google Pay':
+            paymentDetails = `📱 Google Pay - Notificar Compra - comisión 3.4%`;
+            break;
+        case 'Bitso Criptomonedas':
+            paymentDetails = `🪙 Bitso Criptomonedas - Notificar Compra - comisión 0%`;
+            break;
+        case 'Pago en tiendas de autoservicio':
+            paymentDetails = `🏪 OXXO, 7-Eleven, Farmacias del Ahorro, Chedraui, Walmart, Soriana, Extra - Notificar Compra - la comisión se paga en tienda $10.00 a $15.00`;
+            break;
+        default:
+            paymentDetails = "💰 Saldo en cuenta - Pedido Automático - comisión 0%";
+            break;
+    }
+
+    // Sobrescribir completamente el contenido del div paymentInfo
+    document.getElementById("paymentInfo").innerHTML = `<span>${paymentIcon}</span> ${paymentDetails}`;
+
+    // Actualizar el contenido del span con ID shippingtype
+    document.getElementById('shippingtype').textContent = commissionInPesos;
+    // Actualizar el contenido del span con ID shippingCostValue
+    document.getElementById('shippingCostValue').textContent = commissionInPesos;
+
+    // Calcular el total final (productos + envío + comisión) 1 Total a pagar
+let shippingCostValue2 = parseFloat(document.getElementById('shippingCostValue2').textContent) || 0;
+
+
+ // Calcular el total final (productos + envío + comisión)
+ let finalTotal = (baseCalculo + parseFloat(commissionInPesos)).toFixed(2);
+
+
+
+    // Actualizar 1 Total a pagar
+    document.getElementById("finalTotal").textContent = finalTotal;
+    // Actualizar 2 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal;
+}
+
+
+
+
+
+
+
+
+    function updateQuantity(name, quantity, price, weight) {
+        quantity = parseInt(quantity);
+        if (quantity < 1 || quantity > originalStock[name]) {
+            alert("Cantidad inválida, elige una cantidad entre 1 y " + originalStock[name]);
+            return;
+        }
+
+        let item = cart.find(item => item.name === name);
+        if (item) {
+            let priceDifference = (quantity - item.quantity) * price;
+            let weightDifference = (quantity - item.quantity) * weight;
+            stock[name] += item.quantity - quantity; // Actualizamos el stock disponible
+            total += priceDifference;
+            totalWeight += weightDifference;
+            cartCount += quantity - item.quantity; // Actualizamos el contador de productos en el carrito
+            item.quantity = quantity;
+
+            // Restablecer el tipo de envío y los valores de costo de envío
+            resetShipping();
+            paymentCommission = 0; // Restablecer la comisión a 0
+            document.getElementById("shippingtype").textContent = "0.00";
+            document.getElementById("shippingCostValue").textContent = "0.00";
+            document.getElementById("selectedShippingCostValue").textContent = "0.00";
+            document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+            updateCart();
+        }
+    }
+
+    function updateStockDisplay(productName) {
+    // Actualizar el stock en la interfaz
+    if (productName === 'Producto A') {
+        document.getElementById('stockA').textContent = stock[productName];
+    } else if (productName === 'Producto B') {
+        document.getElementById('stockB').textContent = stock[productName];
+    } else if (productName === 'Producto C') {
+        document.getElementById('stockC').textContent = stock[productName];
+    } else if (productName === 'Producto D') {
+        document.getElementById('stockD').textContent = stock[productName];
+    } else if (productName === 'Producto E') {
+        document.getElementById('stockE').textContent = stock[productName];
+    } else if (productName === 'Producto F') {
+        document.getElementById('stockF').textContent = stock[productName];
+    } else if (productName === 'Producto G') {
+        document.getElementById('stockG').textContent = stock[productName];
+    } else if (productName === 'Producto H') {
+        document.getElementById('stockH').textContent = stock[productName];
+    } else if (productName === 'Producto I') {
+        document.getElementById('stockI').textContent = stock[productName];
+    } else if (productName === 'Producto J') {
+        document.getElementById('stockJ').textContent = stock[productName];
+    } else if (productName === 'Producto K') {
+        document.getElementById('stockK').textContent = stock[productName];
+    } else if (productName === 'Producto L') {
+        document.getElementById('stockL').textContent = stock[productName];
+    } else if (productName === 'Producto M') {
+        document.getElementById('stockM').textContent = stock[productName];
+    } else if (productName === 'Producto N') {
+        document.getElementById('stockN').textContent = stock[productName];
+    } else if (productName === 'Producto O') {
+        document.getElementById('stockO').textContent = stock[productName];
+    } else if (productName === 'Producto P') {
+        document.getElementById('stockP').textContent = stock[productName];
+    } else if (productName === 'Producto Q') {
+        document.getElementById('stockQ').textContent = stock[productName];
+    } else if (productName === 'Producto R') {
+        document.getElementById('stockR').textContent = stock[productName];
+    } else if (productName === 'Producto S') {
+        document.getElementById('stockS').textContent = stock[productName];
+    } else if (productName === 'Producto T') {
+        document.getElementById('stockT').textContent = stock[productName];
+    } else if (productName === 'Producto U') {
+        document.getElementById('stockU').textContent = stock[productName];
+    } else if (productName === 'Producto V') {
+        document.getElementById('stockV').textContent = stock[productName];
+    } else if (productName === 'Producto W') {
+        document.getElementById('stockW').textContent = stock[productName];
+    } else if (productName === 'Producto X') {
+        document.getElementById('stockX').textContent = stock[productName];
+    } else if (productName === 'Producto Y') {
+        document.getElementById('stockY').textContent = stock[productName];
+    } else if (productName === 'Producto Z') {
+        document.getElementById('stockZ').textContent = stock[productName];
+    }
+}
+
+    function toggleCart() {
+        let cartDiv = document.querySelector('.cart'); // Obtener el carrito
+
+        // Alternar la clase 'open' para mostrar/ocultar el carrito
+        if (cartDiv.classList.contains('open')) {
+            cartDiv.classList.remove('open'); // Ocultar el carrito
+            setTimeout(() => {
+                cartDiv.style.display = 'none'; // Ocultar después de la animación
+            }, 300); // Tiempo igual a la duración de la animación (0.3s)
+        } else {
+            cartDiv.style.display = 'block'; // Mostrar el carrito antes de la animación
+            setTimeout(() => {
+                cartDiv.classList.add('open'); // Iniciar la animación
+            }, 10); // Pequeño retraso para asegurar que el elemento esté visible
+        }
+
+
+    // Restablecer la comisión y los valores relacionados
+    paymentCommission = 0; // Reiniciar la comisión a 0
+    document.getElementById("shippingtype").textContent = "0.00";
+    document.getElementById("shippingCostValue").textContent = "0.00";
+    document.getElementById("selectedShippingCostValue").textContent = "0.00";
+    document.getElementById("selectedShippingCost").textContent = "$0.00";
+
+    // Restablecer el mensaje de forma de pago
+    paymentType = '💰 Selecciona la forma de pago.';
+    document.getElementById("paymentInfo").innerHTML = `<span>💰</span> Selecciona la forma de pago`;
+
+    // Actualizar el contenido del carrito
+    updateCart();
+}
+
+    function setShipping(type, cost) {
+        shippingType = type;
+        shippingCost = cost;
+
+        // Actualizar el contenido del div shippingInfo
+        let shippingMessage = "";
+        let shippingIcon = "";
+
+        switch (type) {
+            case 'none':
+                shippingIcon = "❤️";
+                shippingMessage = "SIN ENVÍO";
+                break;
+            case 'free':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO RÁPIDO - 7 DÍAS - $149.00";
+                break;
+            case 'express':
+                shippingIcon = "🚚";
+                shippingMessage = "ENVÍO EXPRESS - 6 DÍAS - $159.00";
+                break;
+            case 'premium':
+                shippingIcon = "✈️";
+                shippingMessage = "ENVÍO PREMIUM - 1 DÍA - $549.00";
+                break;
+            case '3kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 3kg - 6 DÍAS - $199.00";
+                break;
+            case '6kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 6kg - 6 DÍAS - $199.00";
+                break;
+            case '10kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 10kg - 6 DÍAS - $199.00";
+                break;
+            case '11kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 11kg - 7 DÍAS - $299.00";
+                break;
+			case '20kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 20kg - 7 DÍAS - $299.00";
+                break;
+			case '25kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 25kg - 7 DÍAS - $299.00";
+                break;
+            case '30kg':
+                shippingIcon = "📦";
+                shippingMessage = "ENVÍO 30kg - 7 DÍAS - $299.00";
+                break;
+            default:
+                shippingIcon = "🚚";
+                shippingMessage = "Selecciona el tipo de envío";
+                break;
+        }
+
+     // Actualizar el contenido del div shippingInfo
+     document.getElementById("shippingInfo").innerHTML = `<span>${shippingIcon}</span> ${shippingMessage}`;
+    document.getElementById('shippingInfo2').textContent = cost;
+
+    // Actualizar el costo de envío en los elementos correspondientes
+    document.getElementById('selectedShippingCostValue').textContent = cost.toFixed(2);
+    document.getElementById('selectedShippingCost').textContent = `$${cost.toFixed(2)}`;
+    document.getElementById('shippingCostValue2').textContent = cost;
+
+    // Recalcular la comisión en función del nuevo costo de envío
+    let commissionInPesos = ((total + shippingCost) * (paymentCommission / 100)).toFixed(2);
+    document.getElementById('shippingtype').textContent = commissionInPesos;
+    document.getElementById('shippingCostValue').textContent = commissionInPesos;
+
+    // Calcular el total final (productos + envío + comisión)
+    let finalTotal = (total + shippingCost + parseFloat(commissionInPesos)).toFixed(2);
+
+    // Actualizar los totales en la interfaz
+    document.getElementById("finalTotal").textContent = finalTotal; // 1 Total a pagar
+    document.getElementById("finalTotal2").textContent = finalTotal; // 2 Total a pagar
+
+    // Restablecer el tipo de pago al texto predeterminado
+    paymentType = '💰 Selecciona la forma de pago.';
+    paymentCommission = 0; // Restablecer la comisión a 0
+    document.getElementById("paymentInfo").innerHTML = `<span>💰</span> Selecciona la forma de pago`;
+
+    
+    // Actualizar el carrito
+    updateCart();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+    function mostrarDetallesCompra() {
+        const form = document.getElementById('shippingForm');
+
+        // Detalles del carrito
+        let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity} - Precio: $${item.price}`).join('\n');
+
+        // Calcular el totalFinal (precio total con envío y comisión)
+        let totalFinal = total + shippingCost + (total * paymentCommission / 100);
+
+        // Obtener el subtotal (sin IVA)
+        let subtotal = totalFinal / 1.16;
+
+        // Calcular el IVA (16% sobre el subtotal)
+        let iva = totalFinal - subtotal;
+
+        // Calcular el 1% de ISR (sobre el totalFinal)
+        let isr = totalFinal * 0.01;
+
+        // Detalles del total con desglose del IVA incluido y el ISR
+        let totalDetails = `
+Subtotal (sin IVA): $${subtotal.toFixed(2)}
+IVA (16% incluido): $${iva.toFixed(2)}
+Peso Total: ${totalWeight.toFixed(2)} kg
+Envío: $${shippingCost.toFixed(2)}
+Comisión: ${paymentCommission}%
+ISR (1%): $${isr.toFixed(2)}
+💲 Total a pagar: $${totalFinal.toFixed(2)}`;
+
+        // Detalles de envío
+        let shippingDetails = `
+Nombre: ${form.name.value}
+Dirección: ${form.address.value}
+Ciudad: ${form.city.value}
+Estado: ${form.state.value}
+Código Postal: ${form.zip.value}
+País: ${form.country.value}
+Teléfono: ${form.phone.value}
+E-mail: ${form.email.value}
+RFC: ${form.rfc.value}`;
+
+        // Detalles de pago
+        let paymentDetails = `Tipo de Pago: ${paymentType}\nComisión: ${paymentCommission}%`;
+        if (paymentType.includes('Transferencia bancaria')) {
+            paymentDetails += `\nPagar a:\nBanco: BBVA \nNombre: Juan Carlos Bautista Bautista\nCLABE: 012650028760776683`;
+        }
+
+        // Número de pedido
+        let orderNumber = Math.floor(100000 + Math.random() * 900000);
+
+        // Obtener fecha y hora actual
+        let fechaHora = new Date().toLocaleString('es-MX', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        // Mensaje completo (formato de nota de remisión)
+        let message = `
+<div style="font-family: Arial, sans-serif; max-width: 800px; margin: 10px auto; padding: 10px; border: 1px solid #ddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <!-- Encabezado -->
+    <div style="text-align: center; margin-bottom: 10px;">
+        <h5 style="color: green;">Gracias por tu paciencia. Estamos verificando tu pedido y nos pondremos en contacto contigo a la brevedad.</h5>
+        <h1 style="font-size: 20px; margin: 0; color: #333;">NOTA DE REMISIÓN</h1>
+        <p style="text-align: right; font-size: 12px; color: #777; margin: 5px 0;">Fecha y hora: ${fechaHora}</p>
+        <p style="font-size: 12px; color: #777; margin: 5px 0;">Número de Pedido: <strong>${orderNumber}</strong></p>
+    </div>
+
+    <!-- Detalles de pago -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles de Pago</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${paymentDetails}</pre>
+    </div>
+
+    <!-- Datos del cliente y de la venta -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <!-- Datos del cliente -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos del Cliente</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Nombre:</strong> ${form.name.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Dirección:</strong> ${form.address.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Ciudad:</strong> ${form.city.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Estado:</strong> ${form.state.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Código Postal:</strong> ${form.zip.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>País:</strong> ${form.country.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Teléfono:</strong> ${form.phone.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Email:</strong> ${form.email.value}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>RFC:</strong> ${form.rfc.value}</p>
+        </div>
+
+        <!-- Datos de la venta -->
+        <div style="width: 48%;">
+            <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Datos de la Venta</h2>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Método de Pago:</strong> ${paymentType}</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Comisión:</strong> ${paymentCommission}%</p>
+            <p style="margin: 3px 0; font-size: 12px; color: #555; text-align: left;"><strong>Envío:</strong> $${shippingCost}</p>
+        </div>
+    </div>
+
+    <!-- Detalles del pedido -->
+    <div style="margin-bottom: 10px;">
+        <h2 style="font-size: 16px; margin-bottom: 5px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; text-align: left;">Detalles del Pedido</h2>
+        <pre style="font-size: 12px; color: #555; margin: 0; text-align: left;">${cartDetails}</pre>
+    </div>
+
+    <!-- Total -->
+    <div style="text-align: right; margin-bottom: 10px;">
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>IVA (16%):</strong> $${iva.toFixed(2)}</p>
+        <p style="font-size: 12px; color: #555; margin: 3px 0;"><strong>ISR (1%):</strong> $${isr.toFixed(2)}</p>
+        <p style="font-size: 14px; color: #333; margin: 3px 0;"><strong>Total a pagar:</strong> $${totalFinal.toFixed(2)}</p>
+    </div>
+
+    <!-- Firmas -->
+    <div style="display: flex; justify-content: space-between; margin-top: 20px; padding-top: 10px; border-top: 1px solid #333;">
+        <div style="text-align: center; width: 48%;">
+            <img src="https://http2.mlstatic.com/storage/mshops-appearance-api/images/59/74762859/logo-2020070423454281300.png" 
+                 alt="QuetzalArte.com Logo" 
+                 style="width: 50px; height: auto;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">¡Gracias!</p>
+        </div>
+        <div style="text-align: center; width: 48%;">
+            <p style="margin: 3px 0; font-size: 12px; color: #555;">
+                QuetzalArte.com<br/>
+                Privada 14 C Sur No. 1305 Interior 2<br/>
+                Fracc. El Ángel Puebla, Puebla México<br/>
+                C.P. 72000 RFC: BABJ820827T76
+            </p>
+        </div>
+    </div>
+</div>`;
+
+        // Crear el div con los detalles
+        let detallesDiv = document.createElement('div');
+        detallesDiv.id = 'contenido-imprimir'; // Asignar el id para imprimir
+        detallesDiv.innerHTML = message;
+
+        // Agregar botones
+        detallesDiv.innerHTML += `
+            <div class="payment-options"><button class="no-imprimir" onclick="imprimirNota()">🖶 Imprimir</button>
+            <button class="no-imprimir" onclick="generarPDF()">🗎 Guardar como PDF</button></div>
+        `;
+
+        // Limpiar el contenido anterior y agregar el nuevo
+        let detallesCompraDiv = document.getElementById('detallesCompra');
+        detallesCompraDiv.innerHTML = '';
+        detallesCompraDiv.appendChild(detallesDiv);
+    }
+
+
+    function compartirRedes(message) {
+        let url = `https://www.facebook.com/sharer/sharer.php?u=${message}`;
+        window.open(url, '_blank');
+    }
+
+    
+</script>
+
+<script>
+    function comprar() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
+
+        // Validar campos requeridos
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.classList.add('invalid');
+                valid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        // Validar tipo de envío y pago
+        if (shippingType === 'default') {
+            alert('Por favor, selecciona un tipo de envío.');
+            valid = false;
+        }
+
+        if (paymentType === '💰 Selecciona la forma de pago.') {
+            alert('Por favor, selecciona un tipo de pago.');
+            valid = false;
+        }
+
+        // Si todo es válido, mostrar detalles de compra
+        if (valid) {
+            alert('Solicitud de Compra realizada con Éxito');
+            mostrarDetallesCompra();
+        } else {
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+        }
+    }
+</script>
+    
+    
+<script>
+   
+   function solicitarPedido() {
+        const form = document.getElementById('shippingForm');
+        const inputs = form.querySelectorAll('input[required]');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (!input.value) {
+                input.classList.add('invalid');
+                valid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        if (cart.length === 0) {
+            alert('Por favor, agrega productos al carrito antes de solicitar el pedido.');
+            return;
+        }
+
+        if (valid && shippingType !== 'default' && paymentType !== '💰 Selecciona la forma de pago.') {
+            let cartDetails = cart.map(item => `${item.description} - Cantidad: ${item.quantity}`).join('\n');
+            let totalDetails = `Total: $${total}\nPeso Total: ${totalWeight.toFixed(2)} kg\nEnvío: $${shippingCost}\nComisión: ${paymentCommission}%\n 5 Total a pagar: $${(total + shippingCost + (total * paymentCommission / 100)).toFixed(2)}`;
+            let shippingDetails = `Nombre: ${form.name.value}\nDirección: ${form.address.value}\nCiudad: ${form.city.value}\nEstado: ${form.state.value}\nCódigo Postal: ${form.zip.value}\nPaís: ${form.country.value}\nTeléfono: ${form.phone.value}\nE-mail: ${form.email.value}\nRFC: ${form.rfc.value}`;
+            let message = `Detalles del Pedido:\n${cartDetails}\n\n${totalDetails}\n\nDatos de Envío:\n${shippingDetails}`;
+
+            let whatsappUrl = `https://wa.me/2224606907?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        } else {
+            alert('Por favor, completa todos los campos y selecciona el tipo de envío y pago.');
+        }
+    }
+
+    document.querySelector('button[onclick="solicitar()"]').setAttribute('onclick', 'solicitarPedido()');
+</script></script>
+
+ 
+
+<script>
+function agregarAlCarrito() {
+    const icono = document.getElementById('icono-carrito');
+    
+    // Mostrar el icono si está oculto
+    if(icono.style.display === 'none') {
+        icono.style.display = 'inline-block';
+    }
+    
+    // Reiniciar la animación
+    icono.style.animation = 'none';
+    void icono.offsetWidth; // Truco para reiniciar la animación
+    icono.style.animation = 'bounce 0.5s ease';
+    
+    // Ocultar después de 1 segundo
+    setTimeout(() => {
+        icono.style.display = 'none';
+    }, 1000);
+}
+    </script>
+    
+
+ <!-- Incluye jsPDF y html2canvas PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>	
+<script>
+    // Función para generar el PDF
+    function generarPDF() {
+        // Obtén los botones que no deben aparecer en el PDF
+        const botones = document.querySelectorAll('.no-imprimir');
+
+        // Oculta los botones
+        botones.forEach(boton => boton.classList.add('oculto'));
+
+        // Inicializa jsPDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4'); // A4, orientación vertical
+
+        // Obtén el contenido del div
+        const contenido = document.getElementById("contenido-imprimir");
+
+        // Configura html2canvas para renderizar con mayor escala
+        const opciones = {
+            scale: 2, // Aumenta la escala para mejorar la calidad
+            useCORS: true, // Permite el uso de recursos externos (si los hay)
+            logging: true, // Opcional: para depuración
+        };
+
+        // Usa html2canvas para renderizar el contenido en un canvas
+        html2canvas(contenido, opciones).then((canvas) => {
+            // Convierte el canvas a una imagen
+            const imgData = canvas.toDataURL('image/png');
+
+            // Tamaño de la imagen en el PDF
+            const imgWidth = 190; // Ancho máximo de la imagen en el PDF (mm)
+            const imgHeight = (canvas.height * imgWidth) / canvas.width; // Altura proporcional
+
+            // Añade la imagen al PDF
+            doc.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+
+            // Guarda el PDF
+            doc.save("nota de venta quetzalarte.pdf");
+
+            // Muestra los botones nuevamente después de generar el PDF
+            botones.forEach(boton => boton.classList.remove('oculto'));
+        });
+    }
+
+	// Función para imprimir solo el contenido del div
+function imprimirNota() {
+    const contenidoOriginal = document.body.innerHTML; // Guardar el contenido original
+    const contenidoImprimir = document.getElementById('contenido-imprimir').outerHTML; // Obtener el contenido a imprimir
+
+    // Ocultar elementos marcados como "no-imprimir"
+    const elementosNoImprimir = document.querySelectorAll('.no-imprimir');
+    elementosNoImprimir.forEach(elemento => elemento.classList.add('oculto'));
+
+    // Reemplazar contenido del body con el contenido a imprimir
+    document.body.innerHTML = contenidoImprimir;
+
+    // Imprimir y restaurar contenido original
+    setTimeout(() => {
+        window.print(); // Ejecutar impresión
+
+        // Restaurar el contenido original después de imprimir
+        document.body.innerHTML = contenidoOriginal;
+
+        // Restaurar elementos ocultos
+        elementosNoImprimir.forEach(elemento => elemento.classList.remove('oculto'));
+    }, 500); // Esperar 500 ms para asegurar la ejecución
+}
+
+
+</script>
+
+<!--start layer especifico-->
+<span class="cart-icon" onclick="toggleCart(); scrollToLayer();">
+    <!-- Ícono de carrito animado -->
+    <a href="#miLayer" id="enlace" style="text-decoration:none;">
+        <span id="icono-carrito" class="icono-carrito" style="display:none;">📦</span>
+        🛒<span id="cartCount">0</span>
+    </a>
+</span>
+
+<script>
+        document.querySelector('#enlace').addEventListener('click', function(e) {
+            e.preventDefault();
+            const destino = document.querySelector('#miLayer');
+            destino.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+<!--end layer especifico-->
+<script>
+    function filterProducts() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+    
+        products.forEach(product => {
+            const productText = product.textContent.toLowerCase();
+            if (productText.includes(input)) {
+                product.style.display = 'block'; // Mostrar producto
+            } else {
+                product.style.display = 'none'; // Ocultar producto
+            }
+        });
+    }
+    </script>
